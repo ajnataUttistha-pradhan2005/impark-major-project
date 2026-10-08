@@ -1,0 +1,6 @@
+from typing import Protocol
+
+
+class CacheRepository(Protocol):
+    async def get(self, key: str) -> bytes | None: ...
+    async def put(self, key: str, value: bytes, ttl_seconds: int) -> None: ...
