@@ -1,10 +1,15 @@
-# Graph Agent handoff
+# Graph Agent ownership
 
-Implement `GraphAgent.execute(GraphAgentInput) -> Observation | Failure` without changing harness
-state. `backend/contracts/agents.py` owns all 15 query types, typed parameters, read-only flag,
-result limit and timeout. Implement controlled templates behind `GraphRepository`, parameterize
-values, and use a read-only Neo4j principal. No raw Cypher input, final prose or action selection.
+`GraphAgent.execute(GraphAgentInput)` returns typed Observation/Failure. `PlantGraphRetrieval`
+implements the existing GraphRepository protocol, accepting a typed query, requested objective IDs,
+gaps and recent same-plant evidence. No agent may mutate harness state or choose actions.
 
-Current agent returns `GraphAgentOutput(placeholder=True)` with no evidence. Replace this only with
-real provider results and provenance. Empty retrieval is a gap, not proof that a claim is false.
-Physical schema, ingestion and provider integration remain TODO (R-005/R-010).
+Thirteen static Neo4j query templates cover the verified graph; TRACE_EVIDENCE returns a bounded
+session citation snapshot. Cross-plant comparisons are explicitly rejected. Every read anchors the
+active plant, parameterizes values and enforces a timeout and result limit. Actual nodes, directed
+relationship endpoints, URLs and stable citation IDs provide provenance. Evidence classes remain
+unknown unless supported by future verified data. Empty results are gaps, never negative proof.
+
+The main application injects the real adapter when Neo4j and search stores are enabled. The
+unconfigured foundation still returns a marked placeholder; it never fabricates evidence.
+See [GRAPH_AGENT_GUIDE.md](../../../GRAPH_AGENT_GUIDE.md) for usage, scope, validation and limitations.

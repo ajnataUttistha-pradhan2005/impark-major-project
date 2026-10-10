@@ -80,3 +80,4 @@ class TraceEvent(Contract):
     error_type: str | None = None
     evidence_refs: list[UUID] = Field(default_factory=list)
     snapshot: StateSnapshot | None = None
+    details: dict[str, str | int | float | bool] = Field(default_factory=dict)

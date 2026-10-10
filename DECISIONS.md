@@ -297,9 +297,72 @@ deployment. Do not mistake provider isolation or a prompt for semantic evidence-
 
 ## Decision update procedure
 
+### D-026 — Shared Neo4j connection and verified physical schema (2026-10-09)
+
+**Decision:** Use the official async Neo4j driver with one pool per application lifespan, explicit
+session/transaction scope, python-dotenv configuration, parameterized trusted queries and a separate
+typed read-only medicinal repository. Four connection environment variables select local or Aura.
+
+**Authority:** Explicit user request and the revised neo4j_database_design.md inventory. Live local
+inspection: Community 2026.09.0, two LOOKUP indexes, no constraints; no production metadata assumed.
+
+**Safety:** Writes require NEO4J_ALLOW_WRITES; user/agent input never becomes a query. Read operations
+use server EXPLAIN classification and reject non-read statements. No startup schema/seed operation,
+no APOC, no implicit retries; orchestration retains its retry authority. Neo4j enablement is explicit
+to preserve the foundation's offline mode. Enabled startup validates every required setting.
+
+**Scope:** New repositories use verified labels/properties/directions. The Graph Agent's existing
+Observation adapter remains a placeholder; no medicinal evidence strength is fabricated. PostgreSQL
+and full Text/Entity work from the interrupted earlier request are outside this focused change.
+
+**Validation:** Local unit/integration tests include dictionary/single/scalar reads, parameterization,
+all domain query templates, atomic writes, rollback, cancellation, limits, safe errors and lifecycle.
+Aura credentials were not provided; compatibility is configuration/API-based, not a claimed live test.
+
+## Decision update checklist
+
 When a TODO is resolved:
 
 1. add the decision and date,
 2. update architecture/API/database/security docs,
 3. remove contradictions,
 4. update tests/tasks.
+
+## Text discovery decisions - 2026-10-10
+
+- PostgreSQL FTS (`simple`), pg_trgm and RapidFuzz precede multilingual MiniLM name vectors.
+  Source alias metadata is preserved. Fuzzy/semantic scores cannot auto-establish identity.
+- Import stages a generation, verifies vector count, then activates it. Neo4j stays read-only.
+- Decision-model fallback was rejected after evaluation and all experimental adapters/tests/model
+  artifacts removed at the user's request. This supersedes earlier final-step LLM disambiguation
+  plans. Clarification is the fallback.
+- Typed reverse queries and comparisons of two plants are bounded by existing budgets.
+  Multiple plant-part scopes require clarification. Arbitrary multilingual intents remain limited.
+- Grounded deterministic rendering preserves evidence class and provenance.
+- PostgreSQL persists domain state/traces. LangGraph checkpointing remains in memory; waiting-user
+  restart recovery is supported. Mid-action crash recovery and multi-worker execution remain
+  TODO / DECISION REQUIRED. Image/frontend/public auth milestones are outside this delivery.
+
+## Harness hardening update - 2026-10-10
+
+This supersedes the earlier in-memory checkpoint limitation: configured text deployments now use
+the official PostgreSQL checkpointer with explicit migration and explicit interrupted-run resume.
+Pure control steps share checkpoint boundaries while dispatch remains durable. Old node aliases
+remain for checkpoint compatibility. Execution is at-least-once and agents must be read-only or
+idempotent. Single-worker ownership, image blob storage and distributed locking limitations are
+explicit in HARNESS_GUIDE.md. Typed AgentOverrides supports teammate capability injection.
+
+## 2026-10-10 — Single-plant scope and complete bounded Graph Agent
+
+Explicit user clarification supersedes earlier inline-switching and cross-plant comparison decisions:
+a session establishes exactly one plant, then locks it. Other plants require a new chat. API responses
+include a frontend-facing notice; conflicting selections return 409 and other-plant observations
+terminate with SCOPE_REJECTED. Discovery graph objectives must wait for plant identity.
+
+The Graph Agent implements 13 static Neo4j retrieval types plus citation tracing; COMPARE_PLANTS
+is deliberately policy-rejected. Reverse query names remain only as active-plant membership queries.
+Evidence includes actual path nodes, branch endpoints, source URLs and stable citations. Empty
+results are terminal gaps, result limits are disclosed, and property conflicts are data-quality
+contradictions rather than identity or clinical contradictions. No evidence class is inferred.
+Recent citation snapshots are bounded to 100 and persisted in existing session JSON; no SQL migration.
+See GRAPH_AGENT_GUIDE.md for exact capabilities, tests and limitations.

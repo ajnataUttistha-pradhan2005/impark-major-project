@@ -3,7 +3,7 @@ from uuid import UUID, uuid4
 
 from pydantic import Field
 
-from backend.contracts.agents import QueryType
+from backend.contracts.agents import GraphParameters, QueryType
 from backend.contracts.base import Contract
 from backend.contracts.evidence import Modality
 
@@ -11,6 +11,7 @@ from backend.contracts.evidence import Modality
 class ObjectiveStatus(StrEnum):
     PENDING = "pending"
     COMPLETE = "complete"
+    UNAVAILABLE = "unavailable"
 
 
 class Objective(Contract):
@@ -18,6 +19,7 @@ class Objective(Contract):
     description: str = "Establish plant identity"
     required_evidence: list[Modality] = Field(default_factory=list)
     query_type: QueryType | None = None
+    parameters: GraphParameters | None = None
     status: ObjectiveStatus = ObjectiveStatus.PENDING
 
 

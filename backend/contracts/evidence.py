@@ -42,11 +42,21 @@ class Evidence(Contract):
     supports: list[EntityId] = Field(default_factory=list)
     contradicts: list[EntityId] = Field(default_factory=list)
     recorded_at: datetime | None = None
+    # Application provenance, never inferred Neo4j node properties.
+    graph_path: list[str] = Field(default_factory=list, max_length=8)
+    source_urls: list[str] = Field(default_factory=list, max_length=20)
+    graph_scope: dict[str, str] = Field(default_factory=dict)
+    graph_nodes: list[dict[str, str | int | float | None]] = Field(
+        default_factory=list, max_length=8
+    )
+    # Each link contains [source node index, relationship type, target node index].
+    graph_links: list[tuple[int, str, int]] = Field(default_factory=list, max_length=8)
 
 
 class EvidenceGap(Contract):
     objective_id: UUID
     description: str = Field(max_length=500)
+    recoverable: bool = True
 
 
 class Contradiction(Contract):
@@ -54,6 +64,7 @@ class Contradiction(Contract):
     evidence_refs: list[UUID] = Field(default_factory=list)
     reason: str = Field(max_length=500)
     reconciled: bool = False
+    affects_identity: bool = True
 
 
 class EvidenceState(Contract):

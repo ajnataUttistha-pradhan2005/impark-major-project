@@ -1,10 +1,13 @@
 # IMPARK
 
-Indian Medicinal Plant Agentic Retrieval and Knowledge System — phase-one academic foundation.
+Indian Medicinal Plant Agentic Retrieval and Knowledge System: an academic demonstration with
+text/entity discovery, typed medicinal-plant graph retrieval and a bounded stateful harness.
+Exactly three specialized agents exist. The harness owns deterministic decisions and LangGraph
+provides checkpointed control flow. Image inference remains a teammate milestone.
 
-This is a runnable control-plane scaffold, not a plant identification or medical advice product.
-Exactly three specialized agents exist. The Python harness owns deterministic decisions and
-LangGraph provides the cycle and interrupt/checkpoint runtime.
+See [TEXT_ENTITY_GUIDE.md](TEXT_ENTITY_GUIDE.md) for store setup and [HARNESS_GUIDE.md](HARNESS_GUIDE.md)
+for optimization results, durable recovery and teammate integration. Shared Neo4j details remain
+in [NEO4J_GUIDE.md](NEO4J_GUIDE.md).
 
 ## Run locally
 
@@ -13,16 +16,17 @@ Python 3.12+ is required. From the repository root in PowerShell:
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e '.[dev]'
-Copy-Item .env.example .env
-.\.venv\Scripts\python.exe -m uvicorn backend.main:app --host 127.0.0.1 --port 8000 --no-access-log
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+.\.venv\Scripts\python.exe -m backend
 ```
 
 Open `/health` and `/docs` on localhost:8000. `.env.example` explicitly enables the local-only
 development API. Without that setting, `/dev/*` is denied. Production environment always denies
 the development bypass. Authentication/ownership enforcement is not implemented yet.
 
-Development sessions, images' metadata, traces, and LangGraph checkpoints are **in memory**.
-Use one worker. Restarting loses them. Health is liveness, not datastore readiness.
+With text search disabled, the foundation uses in-memory providers. With it enabled, sessions,
+traces and LangGraph checkpoints use PostgreSQL after explicit migration/import. Use one worker.
+Health is liveness; individual datastore health endpoints report readiness.
 Image bytes are validated then discarded; real inference needs the future blob-storage adapter.
 
 ```powershell
@@ -74,20 +78,18 @@ or trained model is bundled. The graph query object has no Cypher field.
 
 ## Implementation status
 
-- **IMPLEMENTED:** typed contracts/state, action registry, eligibility and weighted decisions,
-  bounded LangGraph cycle, interrupt/resume, invocation timeouts/retries, basic evidence reducers,
-  deterministic context builder, local HTTP session/history/upload endpoints, safe errors,
-  correlation middleware, structured application logs, non-blocking trace buffer/background writer,
-  OpenTelemetry API span hooks, architecture tests.
-- **SCAFFOLDED:** durable storage ports, image inference/vector ports, entity search/disambiguation/
-  coreference ports, transport-neutral streaming events, offline evaluation records/snapshots,
-  authorization hook. Graph objective interpretation and rich follow-ups are not wired to chat yet.
-  The harness supports graph objectives supplied by typed domain state in tests.
-- **PLACEHOLDER:** three default agents, Final LLM, autocomplete, in-memory storage/checkpoints/sink.
-  No actual Neo4j/Qdrant/model call, database migration, frontend UI, live streaming transport,
-  telemetry exporter or evaluation dashboard exists.
-- **TODO / DECISION REQUIRED:** see `DECISIONS.md` R-001–R-018 and `FOUNDATION_REPORT.md`.
-  Dynamic parallel execution is deferred; this foundation chooses one eligible action at a time.
+- Implemented: typed bounded LangGraph harness, deterministic policy, evidence/recovery,
+  shared Neo4j interface, PostgreSQL/Qdrant search stores, full documented Text Agent discovery
+  paths, typed medicinal-plant retrieval, background traces and offline evaluation.
+- Text search runs with `TEXT_SEARCH_ENABLED=true` after explicit migration/import. Without it,
+  the development foundation remains available with placeholder providers.
+- Image inference, frontend UI, production authorization, live streaming transport and distributed
+  session locking remain unfinished. Use one backend worker.
+- Decision-model fallback and its experimental artifacts have been removed.
+
+See [Text Entity Guide](TEXT_ENTITY_GUIDE.md) for exact PowerShell setup, environment switching
+and discovery API examples, and [Implementation Report](TEXT_ENTITY_IMPLEMENTATION_REPORT.md)
+for measurements and limitations. Neo4j setup remains in [NEO4J_GUIDE.md](NEO4J_GUIDE.md).
 
 Trace loss never changes decisions. The provisional buffer drops newest events when full and counts
 write failures; shutdown flush is bounded. A benchmark must reject an incomplete trace rather than
@@ -96,10 +98,14 @@ IDs, confidence and control status, not raw user text or documents.
 
 ## Compose
 
-`docker compose up --build backend` runs the standalone memory foundation. Optional stores use
-`docker compose --profile stores up -d postgres redis neo4j qdrant`, after configuring local
-credentials. They are not connected to the backend yet. Ports bind to loopback. Neo4j retrieval will
-need a separate read-only principal. Frontend/model/telemetry services will be added when selected.
+`docker compose up --build backend` runs the standalone memory foundation.
+For the configured text backend, follow the guide and start only PostgreSQL/Qdrant with
+`docker compose --profile stores up -d postgres qdrant`; retain the existing `neo4j-dev` container.
+Store ports bind to loopback and data lives in named volumes.
 
-The supplied architecture documents remain the source of truth. This phase does not mark later
-roadmap milestones complete.
+See [HARNESS_GUIDE.md](HARNESS_GUIDE.md) for checkpoint recovery, measured optimizations and teammate contracts.
+
+Graph Agent completion and the current one-plant-per-chat policy are documented in
+[GRAPH_AGENT_GUIDE.md](GRAPH_AGENT_GUIDE.md). This supersedes earlier inline plant switching and
+cross-plant comparison behavior. The Graph Agent is implemented; the image model and frontend UI
+remain separate milestones.

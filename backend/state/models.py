@@ -6,7 +6,7 @@ from pydantic import Field
 from backend.contracts.actions import ActionCandidate, ActionName, ActionRecord, Decision
 from backend.contracts.agents import CandidatePlant, Failure, ImageReference, Observation
 from backend.contracts.base import Confidence, Contract, CorrelationMetadata, EntityId
-from backend.contracts.evidence import EvidenceState, Modality
+from backend.contracts.evidence import Evidence, EvidenceState, Modality
 from backend.contracts.response import ClarificationRequest, FinalResponse, ResponseContext
 from backend.state.goals import Goal
 
@@ -26,11 +26,13 @@ class TaskStatus(StrEnum):
     MAX_ITERATIONS_REACHED = "MAX_ITERATIONS_REACHED"
     EVIDENCE_UNAVAILABLE = "EVIDENCE_UNAVAILABLE"
     SAFETY_ABSTENTION = "SAFETY_ABSTENTION"
+    SCOPE_REJECTED = "SCOPE_REJECTED"
 
 
 class Session(Contract):
     session_id: UUID = Field(default_factory=uuid4)
     mode: SessionMode = SessionMode.DISCOVERY
+    locked_plant_id: EntityId | None = None
 
 
 class Hypothesis(Contract):
@@ -45,6 +47,8 @@ class BeliefState(Contract):
     requires_reassessment: bool = False
     text_pending: bool = False
     image_pending: bool = False
+    identity_required: bool = True
+    intent_pending: bool = False
 
 
 class ConversationContext(Contract):
@@ -53,6 +57,7 @@ class ConversationContext(Contract):
     active_compounds: list[EntityId] = Field(default_factory=list)
     active_target: EntityId | None = None
     active_topic: str | None = None
+    citation_history: list["Evidence"] = Field(default_factory=list, max_length=100)
 
 
 class Budgets(Contract):

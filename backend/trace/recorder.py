@@ -32,6 +32,7 @@ class TraceRecorder:
         self.dropped = 0
         self.write_failures = 0
         self.worker: asyncio.Task[None] | None = None
+        self.in_flight = False
 
     def emit(self, event: TraceEvent) -> None:
         try:
@@ -46,6 +47,7 @@ class TraceRecorder:
     async def _write_loop(self) -> None:
         while True:
             event = await self.queue.get()
+            self.in_flight = True
             try:
                 await self.sink.write(event)
             except Exception:
@@ -53,6 +55,7 @@ class TraceRecorder:
                 self.write_failures += 1
                 logging.getLogger(__name__).warning("trace_write_failed")
             finally:
+                self.in_flight = False
                 self.queue.task_done()
 
     async def close(self, grace_seconds: float = 1) -> None:
@@ -62,7 +65,7 @@ class TraceRecorder:
             async with asyncio.timeout(grace_seconds):
                 await self.queue.join()
         except TimeoutError:
-            self.dropped += self.queue.qsize()
+            self.dropped += self.queue.qsize() + int(self.in_flight)
         self.worker.cancel()
         with suppress(asyncio.CancelledError):
             await self.worker

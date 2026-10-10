@@ -7,7 +7,12 @@ from backend.trace.recorder import TraceRecorder
 tracer = trace.get_tracer("impark")
 
 
-def emit_state(recorder: TraceRecorder, state: ConversationState, event: EventType) -> None:
+def emit_state(
+    recorder: TraceRecorder,
+    state: ConversationState,
+    event: EventType,
+    details: dict[str, str | int | float | bool] | None = None,
+) -> None:
     context = state.correlation.model_copy(deep=True)
     context.iteration = state.iteration
     span = trace.get_current_span().get_span_context()
@@ -37,5 +42,6 @@ def emit_state(recorder: TraceRecorder, state: ConversationState, event: EventTy
             event_type=event,
             snapshot=snapshot,
             action=state.last_decision.selected.name if state.last_decision else None,
+            details=details or {},
         )
     )

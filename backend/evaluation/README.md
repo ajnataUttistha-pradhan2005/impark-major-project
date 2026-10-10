@@ -1,7 +1,10 @@
-# Evaluation foundation
+# Evaluation
 
-`models.py` provides offline record/repository boundaries and ordered trace snapshot selection.
-No accuracy/groundedness metrics or benchmark intelligence is claimed. TODO R-014: freeze dataset
-and golden trace schema. Fixtures belong in `data/benchmarks`; allow state-justified alternative
-actions rather than asserting one fixed text-image-graph sequence. Check recorder loss counters
-before using traces for research conclusions.
+Run `python -m backend.evaluation.text_discovery --semantic` for frozen synthetic identity
+questions against the imported real catalog. Recall, reciprocal rank, false automatic resolutions
+and latency are saved to PostgreSQL and data/evaluation/text_discovery_report.json.
+All-source-name recall is separately covered by the opt-in live tests.
+
+models.py retains trace/snapshot evaluation boundaries. A full golden-trace research suite
+remains TODO R-014. Allow state-justified alternative actions instead of one fixed agent sequence.
+Check recorder loss counters before claiming complete trace reconstruction.

@@ -1,9 +1,10 @@
 """Harness operations. LangGraph nodes delegate here; agents never own global state."""
 
 import asyncio
+from time import perf_counter
 
 from backend.contracts.actions import ActionName, ActionRecord, Capability
-from backend.contracts.agents import Failure, GraphAgentOutput
+from backend.contracts.agents import Failure, GraphAgentOutput, TextResult
 from backend.contracts.response import ClarificationRequest, FinalResponse, FinalResponseRequest
 from backend.evidence.context_builder import build_response_context
 from backend.evidence.evaluator import evaluate_observation
@@ -15,8 +16,8 @@ from backend.orchestrator.recovery import fingerprint
 from backend.orchestrator.termination import check_termination
 from backend.state.goals import ObjectiveStatus
 from backend.state.models import ConversationState, SessionMode, TaskStatus
-from backend.trace.instrumentation import emit_state
-from backend.trace.models import EventType
+from backend.trace.instrumentation import emit_state, tracer
+from backend.trace.models import EventType, TraceEvent
 from backend.trace.recorder import TraceRecorder
 
 
@@ -75,13 +76,50 @@ class Harness:
             if action.name == ActionName.RETRY_ACTION:
                 self.emit(state, EventType.RETRY_STARTED)
             self.emit(state, EventType.AGENT_INVOCATION_STARTED)
-            state.execution.pending_result = await self.execution.execute(state, invocation)
-            self.emit(
+            if invocation.capability == Capability.GRAPH:
+                objective = next(o for o in state.goal.pending if o.query_type is not None)
+                assert objective.query_type is not None
+                emit_state(
+                    self.trace,
+                    state,
+                    EventType.TOOL_CALL_STARTED,
+                    {"query_type": objective.query_type.value, "read_only": True},
+                )
+            started = perf_counter()
+            with tracer.start_as_current_span(f"agent.{invocation.capability.value}"):
+                state.execution.pending_result = await self.execution.execute(state, invocation)
+            emit_state(
+                self.trace,
                 state,
                 EventType.AGENT_INVOCATION_FAILED
                 if isinstance(state.execution.pending_result, Failure)
                 else EventType.AGENT_INVOCATION_COMPLETED,
+                {
+                    "duration_ms": round((perf_counter() - started) * 1000, 3),
+                    "capability": invocation.capability.value,
+                    "attempt": invocation.retry.attempt,
+                },
             )
+            if invocation.capability == Capability.GRAPH:
+                result = state.execution.pending_result
+                details: dict[str, str | int | float | bool] = {
+                    "duration_ms": round((perf_counter() - started) * 1000, 3)
+                }
+                if not isinstance(result, Failure) and isinstance(result.payload, GraphAgentOutput):
+                    details.update(
+                        evidence_count=len(result.payload.evidence),
+                        gap_count=len(result.payload.gaps),
+                        contradiction_count=len(result.payload.contradictions),
+                        truncated=result.payload.truncated,
+                    )
+                emit_state(
+                    self.trace,
+                    state,
+                    EventType.TOOL_CALL_FAILED
+                    if isinstance(result, Failure)
+                    else EventType.TOOL_CALL_COMPLETED,
+                    details,
+                )
             if action.name == ActionName.RETRY_ACTION:
                 state.execution.actions.append(
                     ActionRecord(
@@ -109,6 +147,14 @@ class Harness:
                 (h.candidate for h in state.belief.hypotheses if not h.weakened),
                 key=lambda c: c.confidence,
             )
+            locked = state.session.locked_plant_id or (
+                state.context.active_plant.plant_id if state.context.active_plant else None
+            )
+            if locked and candidate.plant_id != locked:
+                state.termination.ready_for_response = True
+                state.termination.reason = TaskStatus.SCOPE_REJECTED
+                return
+            state.session.locked_plant_id = candidate.plant_id
             state.context.active_plant = candidate.model_copy(deep=True)
             state.belief.confidence = candidate.confidence
             state.session.mode = SessionMode.CONVERSATION
@@ -121,8 +167,18 @@ class Harness:
             state.belief.requires_reassessment = bool(state.user_message)
             state.belief.confidence = min(state.belief.confidence, 0.79)
         elif name == ActionName.ASK_CLARIFICATION:
+            question = next(
+                (
+                    o.payload.clarification_question
+                    for o in reversed(state.execution.observations)
+                    if isinstance(o.payload, TextResult) and o.payload.clarification_question
+                ),
+                None,
+            )
             state.clarification = ClarificationRequest(
-                candidates=[h.candidate for h in state.belief.hypotheses]
+                candidates=[h.candidate for h in state.belief.hypotheses],
+                question=question
+                or "Which plant do you mean? Please select a candidate or clarify.",
             )
             state.clarification_count += 1
             state.termination.status = TaskStatus.WAITING_USER
@@ -143,6 +199,7 @@ class Harness:
                     TaskStatus.MAX_ITERATIONS_REACHED,
                     TaskStatus.EVIDENCE_UNAVAILABLE,
                     TaskStatus.SAFETY_ABSTENTION,
+                    TaskStatus.SCOPE_REJECTED,
                     TaskStatus.FAILED,
                 }
                 else TaskStatus.COMPLETE
@@ -168,6 +225,21 @@ class Harness:
         result = state.execution.pending_result
         if result is not None and not isinstance(result, Failure):
             evaluate_observation(state, result)
+            if isinstance(result.payload, TextResult):
+                for stage in result.payload.stages:
+                    self.trace.emit(
+                        TraceEvent(
+                            correlation=state.correlation.model_copy(deep=True),
+                            event_type=EventType.TOOL_CALL_COMPLETED,
+                            component="text",
+                            details={
+                                "stage": stage,
+                                "candidate_count": len(result.payload.candidates),
+                            },
+                        )
+                    )
+                if result.invocation.action.name == ActionName.REASSESS_ENTITY:
+                    self.emit(state, EventType.ENTITY_REASSESSED)
             if isinstance(result.payload, GraphAgentOutput) and result.payload.placeholder:
                 state.termination.ready_for_response = True
                 state.termination.reason = TaskStatus.EVIDENCE_UNAVAILABLE

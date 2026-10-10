@@ -37,6 +37,8 @@ class GraphParameters(Contract):
     therapeutic_use_id: EntityId | None = None
     evidence_id: EntityId | None = None
     comparison_plant_id: EntityId | None = None
+    activity_id: EntityId | None = None
+    document_id: EntityId | None = None
 
 
 class GraphQuery(Contract):
@@ -69,6 +71,10 @@ class CandidatePlant(Contract):
     label: str = Field(min_length=1, max_length=200)
     confidence: Confidence
     provenance: list[Provenance] = Field(default_factory=list)
+    match_method: str | None = None
+    matched_name: str | None = None
+    language: str | None = None
+    alias_type: str | None = None
 
 
 class ImageMetadata(Contract):
@@ -95,6 +101,8 @@ class TextAgentInput(Contract):
     text: str = Field(min_length=1, max_length=8000)
     active_plant_id: EntityId | None = None
     reassessment: bool = False
+    active_plant: CandidatePlant | None = None
+    excluded_plant_ids: list[EntityId] = Field(default_factory=list)
 
 
 class ImageAgentInput(Contract):
@@ -107,12 +115,32 @@ class GraphAgentInput(Contract):
     query: GraphQuery
     objective_ids: list[UUID] = Field(default_factory=list, max_length=20)
     evidence_gaps: list[EvidenceGap] = Field(default_factory=list, max_length=20)
+    prior_evidence: list[Evidence] = Field(default_factory=list, max_length=100)
+
+
+class ResolvedMention(Contract):
+    entity_id: EntityId
+    kind: Literal["compound", "therapeutic_use", "target"]
+    label: str
+    confidence: Confidence
 
 
 class TextResult(Contract):
     kind: Literal["text"] = "text"
     candidates: list[CandidatePlant] = Field(default_factory=list, max_length=20)
     placeholder: bool = True
+    intent: str = "DISCOVER_PLANT"
+    query_types: list[QueryType] = Field(default_factory=list)
+    part: str | None = None
+    stages: list[str] = Field(default_factory=list)
+    limitations: list[str] = Field(default_factory=list)
+    needs_clarification: bool = False
+    safety_abstention: bool = False
+    intent_uncertain: bool = False
+    clarification_question: str | None = None
+    queries: list[GraphQuery] = Field(default_factory=list, max_length=8)
+    entities: list[ResolvedMention] = Field(default_factory=list, max_length=20)
+    scope_rejected: bool = False
 
 
 class ImageAgentResult(Contract):
@@ -131,6 +159,8 @@ class GraphAgentOutput(Contract):
     contradictions: list[Contradiction] = Field(default_factory=list, max_length=20)
     completed_objectives: list[UUID] = Field(default_factory=list, max_length=20)
     placeholder: bool = True
+    truncated: bool = False
+    limitations: list[str] = Field(default_factory=list, max_length=20)
 
 
 class Observation(Contract):

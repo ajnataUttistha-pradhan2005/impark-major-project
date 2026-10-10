@@ -8,13 +8,24 @@ class EligibilityPolicy:
         self.threshold = threshold
 
     def resolved(self, state: ConversationState) -> bool:
+        supported = {
+            h.candidate.plant_id
+            for h in state.belief.hypotheses
+            if not h.weakened and h.candidate.confidence >= self.threshold
+        }
+        context_matches = not state.belief.hypotheses or (
+            state.context.active_plant is not None
+            and supported == {state.context.active_plant.plant_id}
+        )
         return (
             state.context.active_plant is not None
             and state.belief.confidence >= self.threshold
-            and not state.evidence.contradictions
+            and context_matches
+            and not any(c.affects_identity for c in state.evidence.contradictions)
             and not state.belief.requires_reassessment
             and not state.belief.text_pending
             and not state.belief.image_pending
+            and not state.belief.intent_pending
         )
 
     def enumerate(self, state: ConversationState) -> list[ActionName]:
@@ -34,7 +45,7 @@ class EligibilityPolicy:
             result.append(ActionName.RESOLVE_TEXT_ENTITY)
         if state.belief.image_pending and state.image is not None:
             result.append(ActionName.ANALYZE_IMAGE)
-        if any(not c.reconciled for c in state.evidence.contradictions):
+        if any(c.affects_identity and not c.reconciled for c in state.evidence.contradictions):
             result.append(ActionName.RECONCILE_MODALITIES)
         elif state.belief.requires_reassessment and state.user_message:
             result.append(ActionName.REASSESS_ENTITY)
@@ -43,7 +54,7 @@ class EligibilityPolicy:
         if (
             confident
             and len({c.plant_id for c in confident}) == 1
-            and not state.evidence.contradictions
+            and not any(c.affects_identity for c in state.evidence.contradictions)
             and not state.belief.text_pending
             and not state.belief.image_pending
             and not state.belief.requires_reassessment
@@ -57,9 +68,16 @@ class EligibilityPolicy:
                 if state.evidence.gaps
                 else ActionName.RETRIEVE_GRAPH
             )
-        failed_names = {f.invocation.action.name for f in state.execution.failures}
+        failed_names = {
+            f.invocation.action.name
+            for f in state.execution.failures
+            if f.failure_id not in state.execution.handled_failures
+        }
         result = [a for a in result if within_action_budget(state, a) and a not in failed_names]
         if not result:
+            if failure is not None:
+                # A failed dependency is not a request for a better plant name.
+                return [ActionName.ABSTAIN]
             if self.resolved(state) and not state.goal.pending:
                 return [ActionName.GENERATE_RESPONSE]
             if not self.resolved(state) and (

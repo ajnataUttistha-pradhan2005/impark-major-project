@@ -2,6 +2,14 @@
 
 ## 1. Storage responsibilities
 
+### Implemented Neo4j interface (2026-10-09)
+
+See `NEO4J_GUIDE.md` for the shared async driver, client, bounded domain repositories, environment
+switching, tests and actual source-schema mapping. The supplied revised graph inventory and local
+inspection use PlantDetails/PlantAlias/PlantPart/TherapeuticUse, not the older illustrative names.
+Local inspection found only two lookup indexes and no constraints. No schema changes were made.
+The logical diagrams below remain conceptual; queries use only the verified physical model.
+
 ```text
 PostgreSQL → durable application/orchestration/evidence/trace/evaluation data
 Redis      → transient/cache/coordination
@@ -398,3 +406,20 @@ erDiagram
 ```
 
 This is a logical model, not a frozen SQL schema.
+
+## Search/application stores implemented (2026-10-10)
+
+PostgreSQL uses one asyncpg pool with explicit read/write transactions and safe parameter binding.
+Versioned migrations in `backend/database/postgres/migrations` create pg_trgm, search generations,
+plant/name/entity projections, sessions/turns, trace events and evaluation records. Evidence and
+belief state remain typed JSON snapshots within session/turn records. Qdrant stores 384-dimensional
+multilingual MiniLM name vectors with generation filters and source metadata. Explicit `search_admin`
+commands migrate, populate and check health; startup does not mutate schema. Cloud/local connection
+values are configured only through .env. See TEXT_ENTITY_GUIDE.md for schema lifecycle and recovery.
+
+## Durable runtime checkpoints
+
+The explicit search_admin migrate command also runs the official LangGraph PostgreSQL checkpoint
+migrations. Startup performs a readiness query only. A dedicated reusable psycopg connection with
+strict contract serialization serves checkpoints; asyncpg remains the application/trace pool.
+Use python -m backend on Windows for the compatible event loop. See HARNESS_GUIDE.md.

@@ -294,3 +294,27 @@ Demonstrate:
 ## 18. Rules
 
 Do not implement later-phase complexity early unless required to unlock the current milestone. Do not replace the deterministic harness with a planner agent. Do not make trace persistence a synchronous dependency.
+
+## Text discovery update - 2026-10-10
+
+F5-01/F5-02 and deterministic F5-04 are implemented with unit/live regression coverage.
+F5-03 semantic retrieval is implemented; model escalation is superseded by the user-authorized
+model decision in DECISIONS.md. Clarification handles remaining uncertainty.
+PostgreSQL/Qdrant adapters, explicit import, typed graph retrieval and background trace persistence
+are implemented. See TEXT_ENTITY_IMPLEMENTATION_REPORT.md for measured coverage and limitations.
+Image/frontend/production milestones are not marked complete.
+
+## Harness optimization validation
+
+Implemented durable checkpoints/recovery, stricter capability and objective boundaries, candidate
+indexing, off-loop fuzzy matching, cancellation worker limits and compact control checkpoints.
+See HARNESS_GUIDE.md for measured before/after results and teammate integration requirements.
+
+## Graph Agent and single-plant session completion (2026-10-10)
+
+F6-01 through F6-04 are implemented for the current single-plant scope. All 13 applicable database
+query types have live schema coverage; TRACE_EVIDENCE uses persisted same-plant citation snapshots.
+COMPARE_PLANTS remains explicitly unavailable under the latest user scope. See GRAPH_AGENT_GUIDE.md.
+Single-plant locks, original-question clarification, graph gaps/retries/contradictions and typed
+Text/Image adapter boundaries have integration regression coverage. SCOPE_REJECTED is a new terminal
+outcome. Frontend rendering and the real Image Understanding model remain separate tasks.

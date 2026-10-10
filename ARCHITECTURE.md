@@ -185,7 +185,7 @@ confidence gate
                     CONVERSATION
                          ├─ reuse state when unambiguous
                          ├─ new image → image agent if useful
-                         └─ new plant → inline resolution
+                         └─ different plant → scope rejection; start new chat
 ```
 
 There is one runtime; discovery is not a separate service.

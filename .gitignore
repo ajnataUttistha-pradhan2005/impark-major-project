@@ -5,6 +5,7 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 *.egg-info/
+# Local/Aura environment files can contain credentials; only the example is tracked.
 .env
 .env.*
 !.env.example
@@ -18,3 +19,8 @@ node_modules/
 data/raw/*
 data/processed/*
 !README.md
+# Downloaded inference weights are reproducible runtime artifacts.
+data/model-cache/
+data/*-build.log
+data/*-sync.log
+data/*.log

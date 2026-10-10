@@ -228,7 +228,7 @@ Discovery accepts:
 
 After a plant is established, set `mode = conversation` and reuse active context for follow-ups.
 
-A new plant mentioned during conversation triggers inline resolution. Clarification is interrupt/resume on the same task lineage.
+Each session establishes exactly one active plant. Once established, the plant is locked for that session. A different plant or cross-plant comparison requires a new chat; never replace active context. Show this rule in the frontend using the API session notice. Clarification is interrupt/resume on the same task lineage.
 
 ## Health/safety boundary
 

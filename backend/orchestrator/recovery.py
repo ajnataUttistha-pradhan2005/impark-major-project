@@ -2,7 +2,7 @@ import hashlib
 import json
 
 from backend.contracts.actions import ActionName
-from backend.contracts.agents import Failure
+from backend.contracts.agents import Failure, FailureType
 from backend.state.models import ConversationState
 
 
@@ -21,6 +21,8 @@ def can_retry(state: ConversationState, failure: Failure) -> bool:
     name = failure.invocation.action.name
     return (
         failure.retryable
+        and failure.error_type
+        in {FailureType.TRANSIENT, FailureType.TIMEOUT, FailureType.DEPENDENCY_UNAVAILABLE}
         and state.execution.retry_counts.get(name, 0) < state.budgets.max_agent_retries
         and sum(r.action.name == name for r in state.execution.actions)
         < state.budgets.max_action_calls

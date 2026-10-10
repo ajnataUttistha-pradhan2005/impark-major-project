@@ -7,6 +7,7 @@ from backend.api.dependencies.services import authorize_development, get_service
 from backend.api.schemas.chat import AutocompleteResponse, ChatRequest, ChatResponse
 from backend.contracts.response import ClarificationResponse
 from backend.services.conversations import ConversationService
+from backend.trace.models import TraceEvent
 
 router = APIRouter(prefix="/dev", dependencies=[Depends(authorize_development)])
 Service = Annotated[ConversationService, Depends(get_service)]
@@ -63,3 +64,13 @@ async def autocomplete(
     q: Annotated[str, Query(min_length=1, max_length=200)],
 ) -> AutocompleteResponse:
     return await service.autocomplete(q)
+
+
+@router.get("/conversations/{session_id}/trace", response_model=list[TraceEvent])
+async def trace(session_id: UUID, service: Service) -> list[TraceEvent]:
+    return await service.trace_events(session_id)
+
+
+@router.post("/conversations/{session_id}/resume", response_model=ChatResponse)
+async def recover(session_id: UUID, service: Service) -> ChatResponse:
+    return await service.recover(session_id)

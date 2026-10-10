@@ -17,7 +17,8 @@ class ClarificationRequest(Contract):
 
 class ClarificationResponse(Contract):
     clarification_id: UUID
-    text: str = Field(min_length=1, max_length=8000)
+    text: str = Field(default="Selected candidate", min_length=1, max_length=8000)
+    selected_plant_id: str | None = None
 
 
 class ResponseContext(Contract):

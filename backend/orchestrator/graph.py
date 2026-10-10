@@ -51,28 +51,29 @@ def build_graph(
         assert state.clarification is not None
         raw = interrupt(state.clarification.model_dump(mode="json"))
         reply = ClarificationResponse.model_validate(raw)
-        if reply.clarification_id != state.clarification.clarification_id:
-            raise ValueError("Clarification does not match this checkpoint")
-        state.user_message = reply.text
-        state.belief.text_pending = True
-        state.clarification = None
-        state.termination.status = TaskStatus.RUNNING
+        from backend.orchestrator.clarification import apply_clarification
+
+        apply_clarification(state, reply)
         harness.emit(state, EventType.EXECUTION_RESUMED)
         return {"domain": state}
 
-    operations = {
-        "observe_turn": harness.observe,
-        "assess_goal_and_state": harness.assess,
-        "enumerate_actions": harness.enumerate_actions,
-        "decide_next_action": harness.decide,
-        "collect_observations": harness.collect,
-        "evaluate_evidence": harness.evaluate,
-        "update_state": harness.update,
-        "termination_check": harness.terminate,
-        "final_context": harness.context,
-    }
-    for name, operation in operations.items():
-        graph.add_node(name, RunnableLambda(sync_node(operation)))
+    def plan(state: ConversationState) -> None:
+        harness.assess(state)
+        harness.enumerate_actions(state)
+        harness.decide(state)
+
+    def reduce(state: ConversationState) -> None:
+        harness.collect(state)
+        harness.evaluate(state)
+        harness.update(state)
+        harness.terminate(state)
+
+    # Pure control operations share a checkpoint boundary; every domain event remains emitted.
+    # Dispatch remains its own durable node, so completed agent work survives a later crash.
+    graph.add_node("observe_turn", RunnableLambda(sync_node(harness.observe)))
+    graph.add_node("plan", RunnableLambda(sync_node(plan)))
+    graph.add_node("reduce", RunnableLambda(sync_node(reduce)))
+    graph.add_node("final_context", RunnableLambda(sync_node(harness.context)))
     graph.add_node("dispatch", RunnableLambda(dispatch))
     graph.add_node("clarification", RunnableLambda(clarify))
     graph.add_node("final_response", RunnableLambda(generate))
@@ -84,9 +85,7 @@ def build_graph(
         return "persistence" if value["domain"].termination.terminal else "observe_turn"
 
     graph.add_conditional_edges(START, route_start, ["persistence", "observe_turn"])
-    graph.add_edge("observe_turn", "assess_goal_and_state")
-    graph.add_edge("assess_goal_and_state", "enumerate_actions")
-    graph.add_edge("enumerate_actions", "decide_next_action")
+    graph.add_edge("observe_turn", "plan")
 
     def route_decision(value: RuntimeState) -> str:
         decision = value["domain"].last_decision
@@ -97,11 +96,8 @@ def build_graph(
             else "dispatch"
         )
 
-    graph.add_conditional_edges("decide_next_action", route_decision, ["final_context", "dispatch"])
-    graph.add_edge("dispatch", "collect_observations")
-    graph.add_edge("collect_observations", "evaluate_evidence")
-    graph.add_edge("evaluate_evidence", "update_state")
-    graph.add_edge("update_state", "termination_check")
+    graph.add_conditional_edges("plan", route_decision, ["final_context", "dispatch"])
+    graph.add_edge("dispatch", "reduce")
 
     def route_termination(value: RuntimeState) -> str:
         state = value["domain"]
@@ -109,15 +105,36 @@ def build_graph(
             return "persistence"
         if state.termination.status == TaskStatus.WAITING_USER:
             return "clarification"
-        return "assess_goal_and_state"
+        return "plan"
 
     graph.add_conditional_edges(
-        "termination_check",
+        "reduce",
         route_termination,
-        ["persistence", "clarification", "assess_goal_and_state"],
+        ["persistence", "clarification", "plan"],
     )
-    graph.add_edge("clarification", "assess_goal_and_state")
+    graph.add_edge("clarification", "plan")
     graph.add_edge("final_context", "final_response")
-    graph.add_edge("final_response", "enumerate_actions")
+    graph.add_edge("final_response", "plan")
     graph.add_edge("persistence", END)
+    # Resume checkpoints written by the initial, more granular runtime as well.
+    legacy = {
+        "assess_goal_and_state": harness.assess,
+        "enumerate_actions": harness.enumerate_actions,
+        "decide_next_action": harness.decide,
+        "collect_observations": harness.collect,
+        "evaluate_evidence": harness.evaluate,
+        "update_state": harness.update,
+        "termination_check": harness.terminate,
+    }
+    for name, operation in legacy.items():
+        graph.add_node(name, RunnableLambda(sync_node(operation)))
+    graph.add_edge("assess_goal_and_state", "enumerate_actions")
+    graph.add_edge("enumerate_actions", "decide_next_action")
+    graph.add_conditional_edges("decide_next_action", route_decision, ["final_context", "dispatch"])
+    graph.add_edge("collect_observations", "evaluate_evidence")
+    graph.add_edge("evaluate_evidence", "update_state")
+    graph.add_edge("update_state", "termination_check")
+    graph.add_conditional_edges(
+        "termination_check", route_termination, ["persistence", "clarification", "plan"]
+    )
     return graph.compile(checkpointer=checkpointer)

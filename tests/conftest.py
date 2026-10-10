@@ -1,3 +1,4 @@
+import asyncio
 from uuid import uuid4
 
 import pytest
@@ -16,6 +17,10 @@ from backend.orchestrator.policy import EligibilityPolicy
 from backend.services.conversations import ConversationService
 from backend.state.models import ConversationState
 from backend.trace.recorder import MemoryTraceSink, TraceRecorder
+
+
+def pytest_asyncio_loop_factories(config, item):
+    return {"selector": asyncio.SelectorEventLoop}
 
 
 @pytest.fixture

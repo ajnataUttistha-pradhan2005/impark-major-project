@@ -115,7 +115,7 @@ Autocomplete should be backed by entity-resolution/search infrastructure and rem
 Conversation mode supports:
 
 - state-resolvable follow-ups without unnecessary agents,
-- new plant inline resolution,
+- single-plant session lock and a new-chat notice for other plants,
 - new image analysis when useful,
 - graph retrieval when required and eligible,
 - clarification/resume on the same task lineage.
@@ -255,3 +255,27 @@ Final LLM datastore access
 ```
 
 All such concerns remain backend-owned.
+
+## Implemented text discovery routes (2026-10-10)
+
+The development routes under `/dev` now support PostgreSQL-backed sessions/history, text turns,
+autocomplete and verified selection, same-lineage clarification, and `GET /dev/conversations/{id}/trace`.
+`ChatResponse.understanding` exposes typed TextResult intent, candidates, stages, limitations and
+clarification hints. `POST /turns` accepts `selected_plant_id`; `POST /clarifications` accepts the
+returned clarification ID with text or an offered selected ID. See TEXT_ENTITY_GUIDE.md for commands.
+These routes retain the development-only authorization gate; this is not a public production API.
+
+## Interrupted-run recovery
+
+POST `/dev/conversations/{session_id}/resume` continues a persisted RUNNING turn under its existing
+run ID. Concurrent/new turns receive 409 until that run is recovered. Waiting-user responses use
+the existing clarification endpoint. See HARNESS_GUIDE.md for at-least-once replay semantics.
+
+### Single-plant session policy
+
+All conversation responses include `session_notice`. After discovery establishes a plant, its
+identity is locked. Another plant in text/image returns `SCOPE_REJECTED`; a conflicting explicit
+selection returns HTTP 409 `PLANT_SCOPE_LOCKED`. Start a new session to discuss another plant.
+Cross-plant comparisons/global reverse queries are out of scope. Graph evidence supports stable
+citation IDs and `Trace evidence <UUID>` follow-ups within the recent same-session history.
+See GRAPH_AGENT_GUIDE.md for the graph-result and provenance contracts.

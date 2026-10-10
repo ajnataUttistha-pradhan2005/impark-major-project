@@ -531,7 +531,7 @@ After plant establishment, move to `conversation`.
 
 State-resolvable follow-ups should reuse active context and may skip specialized agents.
 
-If a new plant appears, run inline entity resolution and update active context after the confidence policy permits.
+One plant per session is the current project scope. Once established, never replace the active plant. Resolve new mentions only to detect a scope violation and direct the user to a new chat. Cross-plant comparisons are unavailable.
 
 ## 21. Final response boundary
 
