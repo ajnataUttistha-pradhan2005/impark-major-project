@@ -1,0 +1,23 @@
+[
+  {
+    "evidence_count": 2,
+    "elapsed_seconds": 35.008,
+    "fallback_used": true,
+    "citation_count": 2,
+    "model": "qwen3:1.7b"
+  },
+  {
+    "evidence_count": 4,
+    "elapsed_seconds": 19.675,
+    "fallback_used": false,
+    "citation_count": 4,
+    "model": "qwen3:1.7b"
+  },
+  {
+    "evidence_count": 8,
+    "elapsed_seconds": 7.188,
+    "fallback_used": false,
+    "citation_count": 8,
+    "model": "qwen3:1.7b"
+  }
+]

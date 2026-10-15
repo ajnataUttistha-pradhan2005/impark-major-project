@@ -1,0 +1,191 @@
+{
+  "model_id": "6f10c5d0824659810cbf5ba6e1afbc9e1425fd43a779d5cb47f0b6a296336ba1",
+  "images": 2507,
+  "unique_pixel_hashes": 2507,
+  "duplicate_label_conflicts": 0,
+  "reference_count": 2017,
+  "query_count": 490,
+  "metrics": {
+    "cnn": {
+      "top1": 1.0,
+      "top5": 1.0
+    },
+    "retrieval": {
+      "top1": 0.9918367346938776,
+      "top5": 1.0
+    },
+    "fusion": {
+      "top1": 1.0,
+      "top5": 1.0
+    }
+  },
+  "per_class": {
+    "Alpinia galanga": {
+      "count": 8,
+      "cnn_correct": 8
+    },
+    "Amaranthus viridis": {
+      "count": 34,
+      "cnn_correct": 34
+    },
+    "Artocarpus heterophyllus": {
+      "count": 13,
+      "cnn_correct": 13
+    },
+    "Atriplex hortensis": {
+      "count": 14,
+      "cnn_correct": 14
+    },
+    "Azadirachta indica": {
+      "count": 9,
+      "cnn_correct": 9
+    },
+    "Bambusa vulgaris": {
+      "count": 11,
+      "cnn_correct": 11
+    },
+    "Basella alba": {
+      "count": 18,
+      "cnn_correct": 18
+    },
+    "Brassica juncea": {
+      "count": 6,
+      "cnn_correct": 6
+    },
+    "Carissa carandas": {
+      "count": 14,
+      "cnn_correct": 14
+    },
+    "Citrus limon": {
+      "count": 10,
+      "cnn_correct": 10
+    },
+    "Ficus auriculata": {
+      "count": 11,
+      "cnn_correct": 11
+    },
+    "Ficus benjamina": {
+      "count": 17,
+      "cnn_correct": 17
+    },
+    "Ficus religiosa": {
+      "count": 10,
+      "cnn_correct": 10
+    },
+    "Hibiscus rosa-sinensis": {
+      "count": 4,
+      "cnn_correct": 4
+    },
+    "Jasminum officinale": {
+      "count": 11,
+      "cnn_correct": 11
+    },
+    "Mangifera indica": {
+      "count": 19,
+      "cnn_correct": 19
+    },
+    "Manilkara zapota": {
+      "count": 13,
+      "cnn_correct": 13
+    },
+    "Mentha spicata": {
+      "count": 17,
+      "cnn_correct": 17
+    },
+    "Mercurialis annua": {
+      "count": 14,
+      "cnn_correct": 14
+    },
+    "Moringa oleifera": {
+      "count": 15,
+      "cnn_correct": 15
+    },
+    "Muntingia calabura": {
+      "count": 9,
+      "cnn_correct": 9
+    },
+    "Murraya koenigii": {
+      "count": 12,
+      "cnn_correct": 12
+    },
+    "Nerium oleander": {
+      "count": 13,
+      "cnn_correct": 13
+    },
+    "Nyctanthes arbor-tristis": {
+      "count": 10,
+      "cnn_correct": 10
+    },
+    "Ocimum tenuiflorum": {
+      "count": 10,
+      "cnn_correct": 10
+    },
+    "Persea americana": {
+      "count": 13,
+      "cnn_correct": 13
+    },
+    "Phyllanthus acidus": {
+      "count": 11,
+      "cnn_correct": 11
+    },
+    "Piper betle": {
+      "count": 8,
+      "cnn_correct": 8
+    },
+    "Plectranthus amboinicus": {
+      "count": 11,
+      "cnn_correct": 11
+    },
+    "Pongamia pinnata": {
+      "count": 15,
+      "cnn_correct": 15
+    },
+    "Psidium guajava": {
+      "count": 10,
+      "cnn_correct": 10
+    },
+    "Punica granatum": {
+      "count": 17,
+      "cnn_correct": 17
+    },
+    "Santalum album": {
+      "count": 5,
+      "cnn_correct": 5
+    },
+    "Saraca asoca": {
+      "count": 19,
+      "cnn_correct": 19
+    },
+    "Schefflera arboricola": {
+      "count": 15,
+      "cnn_correct": 15
+    },
+    "Spinacia oleracea": {
+      "count": 13,
+      "cnn_correct": 13
+    },
+    "Syzygium cumini": {
+      "count": 5,
+      "cnn_correct": 5
+    },
+    "Syzygium jambos": {
+      "count": 16,
+      "cnn_correct": 16
+    },
+    "Tabernaemontana divaricata": {
+      "count": 6,
+      "cnn_correct": 6
+    },
+    "Trigonella foenum-graecum": {
+      "count": 4,
+      "cnn_correct": 4
+    }
+  },
+  "cnn_errors": [],
+  "retrieval_comparison_seconds": 2.347,
+  "limitations": [
+    "Supplied model may have trained on all images; CNN accuracy is not independent",
+    "Exact pixel duplicates are grouped; near-duplicate/specimen leakage is not ruled out",
+    "No non-plant/other-part dataset supplied; OOD and part accuracy are unmeasured"
+  ]
+}

@@ -19,6 +19,7 @@ class ClarificationResponse(Contract):
     clarification_id: UUID
     text: str = Field(default="Selected candidate", min_length=1, max_length=8000)
     selected_plant_id: str | None = None
+    image_id: UUID | None = None
 
 
 class ResponseContext(Contract):
@@ -43,6 +44,17 @@ class FinalResponse(Contract):
     text: str
     citation_ids: list[UUID] = Field(default_factory=list)
     placeholder: bool = True
+    provider: str = "deterministic"
+    model: str | None = None
+    fallback_used: bool = False
+
+
+class ResponseChunk(Contract):
+    text: str = Field(default="", max_length=16000)
+    citation_ids: list[UUID] = Field(default_factory=list, max_length=100)
+    provider: str = "deterministic"
+    model: str | None = None
+    fallback_used: bool = False
 
 
 class ServerEventType(StrEnum):

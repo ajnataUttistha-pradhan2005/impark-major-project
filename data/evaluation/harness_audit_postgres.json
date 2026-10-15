@@ -1,0 +1,21 @@
+{
+  "synthetic": true,
+  "postgres_checkpoints": true,
+  "runs": 10,
+  "latency_ms": [
+    94.079,
+    83.36,
+    83.934,
+    82.641,
+    84.208,
+    82.553,
+    84.411,
+    84.494,
+    90.376,
+    87.343
+  ],
+  "median_ms": 84.3095,
+  "max_ms": 94.079,
+  "trace_dropped": 0,
+  "trace_write_failures": 0
+}

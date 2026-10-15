@@ -50,10 +50,15 @@ def build_graph(
         state = value["domain"].model_copy(deep=True)
         assert state.clarification is not None
         raw = interrupt(state.clarification.model_dump(mode="json"))
-        reply = ClarificationResponse.model_validate(raw)
+        from backend.contracts.agents import ImageReference
+
+        resume_data = dict(raw)
+        image_data = resume_data.pop("_image", None)
+        replacement = ImageReference.model_validate(image_data) if image_data else None
+        reply = ClarificationResponse.model_validate(resume_data)
         from backend.orchestrator.clarification import apply_clarification
 
-        apply_clarification(state, reply)
+        apply_clarification(state, reply, replacement)
         harness.emit(state, EventType.EXECUTION_RESUMED)
         return {"domain": state}
 

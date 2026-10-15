@@ -13,6 +13,17 @@ async def register_image(
     mime: str,
 ) -> ImageReference:
     await service.load(session_id)
+    from backend.database.postgres.persistence import PostgresSessionRepository
+
+    if isinstance(service.repository, PostgresSessionRepository):
+        from backend.database.postgres.chat import ChatStore
+        from backend.services.chat_images import ChatImages
+
+        reference = await ChatImages(ChatStore(service.repository.client), service.settings).upload(
+            session_id, content, mime
+        )
+        service.images.setdefault(session_id, {})[reference.image_id] = reference
+        return reference
     try:
         metadata = await validate_image(
             content,

@@ -14,6 +14,12 @@ async def authorize_development(request: Request) -> None:
     """Central auth hook. Fail closed unless explicitly using local development API."""
     settings = request.app.state.settings
     if settings.application_env != "development" or not settings.enable_development_api:
-        raise ServiceError(
-            "FORBIDDEN", "Development API is disabled; authentication is pending", 403
-        )
+        raise ServiceError("FORBIDDEN", "Development API is disabled", 403)
+    if settings.api_key:
+        import secrets
+
+        expected = "Bearer " + settings.api_key.get_secret_value()
+        if not secrets.compare_digest(
+            request.headers.get("authorization", "").encode(), expected.encode()
+        ):
+            raise ServiceError("UNAUTHORIZED", "Valid bearer token required", 401)

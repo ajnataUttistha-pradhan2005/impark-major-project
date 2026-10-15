@@ -46,6 +46,11 @@ async def test_coreference_and_explicit_switch(name_search):
     output = await agent.execute(request("What about tulsi?", active_plant=active))
     assert output.payload.scope_rejected
     assert not output.payload.candidates
+    output = await agent.execute(
+        request("What phytochemicals does it contain?", active_plant=active)
+    )
+    assert output.payload.candidates[0].plant_id == active.plant_id
+    assert QueryType.GET_PHYTOCHEMICALS in output.payload.query_types
 
 
 async def test_safety(name_search):

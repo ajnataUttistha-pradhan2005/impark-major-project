@@ -150,6 +150,15 @@ class ImageAgentResult(Contract):
     plant_part: str | None = None
     quality: ImageQualityResult = Field(default_factory=ImageQualityResult)
     placeholder: bool = True
+    needs_clarification: bool = True
+    clarification_question: str | None = None
+    calibrated: bool = False
+    strategy: str | None = None
+    model_id: str | None = None
+    evidence: list[Evidence] = Field(default_factory=list, max_length=10)
+    limitations: list[str] = Field(default_factory=list, max_length=20)
+    scores: list[dict[str, str | float | bool]] = Field(default_factory=list, max_length=40)
+    reference_ids: list[str] = Field(default_factory=list, max_length=10)
 
 
 class GraphAgentOutput(Contract):

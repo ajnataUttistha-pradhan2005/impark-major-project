@@ -4,7 +4,7 @@ import asyncio
 from time import perf_counter
 
 from backend.contracts.actions import ActionName, ActionRecord, Capability
-from backend.contracts.agents import Failure, GraphAgentOutput, TextResult
+from backend.contracts.agents import Failure, GraphAgentOutput, ImageAgentResult, TextResult
 from backend.contracts.response import ClarificationRequest, FinalResponse, FinalResponseRequest
 from backend.evidence.context_builder import build_response_context
 from backend.evidence.evaluator import evaluate_observation
@@ -14,6 +14,7 @@ from backend.orchestrator.decision import DecisionEngine
 from backend.orchestrator.execution import ExecutionManager
 from backend.orchestrator.recovery import fingerprint
 from backend.orchestrator.termination import check_termination
+from backend.services.live import publish
 from backend.state.goals import ObjectiveStatus
 from backend.state.models import ConversationState, SessionMode, TaskStatus
 from backend.trace.instrumentation import emit_state, tracer
@@ -33,6 +34,20 @@ class Harness:
 
     def emit(self, state: ConversationState, event: EventType) -> None:
         emit_state(self.trace, state, event)
+        if event in {
+            EventType.TURN_STARTED,
+            EventType.AGENT_INVOCATION_STARTED,
+            EventType.CLARIFICATION_REQUESTED,
+            EventType.RESPONSE_CONTEXT_BUILT,
+        }:
+            publish(
+                "progress",
+                {
+                    "stage": event.value,
+                    "mode": state.session.mode.value,
+                    "run_id": str(state.correlation.run_id),
+                },
+            )
 
     def observe(self, state: ConversationState) -> None:
         state.termination.status = TaskStatus.RUNNING
@@ -171,7 +186,8 @@ class Harness:
                 (
                     o.payload.clarification_question
                     for o in reversed(state.execution.observations)
-                    if isinstance(o.payload, TextResult) and o.payload.clarification_question
+                    if isinstance(o.payload, (TextResult, ImageAgentResult))
+                    and o.payload.clarification_question
                 ),
                 None,
             )
@@ -271,22 +287,54 @@ class Harness:
     async def generate(self, state: ConversationState) -> None:
         assert state.response_context is not None
         self.emit(state, EventType.FINAL_LLM_STARTED)
+        self.emit(state, EventType.RESPONSE_STREAM_STARTED)
         try:
             async with asyncio.timeout(state.budgets.action_timeout_seconds):
-                state.response = await self.llm.generate(
-                    FinalResponseRequest(
-                        response_context=state.response_context.model_copy(deep=True)
-                    )
+                request = FinalResponseRequest(
+                    response_context=state.response_context.model_copy(deep=True)
                 )
+                publish("response_started", {"run_id": str(state.correlation.run_id)})
+                streaming = getattr(self.llm, "stream", None)
+                if streaming is not None:
+                    from backend.contracts.response import ResponseChunk
+
+                    chunks: list[ResponseChunk] = []
+                    text_size = 0
+                    allowed = {e.evidence_id for e in state.evidence.all_evidence()}
+                    async for chunk in streaming(request):
+                        chunk = ResponseChunk.model_validate(chunk.model_dump())
+                        if not set(chunk.citation_ids) <= allowed:
+                            raise ValueError("Invalid streamed citation")
+                        text_size += len(chunk.text)
+                        if text_size > 128000 or len(chunks) >= 1200:
+                            raise ValueError("Response stream exceeded its output budget")
+                        chunks.append(chunk)
+                        publish("response_delta", chunk.model_dump(mode="json"))
+                    state.response = FinalResponse(
+                        text="".join(c.text for c in chunks),
+                        placeholder=False,
+                        citation_ids=list(dict.fromkeys(i for c in chunks for i in c.citation_ids)),
+                        provider=chunks[-1].provider if chunks else "grounded",
+                        model=chunks[-1].model if chunks else None,
+                        fallback_used=any(c.fallback_used for c in chunks),
+                    )
+                else:
+                    state.response = await self.llm.generate(request)
             allowed = {e.evidence_id for e in state.evidence.all_evidence()}
             if not set(state.response.citation_ids) <= allowed:
                 raise ValueError("Response provider invented a citation")
+            if streaming is None:
+                publish("response_delta", {"text": state.response.text})
         except Exception:
             # Provider boundary: no exception details or invalid output reach the client.
             state.termination.reason = TaskStatus.FAILED
             state.response = FinalResponse(
                 text="Response generation unavailable. Educational use only; not medical advice."
             )
+            publish("response_reset", {"reason": "generation_failed"})
+            publish("response_delta", {"text": state.response.text})
+        publish("response_completed", state.response.model_dump(mode="json"))
+        self.emit(state, EventType.RESPONSE_STREAM_COMPLETED)
         assert state.last_decision is not None
         state.execution.actions.append(
             ActionRecord(

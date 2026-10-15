@@ -1,0 +1,51 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1,
+      "default": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "operation_id": {
+      "format": "uuid",
+      "title": "Operation Id",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "type": {
+      "enum": [
+        "run_started",
+        "progress",
+        "response_started",
+        "response_delta",
+        "response_reset",
+        "response_completed",
+        "clarification_requested",
+        "run_completed",
+        "run_failed",
+        "run_cancelled",
+        "run_interrupted"
+      ],
+      "title": "Type",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "title": "Payload",
+      "type": "object"
+    }
+  },
+  "required": [
+    "operation_id",
+    "sequence",
+    "type",
+    "payload"
+  ],
+  "title": "StreamEvent",
+  "type": "object"
+}

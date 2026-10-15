@@ -1,14 +1,34 @@
 import re
 
+from backend.contracts.agents import ImageReference
 from backend.contracts.evidence import Modality
 from backend.contracts.response import ClarificationResponse
 from backend.state.models import ConversationState, Hypothesis, TaskStatus
 
 
-def apply_clarification(state: ConversationState, reply: ClarificationResponse) -> None:
+def apply_clarification(
+    state: ConversationState, reply: ClarificationResponse, image: ImageReference | None = None
+) -> None:
     pending = state.clarification
     if pending is None or reply.clarification_id != pending.clarification_id:
         raise ValueError("Clarification checkpoint mismatch")
+    if reply.image_id:
+        if image is None or image.image_id != reply.image_id or reply.selected_plant_id:
+            raise ValueError("Invalid replacement image")
+        state.image = image.model_copy(deep=True)
+        state.belief.image_pending = True
+        state.belief.hypotheses = [
+            h for h in state.belief.hypotheses if h.modality != Modality.IMAGE
+        ]
+        state.evidence.image = []
+        state.evidence.contradictions = []
+        state.belief.requires_reassessment = False
+        if reply.text not in {"Selected candidate", "Updated image"}:
+            state.user_message = reply.text
+            state.belief.text_pending = True
+        state.clarification = None
+        state.termination.status = TaskStatus.RUNNING
+        return
     selected_id = reply.selected_plant_id
     ordinal = re.fullmatch(r"(?:option\s*)?([1-9])", reply.text.strip().casefold())
     if not selected_id and ordinal and int(ordinal.group(1)) <= len(pending.candidates):

@@ -1,0 +1,16 @@
+{
+  "original_model_id": "1ddbd23295494e8e7f1491bb6980fd7002b4ef0cbcf71a88e6fafbda9045a30e",
+  "corrected_model_id": "6f10c5d0824659810cbf5ba6e1afbc9e1425fd43a779d5cb47f0b6a296336ba1",
+  "weights_sha256": "7b3dfaa4d4bbc0719362f7d9f9a4591727b1c501c957b305670ee0c5bf995455",
+  "changes": {
+    "Persea americana": [
+      26,
+      25
+    ],
+    "Phyllanthus acidus": [
+      25,
+      26
+    ]
+  },
+  "evidence": "Training flow_from_directory alphabetical indices; all 24/490 query errors were this symmetric swap. Weights and numerical features unchanged."
+}

@@ -1,0 +1,30 @@
+{
+  "text_graph_ms": {
+    "samples_ms": [
+      2848.5,
+      851.5,
+      614.1
+    ],
+    "median_ms": 851.5,
+    "max_ms": 2848.5
+  },
+  "image_discovery_ms": {
+    "samples_ms": [
+      782.2,
+      754.8,
+      686.5
+    ],
+    "median_ms": 754.8,
+    "max_ms": 782.2
+  },
+  "text_image_graph_ms": {
+    "samples_ms": [
+      1374.5,
+      1453.7,
+      1382.1
+    ],
+    "median_ms": 1382.1,
+    "max_ms": 1453.7
+  },
+  "note": "Local warmed in-process HTTP, grounded response provider; excludes application startup, client network, and Ollama generation."
+}

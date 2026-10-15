@@ -3,7 +3,7 @@ from uuid import UUID
 
 from pydantic import Field, model_validator
 
-from backend.contracts.agents import CandidatePlant, TextResult
+from backend.contracts.agents import CandidatePlant, ImageAgentResult, TextResult
 from backend.contracts.base import Contract, CorrelationMetadata
 from backend.contracts.response import ClarificationRequest, FinalResponse
 from backend.state.models import SessionMode, TaskStatus
@@ -31,6 +31,7 @@ class ChatResponse(Contract):
     clarification: ClarificationRequest | None = None
     response: FinalResponse | None = None
     understanding: TextResult | None = None
+    image_understanding: ImageAgentResult | None = None
     session_notice: str = (
         "Each chat supports one plant. Once a plant is established, start a new chat "
         "to discuss another plant."

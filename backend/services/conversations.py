@@ -9,7 +9,7 @@ from langgraph.types import Command
 from backend.agents.text.search import HybridNameSearch
 from backend.api.schemas.chat import AutocompleteResponse, ChatRequest, ChatResponse
 from backend.config.settings import Settings
-from backend.contracts.agents import ImageReference, TextResult
+from backend.contracts.agents import ImageAgentResult, ImageReference, TextResult
 from backend.contracts.base import CorrelationMetadata
 from backend.contracts.evidence import EvidenceState
 from backend.contracts.response import ClarificationResponse
@@ -37,6 +37,14 @@ def public_state(state: ConversationState) -> ChatResponse:
         active_plant=state.context.active_plant,
         clarification=state.clarification,
         response=state.response,
+        image_understanding=next(
+            (
+                o.payload
+                for o in reversed(state.execution.observations)
+                if isinstance(o.payload, ImageAgentResult)
+            ),
+            None,
+        ),
         understanding=next(
             (
                 o.payload
@@ -101,15 +109,19 @@ class ConversationService:
                 raise ServiceError("CONFLICT", "Interrupted turn requires resume", 409)
             waiting = state.termination.status == TaskStatus.WAITING_USER
             if waiting:
+                replacement = None
                 if request.image_id is not None:
-                    raise ServiceError(
-                        "UNSUPPORTED_OPERATION", "Image clarification is pending", 501
-                    )
+                    replacement = self.images.get(session_id, {}).get(request.image_id)
+                    if replacement is None or selected_id:
+                        raise ServiceError(
+                            "INVALID_INPUT", "Provide a registered image or a selection"
+                        )
                 assert state.clarification is not None
                 if clarification is None:
                     clarification = ClarificationResponse(
                         clarification_id=state.clarification.clarification_id,
-                        text=request.text or "",
+                        text=request.text or "Updated image",
+                        image_id=request.image_id,
                     )
                 if clarification.clarification_id != state.clarification.clarification_id:
                     raise ServiceError("CONFLICT", "Clarification checkpoint mismatch", 409)
@@ -117,11 +129,14 @@ class ConversationService:
 
                 checked = state.model_copy(deep=True)
                 try:
-                    apply_clarification(checked, clarification)
+                    apply_clarification(checked, clarification, replacement)
                 except ValueError:
                     raise ServiceError("INVALID_INPUT", "Select an offered candidate") from None
                 config = self._config(state)
-                value: Command[str] = Command(resume=clarification.model_dump(mode="json"))
+                resume_payload = clarification.model_dump(mode="json")
+                if replacement is not None:
+                    resume_payload["_image"] = replacement.model_dump(mode="json")
+                value: Command[str] = Command(resume=resume_payload)
                 with tracer.start_as_current_span("conversation.resume"):
                     checkpoint = await self.graph.aget_state(config)
                     # Mark accepted input before executing; cancellation can resume this run.

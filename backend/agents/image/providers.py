@@ -1,9 +1,10 @@
 from typing import Protocol
+from uuid import UUID
 
 from backend.contracts.agents import ImageAgentResult, ImageReference
 
 
 class ImageInferenceProvider(Protocol):
-    """Future pretrained custom CNN model; CPU/GPU execution must be off-loop."""
+    """Bounded model/retrieval provider; image access is always session-scoped."""
 
-    async def infer(self, image: ImageReference) -> ImageAgentResult: ...
+    async def infer(self, image: ImageReference, session_id: UUID) -> ImageAgentResult: ...

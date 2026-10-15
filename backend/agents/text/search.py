@@ -27,7 +27,8 @@ class NameRepository(Protocol):
 STOP = set(
     "a an the is are it its this that plant plants leaf leaves root roots flower flowers "
     "what which tell me about show list find identify name of in for with and or does do "
-    "has have contains compounds chemicals uses medicinal benefits please scientific common "
+    "has have contain contains compounds chemicals uses medicinal benefits please "
+    "scientific common "
     "called known can you give details information compare versus vs not no instead i mean".split()
 )
 

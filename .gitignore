@@ -1,4 +1,8 @@
 .venv/
+# Keep README files; other project notes stay local.
+*.md
+!README.md
+langflow/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -18,9 +22,12 @@ node_modules/
 .next/
 data/raw/*
 data/processed/*
-!README.md
 # Downloaded inference weights are reproducible runtime artifacts.
 data/model-cache/
 data/*-build.log
 data/*-sync.log
 data/*.log
+# Local supplied image weights, source images and reproducible feature cache.
+data/image/*.keras
+data/image/dataset/
+data/image/*.npz

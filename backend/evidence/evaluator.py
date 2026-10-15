@@ -49,6 +49,10 @@ def evaluate_observation(state: ConversationState, observation: Observation) -> 
         modality = Modality.TEXT if isinstance(payload, TextResult) else Modality.IMAGE
         candidates = payload.candidates
         if isinstance(payload, ImageAgentResult):
+            known = {e.evidence_id for e in state.evidence.image}
+            state.evidence.image.extend(
+                e.model_copy(deep=True) for e in payload.evidence if e.evidence_id not in known
+            )
             if payload.quality.usable is False or payload.quality.is_plant is False:
                 candidates = []
         locked = state.session.locked_plant_id or (

@@ -1,0 +1,14 @@
+{
+  "postgres": 200,
+  "neo4j": 200,
+  "qdrant": 200,
+  "llm": 200,
+  "event_count": 68,
+  "first_delta_seconds": 2.289,
+  "turn_seconds": 2.515,
+  "provider": "ollama",
+  "model": "qwen3:1.7b",
+  "fallback_used": false,
+  "citations": 8,
+  "cancel_status": "cancelled"
+}

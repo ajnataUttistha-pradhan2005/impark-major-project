@@ -5,6 +5,8 @@ questions against the imported real catalog. Recall, reciprocal rank, false auto
 and latency are saved to PostgreSQL and data/evaluation/text_discovery_report.json.
 All-source-name recall is separately covered by the opt-in live tests.
 
-models.py retains trace/snapshot evaluation boundaries. A full golden-trace research suite
-remains TODO R-014. Allow state-justified alternative actions instead of one fixed agent sequence.
-Check recorder loss counters before claiming complete trace reconstruction.
+`trace_audit.audit_run` checks a captured run's correlation, decision eligibility, agent
+start/completion balance, clarification boundary and response-context ordering without requiring
+one fixed action sequence. Pass the recorder's dropped/write-failure counters; any loss fails the
+audit. Unit scenarios exercise both complete and clarification paths. A broader curated golden-trace
+research corpus and viewer remain future work under R-014/R-015.
