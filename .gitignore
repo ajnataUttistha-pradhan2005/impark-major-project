@@ -28,6 +28,7 @@ data/model-cache/
 data/*-build.log
 data/*-sync.log
 data/*.log
+backups/
 # Local supplied image weights, source images and reproducible feature cache.
 data/image/*.keras
 data/image/dataset/

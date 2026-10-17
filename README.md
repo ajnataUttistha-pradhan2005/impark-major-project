@@ -1,5 +1,11 @@
 # IMPARK
 
+For a detailed module-by-module explanation, teammate installation, and exact Docker
+image/volume handoff instructions, use the [project and setup handbook](docs/README.md).
+The verified cold-transfer files are currently in the ignored local folder
+`backups/team-handoff/`; send that whole folder privately alongside the matching Git commit.
+The handbook's receiver section explains checksum verification and restoration before Compose starts.
+
 For a local Windows demo after configuring `.env`, the Python environment, frontend dependencies, and the existing `neo4j-dev` container, run `powershell -ExecutionPolicy Bypass -File .\scripts\demo.ps1` from the project root. The launcher starts PostgreSQL and Qdrant with Docker Compose, starts the backend and Next.js frontend when needed, checks their health, and warms plant-name search and the configured Ollama model. Open http://127.0.0.1:3000/. After code changes, pass `-Restart` to restart only verified IMPARK listeners and rebuild the production frontend. Use `-SkipDocker` when stores are already available elsewhere or `-DevFrontend` while developing. Startup logs are written under `data/demo-*.log`.
 
 IMPARK is a single-user academic demonstration for Indian medicinal-plant discovery and
@@ -73,7 +79,7 @@ Set `IMAGE_ENABLED=true` and the `IMAGE_*_PATH` values in `.env` after indexing.
 generation, install/start Ollama and pull the configured model before launching the backend:
 
 ```powershell
-ollama pull qwen3:4b-instruct
+ollama pull gemma4:e4b
 .\.venv\Scripts\python.exe -m backend.llm.admin warm
 .\.venv\Scripts\python.exe -m backend
 ```
@@ -103,8 +109,8 @@ Open `http://127.0.0.1:3000`. The server-only `BACKEND_URL` points to FastAPI; s
 .\.venv\Scripts\python.exe -m ruff check backend tests
 .\.venv\Scripts\python.exe -m ruff format --check backend tests
 .\.venv\Scripts\python.exe -m mypy backend
-node --test frontend/api/client.test.mjs
 Set-Location frontend
+npm test
 npm run typecheck
 npm run build
 ```
@@ -121,5 +127,5 @@ explained all eight with the model, resolved citations, and deleted its temporar
 These checks do not establish independent verification of pretrained knowledge, general image
 accuracy, arbitrary-language coverage, multi-worker scalability or clinical safety.
 
-The detailed project notes remain local and are intentionally excluded from Git. README files
-remain versioned, except within the excluded `langflow/` directory.
+This [teammate handbook](docs/README.md) and other README files are versioned. Other local
+project notes remain excluded from Git, as is `langflow/`.
