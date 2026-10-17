@@ -1,5 +1,24 @@
 # Final response boundary
 
+`LLM_RESPONSE_MODE=guarded` keeps the validated response path below. The optional
+`LLM_RESPONSE_MODE=plant_context` selects an experimental, unvalidated freeform
+Ollama response. It requires `LLM_PROVIDER=ollama`, `TEXT_SEARCH_ENABLED=true`,
+and `NEO4J_ENABLED=true`. The harness loads a read-only, parameterized snapshot
+for the session's locked plant, including its details, aliases, parts, uses,
+compounds, bioactivities, targets, and linked documents. The snapshot is capped
+at 14 KB and divided across categories, so large plants are explicitly marked
+truncated. The model may supplement those records with pretrained knowledge.
+This mode does not validate factual claims or add citations to model prose;
+it can produce unsupported statements. Discovery, plant locking, action policy,
+graph read bounds, and safety abstention remain governed by the harness. Switch
+back by setting `LLM_RESPONSE_MODE=guarded` and restarting the backend.
+When the ordinary text agent cannot classify a question about the locked plant,
+the optional mode routes it through a typed plant-details query so the model can
+answer from the plant snapshot and its general knowledge. This does not override
+scope rejection or health-safety abstention.
+The optional text-agent wrapper retains the same search provider interface used
+by discovery autocomplete and candidate selection.
+
 The final response component receives only `FinalResponseRequest.response_context`.
 It has no repositories, database clients, search tools, or action authority. Graph
 evidence is first reduced to allow-listed, cited statements by `verbalize.py`.

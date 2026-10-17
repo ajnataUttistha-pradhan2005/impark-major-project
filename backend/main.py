@@ -17,6 +17,7 @@ from backend.agents.image.retrieval import ImageVectorStore
 from backend.agents.text.agent import TextAgent
 from backend.agents.text.embeddings import FastEmbedProvider
 from backend.agents.text.intent_model import OllamaIntentModel
+from backend.agents.text.open_question import OpenPlantQuestionTextAgent
 from backend.agents.text.search import HybridNameSearch
 from backend.agents.text.semantic_intent import SemanticIntentModel
 from backend.api.middleware import CorrelationMiddleware, configure_logging
@@ -34,10 +35,12 @@ from backend.database.postgres.client import PostgresClient, StoreError
 from backend.database.postgres.persistence import PostgresSessionRepository, PostgresTraceSink
 from backend.database.postgres.search import PostgresNameRepository
 from backend.database.qdrant.client import QdrantStore
+from backend.evidence.plant_context import PlantContextLoader
 from backend.evidence.reference import ReferenceNotes
 from backend.llm.grounded import GroundedResponseProvider
 from backend.llm.guarded import GuardedResponseProvider
 from backend.llm.ollama import OllamaModel
+from backend.llm.plant_context import PlantContextResponseProvider
 from backend.llm.provider import PlaceholderProvider
 from backend.orchestrator.decision import DecisionEngine
 from backend.orchestrator.execution import ExecutionManager
@@ -144,7 +147,15 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                 app.state.runs = runs
             if config.llm_provider == "ollama":
                 model = OllamaModel(config)
-                harness.llm = GuardedResponseProvider(model)
+                harness.llm = (
+                    PlantContextResponseProvider(model)
+                    if config.llm_response_mode == "plant_context"
+                    else GuardedResponseProvider(model)
+                )
+                if config.llm_response_mode == "plant_context":
+                    harness.plant_context_loader = PlantContextLoader(
+                        app.state.neo4j, app.state.postgres
+                    )
                 app.state.response_model = model
                 if config.text_intent_model_enabled and config.text_search_enabled:
                     intent_model = OllamaIntentModel(
@@ -168,6 +179,8 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                 and embeddings is not None
             ):
                 harness.execution.text = TextAgent(search, SemanticIntentModel(embeddings))
+            if config.llm_response_mode == "plant_context":
+                harness.execution.text = OpenPlantQuestionTextAgent(harness.execution.text)
             recorder.start()
             if agents is not None:
                 agents.install(harness.execution)

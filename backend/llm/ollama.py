@@ -118,3 +118,47 @@ class OllamaModel:
                         break
                 if not done:
                     raise ValueError("Incomplete model stream")
+
+    async def freeform(self, prompt: str) -> AsyncIterator[str]:
+        """Experimental answer transport; no JSON schema or claim validator."""
+        async with asyncio.timeout(self.settings.llm_timeout_seconds), self.gate:
+            async with self.client.stream(
+                "POST", "/api/chat",
+                json={
+                    "model": self.name,
+                    "stream": True,
+                    "think": False,
+                    "keep_alive": self.settings.llm_keep_alive,
+                    "messages": [{"role": "user", "content": prompt}],
+                    "options": {
+                        "temperature": 0.35,
+                        "num_ctx": self.settings.llm_context_tokens,
+                        "num_predict": self.settings.llm_output_tokens,
+                    },
+                },
+            ) as response:
+                response.raise_for_status()
+                size = 0
+                done = False
+                async for line in response.aiter_lines():
+                    if not line or len(line) > 32768:
+                        continue
+                    frame = json.loads(line)
+                    if frame.get("error"):
+                        raise ValueError("Model generation failed")
+                    message = frame.get("message") or {}
+                    if message.get("tool_calls"):
+                        raise ValueError("Model attempted tool use")
+                    content = message.get("content", "")
+                    if not isinstance(content, str):
+                        raise ValueError("Invalid model content")
+                    size += len(content)
+                    if size > 16000:
+                        raise ValueError("Model output limit")
+                    if content:
+                        yield content
+                    if frame.get("done"):
+                        done = True
+                        break
+                if not done:
+                    raise ValueError("Incomplete model stream")

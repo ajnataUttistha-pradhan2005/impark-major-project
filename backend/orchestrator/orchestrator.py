@@ -6,6 +6,7 @@ from time import perf_counter
 from backend.contracts.actions import ActionName, ActionRecord, Capability
 from backend.contracts.agents import Failure, GraphAgentOutput, ImageAgentResult, TextResult
 from backend.contracts.response import ClarificationRequest, FinalResponse, FinalResponseRequest
+from backend.database.neo4j.errors import GraphDatabaseError
 from backend.database.postgres.client import StoreError
 from backend.evidence.context_builder import build_response_context
 from backend.evidence.evaluator import evaluate_observation
@@ -35,6 +36,7 @@ class Harness:
     ) -> None:
         self.decision, self.execution, self.llm, self.trace = decision, execution, llm, trace
         self.reference_notes = reference_notes
+        self.plant_context_loader = None
 
     def emit(self, state: ConversationState, event: EventType) -> None:
         emit_state(self.trace, state, event)
@@ -298,6 +300,16 @@ class Harness:
 
     async def generate(self, state: ConversationState) -> None:
         assert state.response_context is not None
+        if self.plant_context_loader is not None and state.context.active_plant is not None:
+            try:
+                rows, truncated = await self.plant_context_loader.load(
+                    str(state.context.active_plant.plant_id)
+                )
+                state.response_context.plant_context = rows
+                state.response_context.plant_context_truncated = truncated
+                self.emit(state, EventType.RESPONSE_CONTEXT_BUILT)
+            except (GraphDatabaseError, StoreError, TimeoutError, ValueError):
+                state.response_context.plant_context_truncated = True
         if self.reference_notes is not None and state.response_context.graph_evidence:
             try:
                 async with asyncio.timeout(2):

@@ -31,6 +31,8 @@ class ResponseContext(Contract):
     text_evidence: list[Evidence] = Field(default_factory=list)
     image_evidence: list[Evidence] = Field(default_factory=list)
     graph_evidence: list[Evidence] = Field(default_factory=list)
+    plant_context: list[dict[str, object]] = Field(default_factory=list, max_length=500)
+    plant_context_truncated: bool = False
     known_topics: list[str] = Field(default_factory=list)
     uncertainties: list[str] = Field(default_factory=list)
     safety_constraints: tuple[str, ...] = (
