@@ -1,6 +1,7 @@
 """Bounded plant-scoped retrieval; only code-owned Cypher reaches the driver."""
 
 import json
+import re
 from uuid import NAMESPACE_URL, UUID, uuid5
 
 from backend.agents.common.parts import PART_NAMES
@@ -65,6 +66,21 @@ def _compile(pattern: str, result: str) -> str:
 
 
 QUERIES = {kind: _compile(*spec) for kind, spec in PATTERNS.items()}
+QUERIES[QueryType.GET_BIOACTIVITY] = (
+    "MATCH path="
+    + PATH
+    + ACTIVITY
+    + " WHERE ($part IS NULL OR part.plant_part_id=$part OR toLower(part.plant_part) IN $parts)"
+    + " AND ($compound IS NULL OR compound.inchi_key=$compound)"
+    + " AND ($activity IS NULL OR activity.bioactivity_id=$activity)"
+    + " OPTIONAL MATCH (activity)-[:MEASURED_ON]->(target:Protein_Target)"
+    + " RETURN DISTINCT properties(activity) AS fact, "
+    + "[n IN nodes(path) | properties(n)] + "
+    + "CASE WHEN target IS NULL THEN [] ELSE [properties(target)] END AS nodes, "
+    + "[r IN relationships(path) | type(r)] + "
+    + "CASE WHEN target IS NULL THEN [] ELSE ['MEASURED_ON'] END AS relations "
+    + "ORDER BY nodes, fact LIMIT $limit"
+)
 QUERIES[QueryType.GET_EVIDENCE] = (
     "MATCH path="
     + PATH
@@ -223,16 +239,31 @@ class PlantGraphRetrieval:
                         )
                     )
                 seen[identity] = (serialized, identifier)
+            # A URL on the plant or compound node is background catalog
+            # metadata, not a source for this specific fact. Expose only a
+            # directly traversed Document URL as an external citation.
+            document: dict[str, object] = next(
+                (
+                    row["nodes"][index + 1]
+                    for index, relation in enumerate(row["relations"])
+                    if relation == "REPORTED_IN" and len(row["nodes"]) > index + 1
+                ),
+                {},
+            )
             urls = sorted(
-                {
-                    str(v)
-                    for node in row["nodes"]
-                    for k, v in node.items()
-                    if k.endswith("url")
-                    and isinstance(v, str)
-                    and v.startswith(("https://", "http://"))
-                }
+                str(v)
+                for k, v in document.items()
+                if k.endswith("url")
+                and isinstance(v, str)
+                and v.startswith(("https://", "http://"))
             )[:20]
+            # The supplied Document schema contains a ChEMBL document ID but
+            # often no URL. ChEMBL's ID lookup resolves that exact identifier;
+            # never construct a document link from unrelated path nodes.
+            chembl_id = document.get("document_chembl_id")
+            if isinstance(chembl_id, str) and re.fullmatch(r"CHEMBL\d+", chembl_id):
+                urls.append(f"https://www.ebi.ac.uk/chembl/id_lookup/{chembl_id}")
+            urls = list(dict.fromkeys(urls))[:20]
             evidence.append(
                 Evidence(
                     evidence_id=identifier,

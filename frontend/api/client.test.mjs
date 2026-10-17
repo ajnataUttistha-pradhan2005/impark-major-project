@@ -27,6 +27,20 @@ test("request forwards bearer and a caller-owned idempotency key", async () => {
   assert.deepEqual(await api.send("session", { text: "neem" }, "stable-id"), { operation_id: "stable-id" });
 });
 
+test("default browser fetch retains its global receiver", async () => {
+  const previous = globalThis.fetch;
+  globalThis.fetch = function () {
+    assert.equal(this, globalThis);
+    return Promise.resolve(Response.json({ ok: true }));
+  };
+  try {
+    const api = new ChatApi("http://test");
+    assert.deepEqual(await api.request("/api/v1/capabilities"), { ok: true });
+  } finally {
+    globalThis.fetch = previous;
+  }
+});
+
 test("safe API errors preserve code and correlation", async () => {
   const api = new ChatApi("http://test", { fetcher: async () => Response.json({
     code: "CONFLICT", message: "Busy", correlation_id: "correlation",

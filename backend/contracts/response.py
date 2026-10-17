@@ -1,5 +1,6 @@
 from collections.abc import AsyncIterator
 from enum import StrEnum
+from typing import Literal
 from uuid import UUID, uuid4
 
 from pydantic import Field
@@ -24,10 +25,13 @@ class ClarificationResponse(Contract):
 
 class ResponseContext(Contract):
     intent: str
+    user_question: str = Field(default="", max_length=8000)
+    answer_style: Literal["overview", "explanation"] = "overview"
     resolved_plant: CandidatePlant | None = None
     text_evidence: list[Evidence] = Field(default_factory=list)
     image_evidence: list[Evidence] = Field(default_factory=list)
     graph_evidence: list[Evidence] = Field(default_factory=list)
+    known_topics: list[str] = Field(default_factory=list)
     uncertainties: list[str] = Field(default_factory=list)
     safety_constraints: tuple[str, ...] = (
         "Educational use only; not medical advice.",

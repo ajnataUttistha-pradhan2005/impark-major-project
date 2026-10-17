@@ -44,12 +44,23 @@ def scoped_queries(
         )
         parameters = GraphParameters(plant_id=plant_id, part_id=part, compound_id=entity.entity_id)
     elif entity.kind == "therapeutic_use":
-        qtype = QueryType.GET_PLANTS_FOR_THERAPEUTIC_USE
+        qtype = (
+            QueryType.GET_THERAPEUTIC_USES
+            if plant_id and re.search(r"\b(?:what is|define|means?|explain|about)\b", query)
+            else QueryType.GET_PLANTS_FOR_THERAPEUTIC_USE
+        )
         parameters = GraphParameters(
             plant_id=plant_id, part_id=part, therapeutic_use_id=entity.entity_id
         )
     else:
-        qtype = QueryType.GET_COMPOUNDS_TARGETING_PROTEIN
+        qtype = (
+            QueryType.GET_EVIDENCE
+            if plant_id
+            and any(
+                intent in {QueryType.GET_BIOACTIVITY, QueryType.GET_EVIDENCE} for intent in intents
+            )
+            else QueryType.GET_COMPOUNDS_TARGETING_PROTEIN
+        )
         parameters = GraphParameters(plant_id=plant_id, part_id=part, target_id=entity.entity_id)
     if entity.kind == "compound" and plant_id and intents:
         supported = [
@@ -58,6 +69,7 @@ def scoped_queries(
             if q
             in {
                 QueryType.GET_PHYTOCHEMICALS,
+                QueryType.GET_PHYTOCHEMICAL_DETAILS,
                 QueryType.GET_BIOACTIVITY,
                 QueryType.GET_PROTEIN_TARGETS,
                 QueryType.GET_DOCUMENTS,
@@ -74,7 +86,8 @@ def interpret(text: str) -> tuple[list[QueryType], str | None, bool]:
     safety = bool(
         re.search(
             r"\b(dosage|dose|how (?:much|many).*(?:take|eat|drink)|cure my|treat my|"
-            r"pregnant|replace.*medicine)\b",
+            r"pregnant|replace.*medicine|safe|safety|side effects?|"
+            r"toxicity|toxic|contraindications?|drug interactions?|adverse effects?)\b",
             query,
         )
     )
@@ -82,13 +95,22 @@ def interpret(text: str) -> tuple[list[QueryType], str | None, bool]:
         (r"\b(evidence|supporting data)\b", QueryType.GET_EVIDENCE),
         (
             r"\b(compounds?|phytochemicals?|chemicals?|constituents?|"
-            r"contains?|chemical composition)\b",
+            r"contains?|chemical composition|what is in it|what's in it)\b",
             QueryType.GET_PHYTOCHEMICALS,
         ),
-        (r"\b(uses?|benefits?|used for|therapeutic)\b", QueryType.GET_THERAPEUTIC_USES),
+        (
+            r"\b(uses?|benefits?|benifits?|benfits?|used for|therapeutic|"
+            r"good for|associated with which conditions|health applications?)\b",
+            QueryType.GET_THERAPEUTIC_USES,
+        ),
         (r"\b(parts?)\b", QueryType.GET_PLANT_PARTS),
         (r"\b(targets?|proteins?)\b", QueryType.GET_PROTEIN_TARGETS),
-        (r"\b(bioactivity|activities|assays?)\b", QueryType.GET_BIOACTIVITY),
+        (
+            r"\b(bioactivity|activities|assays?|measurements?|numbers?|values?|"
+            r"ic50|ki|kd|potency|concentrations?|lab(?:oratory)? results?|"
+            r"experimental results?|test results?)\b",
+            QueryType.GET_BIOACTIVITY,
+        ),
         (
             r"\b(sources?|references?|papers?|studies|documents?)\b",
             QueryType.GET_DOCUMENTS,
@@ -106,6 +128,14 @@ def interpret(text: str) -> tuple[list[QueryType], str | None, bool]:
     ]
     if len(intents) > 1 and QueryType.GET_PLANT_DETAILS in intents:
         intents.remove(QueryType.GET_PLANT_DETAILS)
+    # A question about assay numbers and their named targets needs the assay
+    # records, which already include those targets. A target-only query does not.
+    if (
+        QueryType.GET_BIOACTIVITY in intents
+        and QueryType.GET_PROTEIN_TARGETS in intents
+        and re.search(r"\b(measurements?|numbers?|values?|ic50|ki|kd|potency)\b", query)
+    ):
+        intents.remove(QueryType.GET_PROTEIN_TARGETS)
     parts = mentioned_parts(query)
     if parts and len(intents) > 1 and QueryType.GET_PLANT_PARTS in intents:
         intents.remove(QueryType.GET_PLANT_PARTS)

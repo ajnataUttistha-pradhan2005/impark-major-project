@@ -1,5 +1,7 @@
 # IMPARK
 
+For a local Windows demo after configuring `.env`, the Python environment, frontend dependencies, and the existing `neo4j-dev` container, run `powershell -ExecutionPolicy Bypass -File .\scripts\demo.ps1` from the project root. The launcher starts PostgreSQL and Qdrant with Docker Compose, starts the backend and Next.js frontend when needed, checks their health, and warms plant-name search and the configured Ollama model. Open http://127.0.0.1:3000/. After code changes, pass `-Restart` to restart only verified IMPARK listeners and rebuild the production frontend. Use `-SkipDocker` when stores are already available elsewhere or `-DevFrontend` while developing. Startup logs are written under `data/demo-*.log`.
+
 IMPARK is a single-user academic demonstration for Indian medicinal-plant discovery and
 knowledge retrieval. A bounded, stateful LangGraph harness coordinates exactly three specialized
 agents: Text/Entity, Image Understanding, and Knowledge Graph. Every chat begins in discovery,
@@ -10,15 +12,21 @@ the final response. The response model receives only a deterministic evidence co
 ## Components
 
 - FastAPI exposes versioned `/api/v1` chat, autocomplete, image-upload, run, evidence and replayable
-  SSE endpoints. `/docs` exposes the API schema; `frontend/contracts/` contains exported contracts.
+  SSE endpoints. `/docs` exposes the API schema; [the frontend integration guide](frontend/README.md)
+  explains the complete UI flow, and `frontend/contracts/` contains exported contracts.
 - PostgreSQL stores chats, operations, messages, evidence snapshots, traces and text-search data.
+  An explicitly imported MeSH definition cache can explain named use terms with its own citations.
   Redis is optional/transient. Neo4j holds the medicinal-plant knowledge graph; Qdrant holds
   separate text-name and image-reference vector collections.
 - The Image Agent uses the supplied 40-class leaf Xception model plus Qdrant reference search.
   Image suggestions require user confirmation; plant-part and non-plant classification are not
   established. The graph agent uses typed, bounded, read-only queries.
-- Ollama `qwen3:1.7b` is the local response-model option. Its output may order server-rendered
-  evidence blocks; it cannot query databases, choose actions or create citations. Set
+- The response model is configured through `LLM_MODEL` (the current local demo uses
+  `gemma4:e4b`). It turns server-approved evidence into readable answers. For an
+  explanation follow-up, cited graph statements remain separate from clearly labeled
+  general model background; rejected background falls back to grounded wording. Raw
+  graph property maps are not sent as answers. The model cannot query databases,
+  choose actions or create citations. Set
   `LLM_PROVIDER=grounded` to use deterministic rendering without Ollama.
 
 ## Local setup (Windows PowerShell)
@@ -36,10 +44,19 @@ docker compose --profile stores up -d postgres qdrant
 # Start an existing populated Neo4j instance separately, or provision one for your graph.
 .\.venv\Scripts\python.exe -m backend.database.search_admin migrate
 .\.venv\Scripts\python.exe -m backend.database.search_admin sync
+.\.venv\Scripts\python.exe -m backend.evidence.reference_import --limit 500
 ```
 
 `sync` explicitly projects plant names and aliases from the configured Neo4j database into
 PostgreSQL and Qdrant. It requires a populated graph and must be run against the intended stores.
+The separate reference import reads only graph-linked MeSH descriptor IDs, verifies each ID and
+label against the National Library of Medicine's descriptor and preferred-concept records, and
+stores bounded definitions in PostgreSQL. It fetched 430 matching notes from the 446 distinct
+IDs in the current local graph. The web server never fetches external pages to answer a turn;
+missing notes simply leave the answer on graph evidence. A `Bioactivity.bioactivity_id` such as
+`BA_001` is an internal graph ID, not a ChEMBL assay ID, so this importer does not claim to have
+assay-specific ChEMBL descriptions. Add an authoritative assay identifier mapping before enabling
+that kind of enrichment.
 The web server does not migrate, seed or modify the graph at startup. For a first setup, configure
 `POSTGRES_USER`, `POSTGRES_PASSWORD` and `POSTGRES_DB` before starting Compose.
 
@@ -56,7 +73,7 @@ Set `IMAGE_ENABLED=true` and the `IMAGE_*_PATH` values in `.env` after indexing.
 generation, install/start Ollama and pull the configured model before launching the backend:
 
 ```powershell
-ollama pull qwen3:1.7b
+ollama pull qwen3:4b-instruct
 .\.venv\Scripts\python.exe -m backend.llm.admin warm
 .\.venv\Scripts\python.exe -m backend
 ```
@@ -66,6 +83,19 @@ the MVP; durable operations and checkpoints rely on its single-process lease. Ne
 text, an uploaded image ID, or both. The frontend must display the one-plant-per-chat notice and
 use clarification IDs to resume pending discoveries.
 
+In a second PowerShell terminal, start the Next.js frontend:
+
+```powershell
+Set-Location 'D:\MajorProject\Phase-2\impark-major-project\frontend'
+npm install
+Copy-Item .env.example .env.local
+npm run dev
+```
+
+Open `http://127.0.0.1:3000`. The server-only `BACKEND_URL` points to FastAPI; set
+`BACKEND_API_KEY` in `.env.local` only if the backend requires a key. See the
+[frontend guide](frontend/README.md) for UI behavior and deployment configuration.
+
 ## Verification
 
 ```powershell
@@ -74,14 +104,22 @@ use clarification IDs to resume pending discoveries.
 .\.venv\Scripts\python.exe -m ruff format --check backend tests
 .\.venv\Scripts\python.exe -m mypy backend
 node --test frontend/api/client.test.mjs
+Set-Location frontend
+npm run typecheck
+npm run build
 ```
 
 Local integration tests are opt-in via `CHAT_RUN_INTEGRATION`, `GRAPH_RUN_INTEGRATION`,
 `SEARCH_RUN_INTEGRATION`, `NEO4J_RUN_INTEGRATION`, `IMAGE_RUN_INTEGRATION`, and
 `OLLAMA_RUN_INTEGRATION`. Stop the running backend first so tests can acquire the process lease.
 Neo4j write tests have a separate opt-in and should not be enabled against the research graph.
-The last safe local sweep passed 332 tests with two write-only tests skipped. This does not establish
-general image accuracy, arbitrary-language coverage, multi-worker scalability or clinical safety.
+The latest local non-integration sweep passed 387 tests (53 opt-in tests skipped); the separate
+read-only live Neo4j/graph sweep passed 19 tests (two write-only tests skipped).
+Four opt-in live Gemma explanation cases passed for compounds, plant parts, use terms and
+assay measurements. A live Next.js-proxied chat established one plant, listed eight compounds,
+explained all eight with the model, resolved citations, and deleted its temporary session.
+These checks do not establish independent verification of pretrained knowledge, general image
+accuracy, arbitrary-language coverage, multi-worker scalability or clinical safety.
 
 The detailed project notes remain local and are intentionally excluded from Git. README files
 remain versioned, except within the excluded `langflow/` directory.

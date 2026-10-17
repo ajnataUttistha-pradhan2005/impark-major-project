@@ -20,6 +20,7 @@ coverage.xml
 htmlcov/
 node_modules/
 .next/
+*.tsbuildinfo
 data/raw/*
 data/processed/*
 # Downloaded inference weights are reproducible runtime artifacts.

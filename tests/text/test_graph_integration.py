@@ -83,6 +83,20 @@ async def test_first_question_survives_selection_and_citation_followup(graph_ser
     assert graph.read.await_count == 1
 
 
+async def test_locked_plant_benefits_followup_does_not_request_identity(graph_service):
+    service, graph = graph_service
+    sid = (await service.create(uuid4())).correlation.session_id
+    first = await service.submit(sid, ChatRequest(text="neem"), uuid4())
+    followup = await service.submit(
+        sid, ChatRequest(text="give me medical benifits of this plant"), uuid4()
+    )
+    assert followup.mode == "conversation"
+    assert followup.active_plant.plant_id == first.active_plant.plant_id
+    assert followup.status != "WAITING_USER"
+    assert followup.clarification is None
+    assert graph.read.await_count == 1
+
+
 async def test_chat_cannot_switch_text_selection_clarification_or_provider_result(
     graph_service, name_search
 ):
@@ -139,7 +153,8 @@ async def test_empty_data_stops_without_repeating_same_query(graph_service):
     result = await service.submit(sid, ChatRequest(text="neem compounds"), uuid4())
     assert result.status == "EVIDENCE_UNAVAILABLE"
     assert graph.read.await_count == 1
-    assert "absence does not disprove" in result.response.text
+    assert "don't currently have enough information" in result.response.text
+    assert "EVIDENCE_UNAVAILABLE" not in result.response.text
     assert result.mode == "conversation"
 
 
@@ -184,7 +199,8 @@ async def test_conflicting_graph_properties_do_not_change_locked_identity(graph_
     assert state.session.locked_plant_id == result.active_plant.plant_id
     assert graph.read.await_count == 1
     assert not state.belief.requires_reassessment
-    assert "Conflicting properties" in result.response.text
+    assert "source details conflict" in result.response.text
+    assert "graph identifier" not in result.response.text
     assert len(result.response.citation_ids) == 2
 
 
@@ -244,6 +260,38 @@ async def test_discovery_entity_objective_requires_plant_and_survives_clarificat
     _, params = graph.read.call_args.args
     assert params["compound"] == "fixture:compound"
     assert params["name"] == "Fixture neem"
+
+
+async def test_compound_followup_reuses_last_entity_within_locked_plant(graph_service):
+    from backend.contracts.agents import ResolvedMention
+
+    service, graph = graph_service
+    service.harness.execution.text.provider.repository.entities = AsyncMock(
+        side_effect=lambda text: (
+            [
+                ResolvedMention(
+                    entity_id="fixture:compound",
+                    kind="compound",
+                    label="Synthetic compound",
+                    confidence=1,
+                )
+            ]
+            if "synthetic compound" in text.casefold()
+            else []
+        )
+    )
+    sid = (await service.create(uuid4())).correlation.session_id
+    await service.submit(sid, ChatRequest(text="neem"), uuid4())
+    first = await service.submit(sid, ChatRequest(text="What is Synthetic compound?"), uuid4())
+    assert first.status == "COMPLETE"
+    assert graph.read.call_args.args[1]["compound"] == "fixture:compound"
+    followup = await service.submit(sid, ChatRequest(text="Tell me more about it"), uuid4())
+    assert followup.status == "COMPLETE"
+    assert followup.active_plant.plant_id == first.active_plant.plant_id
+    assert graph.read.call_args.args[1]["compound"] == "fixture:compound"
+    assert graph.read.await_count == 3  # first detail, then detail and activity
+    state = await service.load(sid)
+    assert state.context.active_topic == "compound"
 
 
 @pytest.mark.parametrize(

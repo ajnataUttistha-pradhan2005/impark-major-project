@@ -84,9 +84,32 @@ async def test_stable_citations_full_provenance_and_conservative_evidence_class(
     assert evidence.evidence_type == "unknown"
     assert evidence.source_quality == 0
     assert evidence.graph_links == [(0, "HAS_PART", 1), (1, "CONTAINS", 2)]
-    assert evidence.source_urls == ["https://example.org/synthetic"]
+    assert evidence.source_urls == []  # A compound URL is not a document citation.
     assert json.loads(evidence.claim)["inchi_key"] == "A"
     assert evidence.graph_nodes[-1]["inchi_key"] == "A"
+
+
+async def test_only_traversed_document_url_is_exposed_as_external_source():
+    value = row()
+    value["nodes"].extend(
+        [
+            {"document_chembl_id": "doc1", "document_url": "https://example.org/paper"},
+            {"uniprot_id": "target1", "source_url": "https://example.org/target"},
+        ]
+    )
+    value["relations"].extend(["REPORTED_IN", "MEASURED_ON"])
+    result = await repository([value]).retrieve(request(QueryType.GET_EVIDENCE))
+    assert result.evidence[0].source_urls == ["https://example.org/paper"]
+
+
+async def test_document_chembl_id_links_to_exact_record_when_url_is_absent():
+    value = row()
+    value["nodes"].append({"document_chembl_id": "CHEMBL1156867"})
+    value["relations"].append("REPORTED_IN")
+    result = await repository([value]).retrieve(request(QueryType.GET_EVIDENCE))
+    assert result.evidence[0].source_urls == [
+        "https://www.ebi.ac.uk/chembl/id_lookup/CHEMBL1156867"
+    ]
 
 
 async def test_limits_are_disclosed_and_never_silent_string_truncation():
@@ -159,6 +182,16 @@ async def test_optional_document_and_target_branches_keep_actual_endpoints():
     result = await repository([value]).retrieve(request(QueryType.GET_EVIDENCE))
     assert "no linked document" in result.limitations[0]
     assert result.evidence[0].evidence_type == "unknown"
+
+
+async def test_bioactivity_retrieval_includes_recorded_assay_target():
+    req = request(QueryType.GET_BIOACTIVITY, compound_id="fixture:compound")
+    repo = repository([row()])
+    await repo.retrieve(req)
+    query, parameters = repo.graph.read.call_args.args
+    assert "OPTIONAL MATCH (activity)-[:MEASURED_ON]->(target:Protein_Target)" in query
+    assert "properties(target)" in query
+    assert parameters["compound"] == "fixture:compound"
 
 
 @pytest.mark.parametrize(

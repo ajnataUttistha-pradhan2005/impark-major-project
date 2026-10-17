@@ -7,7 +7,7 @@ class EligibilityPolicy:
     def __init__(self, threshold: float = 0.95) -> None:
         self.threshold = threshold
 
-    def resolved(self, state: ConversationState) -> bool:
+    def identity_resolved(self, state: ConversationState) -> bool:
         supported = {
             h.candidate.plant_id
             for h in state.belief.hypotheses
@@ -25,8 +25,11 @@ class EligibilityPolicy:
             and not state.belief.requires_reassessment
             and not state.belief.text_pending
             and not state.belief.image_pending
-            and not state.belief.intent_pending
         )
+
+    def resolved(self, state: ConversationState) -> bool:
+        """A locked identity and an understood topic are independent gates."""
+        return self.identity_resolved(state) and not state.belief.intent_pending
 
     def enumerate(self, state: ConversationState) -> list[ActionName]:
         if state.termination.terminal or state.termination.status == TaskStatus.WAITING_USER:

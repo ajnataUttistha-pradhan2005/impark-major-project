@@ -4,7 +4,7 @@ from uuid import UUID, uuid4
 from pydantic import Field
 
 from backend.contracts.actions import ActionCandidate, ActionName, ActionRecord, Decision
-from backend.contracts.agents import CandidatePlant, Failure, ImageReference, Observation
+from backend.contracts.agents import CandidatePlant, Failure, ImageReference, Observation, QueryType
 from backend.contracts.base import Confidence, Contract, CorrelationMetadata, EntityId
 from backend.contracts.evidence import Evidence, EvidenceState, Modality
 from backend.contracts.response import ClarificationRequest, FinalResponse, ResponseContext
@@ -58,6 +58,7 @@ class ConversationContext(Contract):
     active_compounds: list[EntityId] = Field(default_factory=list)
     active_target: EntityId | None = None
     active_topic: str | None = None
+    recent_query_types: list[QueryType] = Field(default_factory=list, max_length=4)
     citation_history: list["Evidence"] = Field(default_factory=list, max_length=100)
 
 

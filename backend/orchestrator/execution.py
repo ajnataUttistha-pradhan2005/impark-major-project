@@ -111,6 +111,13 @@ class ExecutionManager:
                     active_plant=state.context.active_plant.model_copy(deep=True)
                     if state.context.active_plant
                     else None,
+                    active_compound_id=(
+                        state.context.active_compounds[-1]
+                        if state.context.active_topic == "compound"
+                        and state.context.active_compounds
+                        else None
+                    ),
+                    recent_query_types=state.context.recent_query_types,
                     excluded_plant_ids=[
                         h.candidate.plant_id for h in state.belief.hypotheses if h.weakened
                     ],

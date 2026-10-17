@@ -45,6 +45,19 @@ def evaluate_observation(state: ConversationState, observation: Observation) -> 
             )
         if payload.part:
             state.context.active_part = payload.part
+        if payload.query_types or payload.queries:
+            state.context.recent_query_types = list(
+                dict.fromkeys([q.query_type for q in payload.queries] or payload.query_types)
+            )[:4]
+        compound_ids = [e.entity_id for e in payload.entities if e.kind == "compound"]
+        if len(compound_ids) == 1:
+            state.context.active_compounds = compound_ids
+            state.context.active_topic = "compound"
+        elif (payload.query_types or payload.queries) and not any(
+            stage in payload.stages for stage in ("topic_coreference", "compound_coreference")
+        ):
+            state.context.active_compounds = []
+            state.context.active_topic = "plant"
     if isinstance(payload, (TextResult, ImageAgentResult)):
         modality = Modality.TEXT if isinstance(payload, TextResult) else Modality.IMAGE
         candidates = payload.candidates

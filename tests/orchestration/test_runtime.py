@@ -98,5 +98,5 @@ async def test_new_input_does_not_inherit_previous_identification(service, plant
     result = await service.submit(
         session_id, ChatRequest(text="a different unknown plant"), uuid4()
     )
-    assert result.status == TaskStatus.WAITING_USER
+    assert result.status == TaskStatus.SCOPE_REJECTED
     assert (await service.load(session_id)).belief.confidence == 0

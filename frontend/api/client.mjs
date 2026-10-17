@@ -12,7 +12,8 @@ export class ChatApi {
   constructor(baseUrl, { token, fetcher = globalThis.fetch } = {}) {
     this.baseUrl = baseUrl.replace(/\/$/, "");
     this.token = token;
-    this.fetcher = fetcher;
+    // Browser-native fetch can reject calls whose receiver is a ChatApi instance.
+    this.fetcher = (...args) => fetcher.call(globalThis, ...args);
   }
 
   async request(path, { method = "GET", body, signal, headers = {} } = {}) {

@@ -6,8 +6,10 @@ from time import perf_counter
 from backend.contracts.actions import ActionName, ActionRecord, Capability
 from backend.contracts.agents import Failure, GraphAgentOutput, ImageAgentResult, TextResult
 from backend.contracts.response import ClarificationRequest, FinalResponse, FinalResponseRequest
+from backend.database.postgres.client import StoreError
 from backend.evidence.context_builder import build_response_context
 from backend.evidence.evaluator import evaluate_observation
+from backend.evidence.reference import ReferenceNotes
 from backend.llm.provider import LLMProvider
 from backend.orchestrator.actions import REGISTRY
 from backend.orchestrator.decision import DecisionEngine
@@ -29,8 +31,10 @@ class Harness:
         execution: ExecutionManager,
         llm: LLMProvider,
         trace: TraceRecorder,
+        reference_notes: ReferenceNotes | None = None,
     ) -> None:
         self.decision, self.execution, self.llm, self.trace = decision, execution, llm, trace
+        self.reference_notes = reference_notes
 
     def emit(self, state: ConversationState, event: EventType) -> None:
         emit_state(self.trace, state, event)
@@ -54,7 +58,7 @@ class Harness:
         self.emit(state, EventType.TURN_STARTED)
 
     def assess(self, state: ConversationState) -> None:
-        if self.decision.policy.resolved(state):
+        if self.decision.policy.identity_resolved(state):
             for objective in state.goal.pending:
                 if objective.query_type is None:
                     objective.status = ObjectiveStatus.COMPLETE
@@ -192,9 +196,17 @@ class Harness:
                 None,
             )
             state.clarification = ClarificationRequest(
-                candidates=[h.candidate for h in state.belief.hypotheses],
+                candidates=(
+                    []
+                    if state.session.locked_plant_id or state.context.active_plant
+                    else [h.candidate for h in state.belief.hypotheses]
+                ),
                 question=question
-                or "Which plant do you mean? Please select a candidate or clarify.",
+                or (
+                    "Which aspect of this plant would you like to explore?"
+                    if state.session.locked_plant_id or state.context.active_plant
+                    else "Which plant do you mean? Please select a candidate or clarify."
+                ),
             )
             state.clarification_count += 1
             state.termination.status = TaskStatus.WAITING_USER
@@ -286,6 +298,21 @@ class Harness:
 
     async def generate(self, state: ConversationState) -> None:
         assert state.response_context is not None
+        if self.reference_notes is not None and state.response_context.graph_evidence:
+            try:
+                async with asyncio.timeout(2):
+                    notes = await self.reference_notes.for_context(state.response_context)
+                existing = {item.evidence_id for item in state.evidence.all_evidence()}
+                for note in notes:
+                    if note.evidence_id not in existing:
+                        state.evidence.text.append(note)
+                        state.response_context.text_evidence.append(note.model_copy(deep=True))
+                        existing.add(note.evidence_id)
+                if notes:
+                    self.emit(state, EventType.EVIDENCE_ADDED)
+                    self.emit(state, EventType.RESPONSE_CONTEXT_BUILT)
+            except (StoreError, TimeoutError):
+                pass  # Optional explanation cache cannot fail the user's answer.
         self.emit(state, EventType.FINAL_LLM_STARTED)
         self.emit(state, EventType.RESPONSE_STREAM_STARTED)
         try:

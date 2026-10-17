@@ -79,6 +79,32 @@ async def test_intent_clarification_preserves_identity_and_lineage(service, name
     assert state.context.active_plant.plant_id == waiting.active_plant.plant_id
 
 
+async def test_locked_plant_topic_clarification_never_offers_plant_selection(service, name_search):
+    service.harness.execution.text = TextAgent(name_search)
+    sid = (await service.create(uuid4())).correlation.session_id
+    identified = await service.submit(sid, ChatRequest(text="neem"), uuid4())
+    assert identified.mode == "conversation"
+    waiting = await service.submit(
+        sid, ChatRequest(text="Explain the zapper of this plant"), uuid4()
+    )
+    assert waiting.status == "WAITING_USER"
+    assert waiting.active_plant.plant_id == identified.active_plant.plant_id
+    assert waiting.clarification.candidates == []
+    assert "plant details" in waiting.clarification.question
+
+
+async def test_locked_plant_explain_each_uses_previous_part_topic(service, name_search):
+    service.harness.execution.text = TextAgent(name_search)
+    sid = (await service.create(uuid4())).correlation.session_id
+    await service.submit(sid, ChatRequest(text="neem"), uuid4())
+    await service.submit(sid, ChatRequest(text="what plant parts"), uuid4())
+    followup = await service.submit(sid, ChatRequest(text="explain each"), uuid4())
+    assert followup.mode == "conversation"
+    assert followup.status != "WAITING_USER"
+    assert followup.clarification is None
+    assert (await service.load(sid)).context.recent_query_types == ["GET_PLANT_PARTS"]
+
+
 async def test_part_clarification_resumes_with_single_scope(service, name_search):
     service.harness.execution.text = TextAgent(name_search)
     sid = (await service.create(uuid4())).correlation.session_id

@@ -85,6 +85,24 @@ def test_evidence_preserved_in_context_and_not_mutable_alias(state, harness):
     assert len(state.evidence.graph) == 1
 
 
+def test_response_suggestions_only_come_from_cited_session_history(state):
+    from backend.contracts.evidence import Evidence, Provenance
+
+    state.context.citation_history = [
+        Evidence(
+            modality="graph",
+            claim='{"plant_part":"leaf"}',
+            confidence=1,
+            provenance=Provenance(
+                source_id="fixture:leaf", source_type="neo4j", reference="GET_PLANT_PARTS:fixture"
+            ),
+        )
+    ]
+    state.termination.ready_for_response = True
+    context = build_response_context(state)
+    assert context.known_topics == ["its documented parts"]
+
+
 def test_gap_blocks_objective_completion(state, harness):
     objective = state.goal.pending[0]
     evaluate_observation(

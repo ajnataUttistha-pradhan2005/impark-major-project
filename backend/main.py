@@ -16,7 +16,9 @@ from backend.agents.image.model import XceptionModel
 from backend.agents.image.retrieval import ImageVectorStore
 from backend.agents.text.agent import TextAgent
 from backend.agents.text.embeddings import FastEmbedProvider
+from backend.agents.text.intent_model import OllamaIntentModel
 from backend.agents.text.search import HybridNameSearch
+from backend.agents.text.semantic_intent import SemanticIntentModel
 from backend.api.middleware import CorrelationMiddleware, configure_logging
 from backend.api.routes import conversations, images, platform
 from backend.api.schemas.chat import ErrorResponse
@@ -32,6 +34,7 @@ from backend.database.postgres.client import PostgresClient, StoreError
 from backend.database.postgres.persistence import PostgresSessionRepository, PostgresTraceSink
 from backend.database.postgres.search import PostgresNameRepository
 from backend.database.qdrant.client import QdrantStore
+from backend.evidence.reference import ReferenceNotes
 from backend.llm.grounded import GroundedResponseProvider
 from backend.llm.guarded import GuardedResponseProvider
 from backend.llm.ollama import OllamaModel
@@ -66,6 +69,7 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
         postgres: PostgresClient | None = None
         vectors: QdrantStore | None = None
         model: OllamaModel | None = None
+        intent_model: OllamaIntentModel | None = None
         image_vectors: ImageVectorStore | None = None
         runs: RunManager | None = None
         lease = None
@@ -130,6 +134,7 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                         PlantGraphRetrieval(app.state.neo4j, postgres)
                     )
                 harness.llm = GroundedResponseProvider()
+                harness.reference_notes = ReferenceNotes(postgres)
                 service.repository = PostgresSessionRepository(postgres)
                 recorder.sink = PostgresTraceSink(postgres)
                 app.state.postgres = postgres
@@ -141,8 +146,28 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                 model = OllamaModel(config)
                 harness.llm = GuardedResponseProvider(model)
                 app.state.response_model = model
+                if config.text_intent_model_enabled and config.text_search_enabled:
+                    intent_model = OllamaIntentModel(
+                        config.ollama_base_url or "",
+                        config.llm_model or "",
+                        model.gate,
+                        min(config.text_intent_timeout_seconds, config.action_timeout_seconds - 1),
+                    )
+                    harness.execution.text = TextAgent(
+                        search,
+                        SemanticIntentModel(embeddings, intent_model)
+                        if embeddings is not None
+                        else intent_model,
+                    )
             elif config.llm_provider == "grounded":
                 harness.llm = GuardedResponseProvider()
+            if (
+                config.text_intent_model_enabled
+                and config.text_search_enabled
+                and intent_model is None
+                and embeddings is not None
+            ):
+                harness.execution.text = TextAgent(search, SemanticIntentModel(embeddings))
             recorder.start()
             if agents is not None:
                 agents.install(harness.execution)
@@ -152,6 +177,8 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                 await runs.close()
             if model is not None:
                 await model.close()
+            if intent_model is not None:
+                await intent_model.close()
             await recorder.close(config.trace_shutdown_seconds)
             await stack.aclose()
             if vectors is not None:

@@ -1,14 +1,14 @@
-"""Deterministic response renderer for the demo; accepts response_context only."""
+"""Deterministic, readable response renderer; accepts response_context only."""
 
-import json
+import re
 
 from backend.contracts.response import FinalResponse, FinalResponseRequest
+from backend.llm.verbalize import answer_facts, fact_lines, interpretation, intro, limitations
 
 
 class GroundedResponseProvider:
     async def generate(self, request: FinalResponseRequest) -> FinalResponse:
         context = request.response_context
-        lines = []
         if context.outcome == "SCOPE_REJECTED":
             return FinalResponse(
                 text="Each chat supports one plant. Start a new chat to discuss another plant. "
@@ -16,47 +16,68 @@ class GroundedResponseProvider:
                 placeholder=False,
             )
         if context.outcome == "SAFETY_ABSTENTION":
-            lines.append(
-                "I cannot recommend a dose or personal treatment. Consult a qualified clinician."
+            if re.search(
+                r"\b(?:safe|safety|side effects?|toxicity|toxic|contraindications?|"
+                r"drug interactions?|adverse effects?)\b",
+                context.user_question.casefold(),
+            ):
+                plant = context.resolved_plant.label if context.resolved_plant else "this plant"
+                return FinalResponse(
+                    text=f"I don't have enough reliable safety information here to say "
+                    f"whether {plant} is safe or what side effects it may cause. "
+                    "Please ask a qualified clinician before using it for health reasons. "
+                    "Educational use only; not medical advice.",
+                    placeholder=False,
+                )
+            return FinalResponse(
+                text="I cannot recommend a dose or personal treatment. "
+                "Please consult a qualified clinician. "
+                "Educational use only; not medical advice.",
+                placeholder=False,
             )
+        facts = answer_facts(context)
+        if facts:
+            lines = [intro(context), ""]
+            lines.extend(line.rstrip("\n") for line, _ in fact_lines(facts))
+            meaning = interpretation(context)
+            if meaning:
+                lines.extend(["", meaning])
         elif context.resolved_plant and context.outcome == "Objectives satisfied":
-            lines.append(f"Identified plant: {context.resolved_plant.label}.")
+            lines = [
+                f"Identified plant: {context.resolved_plant.label}. "
+                "This chat now focuses on this plant. "
+                "Ask a question to explore its recorded details."
+            ]
         elif context.resolved_plant:
-            lines.append(f"Current plant context: {context.resolved_plant.label}.")
-        citations = []
-        for evidence in context.graph_evidence:
-            try:
-                fact = json.loads(evidence.claim)
-            except (ValueError, TypeError):
-                fact = None
-            if isinstance(fact, dict):
-                summary = "; ".join(
-                    f"{key.replace('_', ' ')}: {value}"
-                    for key, value in fact.items()
-                    if value is not None
+            plant = context.resolved_plant.label
+            if context.known_topics:
+                options = context.known_topics[:3]
+                topics = (
+                    options[0]
+                    if len(options) == 1
+                    else " and ".join(options)
+                    if len(options) == 2
+                    else ", ".join(options[:-1]) + ", and " + options[-1]
+                )
+                invitation = (
+                    f"I do have records on {topics}. Would you like to explore one of those?"
                 )
             else:
-                summary = evidence.claim
-            lines.append(
-                f"{evidence.provenance.reference}: {summary} [evidence: {evidence.evidence_id}; "
-                f"class: {evidence.evidence_type.value}]"
-            )
-            citations.append(evidence.evidence_id)
-            if context.intent == "TRACE_EVIDENCE":
-                for source, relationship, target in evidence.graph_links:
-                    nodes = evidence.graph_nodes
-                    if source < len(nodes) and target < len(nodes):
-                        lines.append(
-                            f"Source path: {nodes[source]} —{relationship}→ {nodes[target]}"
-                        )
-            if evidence.source_urls:
-                lines.append("Recorded sources: " + ", ".join(evidence.source_urls))
-        if context.uncertainties:
-            lines.append("Limitations: " + "; ".join(context.uncertainties))
-        if not lines:
-            lines.append("There is not enough supported information to answer.")
-        lines.append(
-            "Educational use only; not medical advice. "
-            "Reported uses do not establish clinical efficacy."
+                invitation = f"Would you like me to check the recorded overview for {plant}?"
+            lines = [
+                f"I don't currently have enough information in the available records "
+                f"to answer that about {plant}. {invitation}"
+            ]
+        else:
+            lines = ["There is not enough supported information to answer."]
+        note = limitations(context, len(facts)) if facts else ""
+        if note:
+            lines.extend(["", note])
+        if context.intent in {"GET_THERAPEUTIC_USES", "GET_BIOACTIVITY", "GET_EVIDENCE"}:
+            lines.extend(["", "For learning only; this is not medical advice."])
+        return FinalResponse(
+            text="\n".join(lines),
+            citation_ids=[fact.citation_id for fact in facts],
+            placeholder=False,
+            provider="grounded",
         )
-        return FinalResponse(text="\n".join(lines), citation_ids=citations, placeholder=False)

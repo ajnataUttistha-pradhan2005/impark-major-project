@@ -22,6 +22,8 @@ class Settings(Neo4jEnvironment, SearchSettings):
     llm_output_tokens: int = Field(default=512, ge=64, le=2048)
     llm_timeout_seconds: float = Field(default=35, gt=0, le=120)
     llm_keep_alive: str = "5m"
+    text_intent_model_enabled: bool = True
+    text_intent_timeout_seconds: float = Field(default=12, gt=0, le=30)
     api_key: SecretStr | None = None
     max_active_runs: int = Field(default=4, ge=1, le=16)
     max_session_images: int = Field(default=10, ge=1, le=50)

@@ -76,7 +76,11 @@ async def capabilities(request: Request) -> dict[str, Any]:
         "max_image_bytes": request.app.state.settings.max_image_bytes,
         "llm_provider": request.app.state.settings.llm_provider,
         "llm_model": request.app.state.settings.llm_model,
-        "response_policy": "evidence-locked-blocks",
+        "response_policy": (
+            "evidence-locked-facts-and-labeled-general-context"
+            if request.app.state.settings.llm_provider == "ollama"
+            else "evidence-locked-facts"
+        ),
         "public_trace": False,
     }
 
@@ -154,14 +158,38 @@ async def resume(oid: UUID, runs: Manager) -> RunView:
 
 @router.get("/runs/{oid}/evidence", response_model=EvidencePage)
 async def evidence(oid: UUID, runs: Manager) -> EvidencePage:
-    await runs.store.operation(oid)
+    operation = await runs.store.operation(oid)
     from backend.database.postgres.chat import decode
 
     snapshot = await runs.store.client.single(
         "SELECT data FROM chat_message WHERE operation_id=$1 AND role='assistant'",
         oid,
     )
-    return EvidencePage(items=decode(snapshot["data"]).get("evidence", []) if snapshot else [])
+    data = decode(snapshot["data"]) if snapshot else {}
+    items = data.get("evidence", [])
+    result = data.get("result") or {}
+    response = result.get("response") or {}
+    cited = set(response.get("citation_ids") or [])
+    present = {item.get("evidence_id") for item in items}
+    missing = cited - present
+    if missing:
+        # A response may cite evidence retained from an earlier turn. Resolve
+        # those citations only inside this session, never from another chat.
+        rows = await runs.store.client.read(
+            "SELECT e.value AS item FROM chat_message m "
+            "CROSS JOIN LATERAL jsonb_array_elements(coalesce(m.data->'evidence','[]'::jsonb)) "
+            "AS e(value) WHERE m.session_id=$1 AND m.role='assistant' "
+            "AND e.value->>'evidence_id'=ANY($2::text[]) "
+            "ORDER BY m.created_at DESC LIMIT 100",
+            operation["session_id"],
+            list(missing),
+        )
+        for row in rows:
+            item = decode(row["item"])
+            if item.get("evidence_id") in missing:
+                items.append(item)
+                missing.discard(item["evidence_id"])
+    return EvidencePage(items=items)
 
 
 @router.get("/runs/{oid}/events", response_class=StreamingResponse)

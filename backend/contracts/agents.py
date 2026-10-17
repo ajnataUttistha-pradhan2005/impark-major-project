@@ -102,6 +102,8 @@ class TextAgentInput(Contract):
     active_plant_id: EntityId | None = None
     reassessment: bool = False
     active_plant: CandidatePlant | None = None
+    active_compound_id: EntityId | None = None
+    recent_query_types: list[QueryType] = Field(default_factory=list, max_length=4)
     excluded_plant_ids: list[EntityId] = Field(default_factory=list)
 
 
