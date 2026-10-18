@@ -74,13 +74,12 @@ async def capabilities(request: Request) -> dict[str, Any]:
         "image_scope": "40 leaf classes; confirmation required",
         "image_part_classifier": False,
         "max_image_bytes": request.app.state.settings.max_image_bytes,
-        "llm_provider": request.app.state.settings.llm_provider,
-        "llm_model": request.app.state.settings.llm_model,
-        "response_policy": (
-            "evidence-locked-facts-and-labeled-general-context"
-            if request.app.state.settings.llm_provider == "ollama"
-            else "evidence-locked-facts"
+        "llm_provider": request.app.state.settings.agent_main_model_provider,
+        "llm_model": (
+            request.app.state.settings.agent_main_model
+            or request.app.state.settings.llm_model
         ),
+        "response_policy": "agentic-grounded-facts-and-labeled-general-context",
         "public_trace": False,
     }
 

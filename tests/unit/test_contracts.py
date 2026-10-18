@@ -4,10 +4,8 @@ import pytest
 from pydantic import ValidationError
 
 from backend.api.schemas.chat import ChatRequest
-from backend.contracts.actions import ActionName
 from backend.contracts.agents import GraphParameters, GraphQuery, QueryType
 from backend.contracts.response import FinalResponseRequest, ResponseContext
-from backend.orchestrator.actions import REGISTRY
 from backend.state.models import ConversationState, SessionMode
 
 
@@ -18,12 +16,6 @@ def test_state_defaults_and_independent_collections():
     a.context.active_compounds.append("fixture:compound")
     assert b.context.active_compounds == []
     assert ConversationState.model_validate_json(a.model_dump_json()) == a
-
-
-def test_action_registry_complete():
-    assert set(REGISTRY) == set(ActionName)
-    assert len(REGISTRY) == 12
-    assert all(d.prerequisites and d.safety_requirements for d in REGISTRY.values())
 
 
 @pytest.mark.parametrize("payload", [{}, {"text": "  "}, {"text": "a", "action": "RETRIEVE_GRAPH"}])

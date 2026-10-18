@@ -52,6 +52,13 @@ class BeliefState(Contract):
     intent_pending: bool = False
 
 
+class DialogueTurn(Contract):
+    question: str
+    answer: str
+    query_types: list[QueryType] = Field(default_factory=list)
+    citation_ids: list[UUID] = Field(default_factory=list)
+
+
 class ConversationContext(Contract):
     active_plant: CandidatePlant | None = None
     active_part: str | None = None
@@ -60,6 +67,8 @@ class ConversationContext(Contract):
     active_topic: str | None = None
     recent_query_types: list[QueryType] = Field(default_factory=list, max_length=4)
     citation_history: list["Evidence"] = Field(default_factory=list, max_length=100)
+    recent_dialogue: list[DialogueTurn] = Field(default_factory=list, max_length=4)
+    focus_entities: list[str] = Field(default_factory=list, max_length=30)
 
 
 class Budgets(Contract):

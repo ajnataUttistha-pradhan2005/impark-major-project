@@ -5,9 +5,11 @@ from contextlib import AsyncExitStack, asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from langgraph.checkpoint.memory import InMemorySaver
 from starlette.middleware.cors import CORSMiddleware
 
 from backend.agents.common.bundle import AgentOverrides
+from backend.agents.common.services import SpecialistServices
 from backend.agents.graph.agent import GraphAgent
 from backend.agents.graph.retrieval import PlantGraphRetrieval
 from backend.agents.image.agent import ImageAgent
@@ -16,10 +18,7 @@ from backend.agents.image.model import XceptionModel
 from backend.agents.image.retrieval import ImageVectorStore
 from backend.agents.text.agent import TextAgent
 from backend.agents.text.embeddings import FastEmbedProvider
-from backend.agents.text.intent_model import OllamaIntentModel
-from backend.agents.text.open_question import OpenPlantQuestionTextAgent
 from backend.agents.text.search import HybridNameSearch
-from backend.agents.text.semantic_intent import SemanticIntentModel
 from backend.api.middleware import CorrelationMiddleware, configure_logging
 from backend.api.routes import conversations, images, platform
 from backend.api.schemas.chat import ErrorResponse
@@ -35,18 +34,10 @@ from backend.database.postgres.client import PostgresClient, StoreError
 from backend.database.postgres.persistence import PostgresSessionRepository, PostgresTraceSink
 from backend.database.postgres.search import PostgresNameRepository
 from backend.database.qdrant.client import QdrantStore
-from backend.evidence.plant_context import PlantContextLoader
-from backend.evidence.reference import ReferenceNotes
-from backend.llm.grounded import GroundedResponseProvider
-from backend.llm.guarded import GuardedResponseProvider
-from backend.llm.ollama import OllamaModel
-from backend.llm.plant_context import PlantContextResponseProvider
-from backend.llm.provider import PlaceholderProvider
-from backend.orchestrator.decision import DecisionEngine
-from backend.orchestrator.execution import ExecutionManager
-from backend.orchestrator.graph import build_graph
-from backend.orchestrator.orchestrator import Harness
-from backend.orchestrator.policy import EligibilityPolicy
+from backend.orchestrator.deepagents.graph import build_deep_graph
+from backend.orchestrator.deepagents.host import AgentHost
+from backend.orchestrator.deepagents.models import AgentModelFactory
+from backend.orchestrator.deepagents.runtime import DeepAgentRuntime
 from backend.services.conversations import ConversationService
 from backend.services.errors import ServiceError
 from backend.services.runs import RunManager
@@ -57,12 +48,8 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
     # Pydantic Settings uses python-dotenv for .env without mutating process environment.
     config = settings or Settings()
     recorder = TraceRecorder(MemoryTraceSink(), config.trace_buffer_size)
-    harness = Harness(
-        DecisionEngine(EligibilityPolicy(config.entity_auto_resolve_threshold)),
-        ExecutionManager(TextAgent(), ImageAgent(), GraphAgent()),
-        PlaceholderProvider(),
-        recorder,
-    )
+    execution = SpecialistServices(TextAgent(), ImageAgent(), GraphAgent())
+    harness = AgentHost(execution, recorder)
     service = ConversationService(MemorySessionRepository(), harness, config)
 
     @asynccontextmanager
@@ -71,8 +58,6 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
         connection: Neo4jConnection | None = None
         postgres: PostgresClient | None = None
         vectors: QdrantStore | None = None
-        model: OllamaModel | None = None
-        intent_model: OllamaIntentModel | None = None
         image_vectors: ImageVectorStore | None = None
         runs: RunManager | None = None
         lease = None
@@ -96,7 +81,6 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                 saver = await stack.enter_async_context(checkpoints(config))
                 # Read-only readiness check: run search_admin migrate explicitly first.
                 await postgres.scalar("SELECT count(*) FROM checkpoint_migrations")
-                service.graph = build_graph(harness, saver)
                 names = PostgresNameRepository(postgres)
                 await names.generation()  # Fail early if the explicit migration/import was omitted.
                 embeddings = None
@@ -136,8 +120,6 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                     harness.execution.graph = GraphAgent(
                         PlantGraphRetrieval(app.state.neo4j, postgres)
                     )
-                harness.llm = GroundedResponseProvider()
-                harness.reference_notes = ReferenceNotes(postgres)
                 service.repository = PostgresSessionRepository(postgres)
                 recorder.sink = PostgresTraceSink(postgres)
                 app.state.postgres = postgres
@@ -145,53 +127,16 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
                 runs = RunManager(service, ChatStore(postgres))
                 await runs.store.interrupt_stale()
                 app.state.runs = runs
-            if config.llm_provider == "ollama":
-                model = OllamaModel(config)
-                harness.llm = (
-                    PlantContextResponseProvider(model)
-                    if config.llm_response_mode == "plant_context"
-                    else GuardedResponseProvider(model)
-                )
-                if config.llm_response_mode == "plant_context":
-                    harness.plant_context_loader = PlantContextLoader(
-                        app.state.neo4j, app.state.postgres
-                    )
-                app.state.response_model = model
-                if config.text_intent_model_enabled and config.text_search_enabled:
-                    intent_model = OllamaIntentModel(
-                        config.ollama_base_url or "",
-                        config.llm_model or "",
-                        model.gate,
-                        min(config.text_intent_timeout_seconds, config.action_timeout_seconds - 1),
-                    )
-                    harness.execution.text = TextAgent(
-                        search,
-                        SemanticIntentModel(embeddings, intent_model)
-                        if embeddings is not None
-                        else intent_model,
-                    )
-            elif config.llm_provider == "grounded":
-                harness.llm = GuardedResponseProvider()
-            if (
-                config.text_intent_model_enabled
-                and config.text_search_enabled
-                and intent_model is None
-                and embeddings is not None
-            ):
-                harness.execution.text = TextAgent(search, SemanticIntentModel(embeddings))
-            if config.llm_response_mode == "plant_context":
-                harness.execution.text = OpenPlantQuestionTextAgent(harness.execution.text)
             recorder.start()
             if agents is not None:
                 agents.install(harness.execution)
+            runtime = DeepAgentRuntime(harness, AgentModelFactory(config), config)
+            checkpoint = saver if config.text_search_enabled else InMemorySaver()
+            service.graph = build_deep_graph(runtime, checkpoint)
             yield
         finally:
             if runs is not None:
                 await runs.close()
-            if model is not None:
-                await model.close()
-            if intent_model is not None:
-                await intent_model.close()
             await recorder.close(config.trace_shutdown_seconds)
             await stack.aclose()
             if vectors is not None:
@@ -302,14 +247,14 @@ def create_app(settings: Settings | None = None, agents: AgentOverrides | None =
 
     @app.get("/health/llm")
     async def llm_health() -> JSONResponse:
-        healthy = await app.state.response_model.health() if app.state.response_model else False
+        healthy = bool(config.agent_main_model or config.llm_model)
         return JSONResponse(
             {
-                "status": "ok" if healthy else "fallback",
-                "provider": config.llm_provider,
-                "model": config.llm_model,
+                "status": "configured" if healthy else "unavailable",
+                "provider": config.agent_main_model_provider,
+                "model": config.agent_main_model or config.llm_model,
             },
-            status_code=200 if healthy or config.llm_provider != "ollama" else 503,
+            status_code=200 if healthy else 503,
         )
 
     return app

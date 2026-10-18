@@ -17,7 +17,7 @@ def test_health_and_correlation():
         assert client.post("/dev/conversations").status_code == 403
 
 
-def test_discovery_clarification_and_validation():
+def test_discovery_validation_and_unconfigured_model():
     with TestClient(create_app(Settings(_env_file=None, enable_development_api=True))) as client:
         created = client.post("/dev/conversations").json()
         assert created["mode"] == "discovery"
@@ -27,10 +27,8 @@ def test_discovery_clarification_and_validation():
         assert bad.status_code == 422
         assert "secret-value" not in bad.text
         first = client.post(endpoint, json={"text": "unknown plant"})
-        assert first.status_code == 200, first.text
-        assert first.json()["status"] == "WAITING_USER"
-        second = client.post(endpoint, json={"text": "more description"}).json()
-        assert second["correlation"]["run_id"] == first.json()["correlation"]["run_id"]
+        assert first.status_code == 503
+        assert first.json()["code"] == "UNAVAILABLE"
         assert client.get(f"/dev/conversations/{sid}/history").status_code == 200
         assert client.get("/dev/discovery/autocomplete?q=plant").json()["implemented"] is False
 
@@ -54,8 +52,8 @@ def test_upload_and_image_only_discovery():
         result = client.post(
             f"/dev/conversations/{sid}/turns", json={"image_id": uploaded.json()["image_id"]}
         )
-        assert result.status_code == 200
-        assert result.json()["status"] == "WAITING_USER"
+        assert result.status_code == 503
+        assert result.json()["code"] == "UNAVAILABLE"
 
 
 def test_production_cannot_enable_development_bypass():

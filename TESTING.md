@@ -1,0 +1,3 @@
+# Testing and evaluation
+
+Use [the current suite map, commands and limitations](docs/testing-and-limitations/README.md). Focus behavior tests on discovery → confirmation → follow-up, locked-plant scope, graph query allow-list, evidence/citation correspondence, clarification resume, SSE replay/cancellation, and frontend session restoration. Unit tests do not establish real-model scientific correctness. Live store/model tests are opt-in and need matching local data and the single-process lease to be available. Historical deterministic-harness evaluation scenarios do not certify the current DeepAgents runtime.

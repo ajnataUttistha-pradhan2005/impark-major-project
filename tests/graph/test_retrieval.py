@@ -89,6 +89,24 @@ async def test_stable_citations_full_provenance_and_conservative_evidence_class(
     assert evidence.graph_nodes[-1]["inchi_key"] == "A"
 
 
+async def test_alias_query_uses_real_has_alias_path_and_preserves_name_fields():
+    alias = {
+        "alias": "Malabar spinach",
+        "normalized_alias": "malabar spinach",
+        "alias_type": "common",
+        "language": "English",
+        "plant_name": "Synthetic plant",
+    }
+    repo = repository(
+        [{"fact": alias, "nodes": [{"plant_name": "Synthetic plant"}, alias],
+          "relations": ["HAS_ALIAS"]}]
+    )
+    result = await repo.retrieve(request(QueryType.GET_PLANT_ALIASES))
+    assert json.loads(result.evidence[0].claim) == alias
+    assert result.evidence[0].graph_path == ["HAS_ALIAS"]
+    assert "(alias:PlantAlias)" in repo.graph.read.call_args.args[0]
+
+
 async def test_only_traversed_document_url_is_exposed_as_external_source():
     value = row()
     value["nodes"].extend(

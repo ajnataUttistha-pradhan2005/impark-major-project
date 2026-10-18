@@ -1,0 +1,3 @@
+# Backend runbook
+
+See [setup and operations](docs/setup-and-operations/README.md) for the current Windows commands, configuration, explicit database migration/search synchronization, image index setup, launch, probes and cold teammate transfer. `backend/main.py` validates prepared stores but does not migrate/seed/index them. The current DeepAgents main model is selected through `AGENT_MAIN_MODEL_PROVIDER`/`AGENT_MAIN_MODEL`; per-specialist overrides are supported. `LLM_PROVIDER` and `LLM_RESPONSE_MODE` are retained older settings and do not select the active main response path. The server uses a PostgreSQL single-process lease for the present MVP.

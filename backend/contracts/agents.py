@@ -13,6 +13,7 @@ from backend.contracts.evidence import Contradiction, Evidence, EvidenceGap, Pro
 
 class QueryType(StrEnum):
     GET_PLANT_DETAILS = "GET_PLANT_DETAILS"
+    GET_PLANT_ALIASES = "GET_PLANT_ALIASES"
     GET_PLANT_PARTS = "GET_PLANT_PARTS"
     GET_PLANT_PART_DETAILS = "GET_PLANT_PART_DETAILS"
     GET_PHYTOCHEMICALS = "GET_PHYTOCHEMICALS"

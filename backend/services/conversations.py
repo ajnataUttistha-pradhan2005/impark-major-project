@@ -3,7 +3,6 @@ from uuid import UUID, uuid4
 from weakref import WeakValueDictionary
 
 from langchain_core.runnables import RunnableConfig
-from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.types import Command
 
 from backend.agents.text.search import HybridNameSearch
@@ -14,8 +13,8 @@ from backend.contracts.base import CorrelationMetadata
 from backend.contracts.evidence import EvidenceState
 from backend.contracts.response import ClarificationResponse
 from backend.database.postgres.repositories import SessionRepository
-from backend.orchestrator.graph import RuntimeState, build_graph
-from backend.orchestrator.orchestrator import Harness
+from backend.orchestrator.deepagents.graph import RuntimeState
+from backend.orchestrator.deepagents.host import AgentHost
 from backend.services.errors import ServiceError
 from backend.state.goals import Goal
 from backend.state.models import (
@@ -57,9 +56,11 @@ def public_state(state: ConversationState) -> ChatResponse:
 
 
 class ConversationService:
-    def __init__(self, repository: SessionRepository, harness: Harness, settings: Settings) -> None:
+    def __init__(
+        self, repository: SessionRepository, harness: AgentHost, settings: Settings
+    ) -> None:
         self.repository, self.harness, self.settings = repository, harness, settings
-        self.graph = build_graph(harness, InMemorySaver())
+        self.graph = None
         self.locks: WeakValueDictionary[UUID, asyncio.Lock] = WeakValueDictionary()
         self.images: dict[UUID, dict[UUID, ImageReference]] = {}
 
@@ -90,6 +91,8 @@ class ConversationService:
         correlation_id: UUID,
         clarification: ClarificationResponse | None = None,
     ) -> ChatResponse:
+        if not (self.settings.agent_main_model or self.settings.llm_model):
+            raise ServiceError("UNAVAILABLE", "Response model is not configured", 503)
         await self.load(session_id)
         lock = self.locks.setdefault(session_id, asyncio.Lock())
         if lock.locked():
@@ -125,7 +128,7 @@ class ConversationService:
                     )
                 if clarification.clarification_id != state.clarification.clarification_id:
                     raise ServiceError("CONFLICT", "Clarification checkpoint mismatch", 409)
-                from backend.orchestrator.clarification import apply_clarification
+                from backend.orchestrator.deepagents.clarification import apply_clarification
 
                 checked = state.model_copy(deep=True)
                 try:
@@ -170,6 +173,13 @@ class ConversationService:
                         r.plant_name for r in records if r.plant_id == request.selected_plant_id
                     )
                     state.user_message = f"{selected_name} {request.text or ''}".strip()
+                    from backend.contracts.agents import CandidatePlant
+
+                    state.context.active_plant = CandidatePlant(
+                        plant_id=str(request.selected_plant_id),
+                        label=selected_name,
+                        confidence=1.0,
+                    )
                 state.image = None
                 if request.image_id is not None:
                     state.image = self.images.get(session_id, {}).get(request.image_id)

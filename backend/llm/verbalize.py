@@ -83,6 +83,15 @@ def _sentence(evidence: Evidence) -> str:
             sentence = "; ".join(details)
             return sentence[0].upper() + sentence[1:] + "."
         return "A plant profile is available in the catalog."
+    if kind == "GET_PLANT_ALIASES":
+        alias = _value(fact, "alias")
+        alias_type = _value(fact, "alias_type")
+        language = _value(fact, "language")
+        if alias:
+            description = f" ({alias_type})" if alias_type else ""
+            language_note = f" in {language}" if language else ""
+            return f"{alias} is a recorded name{description}{language_note}."
+        return "An alternative-name record is available."
     if kind in {"GET_PLANT_PARTS", "GET_PLANT_PART_DETAILS"}:
         name = _value(fact, "plant_part")
         return (

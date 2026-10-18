@@ -1,0 +1,23 @@
+# Four-agent runtime (experimental branch)
+
+The Deep Agents runtime replaces the old decision loop behind the existing conversation service. One Deep Agents orchestrator delegates to exactly three LangChain specialist agents: `text_entity`, `image_understanding`, and `knowledge_graph`. The specialists call the existing PostgreSQL/Qdrant name search, image inference, and typed Neo4j graph agent respectively. The outer LangGraph adapter retains the session checkpoint and clarification interrupt. The API routes, SSE contracts, and frontend are unchanged.
+
+`host.py` holds specialist bindings and trace emission. `graph.py` provides the outer LangGraph checkpoint and clarification adapter. The prior deterministic runtime and its tests have been removed. The root `AGENTS.md` now reflects this active architecture. For the full component/data-flow diagrams and limits, read the [implemented architecture](../../../docs/architecture/README.md).
+
+## Conversation and response behavior
+
+The runtime persists a short dialogue window, the last cited evidence, and the named entities currently in focus. A follow-up such as “explain each” receives the individual names and verified claims from the preceding answer; “sure, go on” retains the previous substantive request. Earlier assistant wording is context, not evidence. The orchestrator may use pretrained knowledge for general explanations when graph retrieval is thin, while keeping species-specific claims tied to retrieved records. These instructions live in `prompts.py` and are independent of the model provider.
+
+Each saved dialogue turn now records the graph query types and citation IDs that actually supported it. Brief retries resolve against the immediately preceding question, and the prompt includes only that turn's cited facts. The orchestrator still delegates first; if it misses a recognizable factual topic, a bounded coverage check runs the corresponding typed graph query and asks the model to replace its draft using the new evidence. A claimed absence is revised when the same turn has positive records. This recovery applies across the supported plant, alias, part, compound, use, activity, target, and document types. `GET_PLANT_ALIASES` follows the documented `HAS_ALIAS` relationship and preserves alias type and language.
+
+After generation, the response layer converts simple LaTeX snippets to plain chat text, rejects length-stopped output, and asks the model to revise unfinished plans, affirmative treatment claims, unsupported speculation from reported uses, or misleading confidence-tier wording. A failed revision uses the existing grounded fallback. Unknown citation IDs are removed; names previously established by a graph record receive that exact record's citation when mentioned again. These checks reduce common errors; they are not a scientific fact checker. A selected catalog candidate is confirmed without waiting for model inference, which makes the discovery-to-conversation transition fast even on a small GPU.
+
+## Configure models
+
+The four roles are `MAIN`, `TEXT`, `IMAGE`, and `GRAPH`. Set `AGENT_MAIN_MODEL_PROVIDER=ollama` and `AGENT_MAIN_MODEL=gemma4:e4b` for the local demo. Each specialist inherits those values unless its own `AGENT_<ROLE>_MODEL_PROVIDER` or `AGENT_<ROLE>_MODEL` is set. A role can use another provider through LangChain `init_chat_model`; install that provider's LangChain integration and set its API key in the environment. This permits local/cloud mixtures without source edits. `OLLAMA_BASE_URL`, `LLM_CONTEXT_TOKENS`, and `LLM_OUTPUT_TOKENS` control local Ollama calls. On limited VRAM, Gemma may spill to system RAM and take noticeably longer. The agent runtime uses non-reasoning output for Ollama so its output budget is available for tool calls and answers.
+
+## Boundaries and fallback
+
+Graph tools accept an allow-listed `QueryType`, force the active plant ID, cap query count and result size, and never accept Cypher. Source citations come from retrieved evidence IDs. If the model times out or returns no answer, the adapter queries the graph through the same typed interface and emits a grounded fallback. A fallback is a degraded response, not proof that the model-orchestrated path succeeded. Name autocomplete remains on the original API/search path, independent of the agent runtime.
+
+Use `python -m pytest -q tests/deepagents tests/unit/test_contracts.py tests/api/test_api.py` to exercise the adapter and existing contracts. The local demo starts with `./scripts/demo.ps1 -Restart -SkipDocker -SkipWarmup` when databases are already running. Test discovery, a pronoun follow-up, source links, clarification and streaming in the UI before a presentation.

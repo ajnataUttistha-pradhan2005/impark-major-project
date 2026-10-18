@@ -94,6 +94,11 @@ def interpret(text: str) -> tuple[list[QueryType], str | None, bool]:
     rules = [
         (r"\b(evidence|supporting data)\b", QueryType.GET_EVIDENCE),
         (
+            r"\b(aliases?|other names?|alternative names?|synonyms?|"
+            r"vernacular names?|common names?|local names?)\b",
+            QueryType.GET_PLANT_ALIASES,
+        ),
+        (
             r"\b(compounds?|phytochemicals?|chemicals?|constituents?|"
             r"contains?|chemical composition|what is in it|what's in it)\b",
             QueryType.GET_PHYTOCHEMICALS,

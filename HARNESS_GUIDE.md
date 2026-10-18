@@ -1,0 +1,5 @@
+# DeepAgents orchestrator and LangGraph guide
+
+The name “harness” remains in a few variables for compatibility, but the old deterministic decision-loop implementation is removed. The current runtime is `backend/orchestrator/deepagents/runtime.py`: a DeepAgents main agent delegates to exactly three compiled subagents; their bound tools reuse the text search, CNN/image retrieval and typed graph capability. `AgentHost` carries specialist dependencies and trace/progress emission. `graph.py` is the outer checkpointed LangGraph with a clarification interrupt and resume edge. `ConversationService` owns the active-plant lock and turn lineage; `RunManager` owns asynchronous durable operation/SSE lifecycle.
+
+See the [full architecture and workflows](docs/architecture/README.md), [runtime configuration and response behavior](backend/orchestrator/deepagents/README.md), and [tests and limitations](docs/testing-and-limitations/README.md). There is no current fixed action-scoring formula or separate final-LLM tool boundary; the main model produces the answer and `GroundedResponseProvider` is its fallback.

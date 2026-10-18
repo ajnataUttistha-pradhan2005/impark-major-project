@@ -1,0 +1,3 @@
+# Text/entity specialist and search
+
+The DeepAgents text subagent calls the existing name/alias resolver. Discovery autocomplete goes directly through the search service and does not depend on the main model. PostgreSQL provides the name projection and exact/prefix/FTS/trigram lookup; Qdrant provides optional semantic vectors; the search generation is populated explicitly from Neo4j by `python -m backend.database.search_admin sync`. The DeepAgents runtime also uses typed interpretation for a bounded missed-topic coverage check, but the removed deterministic harness is not its planner. Read [architecture](docs/architecture/README.md), [setup](docs/setup-and-operations/README.md), and [specialist README](backend/agents/text/README.md).

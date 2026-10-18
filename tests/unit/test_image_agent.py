@@ -18,7 +18,7 @@ from backend.agents.image.ranking import rank, retrieval_scores
 from backend.config.settings import Settings
 from backend.contracts.agents import ImageAgentResult, ImageMetadata, ImageReference
 from backend.contracts.response import ClarificationRequest, ClarificationResponse
-from backend.orchestrator.clarification import apply_clarification
+from backend.orchestrator.deepagents.clarification import apply_clarification
 
 
 def test_supplied_class_map_correction_is_recorded():

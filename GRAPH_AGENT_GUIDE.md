@@ -1,0 +1,3 @@
+# Knowledge Graph specialist guide
+
+The active DeepAgents graph subagent calls the existing `GraphAgent` through a bound typed tool in `backend/orchestrator/deepagents/runtime.py`. `backend/agents/graph/retrieval.py` maps allow-listed `QueryType` values to parameterized, bounded, read-only, plant-scoped Neo4j paths and emits typed evidence, gaps and contradictions. The runtime forces the locked plant, caps graph calls, and refuses cross-plant query types in a one-plant chat. Read the [architecture/query surface](docs/architecture/README.md#data-and-evidence-boundaries), [repository map](docs/repository-map/README.md), and [specialist README](backend/agents/graph/README.md). It does not synthesize raw Cypher from user/model text.

@@ -15,6 +15,14 @@ class Settings(Neo4jEnvironment, SearchSettings):
     cors_origins: list[str] = Field(default_factory=list)
     redis_url: SecretStr | None = None
     llm_provider: Literal["placeholder", "grounded", "ollama"] = "placeholder"
+    agent_main_model_provider: str = "ollama"
+    agent_main_model: str | None = None
+    agent_text_model_provider: str | None = None
+    agent_text_model: str | None = None
+    agent_image_model_provider: str | None = None
+    agent_image_model: str | None = None
+    agent_graph_model_provider: str | None = None
+    agent_graph_model: str | None = None
     llm_response_mode: Literal["guarded", "plant_context"] = "guarded"
     llm_model: str | None = None
     ollama_base_url: str | None = None
@@ -53,12 +61,6 @@ class Settings(Neo4jEnvironment, SearchSettings):
             raise ValueError("Image and text collections must be distinct")
         if self.text_search_enabled and self.postgres_pool_size < 2:
             raise ValueError("Chat storage requires POSTGRES_POOL_SIZE >= 2 for its process lease")
-        if self.llm_response_mode == "plant_context" and self.llm_provider != "ollama":
-            raise ValueError("Plant-context response mode requires LLM_PROVIDER=ollama")
-        if self.llm_response_mode == "plant_context" and not (
-            self.neo4j_enabled and self.text_search_enabled
-        ):
-            raise ValueError("Plant-context response mode requires Neo4j and PostgreSQL search")
         if self.llm_provider == "ollama":
             from urllib.parse import urlsplit
 

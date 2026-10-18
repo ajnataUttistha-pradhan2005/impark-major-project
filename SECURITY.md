@@ -1,0 +1,5 @@
+# Security boundaries
+
+This is a shared single-user demo workspace. `/api/v1` uses a configurable Bearer key; unauthenticated access is allowed only under the explicit development bypass. The Next.js proxy keeps the backend key server-side. Never commit `.env`, model tokens, or database credentials. Images have type/size/content validation and session ownership. SQL is parameterized; graph access is code-owned typed Cypher, plant-scoped, read-only, bounded and timed out. Do not execute user/model text as Cypher or tool instructions. The main agent may use general pretrained knowledge, so response checks and citations reduce risk but cannot certify every scientific statement. Distinguish retrieved facts from general context and avoid unverified medicinal claims.
+
+See [architecture](docs/architecture/README.md), [API/auth/errors](docs/api-and-frontend/README.md), and [limits](docs/testing-and-limitations/README.md). The older claim that a separate final LLM can receive only deterministic `response_context` is not true for the active DeepAgents answer path.

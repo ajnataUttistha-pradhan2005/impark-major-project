@@ -16,6 +16,7 @@ COMPOUND = PART + "-[:CONTAINS]->(compound:Phytochemicals)"
 ACTIVITY = COMPOUND + "-[:HAS_BIOACTIVITY]->(activity:Bioactivity)"
 PATTERNS = {
     QueryType.GET_PLANT_DETAILS: ("", "p"),
+    QueryType.GET_PLANT_ALIASES: ("-[:HAS_ALIAS]->(alias:PlantAlias)", "alias"),
     QueryType.GET_PLANT_PARTS: (PART, "part"),
     QueryType.GET_PLANT_PART_DETAILS: (PART, "part"),
     QueryType.GET_PHYTOCHEMICALS: (COMPOUND, "compound"),
@@ -218,12 +219,19 @@ class PlantGraphRetrieval:
                             "uniprot_id",
                             "document_chembl_id",
                             "mesh_id",
-                            "plant_name",
                         )
                         if node.get(key)
                     ),
                     None,
                 )
+                if identity is None and node.get("normalized_alias"):
+                    stable_alias = uuid5(
+                        NAMESPACE_URL,
+                        f"{name}|{node['normalized_alias']}|{node.get('language', '')}",
+                    )
+                    identity = ("normalized_alias", str(stable_alias))
+                if identity is None and node.get("plant_name"):
+                    identity = ("plant_name", str(plant_uuid))
                 if identity is None:
                     limitations.append("A path node has no documented stable identifier.")
                     continue
