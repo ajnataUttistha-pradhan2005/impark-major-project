@@ -17,6 +17,10 @@ if (-not (Test-Path -LiteralPath (Join-Path $root '.env'))) { throw 'Create .env
 if (-not (Test-Path -LiteralPath $python)) { throw 'Python environment missing. Create .venv and install the backend dependencies first.' }
 if (-not (Test-Path -LiteralPath (Join-Path $frontend 'node_modules\.bin\next.cmd'))) { throw 'Frontend dependencies missing. Run npm ci in frontend first.' }
 New-Item -ItemType Directory -Path $logs -Force | Out-Null
+$preflightArgs = @((Join-Path $root 'scripts\demo_preflight.py'))
+if (-not $SkipDocker) { $preflightArgs += '--local-docker' }
+& $python @preflightArgs
+if ($LASTEXITCODE -ne 0) { throw 'Demo preflight failed. Correct .env before starting any containers.' }
 
 function Test-Endpoint([string]$url) {
     try {
@@ -41,6 +45,18 @@ function Get-ListenerPid([int]$port) {
     return $null
 }
 
+function Wait-ContainerHealthy([string]$name, [int]$seconds) {
+    $deadline = (Get-Date).AddSeconds($seconds)
+    while ((Get-Date) -lt $deadline) {
+        $health = docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}{{.State.Status}}{{end}}' $name 2>$null
+        if ($LASTEXITCODE -ne 0) { throw "Container $name is missing. Inspect docker compose ps." }
+        if ($health -eq 'healthy' -or $health -eq 'running') { Write-Host "Ready: $name ($health)"; return }
+        if ($health -eq 'unhealthy' -or $health -eq 'exited') { throw "Container $name is $health. Inspect docker logs $name." }
+        Start-Sleep -Seconds 2
+    }
+    throw "Container $name did not become ready. Inspect docker logs $name."
+}
+
 if ($Restart) {
     foreach ($entry in @(@{ Port = 8000; Marker = 'backend' }, @{ Port = 3000; Marker = 'frontend' })) {
         $listenerPid = Get-ListenerPid $entry.Port
@@ -59,13 +75,15 @@ if (-not $SkipDocker) {
     docker info --format '{{.ServerVersion}}' | Out-Null
     if ($LASTEXITCODE -ne 0) { throw 'Docker is unavailable. Start Docker Desktop, or use -SkipDocker for external stores.' }
     $neo4j = docker container inspect neo4j-dev --format '{{.State.Running}}' 2>$null
-    if ($LASTEXITCODE -ne 0) { throw 'The local Neo4j container neo4j-dev is missing. Restore it before launching the demo.' }
+    if ($LASTEXITCODE -ne 0) { throw 'The local Neo4j container neo4j-dev is missing. Run scripts/restore_team_handoff.ps1 on a fresh teammate machine, or use -SkipDocker with an external Neo4j.' }
     if ($neo4j -ne 'true') { docker start neo4j-dev | Out-Null; if ($LASTEXITCODE -ne 0) { throw 'Could not start neo4j-dev.' } }
     Push-Location $root
     try {
         docker compose --profile stores up -d postgres qdrant
         if ($LASTEXITCODE -ne 0) { throw 'Could not start PostgreSQL and Qdrant.' }
     } finally { Pop-Location }
+    Wait-ContainerHealthy 'impark-major-project-postgres-1' 120
+    Wait-Endpoint 'http://127.0.0.1:6333/healthz' 'Qdrant' 120 $null
     # Docker reports a container as running before Neo4j accepts connections.
     # Wait here so a cold demo launch does not fail backend startup.
     Wait-Endpoint 'http://127.0.0.1:7474/' 'Neo4j HTTP' 120 $null
@@ -77,7 +95,8 @@ if (-not (Test-Endpoint "$backendUrl/health")) {
     # backend.__main__ selects the Windows-compatible asyncio selector loop.
     $backendProcess = Start-Process -FilePath $python -ArgumentList @('-m', 'backend') -WorkingDirectory $root -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logs 'demo-backend.out.log') -RedirectStandardError (Join-Path $logs 'demo-backend.err.log')
 }
-Wait-Endpoint "$backendUrl/health" 'backend' 120 $backendProcess
+try { Wait-Endpoint "$backendUrl/health" 'backend' 120 $backendProcess }
+catch { throw "$($_.Exception.Message) Check data/demo-backend.err.log. If it says a database migration or search generation is missing, run the explicit migrate/sync setup commands." }
 
 $frontendProcess = $null
 if (-not (Test-Endpoint $frontendUrl)) {
@@ -92,7 +111,8 @@ if (-not (Test-Endpoint $frontendUrl)) {
     $npm = (Get-Command npm.cmd -ErrorAction Stop).Source
     $frontendProcess = Start-Process -FilePath $npm -ArgumentList @('run', $mode) -WorkingDirectory $frontend -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logs 'demo-frontend.out.log') -RedirectStandardError (Join-Path $logs 'demo-frontend.err.log')
 }
-Wait-Endpoint $frontendUrl 'frontend' 90 $frontendProcess
+try { Wait-Endpoint $frontendUrl 'frontend' 90 $frontendProcess }
+catch { throw "$($_.Exception.Message) Check data/demo-frontend.err.log and run npm ci in frontend if dependencies are missing." }
 
 if (-not $SkipWarmup) {
     Push-Location $root

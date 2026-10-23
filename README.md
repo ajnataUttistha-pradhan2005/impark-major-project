@@ -6,7 +6,7 @@ Start with the [documentation index](docs/README.md), then read the [implemented
 
 ## Local demo
 
-Use Python 3.12+, Node.js/npm, Docker Desktop, an existing populated Neo4j graph, and Ollama or another configured LangChain chat-model provider. Copy `.env.example` to `.env` and `frontend/.env.example` to `frontend/.env.local`; supply your own credentials and paths. Local image inference also requires the supplied model, class map, manifest, and dataset/index artifacts. The web server does **not** migrate databases or populate indexes at startup.
+Use Python 3.12+, Node.js/npm, Docker Desktop, an existing populated Neo4j graph, and Ollama or another configured LangChain chat-model provider. Copy `.env.example` to `.env` and `frontend/.env.example` to `frontend/.env.local`; supply the **credentials from the exported database volumes** when restoring a teammate handoff. Local image inference also requires the supplied model, class map, manifest, and dataset/index artifacts. The web server does **not** migrate databases or populate indexes at startup. For a new teammate machine, follow the [step-by-step handoff guide](docs/setup-and-operations/README.md) before running the launcher.
 
 ```powershell
 py -m venv .venv
@@ -14,13 +14,13 @@ py -m venv .venv
 Push-Location frontend
 npm ci
 Pop-Location
-docker compose --profile stores up -d postgres qdrant
-.\.venv\Scripts\python.exe -m backend.database.search_admin migrate
-.\.venv\Scripts\python.exe -m backend.database.search_admin sync
-powershell -ExecutionPolicy Bypass -File .\scripts\demo.ps1
+# For a supplied cold handoff, restore its verified volumes and image assets first:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\restore_team_handoff.ps1
+ollama pull gemma4:e4b
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo.ps1
 ```
 
-Configure the exact local/container/cloud connection URLs in `.env` before running these commands. `sync` copies the configured Neo4j plant-name projection to PostgreSQL/Qdrant; it is an explicit administrative operation. The demo script can start the backend and Next.js frontend, check readiness, and warm configured services. Open <http://127.0.0.1:3000/> for the UI or <http://127.0.0.1:8000/docs> for the live OpenAPI explorer. See [setup and operations](docs/setup-and-operations/README.md) for restoration, optional image indexing, configuration, and troubleshooting.
+Configure the exact local/container/cloud connection URLs in `.env` **before** restoring or launching. The command above assumes the six handoff files are in `backups/team-handoff/` and the target volumes do not already exist. A fresh build **without** the handoff instead requires a populated Neo4j graph followed by explicit `search_admin migrate` and `sync`; do not rerun `sync` on an intact restored projection. The demo script checks configuration, starts/checks services, and warms the active main model. Open <http://127.0.0.1:3000/> for the UI or <http://127.0.0.1:8000/docs> for the live OpenAPI explorer. See [setup and operations](docs/setup-and-operations/README.md) for both paths, safe reset, and troubleshooting.
 
 ## Validation
 

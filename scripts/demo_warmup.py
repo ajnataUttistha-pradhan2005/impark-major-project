@@ -22,11 +22,12 @@ def main() -> int:
                 check(client, "/health/neo4j", "Neo4j")
             if settings.text_search_enabled:
                 check(client, "/health/postgres", "PostgreSQL")
-            if settings.text_semantic_enabled:
+            if settings.text_search_enabled and settings.text_semantic_enabled:
                 check(client, "/health/qdrant", "Qdrant")
             headers = (
                 {"Authorization": f"Bearer {settings.api_key.get_secret_value()}"}
-                if settings.api_key else {}
+                if settings.api_key
+                else {}
             )
             response = client.get(
                 "/api/v1/discovery/autocomplete", params={"q": "neem"}, headers=headers
@@ -39,14 +40,19 @@ def main() -> int:
                 raise ValueError("Configured image classifier is unavailable")
             if settings.image_enabled:
                 print("Ready: image classifier", flush=True)
-        if settings.llm_provider == "ollama":
+        if settings.agent_main_model_provider.strip().lower() == "ollama":
+            model = settings.agent_main_model or settings.llm_model
+            if not model:
+                raise ValueError("Configure AGENT_MAIN_MODEL before Ollama warmup")
             with httpx.Client(
-                base_url=settings.ollama_base_url, timeout=90, trust_env=False
+                base_url=settings.ollama_base_url or "http://127.0.0.1:11434",
+                timeout=90,
+                trust_env=False,
             ) as client:
                 response = client.post(
                     "/api/generate",
                     json={
-                        "model": settings.llm_model,
+                        "model": model,
                         "prompt": "Reply with OK.",
                         "stream": False,
                         "think": False,
@@ -55,7 +61,7 @@ def main() -> int:
                     },
                 )
                 response.raise_for_status()
-            print(f"Ready: Ollama model {settings.llm_model}", flush=True)
+            print(f"Ready: Ollama model {model}", flush=True)
     except (httpx.HTTPError, ValueError) as exc:
         print(f"Warmup failed: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 1
