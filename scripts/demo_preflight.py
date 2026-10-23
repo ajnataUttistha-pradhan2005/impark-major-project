@@ -10,7 +10,11 @@ from dotenv import dotenv_values
 from backend.config.settings import Settings
 
 
-def missing_settings(values: dict[str, str | None], *, local_docker: bool) -> list[str]:
+def missing_settings(
+    values: dict[str, str | None], *, local_docker: bool, root: Path | None = None
+) -> list[str]:
+    root = root or Path.cwd()
+
     def value(name: str) -> str:
         return (os.environ.get(name) or values.get(name) or "").strip()
 
@@ -36,7 +40,7 @@ def missing_settings(values: dict[str, str | None], *, local_docker: bool) -> li
     if value("IMAGE_ENABLED").lower() in {"true", "1", "yes"}:
         for name in ("IMAGE_MODEL_PATH", "IMAGE_CLASSES_PATH", "IMAGE_MANIFEST_PATH"):
             path = value(name)
-            if not path or not Path(path).is_file():
+            if not path or not (root / path).is_file():
                 missing.append(f"{name} (file missing)")
     return missing
 
@@ -45,12 +49,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--local-docker", action="store_true")
     args = parser.parse_args()
-    env_path = Path(".env")
+    root = Path(__file__).resolve().parent.parent
+    env_path = root / ".env"
     if not env_path.is_file():
         print("Create .env from .env.example before starting the demo.", file=sys.stderr)
         return 1
     values = dotenv_values(env_path)
-    missing = missing_settings(values, local_docker=args.local_docker)
+    missing = missing_settings(values, local_docker=args.local_docker, root=root)
     if missing:
         print("Demo configuration is incomplete: " + ", ".join(missing), file=sys.stderr)
         print(
@@ -59,7 +64,7 @@ def main() -> int:
         )
         return 1
     try:
-        Settings()
+        Settings(_env_file=env_path)
     except ValueError as error:
         # Pydantic's validation output may include input data; keep the printed error generic.
         print(

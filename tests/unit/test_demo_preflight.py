@@ -1,8 +1,9 @@
 """Regression checks for the teammate demo preflight."""
 
+import sys
 from types import SimpleNamespace
 
-from scripts import demo_warmup
+from scripts import demo_preflight, demo_warmup
 from scripts.demo_preflight import missing_settings
 
 
@@ -23,6 +24,26 @@ def configured() -> dict[str, str]:
         "POSTGRES_PASSWORD": "example",
         "POSTGRES_DB": "example",
     }
+
+
+def test_preflight_locates_repo_env_from_scripts_directory(monkeypatch, tmp_path) -> None:
+    root = tmp_path / "repo"
+    scripts = root / "scripts"
+    scripts.mkdir(parents=True)
+    (root / ".env").write_text(
+        "\n".join(f"{key}={value}" for key, value in configured().items()),
+        encoding="utf-8",
+    )
+    seen: list[object] = []
+    monkeypatch.setattr(demo_preflight, "__file__", str(scripts / "demo_preflight.py"))
+    monkeypatch.setattr(
+        demo_preflight, "Settings", lambda **kwargs: seen.append(kwargs["_env_file"])
+    )
+    monkeypatch.setattr(sys, "argv", ["demo_preflight.py", "--local-docker"])
+    monkeypatch.chdir(scripts)
+
+    assert demo_preflight.main() == 0
+    assert seen == [root / ".env"]
 
 
 def test_local_demo_requires_compose_credentials(monkeypatch) -> None:
