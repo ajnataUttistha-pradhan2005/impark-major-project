@@ -102,7 +102,7 @@ impark-major-project/evaluator/
    cd evaluator
    docker compose up -d
    ```
-   *This starts Redis 7 (port 6379), PostgreSQL 16 (port 5432), and Grafana (port 3000) with pre-provisioned datasources and dashboards.*
+   *This starts Redis 7 (port 6379), PostgreSQL 16 (host port 5433, internal port 5432), and Grafana (port 3000) with pre-provisioned datasources and dashboards. Host port 5433 avoids conflict if you have a local PostgreSQL service running on port 5432.*
 
 2. **Start the CPU Evaluator Worker on Host:**
    ```powershell
@@ -334,5 +334,5 @@ flowchart TD
 | Service | Host Port | Internal Port | Default Credentials | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | **Grafana** | `3000` | `3000` | `admin` / `admin` | Real-time observability dashboard |
-| **PostgreSQL** | `5432` | `5432` | `postgres` / `password` (db: `eval_db`) | Unified JSONB + Relational Telemetry |
+| **PostgreSQL** | `5433` (or `EVAL_POSTGRES_PORT`) | `5432` | `postgres` / `password` (db: `eval_db`) | Unified JSONB + Relational Telemetry |
 | **Redis** | `6379` | `6379` | None (Stream: `agent-logs`) | AOF Persistent In-Memory Broker |

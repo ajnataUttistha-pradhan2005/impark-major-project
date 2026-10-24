@@ -139,12 +139,13 @@ if docker ps --format '{{.Names}}' | grep -q 'eval-worker'; then
 else
     echo -e "${YELLOW}[!] Container worker not detected. Testing via local python if available...${NC}"
     if command -v python3 &> /dev/null; then
-        python3 test_pipeline.py || true
+        REQUIRE_LIVE_INFRA=1 python3 test_pipeline.py
     fi
 fi
 
 # 8. Detect Public EC2 IP Address for User Access
 PUBLIC_IP=$(curl -s --connect-timeout 2 http://169.254.169.254/latest/meta-data/public-ipv4 2>/dev/null || curl -s --connect-timeout 2 https://ifconfig.me 2>/dev/null || echo "YOUR-EC2-IP")
+POSTGRES_PORT_DISPLAY=${EVAL_POSTGRES_PORT:-5433}
 
 echo -e "\n${GREEN}=====================================================================${NC}"
 echo -e "${GREEN}       DEPLOYMENT SUCCESSFUL! IMPARK EVALUATOR IS ACTIVE           ${NC}"
@@ -152,7 +153,7 @@ echo -e "${GREEN}===============================================================
 echo -e "  • Grafana Dashboard:    ${CYAN}http://${PUBLIC_IP}:3000${NC}"
 echo -e "  • Default Login:        Username: ${YELLOW}admin${NC} | Password: ${YELLOW}admin${NC}"
 echo -e "  • Pre-Loaded Dashboard: ${CYAN}http://${PUBLIC_IP}:3000/d/impark-eval-overview${NC}"
-echo -e "  • PostgreSQL Port:      ${CYAN}localhost:5432${NC} (db: eval_db, user: postgres)"
+echo -e "  • PostgreSQL Port:      ${CYAN}localhost:${POSTGRES_PORT_DISPLAY}${NC} (db: eval_db, user: postgres)"
 echo -e "  • Redis Stream Broker:  ${CYAN}localhost:6379${NC} (stream: agent-logs)"
 echo -e "\n${YELLOW}[NOTE for EC2 Security Groups]:${NC}"
 echo -e "  Ensure your EC2 Security Group permits Inbound Traffic on Port 3000 (TCP)"

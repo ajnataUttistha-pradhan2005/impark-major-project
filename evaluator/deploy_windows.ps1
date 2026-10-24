@@ -10,6 +10,13 @@ Write-Host "====================================================================
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 Set-Location $ScriptDir
 
+# Set standard environment configuration (Port 5433 isolates from host PostgreSQL)
+$env:EVAL_POSTGRES_PORT = "5433"
+$env:POSTGRES_PORT = "5433"
+$env:POSTGRES_HOST = "127.0.0.1"
+$env:REDIS_HOST = "127.0.0.1"
+$env:REDIS_PORT = "6379"
+
 # 1. Check Docker Daemon Status
 Write-Host "[*] Checking Docker Desktop status..." -ForegroundColor Yellow
 $dockerRunning = $false
@@ -25,18 +32,20 @@ try {
 if ($dockerRunning) {
     Write-Host "[+] Docker Desktop is active." -ForegroundColor Green
     Write-Host "[*] Launching infrastructure containers (Redis, Postgres, Grafana)..." -ForegroundColor Yellow
-    docker compose up -d
+    docker compose up -d --remove-orphans
+    $env:REQUIRE_LIVE_INFRA = "1"
     
     Write-Host "`nWaiting for database healthchecks (10 seconds)..." -ForegroundColor Gray
     Start-Sleep -Seconds 10
 
     Write-Host "`n[+] Infrastructure services started successfully!" -ForegroundColor Green
     Write-Host "  - Grafana Dashboard: http://localhost:3000 (admin / admin)" -ForegroundColor Cyan
-    Write-Host "  - PostgreSQL:        localhost:5432 (db: eval_db)" -ForegroundColor Cyan
-    Write-Host "  - Redis Streams:     localhost:6379 (stream: agent-logs)`n" -ForegroundColor Cyan
+    Write-Host "  - PostgreSQL:        127.0.0.1:5433 (db: eval_db, user: postgres)" -ForegroundColor Cyan
+    Write-Host "  - Redis Streams:     127.0.0.1:6379 (stream: agent-logs)`n" -ForegroundColor Cyan
 } else {
     Write-Host "[!] Docker Desktop is not currently running." -ForegroundColor Yellow
-    Write-Host "    If you wish to run the full Docker stack, please start Docker Desktop and re-run this script." -ForegroundColor Gray
+    Write-Host "    Offline unit verification will run. To run live streaming, start Docker Desktop and re-run this script." -ForegroundColor Gray
+    $env:REQUIRE_LIVE_INFRA = "0"
 }
 
 # 2. Resolve Python Executable
@@ -71,7 +80,15 @@ if ($LASTEXITCODE -ne 0) {
 # 4. Run Verification Test Suite
 Write-Host "[*] Running Evaluator Verification Suite (Flow 1 & Flow 2)..." -ForegroundColor Yellow
 & $pythonExe test_pipeline.py
+$testExitCode = $LASTEXITCODE
 
-Write-Host "`n=====================================================================" -ForegroundColor Cyan
-Write-Host "           Pipeline Verification Complete!                           " -ForegroundColor Cyan
-Write-Host "=====================================================================" -ForegroundColor Cyan
+if ($testExitCode -ne 0) {
+    Write-Host "`n=====================================================================" -ForegroundColor Red
+    Write-Host "           Pipeline Verification FAILED (Exit Code: $testExitCode)   " -ForegroundColor Red
+    Write-Host "=====================================================================" -ForegroundColor Red
+    exit $testExitCode
+}
+
+Write-Host "`n=====================================================================" -ForegroundColor Green
+Write-Host "           Pipeline Verification Complete!                           " -ForegroundColor Green
+Write-Host "=====================================================================" -ForegroundColor Green

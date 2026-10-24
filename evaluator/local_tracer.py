@@ -50,7 +50,7 @@ class LocalRedisTracer(BaseCallbackHandler):
         socket_timeout: float = 0.2,
     ) -> None:
         super().__init__()
-        self.redis_host = redis_host or os.getenv("REDIS_HOST", "localhost")
+        self.redis_host = redis_host or os.getenv("REDIS_HOST", "127.0.0.1")
         self.redis_port = int(redis_port or os.getenv("REDIS_PORT", 6379))
         self.redis_password = redis_password or os.getenv("REDIS_PASSWORD", None)
         self.stream_name = stream_name
@@ -71,13 +71,22 @@ class LocalRedisTracer(BaseCallbackHandler):
 
         if self._redis_client is None:
             try:
+                retry_strategy = None
+                try:
+                    from redis.retry import Retry
+                    from redis.backoff import NoBackoff
+                    retry_strategy = Retry(NoBackoff(), 0)
+                except ImportError:
+                    pass
+
                 self._redis_client = redis.Redis(
                     host=self.redis_host,
                     port=self.redis_port,
                     password=self.redis_password,
                     decode_responses=True,
                     socket_timeout=self.socket_timeout,
-                    socket_connect_timeout=0.1,
+                    socket_connect_timeout=0.05,
+                    retry=retry_strategy,
                 )
             except Exception as exc:
                 logger.warning("Failed to initialize Redis client: %s", exc)
@@ -300,8 +309,8 @@ class LocalRedisTracer(BaseCallbackHandler):
             )
 
         # Direct PostgreSQL fallback/sync:
-        # If Redis is unavailable or sync_postgres is enabled, write aggregated metrics directly to PostgreSQL
-        if self.sync_postgres or not redis_published:
+        # If explicitly enabled via SYNC_POSTGRES=true, write aggregated metrics directly to PostgreSQL
+        if self.sync_postgres:
             self._insert_to_postgres(payload)
 
         return payload
@@ -316,8 +325,8 @@ class LocalRedisTracer(BaseCallbackHandler):
                 import psycopg as psycopg2  # type: ignore
                 from psycopg.types.json import Jsonb as Json  # type: ignore
 
-            host = os.getenv("POSTGRES_HOST", "localhost")
-            port = int(os.getenv("POSTGRES_PORT", "5432"))
+            host = os.getenv("POSTGRES_HOST", "127.0.0.1")
+            port = int(os.getenv("EVAL_POSTGRES_PORT", os.getenv("POSTGRES_PORT", "5433")))
             db = os.getenv("POSTGRES_DB", "eval_db")
             user = os.getenv("POSTGRES_USER", "postgres")
             password = os.getenv("POSTGRES_PASSWORD", "password")

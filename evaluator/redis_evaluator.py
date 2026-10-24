@@ -45,13 +45,13 @@ logger = logging.getLogger("impark.evaluator.worker")
 # ------------------------------------------------------------------------------
 # Configuration from Environment Variables
 # ------------------------------------------------------------------------------
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+REDIS_HOST = os.getenv("REDIS_HOST", "127.0.0.1")
 REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
 REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
 REDIS_STREAM = os.getenv("REDIS_STREAM", "agent-logs")
 
-POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
-POSTGRES_PORT = int(os.getenv("POSTGRES_PORT", "5432"))
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "127.0.0.1")
+POSTGRES_PORT = int(os.getenv("EVAL_POSTGRES_PORT", os.getenv("POSTGRES_PORT", "5433")))
 POSTGRES_DB = os.getenv("POSTGRES_DB", "eval_db")
 POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "password")
