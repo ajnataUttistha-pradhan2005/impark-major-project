@@ -22,6 +22,20 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo.ps1
 
 Configure the exact local/container/cloud connection URLs in `.env` **before** restoring or launching. The command above assumes the six handoff files are in `backups/team-handoff/` and the target volumes do not already exist. A fresh build **without** the handoff instead requires a populated Neo4j graph followed by explicit `search_admin migrate` and `sync`; do not rerun `sync` on an intact restored projection. The demo script checks configuration, starts/checks services, and warms the active main model. Open <http://127.0.0.1:3000/> for the UI or <http://127.0.0.1:8000/docs> for the live OpenAPI explorer. See [setup and operations](docs/setup-and-operations/README.md) for both paths, safe reset, and troubleshooting.
 
+## Observability & Evaluation
+
+IMPARK includes a self-hosted, decoupled multi-agent evaluation pipeline with executive Grafana dashboards, Redis Streams message broker, CPU-only NLP grading (`all-MiniLM-L6-v2` + `nli-deberta-v3-small`), and PostgreSQL 16 `JSONB` storage.
+
+To launch the evaluation pipeline locally or on AWS EC2, follow the [Evaluator Guide](evaluator/README.md):
+
+```powershell
+cd evaluator
+.\deploy_windows.ps1      # On Windows
+# or: ./deploy_ec2.sh     # On AWS EC2 (Linux)
+```
+
+Grafana evaluation dashboards run at <http://127.0.0.1:3000> (admin / admin).
+
 ## Validation
 
 ```powershell
