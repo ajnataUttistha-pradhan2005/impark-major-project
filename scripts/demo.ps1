@@ -82,11 +82,11 @@ if (-not $SkipDocker) {
         docker compose --profile stores up -d postgres qdrant
         if ($LASTEXITCODE -ne 0) { throw 'Could not start PostgreSQL and Qdrant.' }
     } finally { Pop-Location }
-    Wait-ContainerHealthy 'impark-major-project-postgres-1' 120
-    Wait-Endpoint 'http://127.0.0.1:6333/healthz' 'Qdrant' 120 $null
+    Wait-ContainerHealthy 'impark-major-project-postgres-1' 240
+    Wait-Endpoint 'http://127.0.0.1:6333/healthz' 'Qdrant' 240 $null
     # Docker reports a container as running before Neo4j accepts connections.
     # Wait here so a cold demo launch does not fail backend startup.
-    Wait-Endpoint 'http://127.0.0.1:7474/' 'Neo4j HTTP' 120 $null
+    Wait-Endpoint 'http://127.0.0.1:7474/' 'Neo4j HTTP' 240 $null
 }
 
 $backendProcess = $null
@@ -95,7 +95,7 @@ if (-not (Test-Endpoint "$backendUrl/health")) {
     # backend.__main__ selects the Windows-compatible asyncio selector loop.
     $backendProcess = Start-Process -FilePath $python -ArgumentList @('-m', 'backend') -WorkingDirectory $root -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $logs 'demo-backend.out.log') -RedirectStandardError (Join-Path $logs 'demo-backend.err.log')
 }
-try { Wait-Endpoint "$backendUrl/health" 'backend' 120 $backendProcess }
+try { Wait-Endpoint "$backendUrl/health" 'backend' 240 $backendProcess }
 catch { throw "$($_.Exception.Message) Check data/demo-backend.err.log. If it says a database migration or search generation is missing, run the explicit migrate/sync setup commands." }
 
 $frontendProcess = $null

@@ -79,21 +79,21 @@ Require-Exit 'Docker Desktop Linux engine is unavailable. Start Docker Desktop f
 if ($ResetTargetVolumes) {
     Write-Host 'ResetTargetVolumes selected: removing only the three named IMPARK containers and volumes.'
     foreach ($name in $containers) {
-        docker container inspect $name *> $null
+        $exists = (docker container ls -a -q --filter "name=^/${name}$"); if ($exists) { $LASTEXITCODE = 0 } else { $LASTEXITCODE = 1 }
         if ($LASTEXITCODE -eq 0) { docker rm -f $name | Out-Null; Require-Exit "Could not remove container $name" }
     }
     foreach ($item in $items) {
-        docker volume inspect $item.Volume *> $null
+        $volExists = (docker volume ls -q --filter "name=^$($item.Volume)$"); if ($volExists) { $LASTEXITCODE = 0 } else { $LASTEXITCODE = 1 }
         if ($LASTEXITCODE -eq 0) { docker volume rm $item.Volume | Out-Null; Require-Exit "Could not remove volume $($item.Volume)" }
     }
 }
 
 foreach ($name in $containers) {
-    docker container inspect $name *> $null
+    $exists = (docker container ls -a -q --filter "name=^/${name}$"); if ($exists) { $LASTEXITCODE = 0 } else { $LASTEXITCODE = 1 }
     if ($LASTEXITCODE -eq 0) { throw "Container $name already exists. Use a fresh Docker setup or explicitly pass -ResetTargetVolumes after backing up any data in it." }
 }
 foreach ($item in $items) {
-    docker volume inspect $item.Volume *> $null
+    $volExists = (docker volume ls -q --filter "name=^$($item.Volume)$"); if ($volExists) { $LASTEXITCODE = 0 } else { $LASTEXITCODE = 1 }
     if ($LASTEXITCODE -eq 0) {
         # Refuse even a seemingly empty existing volume: a container may be initializing it.
         throw "Volume $($item.Volume) already exists. Use a fresh setup or -ResetTargetVolumes after backing up its data."
