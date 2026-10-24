@@ -3,6 +3,8 @@
 # Self-hosted, decoupled, CPU-only evaluation daemon for LangGraph workflows.
 # ==============================================================================
 
+from __future__ import annotations
+
 import json
 import logging
 import os
@@ -99,6 +101,11 @@ def init_models() -> Tuple[Any, Any]:
 # ------------------------------------------------------------------------------
 def get_postgres_connection() -> Any:
     """Connects to PostgreSQL with automatic retry and exponential backoff."""
+    if psycopg2 is None:
+        raise RuntimeError(
+            "Neither 'psycopg2' nor 'psycopg' is installed in the active Python environment. "
+            "Please run: pip install psycopg2-binary"
+        )
     delay = 1.0
     while True:
         try:
@@ -121,8 +128,13 @@ def get_postgres_connection() -> Any:
             delay = min(delay * 1.5, 30.0)
 
 
-def get_redis_client() -> redis.Redis:
+def get_redis_client() -> Any:
     """Connects to Redis with automatic retry and ping verification."""
+    if not _REDIS_AVAILABLE or redis is None:
+        raise RuntimeError(
+            "The 'redis' package is not installed in the active Python environment. "
+            "Please run: pip install redis"
+        )
     delay = 1.0
     while True:
         try:

@@ -1,5 +1,3 @@
-version: '3.8'
-
 # ==============================================================================
 # IMPARK Distributed Event-Driven Evaluator & Observability Pipeline
 # Infrastructure Stack: Redis 7 Alpine, PostgreSQL 16 Alpine, Grafana

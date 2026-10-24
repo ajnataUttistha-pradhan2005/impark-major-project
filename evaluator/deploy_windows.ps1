@@ -31,21 +31,45 @@ if ($dockerRunning) {
     Start-Sleep -Seconds 10
 
     Write-Host "`n[+] Infrastructure services started successfully!" -ForegroundColor Green
-    Write-Host "  • Grafana Dashboard: http://localhost:3000 (admin / admin)" -ForegroundColor Cyan
-    Write-Host "  • PostgreSQL:        localhost:5432 (db: eval_db)" -ForegroundColor Cyan
-    Write-Host "  • Redis Streams:     localhost:6379 (stream: agent-logs)`n" -ForegroundColor Cyan
+    Write-Host "  - Grafana Dashboard: http://localhost:3000 (admin / admin)" -ForegroundColor Cyan
+    Write-Host "  - PostgreSQL:        localhost:5432 (db: eval_db)" -ForegroundColor Cyan
+    Write-Host "  - Redis Streams:     localhost:6379 (stream: agent-logs)`n" -ForegroundColor Cyan
 } else {
     Write-Host "[!] Docker Desktop is not currently running." -ForegroundColor Yellow
     Write-Host "    If you wish to run the full Docker stack, please start Docker Desktop and re-run this script." -ForegroundColor Gray
 }
 
-# 2. Run Verification Test Suite
-Write-Host "[*] Running Evaluator Verification Suite (Flow 1 & Flow 2)..." -ForegroundColor Yellow
-$pythonExe = "..\.venv\Scripts\python.exe"
-if (-not (Test-Path $pythonExe)) {
+# 2. Resolve Python Executable
+$pythonCandidates = @(
+    "$ScriptDir\..\.venv\Scripts\python.exe",
+    "$ScriptDir\.venv\Scripts\python.exe",
+    "python"
+)
+$pythonExe = $null
+foreach ($cand in $pythonCandidates) {
+    if ($cand -eq "python") {
+        if (Get-Command python -ErrorAction SilentlyContinue) {
+            $pythonExe = "python"
+            break
+        }
+    } elseif (Test-Path $cand) {
+        $pythonExe = $cand
+        break
+    }
+}
+if (-not $pythonExe) {
     $pythonExe = "python"
 }
 
+# 3. Check / Install dependencies if redis is missing
+$redisTest = & $pythonExe -c "import redis; print('OK')" 2>$null
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[!] 'redis' package not found in $pythonExe. Installing requirements..." -ForegroundColor Yellow
+    & $pythonExe -m pip install -q -r requirements.txt
+}
+
+# 4. Run Verification Test Suite
+Write-Host "[*] Running Evaluator Verification Suite (Flow 1 & Flow 2)..." -ForegroundColor Yellow
 & $pythonExe test_pipeline.py
 
 Write-Host "`n=====================================================================" -ForegroundColor Cyan
