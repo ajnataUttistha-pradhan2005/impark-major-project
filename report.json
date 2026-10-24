@@ -1,0 +1,283 @@
+{
+  "evaluation_id": "3ef63079-c3c8-4a4b-823c-5cdb5c80235f",
+  "created_at": "2026-10-24T15:10:52.843605+00:00",
+  "routing_accuracy": 1.0,
+  "graph_precision": 0.3723,
+  "groundedness": null,
+  "hallucination_rate": null,
+  "coverage": {
+    "total_cases": 3,
+    "matched_turns": 3,
+    "missing_turns": 0,
+    "incomplete_turns": 0,
+    "evaluated_turns": 3,
+    "skipped_turns": 0,
+    "turn_coverage": 1.0,
+    "total_claims": 0,
+    "evaluable_claims": 0,
+    "skipped_claims": 0,
+    "claim_coverage": 0.0
+  },
+  "turn_results": [
+    {
+      "run_id": "25eb5d79-4ad2-4653-b593-66d620c67677",
+      "session_id": "ed758b01-fa08-41a4-82c2-21777c642292",
+      "case_id": "tulsi-phytochemicals",
+      "user_message_sample": "What phytochemicals are found in the leaf of Ocimum tenuiflorum?",
+      "routing_compliant": true,
+      "target_capability": "graph",
+      "observed_path": [
+        "text:RESOLVE_TEXT_ENTITY",
+        "graph:RETRIEVE_GRAPH"
+      ],
+      "graph_precision": 0.045454545454545456,
+      "retrieved_nodes_count": 22,
+      "relevant_nodes_count": 1,
+      "retrieved_nodes": [
+        {
+          "entity_type": "compound",
+          "business_id": "PHWISBHSBNDZDX-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "plant",
+          "business_id": "Ocimum tenuiflorum"
+        },
+        {
+          "entity_type": "plant_part",
+          "business_id": "OC-TE-AE"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "DCSCXTJOXBUFGB-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "YMBFCQPIMVLNIU-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "WTEVQBCEXWBHNA-JXMROGBWSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "BRHDDEIRQPDPMG-WPRPVWTQSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "RRBYUSWBLVXTQN-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "DTGKSKDOIYIVQL-XKSSXDPKSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "RGZSQWQPBWRIAQ-CABCVRRESA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "NFLGAXVYCFJBMK-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "BKATZVAUANSCKN-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "DSSYKIVIOFKYAU-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "BOTWFXYSPFMFNR-PYDDKJGSSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "ZYEMGPIYFIJGTP-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "KGEKLUUHTZCSIP-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "LHYHMMRYTDARSZ-URGYJCLVSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "HUMNYLRZRPPJDN-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "XMGQYMWWDOXHJM-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "COGPRPSWSKLKTF-UHFFFAOYSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "JSNRRGGBADWTMC-QINSGFPZSA-N"
+        },
+        {
+          "entity_type": "compound",
+          "business_id": "XZRVRYFILCSYSP-OAHLLOKOSA-N"
+        }
+      ],
+      "relevant_nodes": [
+        {
+          "entity_type": "plant",
+          "business_id": "Ocimum tenuiflorum"
+        }
+      ],
+      "groundedness": null,
+      "hallucination_rate": null,
+      "total_claims_count": 0,
+      "evaluable_claims_count": 0,
+      "supported_claims_count": 0,
+      "unsupported_claims_count": 0,
+      "diagnostics": [
+        {
+          "code": "NOT_CONFIGURED",
+          "message": "Offline claim evaluator is not configured. Groundedness and hallucination rate cannot be computed deterministically from raw trace alone.",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "run_id": "3d52673e-ec5f-4643-97cf-430a6def81cc",
+      "session_id": "e5856f7f-8e9c-4989-967b-e94a9a9df10c",
+      "case_id": "spinach-summary",
+      "user_message_sample": "give me complete summary of this plant",
+      "routing_compliant": true,
+      "target_capability": "graph",
+      "observed_path": [
+        "graph:RETRIEVE_GRAPH"
+      ],
+      "graph_precision": 1.0,
+      "retrieved_nodes_count": 1,
+      "relevant_nodes_count": 1,
+      "retrieved_nodes": [
+        {
+          "entity_type": "plant",
+          "business_id": "Spinacia oleracea"
+        }
+      ],
+      "relevant_nodes": [
+        {
+          "entity_type": "plant",
+          "business_id": "Spinacia oleracea"
+        }
+      ],
+      "groundedness": null,
+      "hallucination_rate": null,
+      "total_claims_count": 0,
+      "evaluable_claims_count": 0,
+      "supported_claims_count": 0,
+      "unsupported_claims_count": 0,
+      "diagnostics": [
+        {
+          "code": "NOT_CONFIGURED",
+          "message": "Offline claim evaluator is not configured. Groundedness and hallucination rate cannot be computed deterministically from raw trace alone.",
+          "details": {}
+        }
+      ]
+    },
+    {
+      "run_id": "72174889-3e49-427c-931d-cdd583f75164",
+      "session_id": "e5856f7f-8e9c-4989-967b-e94a9a9df10c",
+      "case_id": "spinach-uses",
+      "user_message_sample": "what are it's uses?",
+      "routing_compliant": true,
+      "target_capability": "graph",
+      "observed_path": [
+        "graph:RETRIEVE_GRAPH"
+      ],
+      "graph_precision": 0.07142857142857142,
+      "retrieved_nodes_count": 14,
+      "relevant_nodes_count": 1,
+      "retrieved_nodes": [
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D011247"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D008107"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D054368"
+        },
+        {
+          "entity_type": "plant_part",
+          "business_id": "SP-OL-LE"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D005334"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D007249"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D000900"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D001049"
+        },
+        {
+          "entity_type": "plant_part",
+          "business_id": "SP-OL-WH"
+        },
+        {
+          "entity_type": "plant_part",
+          "business_id": "SP-OL-SE"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D014545"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D000066888"
+        },
+        {
+          "entity_type": "therapeutic_use",
+          "business_id": "D007565"
+        },
+        {
+          "entity_type": "plant",
+          "business_id": "Spinacia oleracea"
+        }
+      ],
+      "relevant_nodes": [
+        {
+          "entity_type": "plant",
+          "business_id": "Spinacia oleracea"
+        }
+      ],
+      "groundedness": null,
+      "hallucination_rate": null,
+      "total_claims_count": 0,
+      "evaluable_claims_count": 0,
+      "supported_claims_count": 0,
+      "unsupported_claims_count": 0,
+      "diagnostics": [
+        {
+          "code": "NOT_CONFIGURED",
+          "message": "Offline claim evaluator is not configured. Groundedness and hallucination rate cannot be computed deterministically from raw trace alone.",
+          "details": {}
+        }
+      ]
+    }
+  ],
+  "diagnostics": [],
+  "data_sources_used": {
+    "domain_trace": true,
+    "app_turn": true,
+    "ground_truth": true
+  }
+}

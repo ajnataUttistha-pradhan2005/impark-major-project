@@ -1,0 +1,41 @@
+[
+  {
+    "case_id": "tulsi-phytochemicals",
+    "run_id": "25eb5d79-4ad2-4653-b593-66d620c67677",
+    "query_text": "What phytochemicals are found in the leaf of Ocimum tenuiflorum?",
+    "target_capability": "graph",
+    "disallowed_capabilities": ["image"],
+    "relevant_nodes": [
+      {
+        "entity_type": "plant",
+        "business_id": "Ocimum tenuiflorum"
+      }
+    ]
+  },
+  {
+    "case_id": "spinach-summary",
+    "run_id": "3d52673e-ec5f-4643-97cf-430a6def81cc",
+    "query_text": "give me complete summary of this plant",
+    "target_capability": "graph",
+    "disallowed_capabilities": ["image"],
+    "relevant_nodes": [
+      {
+        "entity_type": "plant",
+        "business_id": "Spinacia oleracea"
+      }
+    ]
+  },
+  {
+    "case_id": "spinach-uses",
+    "run_id": "72174889-3e49-427c-931d-cdd583f75164",
+    "query_text": "what are it's uses?",
+    "target_capability": "graph",
+    "disallowed_capabilities": ["image"],
+    "relevant_nodes": [
+      {
+        "entity_type": "plant",
+        "business_id": "Spinacia oleracea"
+      }
+    ]
+  }
+]
