@@ -1,0 +1,8 @@
+- case_id: case-yaml-01
+  query_text: "What phytochemicals are found in Neem leaves?"
+  target_capability: graph
+  disallowed_capabilities:
+    - image
+  relevant_nodes:
+    - entity_type: compound
+      business_id: INCHI_NIMBIN_123

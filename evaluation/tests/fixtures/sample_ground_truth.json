@@ -1,0 +1,45 @@
+[
+  {
+    "case_id": "case-01",
+    "query_text": "What phytochemicals are found in Neem leaves?",
+    "run_id": "11111111-1111-1111-1111-111111111111",
+    "session_id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+    "target_capability": "graph",
+    "disallowed_capabilities": ["image"],
+    "relevant_nodes": [
+      {
+        "entity_type": "compound",
+        "business_id": "INCHI_NIMBIN_123"
+      },
+      {
+        "entity_type": "compound",
+        "business_id": "INCHI_AZADIRACHTIN_456"
+      },
+      {
+        "entity_type": "compound",
+        "business_id": "INCHI_SALANNIN_789"
+      }
+    ]
+  },
+  {
+    "case_id": "case-02",
+    "query_text": "Identify this plant from photo",
+    "run_id": "44444444-4444-4444-4444-444444444444",
+    "session_id": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+    "target_capability": "image",
+    "disallowed_capabilities": ["graph"],
+    "relevant_nodes": []
+  },
+  {
+    "case_id": "case-03-missing",
+    "query_text": "What are the contraindications for Ashwagandha?",
+    "target_capability": "graph",
+    "disallowed_capabilities": ["image"],
+    "relevant_nodes": [
+      {
+        "entity_type": "therapeutic_use",
+        "business_id": "D001"
+      }
+    ]
+  }
+]
