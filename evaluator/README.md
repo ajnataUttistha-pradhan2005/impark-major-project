@@ -38,12 +38,14 @@ A 100% self-hosted, production-grade observability and evaluation pipeline desig
 
 ```
 impark-major-project/evaluator/
-├── docker-compose.yml              # Multi-container orchestration (Redis 7, Postgres 16, Grafana, Worker)
+├── docker-compose.yml              # Multi-container orchestration (Redis 7, Postgres 16, Grafana, Arize Phoenix)
 ├── Dockerfile                      # CPU-optimized container with pre-cached models (~220MB RAM)
 ├── requirements.txt                # Lean Python dependencies for host & container execution
 ├── local_tracer.py                 # BaseCallbackHandler intercepting LangChain/LangGraph events (<1ms publish)
 ├── redis_evaluator.py              # Blocking CPU evaluator daemon (XREAD BLOCK 0, math metrics, Postgres commit)
 ├── test_pipeline.py                # End-to-end simulation suite verifying Flow 1 (Live) & Flow 2 (Benchmark)
+├── phoenix_pipeline.py             # OpenTelemetry + Arize Phoenix + Ollama/gemma3:4b LLM-as-a-Judge pipeline
+├── test_phoenix_pipeline.py        # Verification suite for all 4 Phoenix metrics, Redis queue & Idle Worker
 ├── deploy_ec2.sh                   # Production cloud deployment automation script for AWS EC2 Linux
 ├── deploy_windows.ps1              # Windows local PowerShell launcher & verification script
 ├── README.md                       # Comprehensive operational & architecture guide
@@ -333,6 +335,107 @@ flowchart TD
 
 | Service | Host Port | Internal Port | Default Credentials | Description |
 | :--- | :--- | :--- | :--- | :--- |
+| **Arize Phoenix** | `6006` / `4317` | `6006` / `4317` | None (Open UI: `http://localhost:6006`) | Local Tracing, OTLP Collector & Span Evaluations |
+| **PostgreSQL** | `5433` (or `EVAL_POSTGRES_PORT`) | `5432` | `postgres` / `password` (db: `phoenix`, `eval_db`) | Unified Persistent Storage for Phoenix Traces & Metrics |
+| **Redis** | `6379` | `6379` | None (Streams: `phoenix-agent-traces`, `agent-logs`) | AOF Persistent Broker for Non-Blocking Trace Queuing |
 | **Grafana** | `3000` | `3000` | `admin` / `admin` | Real-time observability dashboard |
-| **PostgreSQL** | `5433` (or `EVAL_POSTGRES_PORT`) | `5432` | `postgres` / `password` (db: `eval_db`) | Unified JSONB + Relational Telemetry |
-| **Redis** | `6379` | `6379` | None (Stream: `agent-logs`) | AOF Persistent In-Memory Broker |
+
+---
+
+## Arize Phoenix & OpenTelemetry Architecture (gemma3:4b Sequential Judge)
+
+IMPARK includes a 100% free, local, open-source tracing and evaluation pipeline based on **Arize Phoenix**, **OpenTelemetry**, **Redis Streams**, and a single shared instance of **`gemma3:4b`** (via Ollama or vLLM at `http://localhost:11434/v1`).
+
+```
+                                        +---------------------------------------+
+                                        |  Local LLM Server (Ollama / vLLM)     |
+                                        |  Single Instance: 'gemma3:4b'          |
+                                        |  Endpoint: http://localhost:11434/v1  |
+                                        +---------------------------------------+
+                                                   ^                 ^
+                               (Step 1: Main Task) |                 | (Step 3: Judge)
+                                                   |                 |
+[User Request / Pipeline Run] ---------------------+                 |
+             |                                                       |
+             v                                                       |
+[LangChain Agent Execution]                                          |
+   - Intercepts graph retrieval step                                  |
+   - Tracks graph_retrieval_time (time.perf_counter)                 |
+   - Tool calling execution with ground truth expected tool          |
+   - OpenTelemetry spans captured                                    |
+             |                                                       |
+             v (Zero-hot-path latency)                               |
+[RedisStreamSpanExporter / Queue]                                    |
+   - Asynchronously pushes trace span payload to Redis Streams       |
+   - Main Agent goes to SLEEP (Task complete, RAM/VRAM freed)         |
+             |                                                       |
+             v (Blocking XREAD BLOCK 0 / block timeout)              |
+[Idle-Aware Sequential Evaluator Worker]                             |
+   - Sits at 0.0% CPU blocked on Redis socket                        |
+   - Wakes up immediately upon new trace stream entry                |
+   - Sequentially calls gemma3:4b as Judge:                          |
+       * Evaluates Groundedness & Hallucination Rate (strict JSON)   |
+       * Computes Tool Selection Accuracy (1.0 or 0.0)               |
+       * Extracts graph_retrieval_time from span metadata            |
+   - Logs evaluations permanently to Phoenix Postgres backend        |
+     using px.log_evaluations / SpanEvaluations                      |
+   - Forwards span via OTLP to Phoenix (http://localhost:6006)       |
+   - Immediately returns to IDLE / SLEEP (Redis XREAD BLOCK)         |
+             |
+             v
+[Arize Phoenix & PostgreSQL Storage Backend]
+   - Phoenix UI at http://localhost:6006
+   - PostgreSQL storing traces, spans, evaluations permanently
+```
+
+### The 4 Exact Core Metrics Tracked
+
+1. **`graph_retrieval_time`**: Measured with microsecond precision using Python's `time.perf_counter()` around the simulated graph database query step (capturing cold/warm query traversals in milliseconds).
+2. **`tool_selection_accuracy`**: A binary metric (`1.0` or `0.0`) computed by comparing the agent's selected tool name against a ground-truth expected tool name.
+3. **`groundedness`**: Calculated sequentially AFTER response generation by invoking the local `gemma3:4b` model with a strict JSON format constraint (`{"groundedness": float, "hallucination_rate": float, "reasoning": str}`).
+4. **`hallucination_rate`**: The mathematical inverse of groundedness (`1.0 - groundedness`), also emitted by the judge.
+
+### Core Architectural Guarantees
+
+- **Zero Hot-Path Overhead**: Spans are pushed asynchronously into Redis Streams via `RedisStreamSpanExporter`. The user response is returned with `< 1ms` telemetry delay.
+- **Strict Resource Conservation**: A single local model instance (`gemma3:4b`) handles both agent answering and judging sequentially. The agent finishes completely and goes to sleep before the judge activates.
+- **0.0% Idle CPU Utilization**: The evaluation worker uses Redis blocking reads (`XREAD block=0`). While idle, the OS thread enters kernel socket sleep.
+- **Persistent Long-Term Storage**: Traces and evaluations are never kept solely in memory; Arize Phoenix is configured with `PHOENIX_SQL_DATABASE_URL=postgresql://postgres:password@postgres:5432/phoenix` with a persistent Docker volume mount.
+
+### Running the Phoenix Architecture
+
+1. **Start the Infrastructure Stack:**
+   ```powershell
+   cd evaluator
+   docker compose up -d
+   ```
+   *Spins up Redis 7 (port 6379), PostgreSQL 16 (host port 5433), Arize Phoenix (port 6006 & 4317), and Grafana (port 3000).*
+
+2. **Configure the Environment (.env):**
+   ```ini
+   OPENAI_BASE_URL=http://localhost:11434/v1
+   AGENT_MODEL=gemma3:4b
+   EVAL_MODEL=gemma3:4b
+   REDIS_STREAM=phoenix-agent-traces
+   POSTGRES_PORT=5433
+   POSTGRES_DB=phoenix
+   PHOENIX_ENDPOINT=http://localhost:6006
+   ```
+
+3. **Run the End-to-End Demonstration:**
+   ```powershell
+   python phoenix_pipeline.py
+   ```
+
+4. **Run the Continuous Background Judge Worker:**
+   ```powershell
+   python phoenix_pipeline.py --worker
+   ```
+
+5. **Run the Test Suite:**
+   ```powershell
+   pytest test_phoenix_pipeline.py -v
+   ```
+
+6. **View the Traces & Evaluations in Phoenix UI:**
+   Open [http://localhost:6006](http://localhost:6006) in your browser. All spans, attributes, and evaluations are displayed in real-time.

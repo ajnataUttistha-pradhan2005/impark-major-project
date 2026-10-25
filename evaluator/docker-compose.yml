@@ -29,13 +29,14 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: eval_db
+      POSTGRES_DB: phoenix
     ports:
       - "${EVAL_POSTGRES_PORT:-5433}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d eval_db"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d phoenix"]
       interval: 5s
       timeout: 3s
       retries: 5
@@ -43,7 +44,27 @@ services:
     networks:
       - eval-network
 
-  # 3. Visualization Layer: Grafana (~60MB RAM)
+  # 3. Observability & Tracing Backend: Arize Phoenix (UI: 6006, OTLP gRPC: 4317)
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: eval-phoenix
+    environment:
+      # Directs Arize Phoenix to persist all traces, spans, and evaluations in PostgreSQL
+      - PHOENIX_SQL_DATABASE_URL=postgresql://postgres:password@postgres:5432/phoenix
+      - PHOENIX_PORT=6006
+      - PHOENIX_HOST=0.0.0.0
+      - PHOENIX_GRPC_PORT=4317
+    ports:
+      - "6006:6006"
+      - "4317:4317"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - eval-network
+
+  # 4. Visualization Layer: Grafana (~60MB RAM)
   grafana:
     image: grafana/grafana:latest
     container_name: eval-grafana

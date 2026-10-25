@@ -45,7 +45,7 @@ class LocalRedisTracer(BaseCallbackHandler):
         redis_host: Optional[str] = None,
         redis_port: Optional[int] = None,
         redis_password: Optional[str] = None,
-        stream_name: str = "agent-logs",
+        stream_name: Optional[str] = None,
         retrieval_node_name: str = "GraphRetriever",
         socket_timeout: float = 0.2,
     ) -> None:
@@ -53,7 +53,8 @@ class LocalRedisTracer(BaseCallbackHandler):
         self.redis_host = redis_host or os.getenv("REDIS_HOST", "127.0.0.1")
         self.redis_port = int(redis_port or os.getenv("REDIS_PORT", 6379))
         self.redis_password = redis_password or os.getenv("REDIS_PASSWORD", None)
-        self.stream_name = stream_name
+        self.stream_name = stream_name or os.getenv("REDIS_STREAM", "agent-logs")
+        self.phoenix_stream = os.getenv("PHOENIX_STREAM", "phoenix-agent-traces")
         self.retrieval_node_name = retrieval_node_name
         self.socket_timeout = socket_timeout
         self.sync_postgres = os.getenv("SYNC_POSTGRES", "false").lower() in ("true", "1", "yes")
@@ -289,11 +290,14 @@ class LocalRedisTracer(BaseCallbackHandler):
         if client is not None:
             try:
                 client.xadd(self.stream_name, {"payload": json.dumps(payload)})
+                if self.phoenix_stream and self.phoenix_stream != self.stream_name:
+                    client.xadd(self.phoenix_stream, {"payload": json.dumps(payload)})
                 redis_published = True
                 logger.debug(
-                    "Published trace payload %s to stream '%s'",
+                    "Published trace payload %s to stream '%s' (and '%s')",
                     self.trace_id,
                     self.stream_name,
+                    self.phoenix_stream,
                 )
             except Exception as exc:
                 # Telemetry failure must never disrupt the user application
