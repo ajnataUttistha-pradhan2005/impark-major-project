@@ -24,17 +24,31 @@ Configure the exact local/container/cloud connection URLs in `.env` **before** r
 
 ## Observability & Evaluation
 
-IMPARK includes a self-hosted, decoupled multi-agent evaluation pipeline with executive Grafana dashboards, Redis Streams message broker, CPU-only NLP grading (`all-MiniLM-L6-v2` + `nli-deberta-v3-small`), and PostgreSQL 16 `JSONB` storage.
+IMPARK includes a self-hosted, decoupled multi-agent evaluation architecture providing two complementary observability stacks:
+1. **Arize Phoenix & Gemma3:4b LLM-as-a-Judge (`phoenix_pipeline.py`)**: Sequential local judge evaluating `graph_retrieval_time`, `tool_selection_accuracy`, `groundedness`, and `hallucination_rate` with trace exploration in Arize Phoenix UI (<http://localhost:6006>).
+2. **Executive Grafana & CPU Evaluator (`redis_evaluator.py`)**: Zero-cost CPU-only NLP grading (`all-MiniLM-L6-v2` + `nli-deberta-v3-small`), non-blocking Redis Streams (`< 1ms`), PostgreSQL 16 `JSONB` storage, and executive Grafana dashboards (<http://localhost:3000>, `admin`/`admin`).
 
-To launch the evaluation pipeline locally or on AWS EC2, follow the [Evaluator Guide](evaluator/README.md):
+To launch the evaluation stack locally or on AWS EC2, follow the [Evaluator Guide](evaluator/README.md):
 
 ```powershell
+# 1. Start Evaluator Infrastructure (Redis, Postgres, Phoenix, Grafana)
 cd evaluator
-.\deploy_windows.ps1      # On Windows
-# or: ./deploy_ec2.sh     # On AWS EC2 (Linux)
+docker compose up -d
+
+# 2. Run the Arize Phoenix + Gemma3:4b Evaluation Pipeline
+python phoenix_pipeline.py
+
+# 3. Or run the CPU Evaluator & Grafana Pipeline
+python redis_evaluator.py
+
+# 4. Run automated test suites
+pytest test_phoenix_pipeline.py -v
+pytest test_pipeline.py -v
 ```
 
-Grafana evaluation dashboards run at <http://127.0.0.1:3000> (admin / admin).
+For 1-command automated deployments:
+* **Windows**: `.\evaluator\deploy_windows.ps1`
+* **AWS EC2 (Linux)**: `./evaluator/deploy_ec2.sh`
 
 ## Validation
 
