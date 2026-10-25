@@ -24,6 +24,7 @@ Pop-Location
 | `tests/graph/`, `tests/neo4j/` | Typed graph retrieval, driver/repository, scoped reads and opt-in live database cases. |
 | `tests/unit/` | Evidence/response helpers, contracts, SSE completion and image behavior. Some tests cover retained utilities outside the ordinary DeepAgents path. |
 | `tests/integration/`, `tests/evaluation/`, `tests/llm/` | Cross-layer boundaries, trace behavior and opt-in real-model explanations. |
+| `evaluator/test_phoenix_pipeline.py`, `evaluator/test_pipeline.py` | Multi-agent evaluation pipelines (Arize Phoenix, OpenTelemetry Redis queue, gemma3:4b judge, CPU MiniLM/DeBERTa metrics, live Docker integration). |
 | `frontend/api/client.test.mjs`, `frontend/src/sessionPages.test.mjs` | HTTP/SSE client and paginated/stale sidebar refresh behavior. |
 
 Live test toggles include `CHAT_RUN_INTEGRATION`, `GRAPH_RUN_INTEGRATION`, `SEARCH_RUN_INTEGRATION`, `NEO4J_RUN_INTEGRATION`, `IMAGE_RUN_INTEGRATION`, and `OLLAMA_RUN_INTEGRATION`. Inspect the relevant test's preconditions before enabling it. In particular, the backend owns a single-process PostgreSQL lease, so live tests that create the app may require stopping the demo server. Neo4j write tests have a separate opt-in; do not run write tests against the research/production graph. `backend/evaluation/text_discovery.py` evaluates name discovery; `trace_audit.py` audits domain traces. Historical deterministic-harness benchmarks are not a current DeepAgents evaluation claim.
