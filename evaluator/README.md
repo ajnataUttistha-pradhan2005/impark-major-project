@@ -1,24 +1,32 @@
 # IMPARK Multi-Agent Evaluator & Observability Pipeline
 
-[![Architecture: Decoupled Event-Driven](https://img.shields.io/badge/Architecture-Decoupled_Event--Driven-blue.svg)](#system-architecture)
-[![Inference: CPU Only](https://img.shields.io/badge/Inference-CPU--Only_(~220MB_RAM)-success.svg)](#local-cpu-only-inference)
-[![Idle CPU: 0.0%](https://img.shields.io/badge/Idle_CPU-0.0%25_(OS_Socket_Block)-brightgreen.svg)](#idle-state-efficiency)
-[![Storage: PostgreSQL 16 JSONB](https://img.shields.io/badge/Storage-PostgreSQL_16_JSONB_%2B_GIN-indigo.svg)](#unified-schema-agnostic-storage)
+[![Architecture: Decoupled Event-Driven](https://img.shields.io/badge/Architecture-Decoupled_Event--Driven-blue.svg)](#observability-architecture-dual-stack-design)
+[![Inference: CPU Only](https://img.shields.io/badge/Inference-CPU--Only_(~220MB_RAM)-success.svg)](#stack-2-grafana--cpu-semantic-evaluator-redis_evaluatorpy)
+[![Judge: gemma3:4b Local](https://img.shields.io/badge/Judge-gemma3%3A4b_(Local_Ollama)-orange.svg)](#stack-1-arize-phoenix--gemma34b-llm-as-a-judge-phoenix_pipelinepy)
+[![Idle CPU: 0.0%](https://img.shields.io/badge/Idle_CPU-0.0%25_(OS_Socket_Block)-brightgreen.svg)](#core-design-constraints--architectural-highlights)
+[![Storage: PostgreSQL 16 JSONB](https://img.shields.io/badge/Storage-PostgreSQL_16_JSONB_%2B_GIN-indigo.svg)](#infrastructure-ports--default-credentials)
 
-A 100% self-hosted, production-grade observability and evaluation pipeline designed for LangGraph / DeepAgents multi-agent workflows. It provides real-time telemetry, zero hot-path latency, automated semantic grading without expensive LLM judges, and executive Grafana dashboards.
+A 100% self-hosted, production-grade observability and evaluation pipeline designed for LangGraph and DeepAgents multi-agent workflows. It provides real-time telemetry, zero hot-path latency, automated semantic grading, Arize Phoenix trace routing, and executive Grafana dashboards.
 
 ---
 
 ## Table of Contents
 1. [Core Design Constraints & Architectural Highlights](#core-design-constraints--architectural-highlights)
 2. [Repository & File Structure](#repository--file-structure)
-3. [The 6 Core Evaluation Metrics](#the-6-core-evaluation-metrics)
-4. [Quickstart (Windows & Local)](#quickstart-windows--local)
-5. [Cloud Migration & EC2 Deployment (1-Command Automation)](#cloud-migration--ec2-deployment-1-command-automation)
-6. [Grafana Dashboard & Pre-Configured Provisioning](#grafana-dashboard--pre-configured-provisioning)
-7. [Agentic Orchestrator Integration](#agentic-orchestrator-integration)
-8. [End-to-End Simulation & Verification (test_pipeline.py)](#end-to-end-simulation--verification-test_pipelinepy)
-9. [Operational Flows: Live Chat vs. Golden Dataset](#operational-flows-live-chat-vs-golden-dataset)
+3. [Observability Architecture: Dual-Stack Design](#observability-architecture-dual-stack-design)
+4. [Stack 1: Arize Phoenix + Gemma3:4b LLM-as-a-Judge (`phoenix_pipeline.py`)](#stack-1-arize-phoenix--gemma34b-llm-as-a-judge-phoenix_pipelinepy)
+   - [The 4 Core Phoenix Metrics](#the-4-core-phoenix-metrics)
+   - [Functions & Code API Reference](#functions--code-api-reference-phoenix_pipelinepy)
+   - [CLI Usage & Execution Commands](#cli-usage--execution-commands-phoenix_pipelinepy)
+5. [Stack 2: Grafana + CPU Semantic Evaluator (`redis_evaluator.py`)](#stack-2-grafana--cpu-semantic-evaluator-redis_evaluatorpy)
+   - [The 6 Core CPU Metrics](#the-6-core-cpu-metrics)
+   - [Functions & Code API Reference](#functions--code-api-reference-redis_evaluatorpy)
+   - [Grafana Dashboard & Pre-Configured Provisioning](#grafana-dashboard--pre-configured-provisioning)
+6. [Quickstart: Local & Docker Deployment](#quickstart-local--docker-deployment)
+7. [Cloud Migration & EC2 Deployment (1-Command Automation)](#cloud-migration--ec2-deployment-1-command-automation)
+8. [Live Agentic Orchestrator Telemetry (Zero Hardcoding)](#live-agentic-orchestrator-telemetry-zero-hardcoding)
+9. [Automated Verification & Test Suites](#automated-verification--test-suites)
+10. [Infrastructure Ports, Credentials & Environment Variables](#infrastructure-ports-credentials--environment-variables)
 
 ---
 
@@ -27,10 +35,11 @@ A 100% self-hosted, production-grade observability and evaluation pipeline desig
 | Constraint | Architectural Decision | Implementation Impact |
 | :--- | :--- | :--- |
 | **Zero Hot-Path Latency** | Non-blocking Redis Stream (`XADD`) | User chat experiences **< 1ms overhead**; telemetry is decoupled from response generation. If Redis is down, circuit breakers skip network calls with 0ms delay. |
-| **Local CPU-Only Inference** | Hybrid Bi-Encoder + NLI Cross-Encoder | `all-MiniLM-L6-v2` (embeddings, ~80MB) + `cross-encoder/nli-deberta-v3-small` (NLI, ~140MB). Operates in **~45ms on CPU** with **zero external API costs**. |
+| **Sequential Resource Conservation** | Single Shared `gemma3:4b` Instance | The main agent generates an answer and goes to sleep; the exact same model instance wakes up sequentially as an evaluation judge. Zero parallel thread GPU/VRAM collisions. |
+| **Local CPU-Only NLP Grading** | Hybrid Bi-Encoder + NLI Cross-Encoder | `all-MiniLM-L6-v2` (embeddings, ~80MB) + `cross-encoder/nli-deberta-v3-small` (NLI, ~140MB). Operates in **~45ms on CPU** with **zero external API costs**. |
 | **Idle State Efficiency** | OS Socket Network Sleep (`XREAD BLOCK 0`) | When no queries or tool invocations are running, the worker daemon enters interruptible kernel socket sleep (**0.0% idle CPU utilization**). |
-| **Schema Agility** | PostgreSQL 16 `JSONB` + GIN Index | Complete raw trace payloads are stored alongside structured relational metrics, eliminating migration friction when payloads change. |
-| **Aggregated Tool Logging** | Single Consolidated End-of-Run Payload | Tool invocations are captured and aggregated per turn. Telemetry is streamed to Redis **only when an action/tool was performed**, preventing stream flooding. |
+| **Schema Agility & Durability** | PostgreSQL 16 `JSONB` + GIN Index | Raw trace payloads and relational evaluation metrics persist permanently in PostgreSQL, backed by Arize Phoenix storage. |
+| **Aggregated Tool Logging** | Single Consolidated End-of-Turn Payload | Tool invocations are captured and aggregated per turn. Telemetry is streamed to Redis **only when an action/tool was performed**, preventing stream flooding. |
 
 ---
 
@@ -46,6 +55,7 @@ impark-major-project/evaluator/
 ├── test_pipeline.py                # End-to-end simulation suite verifying Flow 1 (Live) & Flow 2 (Benchmark)
 ├── phoenix_pipeline.py             # OpenTelemetry + Arize Phoenix + Ollama/gemma3:4b LLM-as-a-Judge pipeline
 ├── test_phoenix_pipeline.py        # Verification suite for all 4 Phoenix metrics, Redis queue & Idle Worker
+├── init-db.sql                     # PostgreSQL schema initialization for both eval_db and phoenix databases
 ├── deploy_ec2.sh                   # Production cloud deployment automation script for AWS EC2 Linux
 ├── deploy_windows.ps1              # Windows local PowerShell launcher & verification script
 ├── README.md                       # Comprehensive operational & architecture guide
@@ -61,98 +71,229 @@ impark-major-project/evaluator/
 
 ---
 
-## The 6 Core Evaluation Metrics
+## Observability Architecture: Dual-Stack Design
 
-### 1. Retrieval Latency (`retrieval_time_ms`)
-- **Mechanics:** Monotonic clock (`time.perf_counter()`) triggered on retriever node entry (`on_chain_start` / `on_tool_start`) and exit.
-- **Formula:** $\text{Latency (ms)} = (t_{\text{end}} - t_{\text{start}}) \times 1000$
+The IMPARK evaluation system provides two complementary observability pipelines feeding from the same live agent telemetry:
 
-### 2. Tool / Trajectory Selection Accuracy (`tool_accuracy`)
-- **Mechanics:** Deterministic membership check verifying if `expected_agent` was visited in `trajectory`. Defaults cleanly to `NULL` during live user chats.
-- **Formula:**
-  $$\text{Tool Accuracy} = \begin{cases} 1.0 & \text{if } \text{expected\_agent} \in \text{trajectory} \\ 0.0 & \text{if } \text{expected\_agent} \notin \text{trajectory} \\ \text{NULL} & \text{if } \text{expected\_agent is None} \end{cases}$$
-
-### 3. Groundedness Score (`groundedness_score`)
-- **Mechanics:** Encodes context ($C$) and output ($O$) into 384-d dense embeddings using `all-MiniLM-L6-v2` and computes clamped Cosine Similarity.
-- **Formula:**
-  $$\text{Groundedness} = \max\left(0.0, \frac{\vec{v}_C \cdot \vec{v}_O}{\|\vec{v}_C\| \|\vec{v}_O\|}\right) \in [0.0, 1.0]$$
-
-### 4. Hallucination Probability (`hallucination_prob` & `is_hallucinated`)
-- **Mechanics:** Partitions context into sentences via `split_into_sentences()` to prevent 512-token truncation. Evaluates individual sentence-output pairs against `nli-deberta-v3-small` checking `LABEL_2` (Contradiction).
-- **Formula:**
-  $$P(\text{Hallucination}) = \max_{s \in C} \left(\frac{e^{z_{\text{contradiction}}(s, O)}}{e^{z_{\text{contradiction}}(s, O)} + e^{z_{\text{entailment}}(s, O)} + e^{z_{\text{neutral}}(s, O)}}\right)$$
-  $$\text{is\_hallucinated} = \begin{cases} 1 & \text{if } P(\text{Hallucination}) > 0.45 \\ 0 & \text{otherwise} \end{cases}$$
-
-### 5. Ground Truth Answer Correctness (`answer_correctness`)
-- **Mechanics:** Solves the **"Negation Trap"** (where cosine similarity fails on opposites like "toxic" vs "not toxic") by blending 50% Dense Semantic Cosine Similarity with 50% DeBERTa NLI Entailment (`LABEL_0`).
-- **Formula:**
-  $$\text{Answer Correctness} = 0.5 \times \max\left(0.0, \frac{\vec{v}_G \cdot \vec{v}_O}{\|\vec{v}_G\| \|\vec{v}_O\|}\right) + 0.5 \times P_{\text{NLI}}(\text{Entailment} \mid G, O)$$
-
-### 6. Ground Truth Context Recall (`context_recall`)
-- **Mechanics:** Clamped cosine similarity verifying that the retriever node successfully fetched the facts present in the ground truth reference into the retrieved context.
-- **Formula:**
-  $$\text{Context Recall} = \max\left(0.0, \frac{\vec{v}_G \cdot \vec{v}_C}{\|\vec{v}_G\| \|\vec{v}_C\|}\right) \in [0.0, 1.0]$$
+```
+                            [User Request / Agent Action]
+                                          │
+                                          ▼
+                         [LangChain DeepAgents Orchestrator]
+                     (GraphAgent, TextAgent, ImageAgent Execution)
+                                          │
+                                          ▼
+                      [LocalRedisTracer Callback Aggregator]
+                       (Captures Monotonic Latency & Claims)
+                                          │
+                   ┌──────────────────────┴──────────────────────┐
+                   │                                             │
+                   ▼ (Stream: phoenix-agent-traces)              ▼ (Stream: agent-logs)
+        [Phoenix Pipeline Worker]                     [Redis Evaluator Worker]
+         (phoenix_pipeline.py)                         (redis_evaluator.py)
+                   │                                             │
+                   ├─ Sequential Judge (gemma3:4b)               ├─ CPU Bi-Encoder (MiniLM)
+                   ├─ 4 LLM & Retrieval Metrics                  ├─ CPU Cross-Encoder (DeBERTa)
+                   │                                             ├─ 6 Mathematical Metrics
+                   ▼                                             ▼
+          [Arize Phoenix UI]                            [Grafana Dashboard]
+        http://localhost:6006                          http://localhost:3000
+                   │                                             │
+                   └──────────────────────┬──────────────────────┘
+                                          ▼
+                            [PostgreSQL 16 Persistence]
+                           (Port 5433 -> host, 5432 internal)
+```
 
 ---
 
-## Quickstart (Windows & Local)
+## Stack 1: Arize Phoenix + Gemma3:4b LLM-as-a-Judge (`phoenix_pipeline.py`)
 
-### Option A: Using Docker Desktop (Recommended)
+A 100% free, local, open-source tracing and evaluation stack using **Arize Phoenix**, **OpenTelemetry**, **Redis Streams**, and a single shared instance of **`gemma3:4b`** (via Ollama or vLLM at `http://localhost:11434/v1`).
 
-1. **Start the Infrastructure Containers:**
-   ```powershell
-   cd evaluator
-   docker compose up -d
-   ```
-   *This starts Redis 7 (port 6379), PostgreSQL 16 (host port 5433, internal port 5432), and Grafana (port 3000) with pre-provisioned datasources and dashboards. Host port 5433 avoids conflict if you have a local PostgreSQL service running on port 5432.*
+### The 4 Core Phoenix Metrics
 
-2. **Start the CPU Evaluator Worker on Host:**
-   ```powershell
-   # Install dependencies (CPU PyTorch first)
-   pip install torch --index-url https://download.pytorch.org/whl/cpu
-   pip install -r requirements.txt
+1. **`graph_retrieval_time`**:
+   - **Source:** High-resolution monotonic clock (`time.perf_counter()`) wrapped around the live `GraphAgent` retrieval step in milliseconds.
+   - **Characteristics:** Microsecond precision, captures real Neo4j/Repository query traversal time without mock simulations.
 
-   # Start the worker daemon
-   python redis_evaluator.py
-   ```
-   *Or run the worker in Docker with zero host dependencies:*
-   ```powershell
-   docker compose --profile worker up -d
-   ```
+2. **`tool_selection_accuracy`**:
+   - **Formula:**
+     $$\text{Tool Selection Accuracy} = \begin{cases} 1.0 & \text{if } \text{selected\_tool} == \text{expected\_tool} \\ 0.0 & \text{otherwise} \end{cases}$$
+   - **Characteristics:** Evaluates whether the agent selected the proper tool capability (`query_knowledge_graph`, `search_botanical_catalog`, etc.) matching the ground truth requirement.
 
-3. **Verify the Pipeline:**
-   ```powershell
-   python test_pipeline.py
-   ```
+3. **`groundedness`**:
+   - **Mechanics:** Calculated sequentially after generation by sending retrieved evidence claims and agent output to the local `gemma3:4b` judge under a strict JSON format prompt:
+     ```json
+     {"groundedness": 0.85, "hallucination_rate": 0.15, "reasoning": "Output supported by context"}
+     ```
+   - **Fallback:** Includes a robust local token-alignment analyzer if the local LLM server is temporarily offline.
 
-4. **View Grafana Dashboards:**
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
-   - **Username:** `admin`
-   - **Password:** `admin`
-   - Dashboard is auto-loaded under **Agent Observability -> IMPARK Multi-Agent Evaluation & Observability**.
+4. **`hallucination_rate`**:
+   - **Formula:**
+     $$\text{Hallucination Rate} = 1.0 - \text{Groundedness}$$
+   - **Characteristics:** Strictly inversely proportional to groundedness, guaranteeing mathematical consistency.
 
-### Option B: 1-Click PowerShell Script
+---
+
+### Functions & Code API Reference (`phoenix_pipeline.py`)
+
+#### 1. `execute_real_graph_retrieval(plant_id, query_type)`
+* **Location:** [`evaluator/phoenix_pipeline.py`](file:///d:/Major%20Project/impark-major-project/evaluator/phoenix_pipeline.py#L295-L352)
+* **Purpose:** Imports and executes the live IMPARK [`GraphAgent`](file:///d:/Major%20Project/impark-major-project/backend/agents/graph/agent.py) and [`TextAgent`](file:///d:/Major%20Project/impark-major-project/backend/agents/text/agent.py), measures monotonic retrieval latency via `time.perf_counter()`, and extracts live graph evidence claims.
+* **Return:** `Tuple[Dict[str, Any], float]` (retrieved facts dictionary and latency in milliseconds).
+
+#### 2. `execute_agent_pipeline(user_query, expected_tool, tracer, redis_client)`
+* **Location:** [`evaluator/phoenix_pipeline.py`](file:///d:/Major%20Project/impark-major-project/evaluator/phoenix_pipeline.py#L354-L489)
+* **Purpose:** Executes the live multi-agent workflow, generates answer via local `gemma3:4b`, attaches OpenTelemetry span attributes, pushes the trace payload to Redis Streams asynchronously, and puts the agent to sleep.
+* **Return:** Trace dictionary containing `trace_id`, `span_id`, `output`, `context`, `graph_retrieval_time_ms`, and `tool_selection_accuracy`.
+
+#### 3. `evaluate_groundedness_and_hallucination(judge_response_json, retrieved_context, agent_output)`
+* **Location:** [`evaluator/phoenix_pipeline.py`](file:///d:/Major%20Project/impark-major-project/evaluator/phoenix_pipeline.py#L588-L632)
+* **Purpose:** Grades groundedness and hallucination rate from `gemma3:4b` JSON judge response, validating inverse consistency (`hallucination_rate = 1.0 - groundedness`).
+
+#### 4. `IdleAwareEvaluationJudge`
+* **Location:** [`evaluator/phoenix_pipeline.py`](file:///d:/Major%20Project/impark-major-project/evaluator/phoenix_pipeline.py#L495-L733)
+* **Key Methods:**
+  - `evaluate_span(span_payload)`: Evaluates a single trace span, invokes the judge sequentially, logs to Arize Phoenix and PostgreSQL.
+  - `log_to_phoenix(...)`: Registers evaluations in Arize Phoenix via `px.log_evaluations` and sends spans to Phoenix OTLP collector (`http://localhost:6006/v1/traces`).
+  - `log_to_postgres_database(...)`: Inserts structured relational metrics and raw JSONB trace into PostgreSQL `agent_evaluations` table.
+  - `start_worker_daemon(block_ms, max_evals)`: Continuous OS-level socket blocking loop (`XREAD BLOCK 0`).
+
+#### 5. `run_worker_loop(block_ms, max_evals)`
+* **Location:** [`evaluator/phoenix_pipeline.py`](file:///d:/Major%20Project/impark-major-project/evaluator/phoenix_pipeline.py#L858-L915)
+* **Purpose:** Standalone runner for the Idle-Aware Judge Worker. Concurrently listens to both `phoenix-agent-traces` and `agent-logs` streams to catch all agent executions.
+
+---
+
+### CLI Usage & Execution Commands (`phoenix_pipeline.py`)
+
+#### Mode 1: Run Full End-to-End Demonstration (Agent -> Queue -> Judge -> Sleep)
+Executes a live agent turn, pushes the trace to Redis, awakens the sequential judge, evaluates all 4 metrics, logs to Phoenix, and prints the summary report:
+```powershell
+# From evaluator directory:
+python phoenix_pipeline.py
+```
+
+#### Mode 2: Run Continuous Idle-Aware Judge Worker Daemon
+Runs a continuous background daemon that sleeps at 0.0% CPU and wakes up whenever an agent trace arrives on Redis Streams:
+```powershell
+python phoenix_pipeline.py --worker
+```
+
+#### Mode 3: Execute Agent Turn Only (Trace Generation Mode)
+Generates an agent trace and queues it into Redis without triggering immediate in-process evaluation (useful when the worker daemon is running in a separate process):
+```powershell
+python phoenix_pipeline.py --trace
+```
+
+#### Mode 4: Custom Query & Expected Tool
+```powershell
+python phoenix_pipeline.py --query "What are the medicinal uses of Ocimum tenuiflorum?" --tool query_knowledge_graph
+```
+
+---
+
+## Stack 2: Grafana + CPU Semantic Evaluator (`redis_evaluator.py`)
+
+A CPU-optimized evaluator running two lightweight transformer models (~220MB RAM total) without requiring any external LLM or cloud API keys.
+
+### The 6 Core CPU Metrics
+
+| Metric | Model & Mechanics | Mathematical Formula |
+| :--- | :--- | :--- |
+| **`retrieval_time_ms`** | Monotonic clock (`time.perf_counter()`) | $(t_{\text{end}} - t_{\text{start}}) \times 1000$ |
+| **`tool_accuracy`** | Trajectory set membership | $1.0 \text{ if } \text{expected} \in \text{trajectory} \text{ else } 0.0$ |
+| **`groundedness_score`** | `all-MiniLM-L6-v2` dense cosine similarity | $\max(0.0, \frac{\vec{v}_C \cdot \vec{v}_O}{\|\vec{v}_C\| \|\vec{v}_O\|}) \in [0.0, 1.0]$ |
+| **`hallucination_prob`** | `nli-deberta-v3-small` contradiction probability | $\max_{s \in C} P_{\text{NLI}}(\text{Contradiction} \mid s, O)$ |
+| **`answer_correctness`** | 50% Cosine Similarity + 50% NLI Entailment | $0.5 \times \text{Sim}(G, O) + 0.5 \times P_{\text{NLI}}(\text{Entail} \mid G, O)$ |
+| **`context_recall`** | Clamped cosine similarity | $\max(0.0, \frac{\vec{v}_G \cdot \vec{v}_C}{\|\vec{v}_G\| \|\vec{v}_C\|}) \in [0.0, 1.0]$ |
+
+---
+
+### Functions & Code API Reference (`redis_evaluator.py`)
+
+* **`EvaluatorMetricsEngine`**:
+  - `calculate_groundedness(context, output)`: Computes 384-dimensional dense cosine similarity using sentence transformers.
+  - `calculate_hallucination_probability(context, output)`: Partitions context with `split_into_sentences()` and computes DeBERTa cross-encoder contradiction logits.
+  - `calculate_answer_correctness(ground_truth, output)`: Solves the "Negation Trap" by combining semantic similarity with directional NLI entailment.
+  - `calculate_context_recall(ground_truth, context)`: Checks if gold reference facts are reflected in the retrieved context.
+* **`evaluate_trace(raw_trace)`**: Orchestrates metric calculation for a single trace dictionary.
+* **`EvaluatorWorker.run()`**: Infinite blocking `XREAD BLOCK 0` consumer loop.
+
+#### Running the CPU Evaluator:
+```powershell
+python redis_evaluator.py
+```
+
+---
+
+### Grafana Dashboard & Pre-Configured Provisioning
+
+Grafana automatically provisions datasources and dashboards upon boot via `grafana/provisioning/`:
+
+* **Dashboard URL:** [http://localhost:3000](http://localhost:3000)
+* **Credentials:** `admin` / `admin`
+* **Pre-Configured Panels:**
+  - 5 Real-Time KPI Gauges (Tool Accuracy, Groundedness, Hallucination Rate, Answer Correctness, Context Recall)
+  - Time-Series Latency Graph (`retrieval_time_ms`)
+  - Groundedness vs. Hallucination Trend Chart
+  - Live PostgreSQL JSONB Raw Trace Inspector Table
+
+---
+
+## Quickstart: Local & Docker Deployment
+
+### Step 1: Start Infrastructure Containers (Redis, Postgres, Phoenix, Grafana)
 
 ```powershell
 cd evaluator
-.\deploy_windows.ps1
+docker compose up -d
 ```
+
+Containers launched:
+* `eval-redis`: Redis 7 running on port `6379` (append-only persistence).
+* `eval-postgres`: PostgreSQL 16 running on host port `5433` (internal port `5432`) to avoid conflicts with existing local databases.
+* `eval-phoenix`: Arize Phoenix on port `6006` (UI) and port `4317` (OTLP gRPC).
+* `eval-grafana`: Grafana on port `3000` with auto-loaded dashboards.
+
+### Step 2: Install Python Dependencies
+
+```powershell
+# From repository root with active virtualenv:
+.\.venv\Scripts\python.exe -m pip install -r evaluator/requirements.txt
+```
+
+### Step 3: Run the Evaluator Pipelines
+
+#### Option A: Arize Phoenix + Gemma3:4b LLM-as-a-Judge Pipeline
+```powershell
+python evaluator/phoenix_pipeline.py
+```
+Open **[http://localhost:6006](http://localhost:6006)** to inspect spans and evaluations.
+
+#### Option B: CPU Semantic Evaluator + Grafana Pipeline
+```powershell
+# Start the CPU worker:
+python evaluator/redis_evaluator.py
+
+# In another terminal, run test simulation:
+python evaluator/test_pipeline.py
+```
+Open **[http://localhost:3000](http://localhost:3000)** (admin / admin) to view Grafana metrics.
 
 ---
 
 ## Cloud Migration & EC2 Deployment (1-Command Automation)
 
-To migrate the evaluator to an AWS EC2 instance (e.g. `t3.small` or `t3.medium` running Ubuntu 22.04 / 24.04 or Amazon Linux 2023):
+To deploy the complete evaluator stack to an AWS EC2 instance (Ubuntu 22.04 / 24.04 or Amazon Linux 2023 on `t3.medium`):
 
-### Step 1: Launch EC2 Instance & Configure Security Group
-1. Launch an EC2 instance (`t3.medium`, 2 vCPU, 4GB RAM is optimal for running both evaluator models and app).
-2. In the AWS Security Group, add an **Inbound Rule**:
-   - **Type:** Custom TCP
-   - **Port:** `3000`
-   - **Source:** Your IP or `0.0.0.0/0` (for public dashboard viewing)
+### 1. Configure Inbound Rules in AWS Security Group
+* Port `3000` (Grafana Dashboard)
+* Port `6006` (Arize Phoenix UI)
+* Port `22` (SSH)
 
-### Step 2: Clone & Run the Automation Script
-SSH into your EC2 instance and execute:
+### 2. Execute 1-Command Deployment Script
 ```bash
 git clone <your-repository-url>
 cd impark-major-project/evaluator
@@ -160,282 +301,119 @@ chmod +x deploy_ec2.sh
 ./deploy_ec2.sh
 ```
 
-### What `deploy_ec2.sh` Performs Automatically:
-- Auto-detects Linux distribution (Ubuntu, Debian, AL2023, Fedora, RHEL).
-- Installs Docker Engine and Docker Compose plugin if missing.
-- Tunes Linux kernel memory settings for high-performance Redis (`vm.overcommit_memory=1`).
-- Builds and starts `eval-redis`, `eval-postgres`, `eval-grafana`, and `eval-worker` in the background.
-- Waits for database healthchecks before proceeding.
-- Pre-downloads and caches HuggingFace models inside the container image for 100% offline startup.
-- Executes `test_pipeline.py` smoke test verifying Flow 1 & Flow 2.
-- Prints the exact public URL to access your Grafana dashboard!
+The script automatically:
+1. Detects Linux distribution and installs Docker Engine & Docker Compose.
+2. Configures kernel overcommit memory (`sysctl vm.overcommit_memory=1`) for Redis performance.
+3. Builds and starts all four containers (`eval-redis`, `eval-postgres`, `eval-phoenix`, `eval-grafana`).
+4. Executes the automated verification suite.
+5. Prints direct access links to your Cloud Grafana and Phoenix dashboards.
 
 ---
 
-## Grafana Dashboard & Pre-Configured Provisioning
+## Live Agentic Orchestrator Telemetry (Zero Hardcoding)
 
-The Grafana instance mounts `./grafana/provisioning/` so no manual SQL configuration is required. When Grafana starts, the datasource and dashboards are ready out-of-the-box:
+All metrics are captured dynamically during real agent executions:
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│                      IMPARK Executive KPI Overview                     │
-├──────────────┬──────────────┬──────────────┬──────────────┬────────────┤
-│ Tool Accuracy│ Groundedness │ Hallucination│ GT Correctness│ Ctx Recall │
-│    [94.2%]   │   [88.5%]    │    [2.1%]    │    [91.0%]   │   [89.4%]  │
-└──────────────┴──────────────┴──────────────┴──────────────┴────────────┘
-┌────────────────────────────────────────────────────────────────────────┐
-│ Graph Retrieval Latency (ms) Time-Series                               │
-│ ──── 48.7ms ──────── 62.4ms ──────── 51.2ms ───────                    │
-└────────────────────────────────────────────────────────────────────────┘
-┌────────────────────────────────────────────────────────────────────────┐
-│ Semantic Quality vs. Hallucination Trend Over Time                     │
-│ ──── Groundedness (Green)    ──── Hallucination (Red)                  │
-└────────────────────────────────────────────────────────────────────────┘
-┌────────────────────────────────────────────────────────────────────────┐
-│ Live JSONB Trace Inspector Table (Last 50 Runs)                        │
-│ [Run ID] [Timestamp] [User Query] [Trajectory] [Groundedness] [Latency]│
-└────────────────────────────────────────────────────────────────────────┘
-```
-
-### Direct PostgreSQL Queries for Custom Grafana Panels:
-
-#### Panel 1: Executive KPI Gauges
-```sql
-SELECT 
-  ROUND((AVG(tool_accuracy) * 100)::numeric, 1) AS "Tool Selection Accuracy %",
-  ROUND((AVG(groundedness_score) * 100)::numeric, 1) AS "Avg Groundedness %",
-  ROUND((AVG(is_hallucinated) * 100)::numeric, 1) AS "Hallucination Rate %",
-  ROUND((AVG(answer_correctness) * 100)::numeric, 1) AS "GT Answer Correctness %",
-  ROUND((AVG(context_recall) * 100)::numeric, 1) AS "Graph Context Recall %"
-FROM agent_evaluations;
-```
-
-#### Panel 2: Latency Series
-```sql
-SELECT 
-  created_at AS "time",
-  retrieval_time_ms AS "Graph Retrieval Latency (ms)"
-FROM agent_evaluations
-WHERE retrieval_time_ms IS NOT NULL
-ORDER BY created_at ASC;
-```
-
-#### Panel 3: Live JSONB Trace Table
-```sql
-SELECT 
-  id AS "Run ID",
-  created_at AS "Timestamp",
-  raw_payload->>'user_input' AS "User Query",
-  raw_payload->>'trajectory' AS "Executed Trajectory",
-  raw_payload->>'expected_agent' AS "Expected Node",
-  retrieval_time_ms AS "Graph Latency (ms)",
-  groundedness_score AS "Groundedness",
-  hallucination_prob AS "Hallucination Prob",
-  answer_correctness AS "GT Correctness",
-  context_recall AS "Context Recall"
-FROM agent_evaluations
-ORDER BY created_at DESC
-LIMIT 50;
+[Agent Query]
+      │
+      ├─ GraphAgent (backend/agents/graph/agent.py)
+      │    * t_start = time.perf_counter()
+      │    * Executes typed Neo4j graph retrieval
+      │    * Measures real elapsed_ms
+      │    * Emits context_snippets from retrieved evidence claims
+      │
+      ├─ TextAgent (backend/agents/text/agent.py)
+      │    * t_start = time.perf_counter()
+      │    * Normalizes botanical query and searches aliases
+      │    * Emits candidate labels and confidence scores
+      │
+      ├─ ImageAgent (backend/agents/image/agent.py)
+      │    * t_start = time.perf_counter()
+      │    * Performs CNN / vector image inference
+      │    * Emits top predicted candidates and claims
+      │
+      ▼
+[DeepAgentRuntime (backend/orchestrator/deepagents/runtime.py)]
+      * Records tool nodes visited and monotonic latencies
+      * Aggregates claims into manual_context
+      * ONLY publishes if tracer.actions_performed > 0
+      * Streams consolidated trace to 'agent-logs' and 'phoenix-agent-traces'
 ```
 
 ---
 
-## Agentic Orchestrator & Multi-Agent Telemetry Integration
+## Automated Verification & Test Suites
 
-### 1. Specialist Agent Instrumentation (`backend/agents/`)
-Each individual capability agent is instrumented to emit LangChain lifecycle events and monotonic execution durations:
-- **Knowledge Graph Agent ([`backend/agents/graph/agent.py`](file:///d:/Major%20Project/impark-major-project/backend/agents/graph/agent.py)):**
-  - Measures monotonic query duration via `time.perf_counter()`.
-  - Dispatches `on_tool_start` with the query type and `on_retriever_end` with the retrieved evidence claims.
-  - Handles errors with `on_tool_error`.
-- **Image Understanding Agent ([`backend/agents/image/agent.py`](file:///d:/Major%20Project/impark-major-project/backend/agents/image/agent.py)):**
-  - Measures CNN classification and vector retrieval duration.
-  - Dispatches `on_tool_start` with image reference ID and `on_tool_end` with top predicted candidates and confidence.
-- **Text & Botanical Entity Agent ([`backend/agents/text/agent.py`](file:///d:/Major%20Project/impark-major-project/backend/agents/text/agent.py)):**
-  - Measures hybrid lexical + semantic resolution latency.
-  - Dispatches events across all decision branches (safety, scope rejection, entity candidates, query intent suggestions).
-- **Callback Dispatcher ([`backend/agents/common/callbacks.py`](file:///d:/Major%20Project/impark-major-project/backend/agents/common/callbacks.py)):**
-  - Bridges agent executions to registered LangChain callback handlers and `LocalRedisTracer`.
+The evaluator includes exhaustive automated test suites covering all metric calculations, queues, and worker lifecycles.
 
-### 2. Orchestrator End-of-Turn Aggregation (`backend/orchestrator/deepagents/runtime.py`)
-- `LocalRedisTracer` is passed into tools and LangChain `callbacks`.
-- **Aggregation Policy:** When the complete turn response is synthesized, all agent metrics (`trajectory`, `node_latencies_ms`, `retrieval_time_ms`, `retrieved_context`, `total_tokens`, `agent_output`, `user_input`) are aggregated into a single consolidated payload.
-- **Idle & Duplicate Prevention:** If a turn did not call any tools or perform an action (`tracer.actions_performed == 0`), **nothing is sent to Redis or PostgreSQL**. This eliminates duplicate rows in Grafana and keeps all services completely idle (0.0% CPU) between user queries.
-- **Dual-Delivery Pipeline:** Payloads are published asynchronously to Redis Streams (`agent-logs`) with `< 1ms` latency. If Redis is unavailable or direct sync is enabled, it commits directly to PostgreSQL `agent_evaluations`.
-
----
-
-## End-to-End Simulation & Verification (`test_pipeline.py`)
-
-Run the automated test suite anytime to verify metric mathematics and pipeline connectivity:
-```bash
-python test_pipeline.py
+### 1. Run Phoenix Pipeline Verification Suite
+```powershell
+pytest evaluator/test_phoenix_pipeline.py -v
 ```
+Tests verified:
+- `test_metric_1_graph_retrieval_time`: Asserts live retrieval latency > 0 using real agent execution.
+- `test_metric_2_tool_selection_accuracy`: Asserts 1.0 on match and 0.0 on mismatch.
+- `test_metrics_3_and_4_groundedness_and_hallucination_rate`: Asserts mathematical inverse consistency and strict JSON parsing.
+- `test_redis_stream_span_exporter_queue`: Asserts non-blocking queueing into Redis Stream.
+- `test_idle_aware_worker_single_item_lifecycle`: Asserts Start -> Evaluate -> Commit -> Sleep lifecycle.
 
-### Test Output:
+### 2. Run CPU Evaluator & Flow Simulation Suite
+```powershell
+pytest evaluator/test_pipeline.py -v
 ```
-[INFO] Initializing CPU Evaluation Models (~220MB RAM)...
-[INFO] Starting IMPARK Evaluator Verification Suite...
-[INFO] [PASS] test_sentence_splitter passed (5 sentences extracted cleanly).
-[INFO] --- [Flow 1] Simulating Production Interactive User Chat ---
-[INFO] Flow 1 Output Scores: {
-  "retrieval_time_ms": 48.7,
-  "tool_accuracy": null,
-  "groundedness": 0.88,
-  "hallucination_prob": 0.02,
-  "is_hallucinated": 0,
-  "answer_correctness": null,
-  "context_recall": null
-}
-[INFO] [PASS] Flow 1 Simulation Verified: Benchmark KPIs preserved from corruption.
-[INFO] --- [Flow 2] Simulating Golden Dataset Offline Benchmark ---
-[INFO] Flow 2 Output Scores: {
-  "retrieval_time_ms": 62.4,
-  "tool_accuracy": 1.0,
-  "groundedness": 0.94,
-  "hallucination_prob": 0.01,
-  "is_hallucinated": 0,
-  "answer_correctness": 0.91,
-  "context_recall": 0.89
-}
-[INFO] [PASS] Flow 2 Simulation Verified: All 6 metrics evaluated with high precision.
-[INFO] [SUCCESS] All pipeline tests and metric evaluation mechanics VERIFIED!
+Tests verified:
+- `test_sentence_splitter`: Verifies robust sentence chunking without splitting abbreviations.
+- `test_flow_1_live_chat_simulation`: Verifies live chat telemetry (nullifies ground-truth KPIs without corruption).
+- `test_flow_2_offline_benchmark_simulation`: Verifies golden benchmark evaluation across all 6 metrics.
+- `test_live_docker_integration`: Verifies connectivity to Redis and PostgreSQL containers.
+
+### 3. Run All Evaluator Tests Together
+```powershell
+pytest evaluator/ -v
 ```
 
 ---
 
-## Operational Flows: Live Chat vs. Golden Dataset
+## Infrastructure Ports, Credentials & Environment Variables
 
-```mermaid
-flowchart TD
-    A[Incoming Request] --> B{Execution Mode}
-    B -->|Interactive Production Chat| C[No Ground Truth / Expected Node]
-    B -->|Golden Dataset Benchmark| D[Ground Truth & Expected Node Supplied]
+### Port Allocations
 
-    C --> E[Execute Multi-Agent Workflow]
-    D --> E
-
-    E --> F[Consolidate Telemetry into 1 JSON]
-    F --> G[XADD to Redis Stream 'agent-logs' < 1ms]
-    G --> H[Evaluator Daemon OS Socket Wakeup]
-
-    H --> I{Did Payload Have Ground Truth?}
-    I -->|No - Live Chat| J[Evaluate: Latency, Groundedness, Hallucination]
-    J --> K[Set tool_acc, answer_correctness, context_recall = NULL]
-    I -->|Yes - Benchmark| L[Evaluate All 6 Metrics Simultaneously]
-
-    K --> M[INSERT Row into PostgreSQL agent_evaluations]
-    L --> M
-    M --> N[Grafana Real-Time Dashboard Updates]
-```
-
----
-
-## Summary of Ports & Credentials
-
-| Service | Host Port | Internal Port | Default Credentials | Description |
+| Service | Host Port | Internal Port | URL / Access | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **Arize Phoenix** | `6006` / `4317` | `6006` / `4317` | None (Open UI: `http://localhost:6006`) | Local Tracing, OTLP Collector & Span Evaluations |
-| **PostgreSQL** | `5433` (or `EVAL_POSTGRES_PORT`) | `5432` | `postgres` / `password` (db: `phoenix`, `eval_db`) | Unified Persistent Storage for Phoenix Traces & Metrics |
-| **Redis** | `6379` | `6379` | None (Streams: `phoenix-agent-traces`, `agent-logs`) | AOF Persistent Broker for Non-Blocking Trace Queuing |
-| **Grafana** | `3000` | `3000` | `admin` / `admin` | Real-time observability dashboard |
+| **Arize Phoenix** | `6006` | `6006` | <http://localhost:6006> | Traces, spans, and LLM evaluation UI |
+| **Arize Phoenix OTLP** | `4317` | `4317` | `http://localhost:4317` | OTLP gRPC telemetry collector |
+| **PostgreSQL** | `5433` | `5432` | `localhost:5433` | Persistent storage (`phoenix`, `eval_db`) |
+| **Redis** | `6379` | `6379` | `localhost:6379` | Streams: `phoenix-agent-traces`, `agent-logs` |
+| **Grafana** | `3000` | `3000` | <http://localhost:3000> | `admin` / `admin` (Provisioned dashboards) |
 
----
+### Environment Configuration (`evaluator/.env`)
 
-## Arize Phoenix & OpenTelemetry Architecture (gemma3:4b Sequential Judge)
+Copy `evaluator/.env.example` to `evaluator/.env` to customize settings:
 
-IMPARK includes a 100% free, local, open-source tracing and evaluation pipeline based on **Arize Phoenix**, **OpenTelemetry**, **Redis Streams**, and a single shared instance of **`gemma3:4b`** (via Ollama or vLLM at `http://localhost:11434/v1`).
+```ini
+# Local LLM Server (Ollama / vLLM)
+OPENAI_BASE_URL=http://localhost:11434/v1
+OPENAI_API_KEY=ollama
+AGENT_MODEL=gemma3:4b
+EVAL_MODEL=gemma3:4b
 
+# Redis Streams Configuration
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_STREAM=phoenix-agent-traces
+REDIS_LEGACY_STREAM=agent-logs
+
+# PostgreSQL Unified Storage Configuration
+EVAL_POSTGRES_PORT=5433
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5433
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+POSTGRES_DB=phoenix
+EVAL_POSTGRES_DB=eval_db
+
+# Arize Phoenix Configuration
+PHOENIX_ENDPOINT=http://localhost:6006
+PHOENIX_PROJECT_NAME=impark-deepagents
 ```
-                                        +---------------------------------------+
-                                        |  Local LLM Server (Ollama / vLLM)     |
-                                        |  Single Instance: 'gemma3:4b'          |
-                                        |  Endpoint: http://localhost:11434/v1  |
-                                        +---------------------------------------+
-                                                   ^                 ^
-                               (Step 1: Main Task) |                 | (Step 3: Judge)
-                                                   |                 |
-[User Request / Pipeline Run] ---------------------+                 |
-             |                                                       |
-             v                                                       |
-[LangChain Agent Execution]                                          |
-   - Intercepts graph retrieval step                                  |
-   - Tracks graph_retrieval_time (time.perf_counter)                 |
-   - Tool calling execution with ground truth expected tool          |
-   - OpenTelemetry spans captured                                    |
-             |                                                       |
-             v (Zero-hot-path latency)                               |
-[RedisStreamSpanExporter / Queue]                                    |
-   - Asynchronously pushes trace span payload to Redis Streams       |
-   - Main Agent goes to SLEEP (Task complete, RAM/VRAM freed)         |
-             |                                                       |
-             v (Blocking XREAD BLOCK 0 / block timeout)              |
-[Idle-Aware Sequential Evaluator Worker]                             |
-   - Sits at 0.0% CPU blocked on Redis socket                        |
-   - Wakes up immediately upon new trace stream entry                |
-   - Sequentially calls gemma3:4b as Judge:                          |
-       * Evaluates Groundedness & Hallucination Rate (strict JSON)   |
-       * Computes Tool Selection Accuracy (1.0 or 0.0)               |
-       * Extracts graph_retrieval_time from span metadata            |
-   - Logs evaluations permanently to Phoenix Postgres backend        |
-     using px.log_evaluations / SpanEvaluations                      |
-   - Forwards span via OTLP to Phoenix (http://localhost:6006)       |
-   - Immediately returns to IDLE / SLEEP (Redis XREAD BLOCK)         |
-             |
-             v
-[Arize Phoenix & PostgreSQL Storage Backend]
-   - Phoenix UI at http://localhost:6006
-   - PostgreSQL storing traces, spans, evaluations permanently
-```
-
-### The 4 Exact Core Metrics Tracked
-
-1. **`graph_retrieval_time`**: Measured with microsecond precision using Python's `time.perf_counter()` around the simulated graph database query step (capturing cold/warm query traversals in milliseconds).
-2. **`tool_selection_accuracy`**: A binary metric (`1.0` or `0.0`) computed by comparing the agent's selected tool name against a ground-truth expected tool name.
-3. **`groundedness`**: Calculated sequentially AFTER response generation by invoking the local `gemma3:4b` model with a strict JSON format constraint (`{"groundedness": float, "hallucination_rate": float, "reasoning": str}`).
-4. **`hallucination_rate`**: The mathematical inverse of groundedness (`1.0 - groundedness`), also emitted by the judge.
-
-### Core Architectural Guarantees
-
-- **Zero Hot-Path Overhead**: Spans are pushed asynchronously into Redis Streams via `RedisStreamSpanExporter`. The user response is returned with `< 1ms` telemetry delay.
-- **Strict Resource Conservation**: A single local model instance (`gemma3:4b`) handles both agent answering and judging sequentially. The agent finishes completely and goes to sleep before the judge activates.
-- **0.0% Idle CPU Utilization**: The evaluation worker uses Redis blocking reads (`XREAD block=0`). While idle, the OS thread enters kernel socket sleep.
-- **Persistent Long-Term Storage**: Traces and evaluations are never kept solely in memory; Arize Phoenix is configured with `PHOENIX_SQL_DATABASE_URL=postgresql://postgres:password@postgres:5432/phoenix` with a persistent Docker volume mount.
-
-### Running the Phoenix Architecture
-
-1. **Start the Infrastructure Stack:**
-   ```powershell
-   cd evaluator
-   docker compose up -d
-   ```
-   *Spins up Redis 7 (port 6379), PostgreSQL 16 (host port 5433), Arize Phoenix (port 6006 & 4317), and Grafana (port 3000).*
-
-2. **Configure the Environment (.env):**
-   ```ini
-   OPENAI_BASE_URL=http://localhost:11434/v1
-   AGENT_MODEL=gemma3:4b
-   EVAL_MODEL=gemma3:4b
-   REDIS_STREAM=phoenix-agent-traces
-   POSTGRES_PORT=5433
-   POSTGRES_DB=phoenix
-   PHOENIX_ENDPOINT=http://localhost:6006
-   ```
-
-3. **Run the End-to-End Demonstration:**
-   ```powershell
-   python phoenix_pipeline.py
-   ```
-
-4. **Run the Continuous Background Judge Worker:**
-   ```powershell
-   python phoenix_pipeline.py --worker
-   ```
-
-5. **Run the Test Suite:**
-   ```powershell
-   pytest test_phoenix_pipeline.py -v
-   ```
-
-6. **View the Traces & Evaluations in Phoenix UI:**
-   Open [http://localhost:6006](http://localhost:6006) in your browser. All spans, attributes, and evaluations are displayed in real-time.
