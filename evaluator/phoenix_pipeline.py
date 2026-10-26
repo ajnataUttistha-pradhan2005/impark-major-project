@@ -40,9 +40,11 @@ logger = logging.getLogger("impark.phoenix.pipeline")
 # Configuration from Environment Variables
 # ------------------------------------------------------------------------------
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "http://localhost:11434/v1")
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "ollama")
-AGENT_MODEL = os.getenv("AGENT_MODEL", "gemma3:4b")
-EVAL_MODEL = os.getenv("EVAL_MODEL", "gemma3:4b")
+AGENT_MODEL = os.getenv("AGENT_MODEL", os.getenv("AGENT_MAIN_MODEL", "gemma4:e4b"))
+EVAL_MODEL = os.getenv("EVAL_MODEL", os.getenv("AGENT_MAIN_MODEL", "gemma4:e4b"))
+EVAL_LLM_TIMEOUT = float(os.getenv("EVAL_LLM_TIMEOUT", "15.0"))
 
 REDIS_HOST = os.getenv("REDIS_HOST", "127.0.0.1")
 REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
@@ -383,14 +385,14 @@ def execute_agent_pipeline(
         f"Retrieved Evidence Claims:\n" + "\n".join(f"- {c}" for c in graph_facts["evidence_claims"])
     )
 
-    # Step D: Response Generation via Local gemma3:4b Instance
+    # Step D: Response Generation via Local gemma4:e4b Instance
     # Model Constraint: Single shared local model instance; sequentially invoked.
     agent_output = ""
     llm_connected = False
 
     if _REQUESTS_AVAILABLE:
         try:
-            # Attempt inference on local OpenAI-compatible endpoint (Ollama / vLLM)
+            # 1. Attempt inference on local OpenAI-compatible endpoint (Ollama / vLLM)
             payload = {
                 "model": AGENT_MODEL,
                 "messages": [
@@ -412,7 +414,7 @@ def execute_agent_pipeline(
                 f"{OPENAI_BASE_URL.rstrip('/')}/chat/completions",
                 json=payload,
                 headers={"Authorization": f"Bearer {OPENAI_API_KEY}"},
-                timeout=0.4,
+                timeout=EVAL_LLM_TIMEOUT,
             )
             if resp.status_code == 200:
                 data = resp.json()
@@ -421,6 +423,36 @@ def execute_agent_pipeline(
                 logger.info("Generated answer via local %s at %s", AGENT_MODEL, OPENAI_BASE_URL)
         except Exception:
             llm_connected = False
+
+        if not agent_output:
+            try:
+                # 2. Fallback attempt directly to native Ollama /api/chat endpoint
+                resp_native = requests.post(
+                    f"{OLLAMA_BASE_URL.rstrip('/')}/api/chat",
+                    json={
+                        "model": AGENT_MODEL,
+                        "messages": [
+                            {
+                                "role": "system",
+                                "content": "You are a factual medicinal plant discovery assistant. Answer strictly based on the provided context.",
+                            },
+                            {
+                                "role": "user",
+                                "content": f"Context:\n{context_text}\n\nQuestion: {user_query}",
+                            },
+                        ],
+                        "stream": False,
+                    },
+                    timeout=EVAL_LLM_TIMEOUT,
+                )
+                if resp_native.status_code == 200:
+                    data = resp_native.json()
+                    agent_output = data.get("message", {}).get("content", "").strip()
+                    if agent_output:
+                        llm_connected = True
+                        logger.info("Generated answer via native Ollama %s at %s", AGENT_MODEL, OLLAMA_BASE_URL)
+            except Exception:
+                llm_connected = False
 
     # Graceful local fallback response if local Ollama daemon is currently offline
     if not agent_output:
@@ -558,7 +590,7 @@ class IdleAwareEvaluationJudge:
 
         judge_response_json = None
 
-        # Attempt invocation on local OpenAI-compatible endpoint (gemma3:4b)
+        # Attempt invocation on local OpenAI-compatible endpoint (gemma4:e4b)
         if _REQUESTS_AVAILABLE:
             try:
                 payload = {
@@ -577,14 +609,45 @@ class IdleAwareEvaluationJudge:
                     f"{OPENAI_BASE_URL.rstrip('/')}/chat/completions",
                     json=payload,
                     headers={"Authorization": f"Bearer {OPENAI_API_KEY}"},
-                    timeout=0.4,
+                    timeout=EVAL_LLM_TIMEOUT,
                 )
                 if resp.status_code == 200:
                     raw_content = resp.json()["choices"][0]["message"]["content"].strip()
-                    judge_response_json = json.loads(raw_content)
-                    logger.info("Evaluation Judge %s returned structured JSON via %s", self.eval_model, OPENAI_BASE_URL)
+                    import re
+                    match = re.search(r"\{[\s\S]*\}", raw_content)
+                    if match:
+                        judge_response_json = json.loads(match.group(0))
+                        logger.info("Evaluation Judge %s returned structured JSON via %s", self.eval_model, OPENAI_BASE_URL)
             except Exception as llm_err:
-                logger.debug("Local Ollama judge endpoint unavailable (%s); using resilient deterministic judge.", llm_err)
+                logger.debug("OpenAI judge endpoint notice (%s); checking native Ollama endpoint.", llm_err)
+
+            if not judge_response_json or not isinstance(judge_response_json, dict):
+                try:
+                    resp_native = requests.post(
+                        f"{OLLAMA_BASE_URL.rstrip('/')}/api/chat",
+                        json={
+                            "model": self.eval_model,
+                            "messages": [
+                                {
+                                    "role": "system",
+                                    "content": "You are a precise evaluation judge. Output ONLY valid JSON.",
+                                },
+                                {"role": "user", "content": prompt},
+                            ],
+                            "format": "json",
+                            "stream": False,
+                        },
+                        timeout=EVAL_LLM_TIMEOUT,
+                    )
+                    if resp_native.status_code == 200:
+                        raw_content = resp_native.json().get("message", {}).get("content", "").strip()
+                        import re
+                        match = re.search(r"\{[\s\S]*\}", raw_content)
+                        if match:
+                            judge_response_json = json.loads(match.group(0))
+                            logger.info("Evaluation Judge %s returned structured JSON via native %s", self.eval_model, OLLAMA_BASE_URL)
+                except Exception as nat_err:
+                    logger.debug("Native Ollama judge endpoint notice (%s); using resilient fallback.", nat_err)
 
         # Fallback: Content-token grounding check if local Ollama daemon is offline
         if not judge_response_json or not isinstance(judge_response_json, dict):
@@ -827,11 +890,25 @@ class IdleAwareEvaluationJudge:
         span_id = payload.get("span_id", str(uuid.uuid4())[:16])
         attrs = payload.get("attributes", {})
 
-        user_query = attrs.get("input.value", "Medicinal plant inquiry")
-        agent_output = attrs.get("output.value", "")
-        retrieved_context = attrs.get("retrieved_context", "")
-        graph_retrieval_time_ms = float(attrs.get("graph_retrieval_time_ms", 0.0))
-        tool_accuracy = float(attrs.get("tool_selection_accuracy", 1.0))
+        user_query = attrs.get("input.value") or payload.get("user_input") or "Medicinal plant inquiry"
+        agent_output = attrs.get("output.value") or payload.get("agent_output") or ""
+        retrieved_context = attrs.get("retrieved_context") or payload.get("retrieved_context") or ""
+        graph_retrieval_time_ms = float(
+            attrs.get("graph_retrieval_time_ms")
+            or payload.get("retrieval_time_ms")
+            or payload.get("node_latencies_ms", {}).get("GraphRetriever")
+            or payload.get("node_latencies_ms", {}).get("retrieve_plant_graph")
+            or payload.get("node_latencies_ms", {}).get("knowledge_graph")
+            or 0.0
+        )
+        if "tool_selection_accuracy" in attrs:
+            tool_accuracy = float(attrs["tool_selection_accuracy"])
+        elif "tool_selection_accuracy" in payload:
+            tool_accuracy = float(payload["tool_selection_accuracy"])
+        else:
+            expected = payload.get("expected_agent")
+            traj = payload.get("trajectory", [])
+            tool_accuracy = 1.0 if not expected or expected in traj else 0.0
 
         logger.info(
             "Judge Worker Awakened: Evaluating span %s (Graph Retrieval: %.2f ms, Tool Accuracy: %.1f)",
@@ -840,7 +917,7 @@ class IdleAwareEvaluationJudge:
             tool_accuracy,
         )
 
-        # Sequential LLM Evaluation: Wakes up gemma3:4b judge
+        # Sequential LLM Evaluation: Wakes up gemma4:e4b judge
         groundedness, hallucination_rate, reasoning = self.evaluate_groundedness_with_judge(
             context=retrieved_context,
             user_query=user_query,

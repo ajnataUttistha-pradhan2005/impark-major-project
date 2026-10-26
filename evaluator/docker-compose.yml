@@ -1,6 +1,6 @@
 # ==============================================================================
-# IMPARK Distributed Event-Driven Evaluator & Observability Pipeline
-# Infrastructure Stack: Redis 7 Alpine, PostgreSQL 16 Alpine, Grafana
+# IMPARK Evaluator & Observability Pipeline (Arize Phoenix + LLM-as-a-Judge)
+# Infrastructure Stack: Redis 7 Alpine, PostgreSQL 16 Alpine, Arize Phoenix
 # ==============================================================================
 
 services:
@@ -22,7 +22,7 @@ services:
     networks:
       - eval-network
 
-  # 2. Unified Storage: PostgreSQL 16 Alpine (~40MB RAM, JSONB + Relational Metrics)
+  # 2. Unified Storage: PostgreSQL 16 Alpine (Persists traces, spans, and evaluations)
   postgres:
     image: postgres:16-alpine
     container_name: eval-postgres
@@ -36,7 +36,7 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d phoenix"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
       interval: 5s
       timeout: 3s
       retries: 5
@@ -49,7 +49,6 @@ services:
     image: arizephoenix/phoenix:latest
     container_name: eval-phoenix
     environment:
-      # Directs Arize Phoenix to persist all traces, spans, and evaluations in PostgreSQL
       - PHOENIX_SQL_DATABASE_URL=postgresql://postgres:password@postgres:5432/phoenix
       - PHOENIX_PORT=6006
       - PHOENIX_HOST=0.0.0.0
@@ -64,59 +63,11 @@ services:
     networks:
       - eval-network
 
-  # 4. Visualization Layer: Grafana (~60MB RAM)
-  grafana:
-    image: grafana/grafana:latest
-    container_name: eval-grafana
-    ports:
-      - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-      - GF_USERS_ALLOW_SIGN_UP=false
-    depends_on:
-      postgres:
-        condition: service_healthy
-    volumes:
-      - grafanadata:/var/lib/grafana
-      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
-      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
-      - ./grafana/dashboards:/etc/grafana/dashboards:ro
-    restart: unless-stopped
-    networks:
-      - eval-network
-
-  # 4. Optional Containerized Evaluator Daemon (can run on host or via docker profile)
-  evaluator-worker:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: eval-worker
-    profiles: ["worker", "all"]
-    environment:
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=eval_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-    depends_on:
-      redis:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
-    restart: unless-stopped
-    networks:
-      - eval-network
-
 volumes:
   redisdata:
     name: eval_redisdata
   pgdata:
     name: eval_pgdata
-  grafanadata:
-    name: eval_grafanadata
 
 networks:
   eval-network:

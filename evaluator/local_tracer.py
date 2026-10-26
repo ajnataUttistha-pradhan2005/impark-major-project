@@ -53,7 +53,7 @@ class LocalRedisTracer(BaseCallbackHandler):
         self.redis_host = redis_host or os.getenv("REDIS_HOST", "127.0.0.1")
         self.redis_port = int(redis_port or os.getenv("REDIS_PORT", 6379))
         self.redis_password = redis_password or os.getenv("REDIS_PASSWORD", None)
-        self.stream_name = stream_name or os.getenv("REDIS_STREAM", "agent-logs")
+        self.stream_name = stream_name or os.getenv("REDIS_STREAM", "phoenix-agent-traces")
         self.phoenix_stream = os.getenv("PHOENIX_STREAM", "phoenix-agent-traces")
         self.retrieval_node_name = retrieval_node_name
         self.socket_timeout = socket_timeout
@@ -272,6 +272,7 @@ class LocalRedisTracer(BaseCallbackHandler):
 
         payload: Dict[str, Any] = {
             "trace_id": self.trace_id,
+            "span_id": self.trace_id.replace("-", "")[:16],
             "user_input": user_input,
             "retrieved_context": context_str,
             "agent_output": agent_output,
@@ -282,6 +283,16 @@ class LocalRedisTracer(BaseCallbackHandler):
             "retrieval_time_ms": round(float(retrieval_ms), 2),
             "total_tokens": int(self.total_tokens),
             "metadata": extra_metadata or {},
+            "attributes": {
+                "input.value": user_input,
+                "output.value": agent_output,
+                "retrieved_context": context_str,
+                "graph_retrieval_time_ms": round(float(retrieval_ms), 2),
+                "tool_selection_accuracy": (
+                    1.0 if not expected_agent or expected_agent in self.trajectory else 0.0
+                ),
+                "trajectory": list(self.trajectory),
+            },
         }
 
         # Zero Hot-Path Latency: Publish to Redis Stream with exception isolation

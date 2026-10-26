@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ==============================================================================
 # IMPARK Evaluator & Observability Pipeline - Cloud EC2 Migration & Deployment
-# Self-hosted, decoupled LangGraph evaluation stack (Redis, Postgres, Grafana, CPU Daemon)
+# Self-hosted LLM-as-a-Judge (gemma4:e4b) + Arize Phoenix + Redis Streams
 # ==============================================================================
 
 set -euo pipefail
@@ -14,7 +14,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${CYAN}=====================================================================${NC}"
-echo -e "${CYAN}       IMPARK Evaluator Pipeline - AWS EC2 Cloud Deployment         ${NC}"
+echo -e "${CYAN}   IMPARK Phoenix Evaluator Pipeline - AWS EC2 Cloud Deployment      ${NC}"
 echo -e "${CYAN}=====================================================================${NC}"
 
 # 1. Determine Working Directory
@@ -54,7 +54,6 @@ if ! command -v docker &> /dev/null; then
         if [[ "$DISTRO" == "amzn" ]]; then
             $SUDO dnf install -y docker libxcrypt-compat
             $SUDO systemctl enable --now docker
-            # Install compose plugin for AL2023
             DOCKER_CONFIG=${DOCKER_CONFIG:-/usr/local/lib/docker}
             $SUDO mkdir -p $DOCKER_CONFIG/cli-plugins
             $SUDO curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-$ARCH -o $DOCKER_CONFIG/cli-plugins/docker-compose
@@ -67,11 +66,9 @@ if ! command -v docker &> /dev/null; then
         fi
     fi
 
-    # Enable and start Docker service
     $SUDO systemctl enable docker || true
     $SUDO systemctl start docker || true
 
-    # Add current user to docker group if running under non-root
     if [ -n "${SUDO_USER:-}" ]; then
         $SUDO usermod -aG docker "$SUDO_USER"
         echo -e "${GREEN}[+] Added $SUDO_USER to docker group.${NC}"
@@ -101,10 +98,10 @@ if [ -f /sys/kernel/mm/transparent_hugepage/enabled ]; then
     echo never | $SUDO tee /sys/kernel/mm/transparent_hugepage/enabled > /dev/null || true
 fi
 
-# 5. Launch Infrastructure via Docker Compose
-echo -e "${CYAN}[*] Starting Redis, PostgreSQL, Grafana, and Evaluator Worker containers...${NC}"
+# 5. Launch Infrastructure via Docker Compose (Redis, Postgres, Arize Phoenix)
+echo -e "${CYAN}[*] Starting Redis, PostgreSQL, and Arize Phoenix containers...${NC}"
 $COMPOSE down --remove-orphans || true
-$COMPOSE --profile all up -d --build
+$COMPOSE up -d --remove-orphans
 
 # 6. Healthcheck Verification Wait Loop
 echo -e "${CYAN}[*] Waiting for services to reach healthy state...${NC}"
@@ -117,6 +114,8 @@ while [ $COUNTER -lt $MAX_WAIT ]; do
 
     if [[ "$REDIS_STATUS" == *"healthy"* && "$PG_STATUS" == *"healthy"* ]]; then
         echo -e "${GREEN}[+] Redis and PostgreSQL are HEALTHY!${NC}"
+        # Ensure phoenix database exists
+        docker exec eval-postgres psql -U postgres -c "SELECT 'CREATE DATABASE phoenix' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'phoenix')\gexec" &>/dev/null || true
         break
     fi
 
@@ -131,16 +130,11 @@ if [ $COUNTER -ge $MAX_WAIT ]; then
     docker logs eval-redis --tail 20 || true
 fi
 
-# 7. Run Verification Test Suite Inside the Environment
-echo -e "${CYAN}[*] Executing Verification Test Suite (Flow 1 & Flow 2)...${NC}"
-if docker ps --format '{{.Names}}' | grep -q 'eval-worker'; then
-    echo -e "${GREEN}[+] Testing pipeline via running container 'eval-worker'...${NC}"
-    docker exec eval-worker python test_pipeline.py
-else
-    echo -e "${YELLOW}[!] Container worker not detected. Testing via local python if available...${NC}"
-    if command -v python3 &> /dev/null; then
-        REQUIRE_LIVE_INFRA=1 python3 test_pipeline.py
-    fi
+# 7. Run Phoenix Pipeline End-to-End Evaluation
+echo -e "${CYAN}[*] Executing Phoenix LLM-as-a-Judge Evaluation Pipeline...${NC}"
+if command -v python3 &> /dev/null; then
+    python3 -m pip install -q -r requirements.txt || true
+    AGENT_MODEL=gemma4:e4b EVAL_MODEL=gemma4:e4b python3 phoenix_pipeline.py
 fi
 
 # 8. Detect Public EC2 IP Address for User Access
@@ -148,14 +142,13 @@ PUBLIC_IP=$(curl -s --connect-timeout 2 http://169.254.169.254/latest/meta-data/
 POSTGRES_PORT_DISPLAY=${EVAL_POSTGRES_PORT:-5433}
 
 echo -e "\n${GREEN}=====================================================================${NC}"
-echo -e "${GREEN}       DEPLOYMENT SUCCESSFUL! IMPARK EVALUATOR IS ACTIVE           ${NC}"
+echo -e "${GREEN}       DEPLOYMENT SUCCESSFUL! IMPARK PHOENIX EVALUATOR IS ACTIVE    ${NC}"
 echo -e "${GREEN}=====================================================================${NC}"
-echo -e "  • Grafana Dashboard:    ${CYAN}http://${PUBLIC_IP}:3000${NC}"
-echo -e "  • Default Login:        Username: ${YELLOW}admin${NC} | Password: ${YELLOW}admin${NC}"
-echo -e "  • Pre-Loaded Dashboard: ${CYAN}http://${PUBLIC_IP}:3000/d/impark-eval-overview${NC}"
-echo -e "  • PostgreSQL Port:      ${CYAN}localhost:${POSTGRES_PORT_DISPLAY}${NC} (db: eval_db, user: postgres)"
-echo -e "  • Redis Stream Broker:  ${CYAN}localhost:6379${NC} (stream: agent-logs)"
+echo -e "  • Arize Phoenix UI:     ${CYAN}http://${PUBLIC_IP}:6006${NC}"
+echo -e "  • PostgreSQL Backend:   ${CYAN}${PUBLIC_IP}:${POSTGRES_PORT_DISPLAY}${NC} (db: ${YELLOW}phoenix${NC})"
+echo -e "  • Redis Streams Queue:  ${CYAN}${PUBLIC_IP}:6379${NC} (stream: ${YELLOW}phoenix-agent-traces${NC})"
+echo -e "  • Sequential Judge:     ${CYAN}gemma4:e4b${NC} (via Ollama at http://localhost:11434)"
 echo -e "\n${YELLOW}[NOTE for EC2 Security Groups]:${NC}"
-echo -e "  Ensure your EC2 Security Group permits Inbound Traffic on Port 3000 (TCP)"
-echo -e "  to allow access to the Grafana evaluation dashboard from your web browser."
+echo -e "  Ensure your EC2 Security Group permits Inbound Traffic on Port 6006 (TCP)"
+echo -e "  to allow access to the Arize Phoenix UI from your web browser."
 echo -e "${GREEN}=====================================================================${NC}\n"

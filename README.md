@@ -24,30 +24,31 @@ Configure the exact local/container/cloud connection URLs in `.env` **before** r
 
 ## Observability & Evaluation
 
-IMPARK includes a self-hosted, decoupled multi-agent evaluation architecture providing two complementary observability stacks:
-1. **Arize Phoenix & Gemma3:4b LLM-as-a-Judge (`phoenix_pipeline.py`)**: Sequential local judge evaluating `graph_retrieval_time`, `tool_selection_accuracy`, `groundedness`, and `hallucination_rate` with trace exploration in Arize Phoenix UI (<http://localhost:6006>).
-2. **Executive Grafana & CPU Evaluator (`redis_evaluator.py`)**: Zero-cost CPU-only NLP grading (`all-MiniLM-L6-v2` + `nli-deberta-v3-small`), non-blocking Redis Streams (`< 1ms`), PostgreSQL 16 `JSONB` storage, and executive Grafana dashboards (<http://localhost:3000>, `admin`/`admin`).
+IMPARK includes a self-hosted, decoupled multi-agent evaluation architecture powered by **Arize Phoenix**, **Redis Streams**, and a local **Gemma 4 (`gemma4:e4b`)** instance serving as an LLM judge:
+* **Trace Routing & Queue**: Non-blocking (< 1ms) OpenTelemetry span push to Redis Streams (`phoenix-agent-traces`).
+* **Sequential LLM Judge**: Evaluates `graph_retrieval_time`, `tool_selection_accuracy`, `groundedness`, and `hallucination_rate` with zero parallel thread VRAM collisions.
+* **Persistent Storage & UI**: Stores traces and evaluations permanently in PostgreSQL 16 (`phoenix` db), with real-time visualization in the Arize Phoenix UI (<http://localhost:6006>).
 
-To launch the evaluation stack locally or on AWS EC2, follow the [Evaluator Guide](evaluator/README.md):
+To launch the evaluation pipeline locally or on AWS EC2, follow the [Evaluator Guide](evaluator/README.md):
 
 ```powershell
-# 1. Start Evaluator Infrastructure (Redis, Postgres, Phoenix, Grafana)
+# 1. Start Evaluator Infrastructure (Redis, Postgres, Arize Phoenix)
 cd evaluator
 docker compose up -d
 
-# 2. Run the Arize Phoenix + Gemma3:4b Evaluation Pipeline
+# 2. Run the Arize Phoenix + Gemma 4 Evaluation Pipeline
 python phoenix_pipeline.py
 
-# 3. Or run the CPU Evaluator & Grafana Pipeline
-python redis_evaluator.py
+# 3. Or run the continuous idle-aware background worker daemon
+python phoenix_pipeline.py --worker
 
-# 4. Run automated test suites
+# 4. Run automated test suite
 pytest test_phoenix_pipeline.py -v
-pytest test_pipeline.py -v
 ```
 
 For 1-command automated deployments:
 * **Windows**: `.\evaluator\deploy_windows.ps1`
+* **AWS EC2 (Linux)**: `./evaluator/deploy_ec2.sh`
 * **AWS EC2 (Linux)**: `./evaluator/deploy_ec2.sh`
 
 ## Validation

@@ -1,9 +1,9 @@
 # ==============================================================================
 # IMPARK Evaluator & Observability Pipeline Dependencies
-# Self-hosted, decoupled, local evaluation stack for LangChain multi-agent systems
+# 100% Free, Local LLM-as-a-Judge (gemma4:e4b) + Arize Phoenix + Redis Streams
 # ==============================================================================
 
-# Core Message Broker & Storage
+# Core Message Broker & PostgreSQL Storage
 redis>=5.0.0
 psycopg2-binary>=2.9.9
 psycopg>=3.1.0
@@ -20,7 +20,7 @@ arize-phoenix-client>=3.0.0
 arize-phoenix-evals>=3.0.0
 pandas>=2.0.0
 
-# LangChain & LLM Tooling
+# LangChain & Local LLM Tooling
 langchain>=0.3.0
 langchain-core>=0.3.0
 langchain-ollama>=0.2.0
@@ -28,7 +28,4 @@ openai>=1.0.0
 python-dotenv>=1.0.0
 pydantic>=2.0.0
 requests>=2.28.0
-
-# Local CPU Inference Models (~220MB RAM)
-sentence-transformers>=3.0.0
-torch>=2.2.0
+pytest>=8.0.0
