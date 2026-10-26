@@ -118,6 +118,21 @@ class DeepAgentRuntime:
             publish("response_delta", {"text": text})
             publish("response_completed", state.response.model_dump(mode="json"))
             self.harness.emit(state, EventType.RESPONSE_STREAM_COMPLETED)
+            if tracer is not None:
+                tracer.record_node("text_entity", 1.0)
+                tracer.publish_run(
+                    user_input=state.user_message,
+                    agent_output=text,
+                    expected_agent="text_entity",
+                    ground_truth=active.label,
+                    manual_context=f"Selected plant: {active.label} ({active.plant_id})",
+                    extra_metadata={
+                        "session_id": str(state.correlation.session_id),
+                        "run_id": str(state.correlation.run_id),
+                        "plant_label": active.label,
+                        "mode": "DISCOVERY_LOCK",
+                    },
+                )
             return state
         candidates: dict[str, CandidatePlant] = {}
         scope_rejected = False
@@ -607,8 +622,8 @@ class DeepAgentRuntime:
         self.harness.emit(state, EventType.RESPONSE_STREAM_COMPLETED)
 
         # Single end-of-turn evaluation publish: Streamed to Redis for LLM-as-a-Judge pipeline
-        # Only emitted when an action/tool was performed to eliminate duplicate rows and keep idle CPU at 0.0%
-        if tracer is not None and tracer.actions_performed > 0:
+        # Emitted when an action/tool was performed or a final answer was generated
+        if tracer is not None and (tracer.actions_performed > 0 or bool(answer)):
             evidence_claims = [e.claim for e in state.evidence.graph]
             manual_ctx = "\n".join(evidence_claims) if evidence_claims else None
             tracer.publish_run(

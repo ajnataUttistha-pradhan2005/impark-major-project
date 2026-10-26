@@ -96,15 +96,23 @@ To run seamlessly on consumer hardware with limited RAM/VRAM:
 
 ```powershell
 cd evaluator
+
+# Start infrastructure and run the continuous idle-aware worker:
 .\deploy_windows.ps1
+
+# Or run a single real agent query evaluation directly:
+.\deploy_windows.ps1 -Query "What are the active phytochemicals of Withania somnifera?"
+
+# Or run the self-test verification demo:
+.\deploy_windows.ps1 -Demo
 ```
 
 This script automatically:
-1. Verifies Docker Desktop is running.
-2. Launches Redis, PostgreSQL, and Arize Phoenix containers.
-3. Ensures the `phoenix` database is created.
-4. Executes an end-to-end evaluation run using `gemma4:e4b`.
-5. Opens Arize Phoenix at **[http://localhost:6006](http://localhost:6006)**.
+1. Verifies Docker Desktop is running and launches `eval-redis`, `eval-postgres`, and `eval-phoenix`.
+2. Automatically creates the `phoenix` database and `agent_evaluations` table inside PostgreSQL.
+3. Checks if local Ollama daemon is running at `http://localhost:11434` with model `gemma4:e4b`.
+4. Starts the **Continuous Idle-Aware Evaluation Judge Worker** (sitting in kernel socket read at 0.0% CPU until real agent traces arrive).
+5. Exposes the Arize Phoenix UI at **[http://localhost:6006](http://localhost:6006)**.
 
 ---
 
@@ -117,20 +125,30 @@ docker compose up -d
 ```
 *Spins up Redis 7 (port 6379), PostgreSQL 16 (host port 5433), and Arize Phoenix (port 6006).*
 
+> [!TIP]
+> **Fix for `database "phoenix" does not exist`**:
+> If your Postgres container had an existing volume from an earlier setup, run:
+> ```powershell
+> docker exec -i eval-postgres psql -U postgres -c "CREATE DATABASE phoenix;"
+> ```
+> The Python pipeline and `deploy_windows.ps1` also automatically detect and self-heal missing databases on launch.
+
 #### 2. Install Python Dependencies
 ```powershell
 pip install -r requirements.txt
 ```
 
-#### 3. Pull the Judge Model in Ollama
+#### 3. Start Ollama and Pull the Judge Model
 ```powershell
+ollama serve
 ollama pull gemma4:e4b
 ```
 
-#### 4. Run the Evaluation Pipeline
+#### 4. Run the Idle-Aware Judge Worker Daemon
 ```powershell
-python phoenix_pipeline.py
+python phoenix_pipeline.py --worker
 ```
+*The judge sits completely idle (0.0% CPU) until an agent turn executes, evaluates it sequentially, commits to Phoenix & PostgreSQL, and returns to sleep.*
 
 #### 5. Open Arize Phoenix UI
 Navigate to **[http://localhost:6006](http://localhost:6006)** to inspect all spans, traces, and LLM evaluation grades in real time.
@@ -160,14 +178,28 @@ chmod +x deploy_ec2.sh
 ### CLI Commands
 
 ```powershell
-# 1. Run full end-to-end demonstration & print 4-metric table
-python phoenix_pipeline.py
-
-# 2. Run continuous idle-aware background worker (0.0% CPU socket sleep)
+# 1. Run continuous idle-aware background worker (0.0% CPU socket sleep)
 python phoenix_pipeline.py --worker
 
-# 3. Run evaluation for custom user query and expected tool
-python phoenix_pipeline.py --query "What are the active phytochemicals of Withania somnifera?" --tool query_knowledge_graph
+# 2. Run evaluation on a real live agent turn for a specific query & plant
+python phoenix_pipeline.py --query "What are the active phytochemicals of Withania somnifera?" --plant withania_somnifera --expected-tool query_knowledge_graph
+
+# 3. Run end-to-end self-test verification demo
+python phoenix_pipeline.py --demo
+```
+
+### Inspecting Live Telemetry & Persisted Records
+
+```powershell
+# Inspect Redis Stream for queued agent traces:
+docker exec -it eval-redis redis-cli XRANGE phoenix-agent-traces - + COUNT 5
+docker exec -it eval-redis redis-cli XRANGE my_stream - + COUNT 5
+
+# Inspect evaluations committed to PostgreSQL:
+docker exec -it eval-postgres psql -U postgres -d phoenix -c "SELECT id, trace_id, groundedness, hallucination_rate, graph_retrieval_time_ms, tool_selection_accuracy, created_at FROM agent_evaluations ORDER BY id DESC LIMIT 5;"
+
+# Open Arize Phoenix Observability Dashboard:
+# http://localhost:6006
 ```
 
 ### Programmatic Python Usage

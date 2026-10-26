@@ -3,6 +3,12 @@
 # Self-hosted LLM-as-a-Judge (gemma4:e4b) + Arize Phoenix + Redis Streams
 # ==============================================================================
 
+param (
+    [switch]$Worker,
+    [switch]$Demo,
+    [string]$Query = ""
+)
+
 Write-Host "=====================================================================" -ForegroundColor Cyan
 Write-Host "   IMPARK Phoenix LLM-as-a-Judge Pipeline - Windows Environment      " -ForegroundColor Cyan
 Write-Host "=====================================================================" -ForegroundColor Cyan
@@ -39,12 +45,15 @@ if ($dockerRunning) {
     Write-Host "[*] Launching infrastructure containers (Redis, Postgres, Arize Phoenix)..." -ForegroundColor Yellow
     docker compose up -d --remove-orphans
     
-    Write-Host "`nWaiting for database healthchecks (10 seconds)..." -ForegroundColor Gray
-    Start-Sleep -Seconds 10
+    Write-Host "`nWaiting for database healthchecks (5 seconds)..." -ForegroundColor Gray
+    Start-Sleep -Seconds 5
 
-    # Ensure phoenix database exists inside PostgreSQL
+    # Ensure phoenix database and table exist inside PostgreSQL
     try {
-        docker exec -i eval-postgres psql -U postgres -c "SELECT 'CREATE DATABASE phoenix' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'phoenix')\gexec" 2>&1 | Out-Null
+        docker exec -i eval-postgres psql -U postgres -d postgres -c "SELECT 'CREATE DATABASE phoenix' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'phoenix')\gexec" 2>&1 | Out-Null
+    } catch {}
+    try {
+        docker exec -i eval-postgres psql -U postgres -d phoenix -c "CREATE TABLE IF NOT EXISTS agent_evaluations (id SERIAL PRIMARY KEY, trace_id VARCHAR(64), span_id VARCHAR(64), user_input TEXT, agent_output TEXT, retrieved_context TEXT, graph_retrieval_time_ms DOUBLE PRECISION, tool_selection_accuracy DOUBLE PRECISION, groundedness DOUBLE PRECISION, hallucination_rate DOUBLE PRECISION, judge_reasoning TEXT, raw_payload JSONB, created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP);" 2>&1 | Out-Null
     } catch {}
 
     Write-Host "`n[+] Infrastructure services started successfully!" -ForegroundColor Green
@@ -54,10 +63,25 @@ if ($dockerRunning) {
     Write-Host "  - Judge Model:       gemma4:e4b (via local Ollama at http://localhost:11434)`n" -ForegroundColor Cyan
 } else {
     Write-Host "[!] Docker Desktop is not currently running." -ForegroundColor Yellow
-    Write-Host "    Pipeline will run with in-memory fallbacks. To run with live persistent containers, start Docker Desktop." -ForegroundColor Gray
+    Write-Host "    Pipeline will run with in-memory fallbacks. To run with live persistent containers, start Docker Desktop.`n" -ForegroundColor Gray
 }
 
-# 2. Resolve Python Executable
+# 2. Check Ollama Status
+$ollamaOnline = $false
+try {
+    $resp = Invoke-WebRequest -Uri "http://localhost:11434/api/tags" -UseBasicParsing -TimeoutSec 1 -ErrorAction SilentlyContinue
+    if ($resp.StatusCode -eq 200) { $ollamaOnline = $true }
+} catch {}
+
+if ($ollamaOnline) {
+    Write-Host "[+] Local Ollama is ONLINE (ready for gemma4:e4b judge execution)." -ForegroundColor Green
+} else {
+    Write-Host "[!] Local Ollama is not currently active at http://localhost:11434." -ForegroundColor Yellow
+    Write-Host "    To use gemma4:e4b for LLM-as-a-Judge, start Ollama ('ollama serve') and pull 'gemma4:e4b'." -ForegroundColor Gray
+    Write-Host "    The evaluation engine will use factual token-grounding verification until Ollama is started.`n" -ForegroundColor Gray
+}
+
+# 3. Resolve Python Executable
 $pythonCandidates = @(
     "$ScriptDir\..\.venv\Scripts\python.exe",
     "$ScriptDir\.venv\Scripts\python.exe",
@@ -83,25 +107,32 @@ if (-not $pythonExe) {
 
 Write-Host "[+] Using Python: $pythonExe" -ForegroundColor Green
 
-# 3. Check / Install dependencies if redis or phoenix is missing
+# 4. Check / Install dependencies if redis or requests is missing
 $depsTest = & $pythonExe -c "import redis, requests; print('OK')" 2>$null
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[!] Core dependencies missing in $pythonExe. Installing requirements.txt..." -ForegroundColor Yellow
     & $pythonExe -m pip install -q -r requirements.txt
 }
 
-# 4. Run Phoenix Pipeline End-to-End Evaluation
-Write-Host "[*] Executing Phoenix LLM-as-a-Judge Evaluation Pipeline..." -ForegroundColor Yellow
-& $pythonExe phoenix_pipeline.py
+# 5. Execute Desired Pipeline Mode
+if ($Query) {
+    Write-Host "[*] Evaluating Live Agent Turn for Query: '$Query'..." -ForegroundColor Yellow
+    & $pythonExe phoenix_pipeline.py --query $Query
+} elseif ($Demo) {
+    Write-Host "[*] Executing Phoenix LLM-as-a-Judge Pipeline Verification..." -ForegroundColor Yellow
+    & $pythonExe phoenix_pipeline.py --demo
+} else {
+    Write-Host "[*] Launching Continuous Idle-Aware Evaluation Judge Worker (0.0% Idle CPU)..." -ForegroundColor Yellow
+    Write-Host "    Listening on Redis Streams: 'phoenix-agent-traces', 'my_stream', 'agent-logs'" -ForegroundColor Gray
+    Write-Host "    The judge sleeps in kernel space and wakes up sequentially when an agent turn completes." -ForegroundColor Gray
+    Write-Host "    Press Ctrl+C to stop the worker.`n" -ForegroundColor Gray
+    & $pythonExe phoenix_pipeline.py --worker
+}
 $pipelineExitCode = $LASTEXITCODE
 
-if ($pipelineExitCode -ne 0) {
+if ($pipelineExitCode -ne 0 -and $pipelineExitCode -ne 130) {
     Write-Host "`n=====================================================================" -ForegroundColor Red
-    Write-Host "           Pipeline Execution FAILED (Exit Code: $pipelineExitCode)   " -ForegroundColor Red
+    Write-Host "           Pipeline Execution Exited with code: $pipelineExitCode     " -ForegroundColor Red
     Write-Host "=====================================================================" -ForegroundColor Red
     exit $pipelineExitCode
 }
-
-Write-Host "`n=====================================================================" -ForegroundColor Green
-Write-Host "   Pipeline Verified! Open Arize Phoenix: http://localhost:6006       " -ForegroundColor Green
-Write-Host "=====================================================================" -ForegroundColor Green

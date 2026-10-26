@@ -299,24 +299,21 @@ class LocalRedisTracer(BaseCallbackHandler):
         client = self._get_client()
         redis_published = False
         if client is not None:
-            try:
-                client.xadd(self.stream_name, {"payload": json.dumps(payload)})
-                if self.phoenix_stream and self.phoenix_stream != self.stream_name:
-                    client.xadd(self.phoenix_stream, {"payload": json.dumps(payload)})
-                redis_published = True
+            # Publish to primary stream and standard aliases (ensures redis-cli XRANGE my_stream / phoenix-agent-traces both work)
+            streams_to_publish = {self.stream_name, self.phoenix_stream, "my_stream", "agent-logs"}
+            for target_stream in streams_to_publish:
+                if target_stream:
+                    try:
+                        client.xadd(target_stream, {"payload": json.dumps(payload)})
+                        redis_published = True
+                    except Exception as s_exc:
+                        logger.debug("Failed publishing to stream %s: %s", target_stream, s_exc)
+            if redis_published:
                 logger.debug(
-                    "Published trace payload %s to stream '%s' (and '%s')",
+                    "Published trace payload %s to streams %s",
                     self.trace_id,
-                    self.stream_name,
-                    self.phoenix_stream,
+                    list(streams_to_publish),
                 )
-            except Exception as exc:
-                # Telemetry failure must never disrupt the user application
-                logger.warning(
-                    "Redis tracer publish failed (non-blocking, skipped): %s", exc
-                )
-                LocalRedisTracer._global_last_failure_time = time.time()
-                self._redis_client = None
         else:
             logger.debug(
                 "Redis client unavailable; trace %s recorded locally only.",
@@ -342,7 +339,7 @@ class LocalRedisTracer(BaseCallbackHandler):
 
             host = os.getenv("POSTGRES_HOST", "127.0.0.1")
             port = int(os.getenv("EVAL_POSTGRES_PORT", os.getenv("POSTGRES_PORT", "5433")))
-            db = os.getenv("POSTGRES_DB", "eval_db")
+            db = os.getenv("POSTGRES_DB", "phoenix")
             user = os.getenv("POSTGRES_USER", "postgres")
             password = os.getenv("POSTGRES_PASSWORD", "password")
 
