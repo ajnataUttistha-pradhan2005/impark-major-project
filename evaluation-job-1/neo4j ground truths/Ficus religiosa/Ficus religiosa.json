@@ -1,0 +1,1446 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "66387",
+      "global_status": "Least Concern",
+      "biodiversity_url": "https://indiabiodiversity.org/species/show/31353",
+      "iucn_url": "https://www.iucnredlist.org/species/150222331/152201512",
+      "common_names": "Sacred Fig, Peepal Tree, Pipul, Sacred Bo Tree, Peepal",
+      "iucn_year": "2022",
+      "source": "IUCN, IISC",
+      "plant_name": "Ficus religiosa",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+      {
+        "plant_part": "bark",
+        "plant_part_id": "FI-RE-BA",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "flower",
+        "plant_part_id": "FI-RE-FL",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "fruit",
+        "plant_part_id": "FI-RE-FR",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "leaf",
+        "plant_part_id": "FI-RE-LE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "plant exudate",
+        "plant_part_id": "FI-RE-PL",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "root",
+        "plant_part_id": "FI-RE-RO",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "seed",
+        "plant_part_id": "FI-RE-SE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "shoot",
+        "plant_part_id": "FI-RE-SH",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "stem",
+        "plant_part_id": "FI-RE-ST",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      },
+      {
+        "plant_part": "whole plant",
+        "plant_part_id": "FI-RE-WH",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20religiosa",
+        "plant_name": "Ficus religiosa"
+      }
+    ],
+    "phytochemicals": [
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "beta-Sitosterol",
+        "imppat_id": "IMPHY014836",
+        "smiles": "CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "KZJWDPNRJALLNS-VJSFXXLFSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL221542",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014836"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "Stigmasterol",
+        "imppat_id": "IMPHY014842",
+        "smiles": "CC[C@@H](C(C)C)/C=C/[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "HCXVJBMSMIARIN-PHZDYDNGSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL400247",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014842"
+      },
+      {
+        "classyfire_subclass": "Hydroxycinnamic acids and derivatives",
+        "phytochemical_name": "Caffeic acid",
+        "imppat_id": "IMPHY011933",
+        "smiles": "OC(=O)/C=C/c1ccc(c(c1)O)O",
+        "classyfire_class": "Cinnamic acids and derivatives",
+        "inchi_key": "QAIPRVGONGVQAS-DUXPYHPUSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL145",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011933"
+      },
+      {
+        "classyfire_subclass": "Furanocoumarins",
+        "phytochemical_name": "Bergapten",
+        "imppat_id": "IMPHY005428",
+        "smiles": "COc1c2ccc(=O)oc2cc2c1cco2",
+        "classyfire_class": "Coumarins and derivatives",
+        "inchi_key": "BGEBZHIAGXMEMV-UHFFFAOYSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL24171",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY005428"
+      },
+      {
+        "classyfire_subclass": "Furanocoumarins",
+        "phytochemical_name": "Bergaptol",
+        "imppat_id": "IMPHY004534",
+        "smiles": "O=c1ccc2c(o1)cc1c(c2O)cco1",
+        "classyfire_class": "Coumarins and derivatives",
+        "inchi_key": "GIJHDGJRTUSBJR-UHFFFAOYSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL242711",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY004534"
+      },
+      {
+        "classyfire_subclass": "Fatty alcohols",
+        "phytochemical_name": "1-Octacosanol",
+        "imppat_id": "IMPHY006972",
+        "smiles": "CCCCCCCCCCCCCCCCCCCCCCCCCCCCO",
+        "classyfire_class": "Fatty acyls",
+        "inchi_key": "CNNRPFQICPFDPO-UHFFFAOYSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL1951714",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY006972"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Lupenone",
+        "imppat_id": "IMPHY011471",
+        "smiles": "CC(=C)[C@@H]1CC[C@]2([C@H]1[C@H]1CC[C@H]3[C@@]([C@]1(C)CC2)(C)CC[C@@H]1[C@]3(C)CCC(=O)C1(C)C)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "GRBHNQFQFHLCHO-BHMAJAPKSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL486393",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011471"
+      },
+      {
+        "classyfire_subclass": "Benzoic acids and derivatives",
+        "phytochemical_name": "Bergenin",
+        "imppat_id": "IMPHY011607",
+        "smiles": "OC[C@H]1O[C@@H]2[C@@H]([C@H]([C@@H]1O)O)OC(=O)c1c2c(O)c(c(c1)O)OC",
+        "classyfire_class": "Benzene and substituted derivatives",
+        "inchi_key": "YWJXCIXBAKGUKZ-HJJNZUOJSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL273019",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011607"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Lanosterol",
+        "imppat_id": "IMPHY011857",
+        "smiles": "CC(=CCC[C@H]([C@H]1CC[C@@]2([C@]1(C)CCC1=C2CC[C@@H]2[C@]1(C)CC[C@@H](C2(C)C)O)C)C)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "CAHGCLMLTWQZNJ-BQNIITSRSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL225111",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011857"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "beta-Sitosterol-d-glucoside",
+        "imppat_id": "IMPHY014841",
+        "smiles": "CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CCC(C2)O[C@@H]1O[C@H](CO)[C@H]([C@@H]([C@H]1O)O)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "NPJICTMALKLTFW-GATNZVKGSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014841"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Methyl oleanolate",
+        "imppat_id": "IMPHY011461",
+        "smiles": "COC(=O)[C@@]12CCC(C[C@H]2C2=CC[C@H]3[C@@]([C@@]2(CC1)C)(C)CC[C@@H]1[C@]3(C)CC[C@@H](C1(C)C)O)(C)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "BTXWOKJOAGWCSN-JBYJGCOVSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL487412",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011461"
+      }
+    ],
+    "therapeutic_uses": [
+      {
+        "therapeutic_use": "Abdominal pain",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D015746",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D015746"
+      },
+      {
+        "therapeutic_use": "Anthelmintics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000871",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000871"
+      },
+      {
+        "therapeutic_use": "Anti-bacterial agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000900",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000900"
+      },
+      {
+        "therapeutic_use": "Antifungal agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000935",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000935"
+      },
+      {
+        "therapeutic_use": "Anti-infective agents, local",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000891",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000891"
+      },
+      {
+        "therapeutic_use": "Antiviral agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000998",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000998"
+      },
+      {
+        "therapeutic_use": "Astringents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D001252",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001252"
+      },
+      {
+        "therapeutic_use": "Blister",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D001768",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001768"
+      },
+      {
+        "therapeutic_use": "Common cold",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D003139",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003139"
+      },
+      {
+        "therapeutic_use": "Cough",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "respiratory tract diseases",
+        "mesh_id": "D003371",
+        "mesh_category": "C08",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003371"
+      },
+      {
+        "therapeutic_use": "Diabetes mellitus",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D003920",
+        "mesh_category": "C18",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003920"
+      },
+      {
+        "therapeutic_use": "Dyspepsia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D004415",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004415"
+      },
+      {
+        "therapeutic_use": "Earache",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "otorhinolaryngologic diseases",
+        "mesh_id": "D004433",
+        "mesh_category": "C09",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004433"
+      },
+      {
+        "therapeutic_use": "Fatigue",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D005221",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005221"
+      },
+      {
+        "therapeutic_use": "Furunculosis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D005667",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005667"
+      },
+      {
+        "therapeutic_use": "Hemorrhage",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D006470",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006470"
+      },
+      {
+        "therapeutic_use": "Hypoglycemic agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D007004",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007004"
+      },
+      {
+        "therapeutic_use": "Hypolipidemic agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000960",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000960"
+      },
+      {
+        "therapeutic_use": "Inflammation",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D007249",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007249"
+      },
+      {
+        "therapeutic_use": "Insecticides",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D007306",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007306"
+      },
+      {
+        "therapeutic_use": "Liver diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "digestive system diseases",
+        "mesh_id": "D008107",
+        "mesh_category": "C06",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008107"
+      },
+      {
+        "therapeutic_use": "Pain",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D010146",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D010146"
+      },
+      {
+        "therapeutic_use": "Pruritus",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D011537",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D011537"
+      },
+      {
+        "therapeutic_use": "General tonic for rejuvenation",
+        "mesh_category_name": "Analytical, Diagnostic and Therapeutic Techniques and Equipment",
+        "mesh_sub_category_name": "therapeutics",
+        "mesh_id": "D012060",
+        "mesh_category": "E02",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012060"
+      },
+      {
+        "therapeutic_use": "Skin care",
+        "mesh_category_name": "Analytical, Diagnostic and Therapeutic Techniques and Equipment",
+        "mesh_sub_category_name": "therapeutics",
+        "mesh_id": "D017592",
+        "mesh_category": "E02",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D017592"
+      },
+      {
+        "therapeutic_use": "Skin diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D012871",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012871"
+      },
+      {
+        "therapeutic_use": "Snake bites",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "chemically induced disorders",
+        "mesh_id": "D012909",
+        "mesh_category": "C25",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012909"
+      },
+      {
+        "therapeutic_use": "Thirst",
+        "mesh_category_name": "Psychiatry and Psychology",
+        "mesh_sub_category_name": "behavior and behavior mechanisms",
+        "mesh_id": "D013894",
+        "mesh_category": "F01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013894"
+      },
+      {
+        "therapeutic_use": "Ulcer",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D014456",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014456"
+      },
+      {
+        "therapeutic_use": "Vomiting",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D014839",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014839"
+      },
+      {
+        "therapeutic_use": "Wounds and injuries",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "wounds and injuries",
+        "mesh_id": "D014947",
+        "mesh_category": "C26",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014947"
+      },
+      {
+        "therapeutic_use": "Antirheumatic agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D018501",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D018501"
+      },
+      {
+        "therapeutic_use": "Cathartics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D002400",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D002400"
+      },
+      {
+        "therapeutic_use": "Jaundice",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D007565",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007565"
+      },
+      {
+        "therapeutic_use": "Diarrhea",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D003967",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003967"
+      },
+      {
+        "therapeutic_use": "Hemorrhoids",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "eye diseases",
+        "mesh_id": "D006484",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006484"
+      },
+      {
+        "therapeutic_use": "Abscess",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D000038",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000038"
+      },
+      {
+        "therapeutic_use": "Analgesics",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D000700",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000700"
+      },
+      {
+        "therapeutic_use": "Anti-inflammatory agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D000893",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000893"
+      },
+      {
+        "therapeutic_use": "Antipyretics",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D058633",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D058633"
+      },
+      {
+        "therapeutic_use": "Nervous system diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D009422",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D009422"
+      },
+      {
+        "therapeutic_use": "Periodontal diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D010510",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D010510"
+      },
+      {
+        "therapeutic_use": "Pharyngitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D010612",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D010612"
+      },
+      {
+        "therapeutic_use": "Scabies",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "digestive system diseases",
+        "mesh_id": "D012532",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012532"
+      },
+      {
+        "therapeutic_use": "Urologic diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D014570",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014570"
+      },
+      {
+        "therapeutic_use": "Hair loss",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D000505",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000505"
+      },
+      {
+        "therapeutic_use": "Edema",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D004487",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004487"
+      },
+      {
+        "therapeutic_use": "Hemostasis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D006487",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006487"
+      },
+      {
+        "therapeutic_use": "Toothache",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D014098",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014098"
+      },
+      {
+        "therapeutic_use": "Asthma",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D001249",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001249"
+      },
+      {
+        "therapeutic_use": "Digestive system diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D004066",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004066"
+      },
+      {
+        "therapeutic_use": "Dysentery",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "eye diseases",
+        "mesh_id": "D004403",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004403"
+      },
+      {
+        "therapeutic_use": "Aphrodisiacs",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D001046",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001046"
+      },
+      {
+        "therapeutic_use": "Burns",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "eye diseases",
+        "mesh_id": "D002056",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D002056"
+      },
+      {
+        "therapeutic_use": "Gonorrhea",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D006069",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006069"
+      },
+      {
+        "therapeutic_use": "Laxatives",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "digestive system diseases",
+        "mesh_id": "D054368",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D054368"
+      },
+      {
+        "therapeutic_use": "Suppuration",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D013492",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013492"
+      },
+      {
+        "therapeutic_use": "Dermatitis",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D003872",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003872"
+      },
+      {
+        "therapeutic_use": "Antioxidants",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000975",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000975"
+      },
+      {
+        "therapeutic_use": "Dental caries",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D003731",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003731"
+      },
+      {
+        "therapeutic_use": "Antiprotozoal agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nervous system diseases",
+        "mesh_id": "D000981",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000981"
+      },
+      {
+        "therapeutic_use": "Urinary tract infections",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D014552",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014552"
+      },
+      {
+        "therapeutic_use": "Immunomodulation",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D056747",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D056747"
+      },
+      {
+        "therapeutic_use": "Leukorrhea",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D007973",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007973"
+      },
+      {
+        "therapeutic_use": "Menorrhagia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D008595",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008595"
+      },
+      {
+        "therapeutic_use": "Whooping cough",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D014917",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014917"
+      },
+      {
+        "therapeutic_use": "Cholinergic antagonists",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D018680",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D018680"
+      },
+      {
+        "therapeutic_use": "Colic",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "digestive system diseases",
+        "mesh_id": "D003085",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003085"
+      },
+      {
+        "therapeutic_use": "Dermatologic agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D003879",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003879"
+      },
+      {
+        "therapeutic_use": "Fertility agents, female",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D005300",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005300"
+      },
+      {
+        "therapeutic_use": "Fistula",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D005402",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005402"
+      },
+      {
+        "therapeutic_use": "Fractures, bone",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D050723",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D050723"
+      },
+      {
+        "therapeutic_use": "Gastroschisis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D020139",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D020139"
+      },
+      {
+        "therapeutic_use": "Genital diseases, female",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D005831",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005831"
+      },
+      {
+        "therapeutic_use": "Gout",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D006073",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006073"
+      },
+      {
+        "therapeutic_use": "Halitosis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D006209",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006209"
+      },
+      {
+        "therapeutic_use": "Hematuria",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "neoplasms",
+        "mesh_id": "D006417",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006417"
+      },
+      {
+        "therapeutic_use": "Mastitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D008413",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008413"
+      },
+      {
+        "therapeutic_use": "Mastodynia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D059373",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D059373"
+      },
+      {
+        "therapeutic_use": "Mouth diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D009059",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D009059"
+      },
+      {
+        "therapeutic_use": "Relaxation",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "chemically induced disorders",
+        "mesh_id": "D012063",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012063"
+      },
+      {
+        "therapeutic_use": "Stomatitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D013280",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013280"
+      },
+      {
+        "therapeutic_use": "Tetanus",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "chemically induced disorders",
+        "mesh_id": "D013742",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013742"
+      },
+      {
+        "therapeutic_use": "Vaginal diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "stomatognathic diseases",
+        "mesh_id": "D014623",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014623"
+      },
+      {
+        "therapeutic_use": "Endocrine system diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "stomatognathic diseases",
+        "mesh_id": "D004700",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004700"
+      },
+      {
+        "therapeutic_use": "Anticonvulsants",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000927",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000927"
+      },
+      {
+        "therapeutic_use": "Antineoplastic agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000970",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000970"
+      },
+      {
+        "therapeutic_use": "Spasm",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nervous system diseases",
+        "mesh_id": "D013035",
+        "mesh_category": "C10",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013035"
+      },
+      {
+        "therapeutic_use": "Anti-infective agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D000890",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000890"
+      },
+      {
+        "therapeutic_use": "Constipation",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D003248",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003248"
+      },
+      {
+        "therapeutic_use": "Antidotes",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000931",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000931"
+      },
+      {
+        "therapeutic_use": "Amnesia",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000647",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000647"
+      },
+      {
+        "therapeutic_use": "Hypercholesterolemia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D006937",
+        "mesh_category": "C10",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006937"
+      },
+      {
+        "therapeutic_use": "Uterine diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D014591",
+        "mesh_category": "C10",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014591"
+      },
+      {
+        "therapeutic_use": "Antinematodal agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000969",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000969"
+      },
+      {
+        "therapeutic_use": "Fever",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D005334",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005334"
+      },
+      {
+        "therapeutic_use": "Hematologic diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "hemic and lymphatic diseases",
+        "mesh_id": "D006402",
+        "mesh_category": "C15",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006402"
+      },
+      {
+        "therapeutic_use": "Wound healing",
+        "mesh_category_name": "Phenomena and Processes",
+        "mesh_sub_category_name": "biological phenomena",
+        "mesh_id": "D014945",
+        "mesh_category": "G16",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014945"
+      },
+      {
+        "therapeutic_use": "Stomach diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D013272",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013272"
+      },
+      {
+        "therapeutic_use": "Abortifacient agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D000019",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000019"
+      },
+      {
+        "therapeutic_use": "Psoriasis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D011565",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D011565"
+      },
+      {
+        "therapeutic_use": "Hemoptysis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "eye diseases",
+        "mesh_id": "D006469",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006469"
+      },
+      {
+        "therapeutic_use": "Acne vulgaris",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D000152",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000152"
+      },
+      {
+        "therapeutic_use": "Estrogen receptor modulators",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D020847",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D020847"
+      },
+      {
+        "therapeutic_use": "Cardiotonic agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D002316",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D002316"
+      },
+      {
+        "therapeutic_use": "Pneumonia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "chemically induced disorders",
+        "mesh_id": "D011014",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D011014"
+      },
+      {
+        "therapeutic_use": "Nausea",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D009325",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D009325"
+      },
+      {
+        "therapeutic_use": "Exanthema",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D005076",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005076"
+      },
+      {
+        "therapeutic_use": "Metrorrhagia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D008796",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008796"
+      },
+      {
+        "therapeutic_use": "Epistaxis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D004844",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004844"
+      },
+      {
+        "therapeutic_use": "Pleurisy",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "urologic and male genital diseases",
+        "mesh_id": "D010998",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D010998"
+      },
+      {
+        "therapeutic_use": "Kidney diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D007674",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007674"
+      },
+      {
+        "therapeutic_use": "Neuralgia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "stomatognathic diseases",
+        "mesh_id": "D009437",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D009437"
+      },
+      {
+        "therapeutic_use": "Malaria",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D008288",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008288"
+      },
+      {
+        "therapeutic_use": "Chickenpox",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "urologic and male genital diseases",
+        "mesh_id": "D002644",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D002644"
+      },
+      {
+        "therapeutic_use": "Elephantiasis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "wounds and injuries",
+        "mesh_id": "D004604",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004604"
+      },
+      {
+        "therapeutic_use": "Infertility",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "wounds and injuries",
+        "mesh_id": "D007246",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007246"
+      },
+      {
+        "therapeutic_use": "Urination disorders",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "urologic and male genital diseases",
+        "mesh_id": "D014555",
+        "mesh_category": "C12",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014555"
+      },
+      {
+        "therapeutic_use": "Menstruation disturbances",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D008599",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008599"
+      },
+      {
+        "therapeutic_use": "Sterilization, reproductive",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D013245",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013245"
+      },
+      {
+        "therapeutic_use": "Menstruation",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D008598",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008598"
+      },
+      {
+        "therapeutic_use": "Pregnancy complications",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D011248",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D011248"
+      }
+    ],
+    "bioactivities": [
+      {
+        "normalized_value_nm": 4.9,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_218",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL145",
+        "standard_value": 4.9
+      },
+      {
+        "normalized_value_nm": 72.8,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_258",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL145",
+        "standard_value": 72.8
+      },
+      {
+        "normalized_value_nm": 208.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_057",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL273019",
+        "standard_value": 208.0
+      },
+      {
+        "normalized_value_nm": 24.9,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_245",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL225111",
+        "standard_value": 24.9
+      }
+    ],
+    "protein_targets": [
+      {
+        "target_name": "Carbonic anhydrase 12",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3242",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "O43570",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3242",
+        "uniprot_url": "www.uniprot.org/uniprotkb/O43570"
+      },
+      {
+        "target_name": "Carbonic anhydrase 4",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3729",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P22748",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3729",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P22748"
+      },
+      {
+        "target_name": "Interleukin-6",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1795129",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P05231",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1795129",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P05231"
+      },
+      {
+        "target_name": "Carbonic anhydrase 9",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3594",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q16790",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3594",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q16790"
+      }
+    ],
+    "documents": [
+      {
+        "document_year": "2015",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL3627624",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3627624"
+      },
+      {
+        "document_year": "2017",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL4043202",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4043202"
+      },
+      {
+        "document_year": "2018",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL4138209",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4138209"
+      }
+    ]
+  }
+]

@@ -1,0 +1,41 @@
+{
+<<<<<<< Updated upstream
+  "timestamp": "2026-10-27T07:21:54.023630+00:00",
+=======
+  "timestamp": "2026-10-27T10:03:09.456120+00:00",
+>>>>>>> Stashed changes
+  "total_evaluated_cases": 800,
+  "total_claims_evaluated": 4913,
+  "graph_precision": {
+    "definition": "relevant retrieved graph facts / all retrieved graph facts",
+    "micro_averaged": 0.7771,
+    "macro_averaged": 0.8088,
+    "total_retrieved_facts": 9300,
+    "total_relevant_retrieved_facts": 7227,
+    "valid_cases_count": 718,
+    "na_cases_count": 82
+  },
+  "groundedness": {
+    "definition": "supported factual claims in final response / all verifiable factual claims in final response",
+    "micro_averaged": 0.8172,
+    "macro_averaged": 0.753,
+    "total_verifiable_claims": 4913,
+    "total_supported_claims": 4015,
+    "valid_cases_count": 800,
+    "na_cases_count": 0
+  },
+  "traceability": {
+    "definition": "factual claims linked to concrete supporting retrieved evidence / all verifiable factual claims",
+    "micro_averaged": 0.4954,
+    "macro_averaged": 0.4878,
+    "total_verifiable_claims": 4913,
+    "total_traceable_claims": 2434,
+    "valid_cases_count": 800,
+    "na_cases_count": 0
+  },
+  "trace_completeness": {
+    "definition": "ratio of expected pipeline events, successful tool calls, and complete trace representations",
+    "mean_completeness": 0.9975,
+    "evaluated_cases": 800
+  }
+}

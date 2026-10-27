@@ -41,6 +41,7 @@ include = ["backend*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
+addopts = "-p no:phoenix"
 markers = ["neo4j_integration: explicit opt-in tests against a configured local Neo4j database"]
 
 [tool.ruff]

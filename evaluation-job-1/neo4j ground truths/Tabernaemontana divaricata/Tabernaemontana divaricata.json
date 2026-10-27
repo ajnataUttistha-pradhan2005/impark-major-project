@@ -1,0 +1,2288 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "52861",
+      "global_status": "Least Concern",
+      "biodiversity_url": "https://indiabiodiversity.org/species/show/265642",
+      "iucn_url": "https://www.iucnredlist.org/species/149853146/149853842",
+      "common_names": "Pinwheel Flower, Crape Jasmine, Ceylon Jasmine, East India Rosebay, Neros Crown",
+      "iucn_year": "2020",
+      "source": "IUCN, IISC",
+      "plant_name": "Tabernaemontana divaricata",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+      {
+        "plant_part": "bark",
+        "plant_part_id": "TA-DI-BA",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "culture",
+        "plant_part_id": "TA-DI-CU",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "flower",
+        "plant_part_id": "TA-DI-FL",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "fruit",
+        "plant_part_id": "TA-DI-FR",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "leaf",
+        "plant_part_id": "TA-DI-LE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "plant exudate",
+        "plant_part_id": "TA-DI-PL",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "root",
+        "plant_part_id": "TA-DI-RO",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "seed",
+        "plant_part_id": "TA-DI-SE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "shoot",
+        "plant_part_id": "TA-DI-SH",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      },
+      {
+        "plant_part": "stem",
+        "plant_part_id": "TA-DI-ST",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Tabernaemontana%20divaricata",
+        "plant_name": "Tabernaemontana divaricata"
+      }
+    ],
+    "phytochemicals": [
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Iso-voacangine",
+        "imppat_id": "IMPHY006789",
+        "smiles": "CC[C@H]1C[C@H]2CN3[C@@H]1[C@](C2)(C(=O)OC)c1[nH]c2c(c1CC3)ccc(c2)OC",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "FPUHKQMDWMVBRI-PHKAQXKASA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY006789"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Ibogamine",
+        "imppat_id": "IMPHY000996",
+        "smiles": "CC[C@H]1C[C@@H]2CN3[C@@H]1[C@@H](C2)c1[nH]c2c(c1CC3)cccc2",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "LRLCVRYKAFDXKU-DYIBVVGTSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL467828",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY000996"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Voacangine",
+        "imppat_id": "IMPHY010496",
+        "smiles": "CC[C@H]1C[C@@H]2CN3[C@@H]1[C@](C2)(C(=O)OC)c1[nH]c2c(c1CC3)cc(cc2)OC",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "MMAYTCMMKJYIAM-RUGRQLENSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL182120",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010496"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Coronaridine",
+        "imppat_id": "IMPHY007011",
+        "smiles": "CC[C@H]1C[C@@H]2CN3[C@@H]1[C@](C2)(C(=O)OC)c1[nH]c2c(c1CC3)cccc2",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "NVVDQMVGALBDGE-KSWFMABOSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL364613",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY007011"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "beta-Sitosterol",
+        "imppat_id": "IMPHY014836",
+        "smiles": "CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "KZJWDPNRJALLNS-VJSFXXLFSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL221542",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014836"
+      },
+      {
+        "classyfire_subclass": "Ergostane steroids",
+        "phytochemical_name": "Campesterol",
+        "imppat_id": "IMPHY012402",
+        "smiles": "O[C@H]1CC[C@]2(C(=CC[C@@H]3[C@@H]2CC[C@]2([C@H]3CC[C@@H]2[C@@H](CC[C@H](C(C)C)C)C)C)C1)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "SGNBVLSWZMBQTH-PODYLUTMSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL520535",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012402"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "Stigmasterol",
+        "imppat_id": "IMPHY014842",
+        "smiles": "CC[C@@H](C(C)C)/C=C/[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "HCXVJBMSMIARIN-PHZDYDNGSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL400247",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014842"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Tabernaemontanine",
+        "imppat_id": "IMPHY003743",
+        "smiles": "CC[C@@H]1CN(C)[C@@H]2[C@H]([C@H]1CC(=O)c1c(C2)c2c([nH]1)cccc2)C(=O)OC",
+        "classyfire_class": "Vobasan alkaloids",
+        "inchi_key": "FFVRRQMGGGTQRH-DTPILHQWSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY003743"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Gomezine",
+        "imppat_id": "IMPHY010600",
+        "smiles": "C/C=C/1CN2CCC1C(=C)c1c(C2)c2c([nH]1)cccc2",
+        "classyfire_class": "Vallesaman alkaloids",
+        "inchi_key": "LCVACABZTLIWCE-QLKAYGNNSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010600"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "methyl (1S,14R,15Z,18S)-15-ethylidene-17-methyl-12-oxo-10,17-diazatetracyclo[12.3.1.03,11.04,9]octadeca-3(11),4,6,8-tetraene-18-carboxylate",
+        "imppat_id": "IMPHY010439",
+        "smiles": "COC(=O)[C@@H]1[C@@H]2Cc3c(C(=O)C[C@H]1/C(=C/C)/CN2C)[nH]c1c3cccc1",
+        "classyfire_class": "Vobasan alkaloids",
+        "inchi_key": "TYPMTMPLTVSOBU-PYZKSWLESA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010439"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Voaphylline",
+        "imppat_id": "IMPHY009094",
+        "smiles": "CC[C@]12CCc3[nH]c4c(c3CCN(C1)C[C@@H]1[C@H]2O1)cccc4",
+        "classyfire_class": "Quebrachamine alkaloids",
+        "inchi_key": "OGDFTQDRHAGLTB-QRVBRYPASA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL6240642",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY009094"
+      },
+      {
+        "classyfire_subclass": "Methoxyphenols",
+        "phytochemical_name": "Coniferyl alcohol",
+        "imppat_id": "IMPHY001545",
+        "smiles": "OC/C=C/c1ccc(c(c1)OC)O",
+        "classyfire_class": "Phenols",
+        "inchi_key": "JMFRWRFFLBVWSI-NSCUHMNNSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL501870",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY001545"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Methyl (12R,14S,15Z)-15-ethylidene-3,17-diazapentacyclo[12.3.1.02,10.04,9.012,17]octadeca-2(10),4,6,8-tetraene-13-carboxylate",
+        "imppat_id": "IMPHY002033",
+        "smiles": "COC(=O)C1[C@@H]2CC3N([C@@H]1Cc1c3[nH]c3c1cccc3)C/C/2=CC",
+        "classyfire_class": "Macroline alkaloids",
+        "inchi_key": "VXRAIAAMNNTQES-HMVDDCJGSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY002033"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "19,20-(E)-Vallesamine",
+        "imppat_id": "IMPHY003630",
+        "smiles": "C/C=C1/CN2CC[C@@H]1[C@](CO)(C(=O)OC)c1c(C2)c2c([nH]1)cccc2",
+        "classyfire_class": "Vallesaman alkaloids",
+        "inchi_key": "JZKSIYFJGCTTET-WBUQUAQWSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY003630"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Tubotaiwine",
+        "imppat_id": "IMPHY010930",
+        "smiles": "COC(=O)C1=C2Nc3c([C@]42[C@H]2[C@H]([C@@H]1CCN2CC4)CC)cccc3",
+        "classyfire_class": "Strychnos alkaloids",
+        "inchi_key": "RLAKWLFUMAABBE-STJTYLQHSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL508920",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010930"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "Fucosterol",
+        "imppat_id": "IMPHY011613",
+        "smiles": "C/C=C(C(C)C)/CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "OSELKOCHBMDKEJ-WGMIZEQOSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL1836654",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011613"
+      },
+      {
+        "classyfire_subclass": "Methoxyphenols",
+        "phytochemical_name": "Sinapyl alcohol",
+        "imppat_id": "IMPHY012717",
+        "smiles": "OC/C=C/c1cc(OC)c(c(c1)OC)O",
+        "classyfire_class": "Phenols",
+        "inchi_key": "LZFOPEXOUVTGJS-ONEGZZNKSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL1800816",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012717"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Perivine",
+        "imppat_id": "IMPHY007164",
+        "smiles": "COC(=O)[C@@H]1[C@H]2NC/C(=C/C)/[C@@H]1CC(=O)c1c(C2)c2ccccc2[nH]1",
+        "classyfire_class": "Vobasan alkaloids",
+        "inchi_key": "NKTORRNHKYVXSU-XXMLWKDOSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL521377",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY007164"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "16-Hydroxy-16,22-dihydroapparicine",
+        "imppat_id": "IMPHY014737",
+        "smiles": "C/C=C1/CN2CC[C@@H]1[C@](C)(O)c1c(C2)c2c([nH]1)cccc2",
+        "classyfire_class": "Vallesaman alkaloids",
+        "inchi_key": "PZYMRTAVKVZYMI-MJJYKSKZSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014737"
+      },
+      {
+        "classyfire_subclass": "Flavones",
+        "phytochemical_name": "Kaempferol",
+        "imppat_id": "IMPHY004388",
+        "smiles": "Oc1ccc(cc1)c1oc2cc(O)cc(c2c(=O)c1O)O",
+        "classyfire_class": "Flavonoids",
+        "inchi_key": "IYRMWMYZSQPJKC-UHFFFAOYSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL150",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY004388"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Isovoacristine",
+        "imppat_id": "IMPHY002078",
+        "smiles": "COC(=O)[C@@]12C[C@H]3CN([C@H]1[C@H](C3)[C@@H](O)C)CCc1c2[nH]c2c1ccc(c2)OC",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "XGWIRMWTCWJZPG-ZHBRIVESSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL360973",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY002078"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Voacamine",
+        "imppat_id": "IMPHY002112",
+        "smiles": "COC(=O)C1[C@H]2C[C@H](c3cc4[nH]c5c(c4cc3OC)CCN3[C@@H]4[C@]5(C[C@H](C[C@@H]4CC)C3)C(=O)OC)c3c(C[C@H]1N(C/C/2=C/C)C)c1ccccc1[nH]3",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "VCMIRXRRQJNZJT-XRMSBCOFSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY002112"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Hecubine",
+        "imppat_id": "IMPHY008283",
+        "smiles": "CC[C@]12CCc3c(CCN(C1)C[C@@H]1[C@H]2O1)c1c(n3C)cccc1",
+        "classyfire_class": "Quebrachamine alkaloids",
+        "inchi_key": "XUDAGNVXWJRKJD-AQNXPRMDSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY008283"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "(-)-Dregamine",
+        "imppat_id": "IMPHY003742",
+        "smiles": "CC[C@H]1CN(C)[C@@H]2[C@H]([C@H]1CC(=O)c1c(C2)c2c([nH]1)cccc2)C(=O)OC",
+        "classyfire_class": "Vobasan alkaloids",
+        "inchi_key": "FFVRRQMGGGTQRH-YWKPPDPDSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY003742"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Tabersonine",
+        "imppat_id": "IMPHY005481",
+        "smiles": "COC(=O)C1=C2Nc3c([C@@]42[C@@H]2[C@@](C1)(CC)C=CCN2CC4)cccc3",
+        "classyfire_class": "Plumeran-type alkaloids",
+        "inchi_key": "FNGGIPWAZSFKCN-ACRUOGEOSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL2011511",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY005481"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Voacristine",
+        "imppat_id": "IMPHY010966",
+        "smiles": "COC(=O)[C@@]12C[C@@H]3CN([C@H]1[C@H](C3)[C@@H](O)C)CCc1c2[nH]c2c1cc(cc2)OC",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "OYMQKBZMKFJPMH-VJMPXSKLSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010966"
+      },
+      {
+        "classyfire_subclass": "Benzoic acids and derivatives",
+        "phytochemical_name": "Salicylic acid",
+        "imppat_id": "IMPHY011523",
+        "smiles": "OC(=O)c1ccccc1O",
+        "classyfire_class": "Benzene and substituted derivatives",
+        "inchi_key": "YGSDEFSMJLZEOE-UHFFFAOYSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL424",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011523"
+      },
+      {
+        "classyfire_subclass": "Benzoic acids and derivatives",
+        "phytochemical_name": "Vanillic acid",
+        "imppat_id": "IMPHY007084",
+        "smiles": "COc1cc(ccc1O)C(=O)O",
+        "classyfire_class": "Benzene and substituted derivatives",
+        "inchi_key": "WKOLLVMJNQIZCI-UHFFFAOYSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL120568",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY007084"
+      },
+      {
+        "classyfire_subclass": "Flavones",
+        "phytochemical_name": "Quercetin",
+        "imppat_id": "IMPHY004619",
+        "smiles": "Oc1cc(O)c2c(c1)oc(c(c2=O)O)c1ccc(c(c1)O)O",
+        "classyfire_class": "Flavonoids",
+        "inchi_key": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL50",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY004619"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "alpha1-Sitosterol",
+        "imppat_id": "IMPHY011654",
+        "smiles": "C/C=C(C(C)C)/CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1C2=CC[C@@H]2[C@]1(C)CC[C@@H]([C@H]2C)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "LPZCCMIISIBREI-JXMPMKKESA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL3184315",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011654"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Lupeol",
+        "imppat_id": "IMPHY012473",
+        "smiles": "CC(=C)[C@@H]1CC[C@]2([C@H]1[C@H]1CC[C@H]3[C@@]([C@]1(C)CC2)(C)CC[C@@H]1[C@]3(C)CC[C@@H](C1(C)C)O)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "MQYXUWHLBZFQQO-QGTGJCAVSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL289191",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012473"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "alpha-Amyrin",
+        "imppat_id": "IMPHY011619",
+        "smiles": "C[C@@H]1CC[C@]2([C@@H]([C@H]1C)C1=CC[C@H]3[C@@]([C@@]1(CC2)C)(C)CC[C@@H]1[C@]3(C)CC[C@@H](C1(C)C)O)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "FSLPMRQHCOLESF-SFMCKYFRSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL455357",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011619"
+      },
+      {
+        "classyfire_subclass": "Hydroxycinnamic acids and derivatives",
+        "phytochemical_name": "Sinapic acid",
+        "imppat_id": "IMPHY004130",
+        "smiles": "COc1cc(/C=C/C(=O)O)cc(c1O)OC",
+        "classyfire_class": "Cinnamic acids and derivatives",
+        "inchi_key": "PCMORTLOPMLEFB-ONEGZZNKSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL109341",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY004130"
+      },
+      {
+        "classyfire_subclass": "Benzoic acids and derivatives",
+        "phytochemical_name": "3,4-Dihydroxybenzoic acid",
+        "imppat_id": "IMPHY011883",
+        "smiles": "OC(=O)c1ccc(c(c1)O)O",
+        "classyfire_class": "Benzene and substituted derivatives",
+        "inchi_key": "YQUVCSBJEUQKSH-UHFFFAOYSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL37537",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011883"
+      },
+      {
+        "classyfire_subclass": "Benzoic acids and derivatives",
+        "phytochemical_name": "Benzoic acid",
+        "imppat_id": "IMPHY002962",
+        "smiles": "OC(=O)c1ccccc1",
+        "classyfire_class": "Benzene and substituted derivatives",
+        "inchi_key": "WPYMKLBDIGXBTP-UHFFFAOYSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL541",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY002962"
+      },
+      {
+        "classyfire_subclass": "Benzoic acids and derivatives",
+        "phytochemical_name": "Syringic acid",
+        "imppat_id": "IMPHY000687",
+        "smiles": "COc1cc(cc(c1O)OC)C(=O)O",
+        "classyfire_class": "Benzene and substituted derivatives",
+        "inchi_key": "JMSVCTWVEWCHDZ-UHFFFAOYSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL1414",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY000687"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Lupeol acetate",
+        "imppat_id": "IMPHY014991",
+        "smiles": "CC(=O)O[C@H]1CC[C@]2([C@H](C1(C)C)CC[C@@]1([C@@H]2CC[C@H]2[C@@]1(C)CC[C@@]1([C@@H]2[C@@H](CC1)C(=C)C)C)C)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "ODSSDTBFHAYYMD-YOJQYFTNSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL453802",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014991"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "alpha-Amyrenyl acetate",
+        "imppat_id": "IMPHY004141",
+        "smiles": "CC(=O)O[C@H]1CC[C@]2([C@H](C1(C)C)CC[C@@]1([C@@H]2CC=C2[C@@]1(C)CC[C@@]1([C@H]2[C@@H](C)[C@H](C)CC1)C)C)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "UDXDFWBZZQHDRO-NSTYLNEOSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL471754",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY004141"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "dimethyl (2R,6R,13R,22S,23S,24S,35R,38R,39S)-13,24-diethyl-23,32-dihydroxy-30,31-dimethoxy-21-oxa-1,9,17,28-tetrazaundecacyclo[22.13.1.16,9.02,22.03,20.05,18.06,16.027,35.029,34.035,38.013,39]nonatriaconta-3,5(18),11,15,19,26,29,31,33-nonaene-15,26-dicarboxylate",
+        "imppat_id": "IMPHY007808",
+        "smiles": "COC(=O)C1=C2Nc3c([C@@]42[C@@H]2[C@@](C1)(CC)[C@H](O)[C@H]1Oc5c([C@H]1N2CC4)cc1c(c5)NC2=C(C[C@]4([C@H]5[C@@]12CCN5CC=C4)CC)C(=O)OC)cc(c(c3OC)OC)O",
+        "classyfire_class": "Aspidospermatan-type alkaloids",
+        "inchi_key": "XVLKCTCGGIJHCK-BFENJZFZSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL220132",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY007808"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Conophylline",
+        "imppat_id": "IMPHY010671",
+        "smiles": "COC(=O)C1=C2Nc3c([C@@]42[C@@H]2[C@@](C1)(CC)[C@H](O)[C@H]1Oc5c([C@H]1N2CC4)cc1c(c5)NC2=C(C[C@]4([C@H]5[C@@]12CCN5C[C@@H]1[C@H]4O1)CC)C(=O)OC)cc(c(c3OC)OC)O",
+        "classyfire_class": "Aspidospermatan-type alkaloids",
+        "inchi_key": "QZRIMAMDGWAHPQ-ATPAGDLWSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL506768",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010671"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Mehranine",
+        "imppat_id": "IMPHY008843",
+        "smiles": "CC[C@@]12CC[C@H]3[C@@]4([C@H]2N(C[C@@H]2[C@H]1O2)CC4)c1ccccc1N3C",
+        "classyfire_class": "Aspidospermatan-type alkaloids",
+        "inchi_key": "MCOCUHRVJGWOJQ-FGSPNWDHSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY008843"
+      },
+      {
+        "classyfire_subclass": "Quinolones and derivatives",
+        "phytochemical_name": "Voaharine",
+        "imppat_id": "IMPHY014537",
+        "smiles": "CC[C@@]12CN(CC[C@@]3(C(=O)C(=Nc4ccccc34)C1)O)C[C@@H]1[C@H]2O1",
+        "classyfire_class": "Quinolines and derivatives",
+        "inchi_key": "JYOSOFOPWRUQKW-OQIJWPOYSA-N",
+        "classyfire_superclass": "Organoheterocyclic compounds",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014537"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "19(R)-Heyneanine",
+        "imppat_id": "IMPHY014741",
+        "smiles": "COC(=O)[C@@]12C[C@H]3CN([C@H]1[C@H](C3)[C@H](O)C)CCc1c2[nH]c2c1cc(cc2)OC",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "OYMQKBZMKFJPMH-WRGQPFOFSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL512646",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014741"
+      },
+      {
+        "classyfire_subclass": "Indoles",
+        "phytochemical_name": "Ervaticine",
+        "imppat_id": "IMPHY010153",
+        "smiles": "CC=C1CN2CC[C@H]1C(=O)c1c(C2)c2c([nH]1)cccc2",
+        "classyfire_class": "Indoles and derivatives",
+        "inchi_key": "DBGBUYFOJXOYNY-GFCCVEGCSA-N",
+        "classyfire_superclass": "Organoheterocyclic compounds",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010153"
+      },
+      {
+        "classyfire_subclass": "Carbohydrates and carbohydrate conjugates",
+        "phytochemical_name": "D-Galactose",
+        "imppat_id": "IMPHY012050",
+        "smiles": "OC[C@H]1OC(O)[C@@H]([C@H]([C@H]1O)O)O",
+        "classyfire_class": "Organooxygen compounds",
+        "inchi_key": "WQZGKKKJIJFFOK-SVZMEOIVSA-N",
+        "classyfire_superclass": "Organic oxygen compounds",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL195923",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012050"
+      },
+      {
+        "classyfire_subclass": "Cycloartanols and derivatives",
+        "phytochemical_name": "Cycloartenol",
+        "imppat_id": "IMPHY011642",
+        "smiles": "CC(=CCC[C@H]([C@H]1CC[C@@]2([C@]1(C)CC[C@@]13[C@H]2CC[C@@H]2[C@]3(C1)CC[C@@H](C2(C)C)O)C)C)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "ONQRKEUAIJMULO-YBXTVTTCSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL225815",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011642"
+      },
+      {
+        "classyfire_subclass": "Amino acids, peptides, and analogues",
+        "phytochemical_name": "Asperglaucide",
+        "imppat_id": "IMPHY010589",
+        "smiles": "CC(=O)OC[C@@H](NC(=O)[C@@H](NC(=O)c1ccccc1)Cc1ccccc1)Cc1ccccc1",
+        "classyfire_class": "Carboxylic acids and derivatives",
+        "inchi_key": "VZPAURMDJZOGHU-DQEYMECFSA-N",
+        "classyfire_superclass": "Organic acids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL4071910",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010589"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "3-Oxo-coronaridine",
+        "imppat_id": "IMPHY003626",
+        "smiles": "CC[C@H]1C[C@H]2C[C@@]3([C@H]1N(C2=O)CCc1c3[nH]c2c1cccc2)C(=O)OC",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "MMMDVGMDEBDBOH-UFUGXISJSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL488412",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY003626"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "Pseudovobparicine",
+        "imppat_id": "IMPHY009226",
+        "smiles": "COC(=O)[C@H]1[C@H]2C[C@H](c3ccc4c(c3)c3CN5CC[C@@H](C(=C)c3[nH]4)/C(=CC)/C5)c3c(C[C@@H]1N(C/C/2=C/C)C)c1ccccc1[nH]3",
+        "classyfire_class": "Vobasan alkaloids",
+        "inchi_key": "GLSZNOAPWJGOTJ-VJVCOYPNSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY009226"
+      },
+      {
+        "classyfire_subclass": "NA",
+        "phytochemical_name": "methyl (1S,10S,15R,17S,18S)-17-ethyl-10-hydroxy-3,13-diazapentacyclo[13.3.1.02,10.04,9.013,18]nonadeca-2,4,6,8-tetraene-1-carboxylate",
+        "imppat_id": "IMPHY007819",
+        "smiles": "CC[C@H]1C[C@H]2CN3[C@@H]1[C@](C2)(C(=O)OC)C1=Nc2c([C@]1(CC3)O)cccc2",
+        "classyfire_class": "Ibogan-type alkaloids",
+        "inchi_key": "PEBWIYPIKTWOBT-VKOMNXFXSA-N",
+        "classyfire_superclass": "Alkaloids and derivatives",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY007819"
+      },
+      {
+        "classyfire_subclass": "Fatty acids and conjugates",
+        "phytochemical_name": "Palmitic acid",
+        "imppat_id": "IMPHY007327",
+        "smiles": "CCCCCCCCCCCCCCCC(=O)O",
+        "classyfire_class": "Fatty acyls",
+        "inchi_key": "IPCSVZSSVZVIGE-UHFFFAOYSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL82293",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY007327"
+      }
+    ],
+    "therapeutic_uses": [
+      {
+        "therapeutic_use": "Anti-bacterial agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000900",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000900"
+      },
+      {
+        "therapeutic_use": "Antiviral agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000998",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000998"
+      },
+      {
+        "therapeutic_use": "Fever",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D005334",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005334"
+      },
+      {
+        "therapeutic_use": "Snake bites",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "chemically induced disorders",
+        "mesh_id": "D012909",
+        "mesh_category": "C25",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012909"
+      },
+      {
+        "therapeutic_use": "Gastrointestinal diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D005767",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005767"
+      },
+      {
+        "therapeutic_use": "Anti-infective agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D000890",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000890"
+      },
+      {
+        "therapeutic_use": "Anthelmintics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000871",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000871"
+      },
+      {
+        "therapeutic_use": "Pain",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D010146",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D010146"
+      },
+      {
+        "therapeutic_use": "Skin diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D012871",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012871"
+      },
+      {
+        "therapeutic_use": "Eye diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D005128",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005128"
+      },
+      {
+        "therapeutic_use": "Endophthalmitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D009877",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D009877"
+      },
+      {
+        "therapeutic_use": "Analgesics",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D000700",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000700"
+      },
+      {
+        "therapeutic_use": "Anti-inflammatory agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D000893",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000893"
+      },
+      {
+        "therapeutic_use": "Toothache",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D014098",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014098"
+      },
+      {
+        "therapeutic_use": "Antioxidants",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000975",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000975"
+      },
+      {
+        "therapeutic_use": "Eye burn",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D005126",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005126"
+      },
+      {
+        "therapeutic_use": "Tachycardia",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D013610",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D013610"
+      },
+      {
+        "therapeutic_use": "Ulcer",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D014456",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014456"
+      },
+      {
+        "therapeutic_use": "Antifungal agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000935",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000935"
+      },
+      {
+        "therapeutic_use": "Antinematodal agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000969",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000969"
+      },
+      {
+        "therapeutic_use": "Diabetes mellitus",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D003920",
+        "mesh_category": "C18",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003920"
+      },
+      {
+        "therapeutic_use": "Diuretics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D004232",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004232"
+      },
+      {
+        "therapeutic_use": "Furunculosis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D005667",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005667"
+      },
+      {
+        "therapeutic_use": "Inflammation",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D007249",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007249"
+      },
+      {
+        "therapeutic_use": "Wounds and injuries",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "wounds and injuries",
+        "mesh_id": "D014947",
+        "mesh_category": "C26",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014947"
+      },
+      {
+        "therapeutic_use": "Antirheumatic agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D018501",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D018501"
+      },
+      {
+        "therapeutic_use": "Conjunctivitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D003231",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003231"
+      },
+      {
+        "therapeutic_use": "Antihypertensive agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000959",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000959"
+      },
+      {
+        "therapeutic_use": "General tonic for rejuvenation",
+        "mesh_category_name": "Analytical, Diagnostic and Therapeutic Techniques and Equipment",
+        "mesh_sub_category_name": "therapeutics",
+        "mesh_id": "D012060",
+        "mesh_category": "E02",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012060"
+      },
+      {
+        "therapeutic_use": "Scorpion stings",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "chemically induced disorders",
+        "mesh_id": "D065008",
+        "mesh_category": "C25",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D065008"
+      },
+      {
+        "therapeutic_use": "Urination disorders",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "urologic and male genital diseases",
+        "mesh_id": "D014555",
+        "mesh_category": "C12",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014555"
+      },
+      {
+        "therapeutic_use": "Jaundice",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D007565",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007565"
+      },
+      {
+        "therapeutic_use": "Digestive system diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D004066",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004066"
+      },
+      {
+        "therapeutic_use": "Corneal diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D003316",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003316"
+      },
+      {
+        "therapeutic_use": "Paralysis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "hemic and lymphatic diseases",
+        "mesh_id": "D010243",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D010243"
+      },
+      {
+        "therapeutic_use": "Arthralgia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D018771",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D018771"
+      },
+      {
+        "therapeutic_use": "Corneal opacity",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D003318",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003318"
+      }
+    ],
+    "bioactivities": [
+      {
+        "normalized_value_nm": 501.2,
+        "standard_units": "nM",
+        "standard_type": "Potency",
+        "standard_relation": "NA",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_049",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL1453",
+        "standard_value": 501.2
+      },
+      {
+        "normalized_value_nm": 132.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_059",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL150",
+        "standard_value": 132.0
+      },
+      {
+        "normalized_value_nm": 1710.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_151",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL150",
+        "standard_value": 1710.0
+      },
+      {
+        "normalized_value_nm": 150.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_175",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL150",
+        "standard_value": 150.0
+      },
+      {
+        "normalized_value_nm": 23.44,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_188",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL150",
+        "standard_value": 23.44
+      },
+      {
+        "normalized_value_nm": 28.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_217",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL150",
+        "standard_value": 28.0
+      },
+      {
+        "normalized_value_nm": 0.8,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_227",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL40746",
+        "standard_value": 0.8
+      },
+      {
+        "normalized_value_nm": 316.2,
+        "standard_units": "nM",
+        "standard_type": "Potency",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_235",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL150",
+        "standard_value": 316.2
+      },
+      {
+        "normalized_value_nm": 3.3,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_147",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL424",
+        "standard_value": 3.3
+      },
+      {
+        "normalized_value_nm": 2000.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_299",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL424",
+        "standard_value": 2000.0
+      },
+      {
+        "normalized_value_nm": 125.9,
+        "standard_units": "nM",
+        "standard_type": "Potency",
+        "standard_relation": "NA",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_332",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL120568",
+        "standard_value": 125.9
+      },
+      {
+        "normalized_value_nm": 680.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_010",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL298312",
+        "standard_value": 680.0
+      },
+      {
+        "normalized_value_nm": 1400.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_011",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 1400.0
+      },
+      {
+        "normalized_value_nm": 6309.57,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_051",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 6309.57
+      },
+      {
+        "normalized_value_nm": 3600.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_075",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL463206",
+        "standard_value": 3600.0
+      },
+      {
+        "normalized_value_nm": 6.4,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_080",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 6.4
+      },
+      {
+        "normalized_value_nm": 280.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_085",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 280.0
+      },
+      {
+        "normalized_value_nm": 0.46,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_096",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL113994",
+        "standard_value": 0.46
+      },
+      {
+        "normalized_value_nm": 472.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_116",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 472.0
+      },
+      {
+        "normalized_value_nm": 7000.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_126",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 7000.0
+      },
+      {
+        "normalized_value_nm": 1000.0,
+        "standard_units": "nM",
+        "standard_type": "Potency",
+        "standard_relation": "NA",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_131",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 1000.0
+      },
+      {
+        "normalized_value_nm": 34.67,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_140",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL567341",
+        "standard_value": 34.67
+      },
+      {
+        "normalized_value_nm": 560.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_159",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 560.0
+      },
+      {
+        "normalized_value_nm": 7.9,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_163",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 7.9
+      },
+      {
+        "normalized_value_nm": 3800.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_171",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 3800.0
+      },
+      {
+        "normalized_value_nm": 1720.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_178",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 1720.0
+      },
+      {
+        "normalized_value_nm": 1500.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_184",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 1500.0
+      },
+      {
+        "normalized_value_nm": 3162.28,
+        "standard_units": "nM",
+        "standard_type": "EC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_186",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 3162.28
+      },
+      {
+        "normalized_value_nm": 2400.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_207",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 2400.0
+      },
+      {
+        "normalized_value_nm": 3.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_215",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL1405",
+        "standard_value": 3.0
+      },
+      {
+        "normalized_value_nm": 4052.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_232",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 4052.0
+      },
+      {
+        "normalized_value_nm": 248.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_250",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 248.0
+      },
+      {
+        "normalized_value_nm": 2970.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_262",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 2970.0
+      },
+      {
+        "normalized_value_nm": 10000.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "<",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_270",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 10000.0
+      },
+      {
+        "normalized_value_nm": 45.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_277",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 45.0
+      },
+      {
+        "normalized_value_nm": 330.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_289",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 330.0
+      },
+      {
+        "normalized_value_nm": 1995.3,
+        "standard_units": "nM",
+        "standard_type": "Potency",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_317",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 1995.3
+      },
+      {
+        "normalized_value_nm": 4040.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_325",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL50",
+        "standard_value": 4040.0
+      },
+      {
+        "normalized_value_nm": 100.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "<",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_214",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL289191",
+        "standard_value": 100.0
+      },
+      {
+        "normalized_value_nm": 2600.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_233",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247",
+        "standard_value": 2600.0
+      },
+      {
+        "normalized_value_nm": 350.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_316",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL82293",
+        "standard_value": 350.0
+      }
+    ],
+    "protein_targets": [
+      {
+        "target_name": "Glucagon-like peptide 1 receptor",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1784",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P43220",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1784",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P43220"
+      },
+      {
+        "target_name": "CDGSH iron-sulfur domain-containing protein 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1795168",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q9NZ45",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1795168",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q9NZ45"
+      },
+      {
+        "target_name": "Ribosomal protein S6 kinase alpha-3",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2345",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P51812",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2345",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P51812"
+      },
+      {
+        "target_name": "Cannabinoid receptor 2",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL253",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P34972",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL253",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P34972"
+      },
+      {
+        "target_name": "Cathepsin K",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL268",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P43235",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL268",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P43235"
+      },
+      {
+        "target_name": "Aryl hydrocarbon receptor",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3201",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P35869",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3201",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P35869"
+      },
+      {
+        "target_name": "72 kDa type IV collagenase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL333",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P08253",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL333",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P08253"
+      },
+      {
+        "target_name": "Cytochrome P450 3A4",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL340",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P08684",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL340",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P08684"
+      },
+      {
+        "target_name": "Carbonic anhydrase 7",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2326",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P43166",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2326",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P43166"
+      },
+      {
+        "target_name": "Phospholipase A2",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4426",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P04054",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4426",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P04054"
+      },
+      {
+        "target_name": "Solute carrier family 22 member 12",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL6120",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q96S37",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL6120",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q96S37"
+      },
+      {
+        "target_name": "DNA polymerase kappa",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL5365",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q9UBT6",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL5365",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q9UBT6"
+      },
+      {
+        "target_name": "NADPH oxidase 4",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1250375",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q9NPH5",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1250375",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q9NPH5"
+      },
+      {
+        "target_name": "ELAV-like protein 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1250379",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q15717",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1250379",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q15717"
+      },
+      {
+        "target_name": "Vasopressin V2 receptor",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1790",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P30518",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1790",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P30518"
+      },
+      {
+        "target_name": "Ornithine decarboxylase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1869",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P11926",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1869",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P11926"
+      },
+      {
+        "target_name": "Sentrin-specific protease 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1909484",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q9P0U3",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1909484",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q9P0U3"
+      },
+      {
+        "target_name": "Xanthine dehydrogenase/oxidase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1929",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P47989",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1929",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P47989"
+      },
+      {
+        "target_name": "5-hydroxytryptamine receptor 1D",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1983",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P28221",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1983",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P28221"
+      },
+      {
+        "target_name": "Tyrosine-protein kinase Yes",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2073",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P07947",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2073",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P07947"
+      },
+      {
+        "target_name": "Ubiquitin carboxyl-terminal hydrolase 7",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2157850",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q93009",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2157850",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q93009"
+      },
+      {
+        "target_name": "Lysosomal acid glucosylceramidase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2179",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P04062",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2179",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P04062"
+      },
+      {
+        "target_name": "Dipeptidyl peptidase 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2252",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P53634",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2252",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P53634"
+      },
+      {
+        "target_name": "Lactoylglutathione lyase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2424",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q04760",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2424",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q04760"
+      },
+      {
+        "target_name": "Muscarinic acetylcholine receptor M3",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL245",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P20309",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL245",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P20309"
+      },
+      {
+        "target_name": "Phosphatidylinositol 3-kinase regulatory subunit alpha",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL2506",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P27986",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2506",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P27986"
+      },
+      {
+        "target_name": "Receptor-type tyrosine-protein phosphatase F",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3521",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P10586",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3521",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P10586"
+      },
+      {
+        "target_name": "Adenosine receptor A3",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL256",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P0DMS8",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL256",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P0DMS8"
+      },
+      {
+        "target_name": "Glycogen synthase kinase-3 beta",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL262",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P49841",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL262",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P49841"
+      },
+      {
+        "target_name": "Histamine H3 receptor",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL264",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q9Y5N1",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL264",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q9Y5N1"
+      },
+      {
+        "target_name": "Multidrug resistance-associated protein 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3004",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P33527",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3004",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P33527"
+      },
+      {
+        "target_name": "17-beta-hydroxysteroid dehydrogenase type 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3181",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P14061",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3181",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P14061"
+      },
+      {
+        "target_name": "Cytochrome P450 1B1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4878",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q16678",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4878",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q16678"
+      },
+      {
+        "target_name": "Mitogen-activated protein kinase 3",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3385",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P27361",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3385",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P27361"
+      },
+      {
+        "target_name": "Fatty acid-binding protein 5",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3674",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q01469",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3674",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q01469"
+      },
+      {
+        "target_name": "Serine/threonine-protein kinase PLK4",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3788",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "O00444",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3788",
+        "uniprot_url": "www.uniprot.org/uniprotkb/O00444"
+      },
+      {
+        "target_name": "Nischarin",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3923",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q9Y2I1",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3923",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q9Y2I1"
+      },
+      {
+        "target_name": "Beta-adrenergic receptor kinase 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4079",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P25098",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4079",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P25098"
+      },
+      {
+        "target_name": "Thiosulfate sulfurtransferase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4295835",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q16762",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4295835",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q16762"
+      },
+      {
+        "target_name": "Caspase-1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4801",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P29466",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4801",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P29466"
+      },
+      {
+        "target_name": "Aldo-keto reductase family 1 member C4",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4999",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P17516",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4999",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P17516"
+      },
+      {
+        "target_name": "Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit delta isoform",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3130",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "O00329",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3130",
+        "uniprot_url": "www.uniprot.org/uniprotkb/O00329"
+      },
+      {
+        "target_name": "DNA-3-methyladenine glycosylase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3396943",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P29372",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3396943",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P29372"
+      },
+      {
+        "target_name": "Transient receptor potential cation channel subfamily V member 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4794",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q8NER1",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4794",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q8NER1"
+      }
+    ],
+    "documents": [
+      {
+        "document_year": "NA",
+        "document_journal": "NA",
+        "document_chembl_id": "CHEMBL1201862",
+        "source": "ChEMBL",
+        "source_id": 7,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1201862"
+      },
+      {
+        "document_year": "2016",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL3862005",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3862005"
+      },
+      {
+        "document_year": "2023",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL5360539",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL5360539"
+      },
+      {
+        "document_year": "2018",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL4411259",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4411259"
+      },
+      {
+        "document_year": "2010",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL1156759",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1156759"
+      },
+      {
+        "document_year": "2007",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL1140636",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1140636"
+      },
+      {
+        "document_year": "2000",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL1133244",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1133244"
+      },
+      {
+        "document_year": "2015",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL3627624",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3627624"
+      },
+      {
+        "document_year": "2007",
+        "document_journal": "Proc Natl Acad Sci U S A",
+        "document_chembl_id": "CHEMBL1145498",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1145498"
+      },
+      {
+        "document_year": "2007",
+        "document_journal": "Drug Metab Dispos",
+        "document_chembl_id": "CHEMBL1147070",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1147070"
+      },
+      {
+        "document_year": "2010",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL1240523",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1240523"
+      },
+      {
+        "document_year": "2017",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL4017486",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4017486"
+      },
+      {
+        "document_year": "2013",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL2321773",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL2321773"
+      },
+      {
+        "document_year": "1999",
+        "document_journal": "J Nat Prod",
+        "document_chembl_id": "CHEMBL1158008",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1158008"
+      },
+      {
+        "document_year": "2022",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL5113384",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL5113384"
+      },
+      {
+        "document_year": "2014",
+        "document_journal": "J Nat Prod",
+        "document_chembl_id": "CHEMBL3352774",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3352774"
+      },
+      {
+        "document_year": "2003",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL1136277",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1136277"
+      },
+      {
+        "document_year": "2019",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL4609975",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4609975"
+      },
+      {
+        "document_year": "2018",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL4118084",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4118084"
+      },
+      {
+        "document_year": "2008",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL1157146",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1157146"
+      },
+      {
+        "document_year": "2006",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL1147773",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1147773"
+      },
+      {
+        "document_year": "2011",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL2146451",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL2146451"
+      },
+      {
+        "document_year": "1996",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL1129481",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1129481"
+      },
+      {
+        "document_year": "2013",
+        "document_journal": "Med Chem Res",
+        "document_chembl_id": "CHEMBL3045386",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3045386"
+      },
+      {
+        "document_year": "2004",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL1137049",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1137049"
+      },
+      {
+        "document_year": "2009",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL1152445",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1152445"
+      },
+      {
+        "document_year": "2008",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL1154469",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1154469"
+      },
+      {
+        "document_year": "2017",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL4033668",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4033668"
+      },
+      {
+        "document_year": "NA",
+        "document_journal": "NA",
+        "document_chembl_id": "CHEMBL1909046",
+        "source": "ChEMBL",
+        "source_id": 15,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1909046"
+      },
+      {
+        "document_year": "2007",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL1139984",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1139984"
+      },
+      {
+        "document_year": "2012",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL1955824",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1955824"
+      },
+      {
+        "document_year": "2001",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL1134473",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1134473"
+      },
+      {
+        "document_year": "2017",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL4038320",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4038320"
+      },
+      {
+        "document_year": "2019",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL4392822",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4392822"
+      },
+      {
+        "document_year": "2020",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL4665678",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4665678"
+      },
+      {
+        "document_year": "2012",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL2216751",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL2216751"
+      },
+      {
+        "document_year": "2020",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL4725228",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4725228"
+      },
+      {
+        "document_year": "2015",
+        "document_journal": "NA",
+        "document_chembl_id": "CHEMBL3638947",
+        "source": "ChEMBL",
+        "source_id": 37,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3638947"
+      }
+    ]
+  }
+]

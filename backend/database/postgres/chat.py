@@ -180,6 +180,7 @@ class ChatStore:
         error: str | None = None,
         *,
         evidence: list[dict[str, Any]] | None = None,
+        traces: dict[str, Any] | None = None,
     ) -> None:
         async with self.client.transaction(write=True) as tx:
             await tx.fetchval(
@@ -218,18 +219,19 @@ class ChatStore:
                     if result and result.clarification
                     else None
                 )
+                message_data: dict[str, Any] = {
+                    "result": result.model_dump(mode="json") if result else None,
+                    "evidence": evidence or [],
+                }
+                if traces:
+                    message_data["traces"] = traces
                 await tx.execute(
                     "UPDATE chat_message SET status=$2,content=coalesce($3,content),data=$4::jsonb "
                     "WHERE operation_id=$1 AND role='assistant'",
                     oid,
                     status,
                     content,
-                    json.dumps(
-                        {
-                            "result": result.model_dump(mode="json") if result else None,
-                            "evidence": evidence or [],
-                        }
-                    ),
+                    json.dumps(message_data),
                 )
 
     async def event(self, oid: UUID, kind: str, payload: dict[str, Any]) -> StreamEvent:

@@ -1,0 +1,9 @@
+{
+  "total_evaluated": 1,
+  "successful": 1,
+  "failed": 0,
+  "skipped": 1,
+  "start_time": "2026-10-26T15:20:50.647362+00:00",
+  "end_time": "2026-10-26T15:21:52.628914+00:00",
+  "total_elapsed_seconds": 62.0
+}

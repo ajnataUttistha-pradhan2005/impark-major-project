@@ -1,0 +1,93 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "34272",
+      "global_status": "Not Evaluated",
+      "biodiversity_url": "https://indiabiodiversity.org/species/show/246093",
+      "iucn_url": "NA",
+      "common_names": "Garden Orache, Orach",
+      "iucn_year": "Not Evaluated",
+      "source": "IUCN, IISC",
+      "plant_name": "Atriplex hortensis",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+      {
+        "plant_part": "leaf",
+        "plant_part_id": "AT-HO-LE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Atriplex%20hortensis",
+        "plant_name": "Atriplex hortensis"
+      },
+      {
+        "plant_part": "seed",
+        "plant_part_id": "AT-HO-SE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Atriplex%20hortensis",
+        "plant_name": "Atriplex hortensis"
+      }
+    ],
+    "phytochemicals": [
+      {
+        "classyfire_subclass": "Carbohydrates and carbohydrate conjugates",
+        "phytochemical_name": "Betanine",
+        "imppat_id": "IMPHY010087",
+        "smiles": "OC[C@H]1O[C@@H](Oc2cc3C[C@H](N(c3cc2O)/C=C/C2=CC(=N[C@@H](C2)C(=O)O)C(=O)O)C(=O)O)[C@@H]([C@H]([C@@H]1O)O)O",
+        "classyfire_class": "Organooxygen compounds",
+        "inchi_key": "CTMLKIKAUFEMLE-FTNGGYTGSA-N",
+        "classyfire_superclass": "Organic oxygen compounds",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL341294",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY010087"
+      }
+    ],
+    "therapeutic_uses": [
+      {
+        "therapeutic_use": "Diuretics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D004232",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004232"
+      },
+      {
+        "therapeutic_use": "Emollients",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D004643",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004643"
+      },
+      {
+        "therapeutic_use": "Lung diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D008171",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008171"
+      },
+      {
+        "therapeutic_use": "Vitamin A deficiency",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D014802",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014802"
+      }
+    ],
+    "bioactivities": [
+
+    ],
+    "protein_targets": [
+
+    ],
+    "documents": [
+
+    ]
+  }
+]

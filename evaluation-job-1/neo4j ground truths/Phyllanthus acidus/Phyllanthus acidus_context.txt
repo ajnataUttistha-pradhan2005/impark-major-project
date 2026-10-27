@@ -1,0 +1,100 @@
+PLANT GROUND-TRUTH CONTEXT: Phyllanthus acidus
+======================================================================
+
+SUMMARY OVERVIEW
+----------------------------------------------------------------------
+Plant Name: Phyllanthus acidus | Common Names: Tahitian Gooseberry Tree, Malay Gooseberry | Taxonomy ID: 260718 | Global Status: Not Evaluated | Regional Status: Not Evaluated | IUCN Year: Not Evaluated | IUCN URL: NA | Biodiversity URL: https://indiabiodiversity.org/species/show/266545 | Source: IUCN, IISC
+Total Counts in JSON: plant_parts=5, phytochemicals=5, therapeutic_uses=14, bioactivities=9, protein_targets=10, documents=9
+Plant Parts List (5): bark, fruit, leaf, root, seed
+Therapeutic Uses List (14): Abdominal pain, Eczema, Headache, Astringents, Bronchitis, Snake bites, Vomiting, Eye diseases, Diarrhea, Asthma, Constipation, Flatulence, Epistaxis, Cathartics
+Protein Targets List (10): Lysine-specific demethylase 4E, 72 kDa type IV collagenase, Vascular endothelial growth factor A, long form, Transmembrane protease serine 2, cGMP-specific 3',5'-cyclic phosphodiesterase, Tyrosine-protein kinase Fyn, 17-beta-hydroxysteroid dehydrogenase type 1, Cytochrome P450 1B1, DNA-3-methyladenine glycosylase, Zinc finger protein GLI1
+Phytochemicals by classyfire_kingdom: Organic compounds (5)
+Phytochemicals by classyfire_superclass: Lipids and lipid-like molecules (3), Benzenoids (1), Phenylpropanoids and polyketides (1)
+Phytochemicals by classyfire_class: Prenol lipids (3), Benzene and substituted derivatives (1), Tannins (1)
+Phytochemicals by classyfire_subclass: Triterpenoids (3), Benzoic acids and derivatives (1), Hydrolyzable tannins (1)
+Bioactivities by standard_type: IC50 (5), Ki (2), Potency (1), Kd (1)
+Bioactivities by high_confidence_tier: HIGH (5), MEDIUM (4)
+Documents by document_journal: NA (2), J Med Chem (2), Eur J Med Chem (2), Bioorg Med Chem Lett (1), J Nat Prod (1), Bioorg Med Chem (1)
+Documents by document_year: NA (2), 2000 (1), 2013 (1), 2024 (1), 2008 (1), 2017 (1), 2020 (1), 2009 (1)
+
+1. PLANT DETAILS (plant_details)
+----------------------------------------------------------------------
+taxonomy_id: 260718
+global_status: Not Evaluated
+biodiversity_url: https://indiabiodiversity.org/species/show/266545
+iucn_url: NA
+common_names: Tahitian Gooseberry Tree, Malay Gooseberry
+iucn_year: Not Evaluated
+source: IUCN, IISC
+plant_name: Phyllanthus acidus
+regional_status: Not Evaluated
+
+2. PLANT PARTS (plant_parts: 5 items)
+----------------------------------------------------------------------
+1. plant_name: Phyllanthus acidus | plant_part: bark | plant_part_id: PH-AC-BA | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus
+2. plant_name: Phyllanthus acidus | plant_part: fruit | plant_part_id: PH-AC-FR | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus
+3. plant_name: Phyllanthus acidus | plant_part: leaf | plant_part_id: PH-AC-LE | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus
+4. plant_name: Phyllanthus acidus | plant_part: root | plant_part_id: PH-AC-RO | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus
+5. plant_name: Phyllanthus acidus | plant_part: seed | plant_part_id: PH-AC-SE | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus
+
+3. THERAPEUTIC USES (therapeutic_uses: 14 items)
+----------------------------------------------------------------------
+1. therapeutic_use: Abdominal pain | mesh_id: D015746 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D015746
+2. therapeutic_use: Eczema | mesh_id: D004485 | mesh_category: C17 | mesh_category_name: Diseases | mesh_sub_category_name: skin and connective tissue diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004485
+3. therapeutic_use: Headache | mesh_id: D006261 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D006261
+4. therapeutic_use: Astringents | mesh_id: D001252 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D001252
+5. therapeutic_use: Bronchitis | mesh_id: D001991 | mesh_category: C01 | mesh_category_name: Diseases | mesh_sub_category_name: bacterial infections and mycoses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D001991
+6. therapeutic_use: Snake bites | mesh_id: D012909 | mesh_category: C25 | mesh_category_name: Diseases | mesh_sub_category_name: chemically induced disorders | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D012909
+7. therapeutic_use: Vomiting | mesh_id: D014839 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D014839
+8. therapeutic_use: Eye diseases | mesh_id: D005128 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D005128
+9. therapeutic_use: Diarrhea | mesh_id: D003967 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: nutritional and metabolic diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003967
+10. therapeutic_use: Asthma | mesh_id: D001249 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D001249
+11. therapeutic_use: Constipation | mesh_id: D003248 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003248
+12. therapeutic_use: Flatulence | mesh_id: D005414 | mesh_category: C17 | mesh_category_name: Diseases | mesh_sub_category_name: bacterial infections and mycoses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D005414
+13. therapeutic_use: Epistaxis | mesh_id: D004844 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004844
+14. therapeutic_use: Cathartics | mesh_id: D002400 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D002400
+
+4. BIOACTIVITIES (bioactivities: 9 items)
+----------------------------------------------------------------------
+1. bioactivity_id: BA_016 | standard_type: Potency | standard_relation: = | standard_value: 354.8 | standard_units: nM | normalized_value_nm: 354.8 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL288114
+2. bioactivity_id: BA_227 | standard_type: Ki | standard_relation: = | standard_value: 0.8 | standard_units: nM | normalized_value_nm: 0.8 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL40746
+3. bioactivity_id: BA_048 | standard_type: Kd | standard_relation: = | standard_value: 16.5 | standard_units: nM | normalized_value_nm: 16.5 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL63354
+4. bioactivity_id: BA_058 | standard_type: IC50 | standard_relation: = | standard_value: 2310.0 | standard_units: nM | normalized_value_nm: 2310.0 | high_confidence_tier: MEDIUM | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247
+5. bioactivity_id: BA_066 | standard_type: IC50 | standard_relation: = | standard_value: 4703.0 | standard_units: nM | normalized_value_nm: 4703.0 | high_confidence_tier: MEDIUM | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247
+6. bioactivity_id: BA_071 | standard_type: IC50 | standard_relation: = | standard_value: 22.0 | standard_units: nM | normalized_value_nm: 22.0 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247
+7. bioactivity_id: BA_215 | standard_type: Ki | standard_relation: = | standard_value: 3.0 | standard_units: nM | normalized_value_nm: 3.0 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL1405
+8. bioactivity_id: BA_233 | standard_type: IC50 | standard_relation: = | standard_value: 2600.0 | standard_units: nM | normalized_value_nm: 2600.0 | high_confidence_tier: MEDIUM | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247
+9. bioactivity_id: BA_338 | standard_type: IC50 | standard_relation: = | standard_value: 7100.0 | standard_units: nM | normalized_value_nm: 7100.0 | high_confidence_tier: MEDIUM | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247
+
+5. PROTEIN TARGETS (protein_targets: 10 items)
+----------------------------------------------------------------------
+1. target_name: Lysine-specific demethylase 4E | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL1293226 | uniprot_id: B2RXH2 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1293226 | uniprot_url: www.uniprot.org/uniprotkb/B2RXH2
+2. target_name: 72 kDa type IV collagenase | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL333 | uniprot_id: P08253 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL333 | uniprot_url: www.uniprot.org/uniprotkb/P08253
+3. target_name: Vascular endothelial growth factor A, long form | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL1783 | uniprot_id: P15692 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1783 | uniprot_url: www.uniprot.org/uniprotkb/P15692
+4. target_name: Transmembrane protease serine 2 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL1795140 | uniprot_id: O15393 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1795140 | uniprot_url: www.uniprot.org/uniprotkb/O15393
+5. target_name: cGMP-specific 3',5'-cyclic phosphodiesterase | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL1827 | uniprot_id: O76074 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1827 | uniprot_url: www.uniprot.org/uniprotkb/O76074
+6. target_name: Tyrosine-protein kinase Fyn | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL1841 | uniprot_id: P06241 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1841 | uniprot_url: www.uniprot.org/uniprotkb/P06241
+7. target_name: 17-beta-hydroxysteroid dehydrogenase type 1 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL3181 | uniprot_id: P14061 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3181 | uniprot_url: www.uniprot.org/uniprotkb/P14061
+8. target_name: Cytochrome P450 1B1 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL4878 | uniprot_id: Q16678 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4878 | uniprot_url: www.uniprot.org/uniprotkb/Q16678
+9. target_name: DNA-3-methyladenine glycosylase | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL3396943 | uniprot_id: P29372 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3396943 | uniprot_url: www.uniprot.org/uniprotkb/P29372
+10. target_name: Zinc finger protein GLI1 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL5461 | uniprot_id: P08151 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL5461 | uniprot_url: www.uniprot.org/uniprotkb/P08151
+
+6. PHYTOCHEMICALS (phytochemicals: 5 items)
+----------------------------------------------------------------------
+1. phytochemical_name: beta-Amyrin | imppat_id: IMPHY012223 | chembl_id: CHEMBL455098 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Prenol lipids | classyfire_subclass: Triterpenoids | inchi_key: JFSHUTJDVKUMTJ-QHPUVITPSA-N | smiles: O[C@H]1CC[C@]2([C@H](C1(C)C)CC[C@@]1([C@@H]2CC=C2[C@@]1(C)CC[C@@]1([C@H]2CC(C)(C)CC1)C)C)C | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012223
+2. phytochemical_name: Phyllanthol | imppat_id: IMPHY002413 | chembl_id: NA | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Prenol lipids | classyfire_subclass: Triterpenoids | inchi_key: ULWYRERWMYGJNF-ULPBYVOSSA-N | smiles: C[C@@H]1CC[C@]2([C@@H]([C@H]1C)[C@@]13CC[C@H]4[C@@]([C@]3(C1)CC2)(C)CC[C@@H]1[C@]4(C)CC[C@@H](C1(C)C)O)C | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY002413
+3. phytochemical_name: Triterpenoids | imppat_id: IMPHY013522 | chembl_id: NA | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Prenol lipids | classyfire_subclass: Triterpenoids | inchi_key: WYJAKKNMIDWZKG-VJZIOILKSA-N | smiles: O[C@H]1C[C@@]2(C)C(=CC[C@@]3([C@@H]2CC=C2[C@@]3(C)CC[C@@]3([C@H]2CC(C)(C)CC3)C(=O)O)C)[C@]([C@H]1O)(C)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY013522
+4. phytochemical_name: Gallic acid | imppat_id: IMPHY012021 | chembl_id: CHEMBL288114 | classyfire_kingdom: Organic compounds | classyfire_superclass: Benzenoids | classyfire_class: Benzene and substituted derivatives | classyfire_subclass: Benzoic acids and derivatives | inchi_key: LNTHITQWFMADLM-UHFFFAOYSA-N | smiles: OC(=O)c1cc(O)c(c(c1)O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012021
+5. phytochemical_name: Tannic acid | imppat_id: IMPHY011741 | chembl_id: CHEMBL506247 | classyfire_kingdom: Organic compounds | classyfire_superclass: Phenylpropanoids and polyketides | classyfire_class: Tannins | classyfire_subclass: Hydrolyzable tannins | inchi_key: LRBQNJMCXXYXIU-PPKXGCFTSA-N | smiles: O=C(c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O)O[C@@H]1[C@@H](COC(=O)c2cc(O)c(c(c2)OC(=O)c2cc(O)c(c(c2)O)O)O)O[C@H]([C@@H]([C@H]1OC(=O)c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O)OC(=O)c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O)OC(=O)c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011741
+
+7. DOCUMENTS (documents: 9 items)
+----------------------------------------------------------------------
+1. document_chembl_id: CHEMBL1201862 | document_journal: NA | document_year: NA | source: ChEMBL | source_id: 7 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1201862
+2. document_chembl_id: CHEMBL1133244 | document_journal: Bioorg Med Chem Lett | document_year: 2000 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1133244
+3. document_chembl_id: CHEMBL2331357 | document_journal: J Nat Prod | document_year: 2013 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL2331357
+4. document_chembl_id: CHEMBL5500424 | document_journal: J Med Chem | document_year: 2024 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL5500424
+5. document_chembl_id: CHEMBL1909046 | document_journal: NA | document_year: NA | source: ChEMBL | source_id: 15 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1909046
+6. document_chembl_id: CHEMBL1154469 | document_journal: Eur J Med Chem | document_year: 2008 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1154469
+7. document_chembl_id: CHEMBL4033668 | document_journal: Eur J Med Chem | document_year: 2017 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4033668
+8. document_chembl_id: CHEMBL4725228 | document_journal: Bioorg Med Chem | document_year: 2020 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4725228
+9. document_chembl_id: CHEMBL1138588 | document_journal: J Med Chem | document_year: 2009 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1138588

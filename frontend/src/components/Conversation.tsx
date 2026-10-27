@@ -2,7 +2,9 @@ import { Archive, ArrowUp, BookOpen, Check, Copy, ImagePlus, Leaf, PauseCircle, 
 import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { extractRouting } from '../routingTrace';
 import type { Capabilities, Message, Run, Session } from '../types';
+import { AgentRoutingTrace } from './AgentRoutingTrace';
 import { Clarification } from './Clarification';
 import { Upload } from './Upload';
 
@@ -111,6 +113,7 @@ export function Conversation(props: Props) {
         const provisional = message.role === 'assistant' && message.operation_id === activeId && activeRun;
         const text = provisional ? props.draftResponse : message.content;
         if (message.role === 'assistant' && !text && !provisional && message.status === 'pending') return null;
+        const isAssistantComplete = message.role === 'assistant' && message.status === 'complete' && Boolean(text) && !provisional;
         return <article className={`message message-${message.role}`} key={message.message_id}>
           {message.role === 'assistant' && <div className="message-avatar"><Leaf size={17} /></div>}
           <div className="message-body">
@@ -118,6 +121,14 @@ export function Conversation(props: Props) {
               {text ? <Answer text={text} citationCount={responseFor(message).length} onCitation={index => props.onSources(message.operation_id, responseFor(message), index)} /> : <p className="waiting-copy">{props.progress || 'Working on your request…'}</p>}
               {provisional && <span className="stream-cursor" aria-hidden="true" />}
               {!provisional && message.status !== 'complete' && <div className="message-status">{message.status === 'interrupted' ? 'Response interrupted' : message.status === 'cancelled' ? 'Cancelled' : message.status === 'failed' ? 'Response unavailable' : message.status}</div>}
+              {isAssistantComplete && (
+                <AgentRoutingTrace
+                  key={`routing-${message.message_id}`}
+                  messageId={message.message_id}
+                  operationId={message.operation_id}
+                  routing={extractRouting(message)}
+                />
+              )}
               {message.status === 'complete' && text && <div className="message-tools">
                 {responseFor(message).length > 0 && <button onClick={() => props.onSources(message.operation_id, responseFor(message))}><BookOpen size={15} /> Sources · {responseFor(message).length}</button>}
                 <button aria-label="Copy answer" title="Copy answer" onClick={() => copy(text, message.message_id)}>{copied === message.message_id ? <Check size={15} /> : <Copy size={15} />} {copied === message.message_id ? 'Copied' : 'Copy'}</button>

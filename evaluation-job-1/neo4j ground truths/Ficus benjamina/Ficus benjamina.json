@@ -1,0 +1,304 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "182105",
+      "global_status": "Least Concern",
+      "biodiversity_url": "https://indiabiodiversity.org/species/show/266605",
+      "iucn_url": "https://www.iucnredlist.org/species/145362709/145370980",
+      "common_names": "Weeping Fig, Golden Fig, Benjamins Fig",
+      "iucn_year": "2019",
+      "source": "IUCN, IISC",
+      "plant_name": "Ficus benjamina",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+      {
+        "plant_part": "aerial part",
+        "plant_part_id": "FI-BE-AE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      },
+      {
+        "plant_part": "bark",
+        "plant_part_id": "FI-BE-BA",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      },
+      {
+        "plant_part": "fruit",
+        "plant_part_id": "FI-BE-FR",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      },
+      {
+        "plant_part": "leaf",
+        "plant_part_id": "FI-BE-LE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      },
+      {
+        "plant_part": "plant exudate",
+        "plant_part_id": "FI-BE-PL",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      },
+      {
+        "plant_part": "root",
+        "plant_part_id": "FI-BE-RO",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      },
+      {
+        "plant_part": "seed",
+        "plant_part_id": "FI-BE-SE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      },
+      {
+        "plant_part": "shoot",
+        "plant_part_id": "FI-BE-SH",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina",
+        "plant_name": "Ficus benjamina"
+      }
+    ],
+    "phytochemicals": [
+      {
+        "classyfire_subclass": "Furanocoumarins",
+        "phytochemical_name": "Bergapten",
+        "imppat_id": "IMPHY005428",
+        "smiles": "COc1c2ccc(=O)oc2cc2c1cco2",
+        "classyfire_class": "Coumarins and derivatives",
+        "inchi_key": "BGEBZHIAGXMEMV-UHFFFAOYSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL24171",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY005428"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "beta-Sitosterol",
+        "imppat_id": "IMPHY014836",
+        "smiles": "CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "KZJWDPNRJALLNS-VJSFXXLFSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL221542",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014836"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Friedelin",
+        "imppat_id": "IMPHY011688",
+        "smiles": "O=C1CC[C@@H]2[C@]([C@H]1C)(C)CC[C@H]1[C@@]2(C)CC[C@@]2([C@]1(C)CC[C@@]1([C@H]2CC(C)(C)CC1)C)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "OFMXGFHWLZPCFL-SVRPQWSVSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL485998",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011688"
+      },
+      {
+        "classyfire_subclass": "Furanocoumarins",
+        "phytochemical_name": "Imperatorin",
+        "imppat_id": "IMPHY008913",
+        "smiles": "CC(=CCOc1c2occc2cc2c1oc(=O)cc2)C",
+        "classyfire_class": "Coumarins and derivatives",
+        "inchi_key": "OLOOJGVNMBJLLR-UHFFFAOYSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL453805",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY008913"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "alpha-Amyrin",
+        "imppat_id": "IMPHY011619",
+        "smiles": "C[C@@H]1CC[C@]2([C@@H]([C@H]1C)C1=CC[C@H]3[C@@]([C@@]1(CC2)C)(C)CC[C@@H]1[C@]3(C)CC[C@@H](C1(C)C)O)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "FSLPMRQHCOLESF-SFMCKYFRSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL455357",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011619"
+      }
+    ],
+    "therapeutic_uses": [
+      {
+        "therapeutic_use": "Diuretics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D004232",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004232"
+      },
+      {
+        "therapeutic_use": "Bronchitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D001991",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001991"
+      },
+      {
+        "therapeutic_use": "Liver diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "digestive system diseases",
+        "mesh_id": "D008107",
+        "mesh_category": "C06",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008107"
+      },
+      {
+        "therapeutic_use": "Wounds and injuries",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "wounds and injuries",
+        "mesh_id": "D014947",
+        "mesh_category": "C26",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014947"
+      },
+      {
+        "therapeutic_use": "Anti-infective agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D000890",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000890"
+      },
+      {
+        "therapeutic_use": "Contusions",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D003288",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003288"
+      },
+      {
+        "therapeutic_use": "Headache",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D006261",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006261"
+      },
+      {
+        "therapeutic_use": "Antifungal agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000935",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000935"
+      },
+      {
+        "therapeutic_use": "Ulcer",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D014456",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014456"
+      },
+      {
+        "therapeutic_use": "Analgesics",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D000700",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000700"
+      },
+      {
+        "therapeutic_use": "Scabies",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "digestive system diseases",
+        "mesh_id": "D012532",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012532"
+      },
+      {
+        "therapeutic_use": "Corneal diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D003316",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003316"
+      },
+      {
+        "therapeutic_use": "Skin diseases",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D012871",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012871"
+      },
+      {
+        "therapeutic_use": "Vitiligo",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D014820",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014820"
+      },
+      {
+        "therapeutic_use": "Hemagglutination",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D006384",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006384"
+      },
+      {
+        "therapeutic_use": "Cough",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "respiratory tract diseases",
+        "mesh_id": "D003371",
+        "mesh_category": "C08",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003371"
+      },
+      {
+        "therapeutic_use": "Dysentery",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "eye diseases",
+        "mesh_id": "D004403",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004403"
+      }
+    ],
+    "bioactivities": [
+
+    ],
+    "protein_targets": [
+
+    ],
+    "documents": [
+
+    ]
+  }
+]

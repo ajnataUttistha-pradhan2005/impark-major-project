@@ -1,0 +1,33 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "3986",
+      "global_status": "Not Evaluated",
+      "biodiversity_url": "NA",
+      "iucn_url": "NA",
+      "common_names": "Annual mercury",
+      "iucn_year": "Not Evaluated",
+      "source": "IUCN, IISC",
+      "plant_name": "Mercurialis annua",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+
+    ],
+    "phytochemicals": [
+
+    ],
+    "therapeutic_uses": [
+
+    ],
+    "bioactivities": [
+
+    ],
+    "protein_targets": [
+
+    ],
+    "documents": [
+
+    ]
+  }
+]

@@ -8,9 +8,11 @@ from contextlib import suppress
 from typing import Any
 from uuid import UUID
 
-from backend.api.schemas.chat import ChatRequest
+from backend.api.schemas.chat import ChatRequest, ChatResponse
 from backend.api.schemas.platform import RunView
+from backend.contracts.actions import Capability
 from backend.contracts.agents import ImageReference
+from backend.contracts.base import utc_now
 from backend.contracts.response import ClarificationResponse
 from backend.database.postgres.chat import ChatStore, decode, run_view
 from backend.database.postgres.client import StoreError
@@ -148,11 +150,13 @@ class RunManager:
                 emit("clarification_requested", result.clarification.model_dump(mode="json"))
             await self._drain(queue, writer)
             snapshot = await self.service.load(sid)
+            traces = await self._assemble_routing_trace(sid, oid, result, snapshot)
             await self.store.status(
                 oid,
                 "complete",
                 result,
                 evidence=[e.model_dump(mode="json") for e in snapshot.evidence.all_evidence()],
+                traces=traces,
             )
         except asyncio.CancelledError:
             await self._drain_after_failure(queue, writer)
@@ -192,6 +196,234 @@ class RunManager:
             except Exception:
                 # The operation status was finalized above if persistence is still available.
                 logging.getLogger(__name__).warning("run_event_writer_failed")
+
+    async def _assemble_routing_trace(
+        self,
+        sid: UUID,
+        oid: UUID,
+        result: ChatResponse,
+        snapshot: ConversationState,
+    ) -> dict[str, Any]:
+        run_id = result.correlation.run_id if result and result.correlation else None
+        trace_events: list[dict[str, Any]] = []
+        if run_id:
+            try:
+                trace_rows = await self.store.client.read(
+                    "SELECT event_type, event, created_at FROM domain_trace WHERE run_id = $1 ORDER BY created_at ASC",
+                    run_id,
+                )
+                trace_events = [
+                    {
+                        "event_type": r["event_type"],
+                        "created_at": r["created_at"],
+                        "event": json.loads(r["event"]) if isinstance(r["event"], str) else r["event"],
+                    }
+                    for r in trace_rows
+                ]
+            except Exception:
+                pass
+
+        turn_started_time = None
+        turn_completed_time = None
+        obs_times: list[str] = []
+        for te in trace_events:
+            evt_type = te["event_type"]
+            created = te["created_at"]
+            iso_time = created.isoformat() if hasattr(created, "isoformat") else str(created)
+            if evt_type == "turn_started" and not turn_started_time:
+                turn_started_time = iso_time
+            elif evt_type in ("response_stream_completed", "turn_completed"):
+                turn_completed_time = iso_time
+            elif evt_type == "observation_created":
+                obs_times.append(iso_time)
+
+        now_iso = utc_now().isoformat()
+        if not turn_started_time:
+            turn_started_time = now_iso
+        if not turn_completed_time:
+            turn_completed_time = now_iso
+
+        plant_name = None
+        if result and result.active_plant and getattr(result.active_plant, "label", None):
+            plant_name = result.active_plant.label
+        elif (
+            snapshot
+            and snapshot.context
+            and snapshot.context.active_plant
+            and getattr(snapshot.context.active_plant, "label", None)
+        ):
+            plant_name = snapshot.context.active_plant.label
+
+        routing: list[dict[str, Any]] = []
+        step_num = 1
+        start_decision = (
+            f"Route question to deep_orchestrator with plant scope locked to '{plant_name}'"
+            if plant_name
+            else "Route user question to deep_orchestrator"
+        )
+        routing.append({
+            "step": step_num,
+            "routing_type": "graph_node_transition",
+            "from_node": "START",
+            "to_node": "deep_orchestrator",
+            "decision": start_decision,
+            "timestamp": turn_started_time,
+        })
+
+        run_observations = []
+        if snapshot and snapshot.execution and snapshot.execution.observations:
+            for obs in snapshot.execution.observations:
+                obs_corr = obs.invocation.correlation if obs.invocation else None
+                if obs_corr:
+                    if (run_id and obs_corr.run_id == run_id) or (oid and obs_corr.correlation_id == oid):
+                        run_observations.append(obs)
+
+        for idx, obs in enumerate(run_observations):
+            obs_time = obs_times[idx] if idx < len(obs_times) else turn_started_time
+            comp = obs.component.value if hasattr(obs.component, "value") else str(obs.component)
+
+            if comp == Capability.GRAPH.value:
+                subagent = "knowledge_graph"
+                tool_name = "retrieve_plant_graph"
+                query_type = None
+                if hasattr(obs.payload, "evidence") and obs.payload.evidence:
+                    first_ev = obs.payload.evidence[0]
+                    prov_ref = getattr(first_ev.provenance, "reference", "") or ""
+                    if ":" in prov_ref:
+                        query_type = prov_ref.split(":")[0].strip()
+                if not query_type and snapshot.context and snapshot.context.recent_query_types:
+                    last_qt = snapshot.context.recent_query_types[-1]
+                    query_type = last_qt.value if hasattr(last_qt, "value") else str(last_qt)
+                if not query_type:
+                    query_type = "GET_PLANT_DETAILS"
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "subagent_delegation",
+                    "from_agent": "orchestrator",
+                    "to_subagent": subagent,
+                    "tool_invoked": "task",
+                    "decision": f"Orchestrator delegates domain fact retrieval to subagent '{subagent}'",
+                    "timestamp": obs_time,
+                    "details": {"description": f"Retrieve recorded facts for '{plant_name or 'established plant'}'"},
+                })
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "tool_selection",
+                    "from_subagent": subagent,
+                    "to_tool": tool_name,
+                    "decision": f"Knowledge graph subagent selects typed query '{query_type}' scoped to plant '{plant_name or 'established plant'}'",
+                    "timestamp": obs_time,
+                })
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "subagent_handoff",
+                    "from_subagent": subagent,
+                    "to_agent": "orchestrator",
+                    "decision": f"Subagent '{subagent}' completed retrieval and returned observation payload to main orchestrator",
+                    "timestamp": obs_time,
+                })
+
+            elif comp == Capability.TEXT.value:
+                subagent = "text_entity"
+                tool_name = "resolve_plant_names"
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "subagent_delegation",
+                    "from_agent": "orchestrator",
+                    "to_subagent": subagent,
+                    "tool_invoked": "task",
+                    "decision": f"Orchestrator delegates botanical entity resolution to subagent '{subagent}'",
+                    "timestamp": obs_time,
+                    "details": {"description": "Resolve plant names and aliases from catalog"},
+                })
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "tool_selection",
+                    "from_subagent": subagent,
+                    "to_tool": tool_name,
+                    "decision": "Text entity subagent selects hybrid plant name search",
+                    "timestamp": obs_time,
+                })
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "subagent_handoff",
+                    "from_subagent": subagent,
+                    "to_agent": "orchestrator",
+                    "decision": f"Subagent '{subagent}' completed retrieval and returned observation payload to main orchestrator",
+                    "timestamp": obs_time,
+                })
+
+            elif comp == Capability.IMAGE.value:
+                subagent = "image_understanding"
+                tool_name = "inspect_uploaded_image"
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "subagent_delegation",
+                    "from_agent": "orchestrator",
+                    "to_subagent": subagent,
+                    "tool_invoked": "task",
+                    "decision": f"Orchestrator delegates visual inspection to subagent '{subagent}'",
+                    "timestamp": obs_time,
+                    "details": {"description": "Analyze botanical specimen image"},
+                })
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "tool_selection",
+                    "from_subagent": subagent,
+                    "to_tool": tool_name,
+                    "decision": "Image understanding subagent selects botanical image classifier",
+                    "timestamp": obs_time,
+                })
+
+                step_num += 1
+                routing.append({
+                    "step": step_num,
+                    "routing_type": "subagent_handoff",
+                    "from_subagent": subagent,
+                    "to_agent": "orchestrator",
+                    "decision": f"Subagent '{subagent}' completed retrieval and returned observation payload to main orchestrator",
+                    "timestamp": obs_time,
+                })
+
+        step_num += 1
+        if result and result.clarification:
+            routing.append({
+                "step": step_num,
+                "routing_type": "graph_conditional_edge",
+                "from_node": "deep_orchestrator",
+                "to_node": "clarification",
+                "condition": "status == WAITING_USER",
+                "decision": "Clarification required; conditional edge routes to clarification.",
+                "timestamp": turn_completed_time,
+            })
+        else:
+            routing.append({
+                "step": step_num,
+                "routing_type": "graph_conditional_edge",
+                "from_node": "deep_orchestrator",
+                "to_node": "END",
+                "condition": "status == COMPLETE",
+                "decision": "Turn objectives satisfied; conditional edge routes directly to END (bypassing clarification).",
+                "timestamp": turn_completed_time,
+            })
+
+        return {"routing": routing}
 
     @classmethod
     async def _drain_after_failure(

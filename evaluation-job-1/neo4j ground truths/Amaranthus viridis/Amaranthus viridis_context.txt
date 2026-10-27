@@ -1,0 +1,98 @@
+PLANT GROUND-TRUTH CONTEXT: Amaranthus viridis
+======================================================================
+
+SUMMARY OVERVIEW
+----------------------------------------------------------------------
+Plant Name: Amaranthus viridis | Common Names: Wild Amaranth, Slender Amaranth | Taxonomy ID: 56196 | Global Status: Not Evaluated | Regional Status: Not Evaluated | IUCN Year: Not Evaluated | IUCN URL: NA | Biodiversity URL: https://indiabiodiversity.org/species/show/32945 | Source: IUCN, IISC
+Total Counts in JSON: plant_parts=3, phytochemicals=7, therapeutic_uses=13, bioactivities=9, protein_targets=10, documents=8
+Plant Parts List (3): leaf, root, whole plant
+Therapeutic Uses List (13): Inflammation, Insecticides, Scorpion stings, Diarrhea, Emollients, Laxatives, Antifungal agents, Contraceptive agents, Eczema, Wounds and injuries, Anthelmintics, Snake bites, Antipyretics
+Protein Targets List (10): 72 kDa type IV collagenase, Transient receptor potential cation channel subfamily V member 1, Fatty-acid amide hydrolase 1, Cytochrome P450 2C19, Serine/threonine-protein kinase B-raf, Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit gamma isoform, DNA polymerase beta, Neuropeptide S receptor, Carbonic anhydrase 4, Receptor-type tyrosine-protein kinase FLT3
+Phytochemicals by classyfire_kingdom: Organic compounds (7)
+Phytochemicals by classyfire_superclass: Lipids and lipid-like molecules (7)
+Phytochemicals by classyfire_class: Fatty acyls (6), Steroids and steroid derivatives (1)
+Phytochemicals by classyfire_subclass: Fatty acids and conjugates (6), Ergostane steroids (1)
+Bioactivities by standard_type: Ki (4), IC50 (3), Potency (2)
+Bioactivities by high_confidence_tier: HIGH (6), MEDIUM (3)
+Documents by document_journal: NA (2), Eur J Med Chem (2), Bioorg Med Chem Lett (1), J Med Chem (1), Medchemcomm (1), Bioorg Med Chem (1)
+Documents by document_year: 2015 (2), 2000 (1), 2008 (1), NA (1), 2017 (1), 2014 (1), 2024 (1)
+
+1. PLANT DETAILS (plant_details)
+----------------------------------------------------------------------
+taxonomy_id: 56196
+global_status: Not Evaluated
+biodiversity_url: https://indiabiodiversity.org/species/show/32945
+iucn_url: NA
+common_names: Wild Amaranth, Slender Amaranth
+iucn_year: Not Evaluated
+source: IUCN, IISC
+plant_name: Amaranthus viridis
+regional_status: Not Evaluated
+
+2. PLANT PARTS (plant_parts: 3 items)
+----------------------------------------------------------------------
+1. plant_name: Amaranthus viridis | plant_part: leaf | plant_part_id: AM-VI-LE | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Amaranthus%20viridis
+2. plant_name: Amaranthus viridis | plant_part: root | plant_part_id: AM-VI-RO | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Amaranthus%20viridis
+3. plant_name: Amaranthus viridis | plant_part: whole plant | plant_part_id: AM-VI-WH | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Amaranthus%20viridis
+
+3. THERAPEUTIC USES (therapeutic_uses: 13 items)
+----------------------------------------------------------------------
+1. therapeutic_use: Inflammation | mesh_id: D007249 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D007249
+2. therapeutic_use: Insecticides | mesh_id: D007306 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D007306
+3. therapeutic_use: Scorpion stings | mesh_id: D065008 | mesh_category: C25 | mesh_category_name: Diseases | mesh_sub_category_name: chemically induced disorders | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D065008
+4. therapeutic_use: Diarrhea | mesh_id: D003967 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: nutritional and metabolic diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003967
+5. therapeutic_use: Emollients | mesh_id: D004643 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: nutritional and metabolic diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004643
+6. therapeutic_use: Laxatives | mesh_id: D054368 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: digestive system diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D054368
+7. therapeutic_use: Antifungal agents | mesh_id: D000935 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D000935
+8. therapeutic_use: Contraceptive agents | mesh_id: D003270 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003270
+9. therapeutic_use: Eczema | mesh_id: D004485 | mesh_category: C17 | mesh_category_name: Diseases | mesh_sub_category_name: skin and connective tissue diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004485
+10. therapeutic_use: Wounds and injuries | mesh_id: D014947 | mesh_category: C26 | mesh_category_name: Diseases | mesh_sub_category_name: wounds and injuries | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D014947
+11. therapeutic_use: Anthelmintics | mesh_id: D000871 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D000871
+12. therapeutic_use: Snake bites | mesh_id: D012909 | mesh_category: C25 | mesh_category_name: Diseases | mesh_sub_category_name: chemically induced disorders | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D012909
+13. therapeutic_use: Antipyretics | mesh_id: D058633 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D058633
+
+4. BIOACTIVITIES (bioactivities: 9 items)
+----------------------------------------------------------------------
+1. bioactivity_id: BA_227 | standard_type: Ki | standard_relation: = | standard_value: 0.8 | standard_units: nM | normalized_value_nm: 0.8 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL40746
+2. bioactivity_id: BA_316 | standard_type: IC50 | standard_relation: = | standard_value: 350.0 | standard_units: nM | normalized_value_nm: 350.0 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL82293
+3. bioactivity_id: BA_138 | standard_type: Ki | standard_relation: = | standard_value: 6000.0 | standard_units: nM | normalized_value_nm: 6000.0 | high_confidence_tier: MEDIUM | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL8659
+4. bioactivity_id: BA_249 | standard_type: Potency | standard_relation: = | standard_value: 10.0 | standard_units: nM | normalized_value_nm: 10.0 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL8659
+5. bioactivity_id: BA_327 | standard_type: IC50 | standard_relation: = | standard_value: 1562.0 | standard_units: nM | normalized_value_nm: 1562.0 | high_confidence_tier: MEDIUM | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL8659
+6. bioactivity_id: BA_221 | standard_type: IC50 | standard_relation: = | standard_value: 4720.0 | standard_units: nM | normalized_value_nm: 4720.0 | high_confidence_tier: MEDIUM | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL46403
+7. bioactivity_id: BA_155 | standard_type: Potency | standard_relation: = | standard_value: 158.5 | standard_units: nM | normalized_value_nm: 158.5 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL111077
+8. bioactivity_id: BA_258 | standard_type: Ki | standard_relation: = | standard_value: 72.8 | standard_units: nM | normalized_value_nm: 72.8 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL145
+9. bioactivity_id: BA_092 | standard_type: Ki | standard_relation: = | standard_value: 32.0 | standard_units: nM | normalized_value_nm: 32.0 | high_confidence_tier: HIGH | source: ChEMBL | source_url: https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL108766
+
+5. PROTEIN TARGETS (protein_targets: 10 items)
+----------------------------------------------------------------------
+1. target_name: 72 kDa type IV collagenase | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL333 | uniprot_id: P08253 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL333 | uniprot_url: www.uniprot.org/uniprotkb/P08253
+2. target_name: Transient receptor potential cation channel subfamily V member 1 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL4794 | uniprot_id: Q8NER1 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4794 | uniprot_url: www.uniprot.org/uniprotkb/Q8NER1
+3. target_name: Fatty-acid amide hydrolase 1 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL2243 | uniprot_id: O00519 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2243 | uniprot_url: www.uniprot.org/uniprotkb/O00519
+4. target_name: Cytochrome P450 2C19 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL3622 | uniprot_id: P33261 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3622 | uniprot_url: www.uniprot.org/uniprotkb/P33261
+5. target_name: Serine/threonine-protein kinase B-raf | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL5145 | uniprot_id: P15056 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL5145 | uniprot_url: www.uniprot.org/uniprotkb/P15056
+6. target_name: Phosphatidylinositol 4,5-bisphosphate 3-kinase catalytic subunit gamma isoform | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL3267 | uniprot_id: P48736 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3267 | uniprot_url: www.uniprot.org/uniprotkb/P48736
+7. target_name: DNA polymerase beta | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL2392 | uniprot_id: P06746 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL2392 | uniprot_url: www.uniprot.org/uniprotkb/P06746
+8. target_name: Neuropeptide S receptor | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL5162 | uniprot_id: Q6W5P4 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL5162 | uniprot_url: www.uniprot.org/uniprotkb/Q6W5P4
+9. target_name: Carbonic anhydrase 4 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL3729 | uniprot_id: P22748 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3729 | uniprot_url: www.uniprot.org/uniprotkb/P22748
+10. target_name: Receptor-type tyrosine-protein kinase FLT3 | target_organism: Homo sapiens | target_type: SINGLE PROTEIN | target_chembl_id: CHEMBL1974 | uniprot_id: P36888 | source: ChemBL, UNIPROT | chembl_url: https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1974 | uniprot_url: www.uniprot.org/uniprotkb/P36888
+
+6. PHYTOCHEMICALS (phytochemicals: 7 items)
+----------------------------------------------------------------------
+1. phytochemical_name: Palmitic acid | imppat_id: IMPHY007327 | chembl_id: CHEMBL82293 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Fatty acyls | classyfire_subclass: Fatty acids and conjugates | inchi_key: IPCSVZSSVZVIGE-UHFFFAOYSA-N | smiles: CCCCCCCCCCCCCCCC(=O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY007327
+2. phytochemical_name: Oleic acid | imppat_id: IMPHY011797 | chembl_id: CHEMBL8659 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Fatty acyls | classyfire_subclass: Fatty acids and conjugates | inchi_key: ZQPPMHVWECSIRJ-KTKRTIGZSA-N | smiles: CCCCCCCC/C=CCCCCCCCC(=O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011797
+3. phytochemical_name: Stearic acid | imppat_id: IMPHY004631 | chembl_id: CHEMBL46403 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Fatty acyls | classyfire_subclass: Fatty acids and conjugates | inchi_key: QIQXTHQIDYTFRH-UHFFFAOYSA-N | smiles: CCCCCCCCCCCCCCCCCC(=O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY004631
+4. phytochemical_name: Myristic acid | imppat_id: IMPHY000060 | chembl_id: CHEMBL111077 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Fatty acyls | classyfire_subclass: Fatty acids and conjugates | inchi_key: TUNFSRHWOTWDNC-UHFFFAOYSA-N | smiles: CCCCCCCCCCCCCC(=O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY000060
+5. phytochemical_name: Decanoic acid | imppat_id: IMPHY003104 | chembl_id: CHEMBL107498 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Fatty acyls | classyfire_subclass: Fatty acids and conjugates | inchi_key: GHVNFZFCNZKVNT-UHFFFAOYSA-N | smiles: CCCCCCCCCC(=O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY003104
+6. phytochemical_name: Lauric acid | imppat_id: IMPHY003016 | chembl_id: CHEMBL108766 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Fatty acyls | classyfire_subclass: Fatty acids and conjugates | inchi_key: POULHZVOKOAJMA-UHFFFAOYSA-N | smiles: CCCCCCCCCCCC(=O)O | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY003016
+7. phytochemical_name: Amasterol | imppat_id: IMPHY006093 | chembl_id: NA | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Steroids and steroid derivatives | classyfire_subclass: Ergostane steroids | inchi_key: VRCVXRWYXYWACO-UHFFFAOYSA-N | smiles: OC1CCC2(C(=CC=C3C2CCC2(C3CCC2C(CCC(=C)C(C)C)(O)C)C)C1)C | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY006093
+
+7. DOCUMENTS (documents: 8 items)
+----------------------------------------------------------------------
+1. document_chembl_id: CHEMBL1133244 | document_journal: Bioorg Med Chem Lett | document_year: 2000 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1133244
+2. document_chembl_id: CHEMBL3638947 | document_journal: NA | document_year: 2015 | source: ChEMBL | source_id: 37 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3638947
+3. document_chembl_id: CHEMBL1140205 | document_journal: J Med Chem | document_year: 2008 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1140205
+4. document_chembl_id: CHEMBL1201862 | document_journal: NA | document_year: NA | source: ChEMBL | source_id: 7 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1201862
+5. document_chembl_id: CHEMBL4261543 | document_journal: Medchemcomm | document_year: 2017 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4261543
+6. document_chembl_id: CHEMBL3351785 | document_journal: Eur J Med Chem | document_year: 2014 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3351785
+7. document_chembl_id: CHEMBL3627624 | document_journal: Bioorg Med Chem | document_year: 2015 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL3627624
+8. document_chembl_id: CHEMBL5512615 | document_journal: Eur J Med Chem | document_year: 2024 | source: ChEMBL | source_id: 1 | source_url: https://www.ebi.ac.uk/chembl/explore/document/CHEMBL5512615

@@ -1,0 +1,524 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "260718",
+      "global_status": "Not Evaluated",
+      "biodiversity_url": "https://indiabiodiversity.org/species/show/266545",
+      "iucn_url": "NA",
+      "common_names": "Tahitian Gooseberry Tree, Malay Gooseberry",
+      "iucn_year": "Not Evaluated",
+      "source": "IUCN, IISC",
+      "plant_name": "Phyllanthus acidus",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+      {
+        "plant_part": "bark",
+        "plant_part_id": "PH-AC-BA",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus",
+        "plant_name": "Phyllanthus acidus"
+      },
+      {
+        "plant_part": "fruit",
+        "plant_part_id": "PH-AC-FR",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus",
+        "plant_name": "Phyllanthus acidus"
+      },
+      {
+        "plant_part": "leaf",
+        "plant_part_id": "PH-AC-LE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus",
+        "plant_name": "Phyllanthus acidus"
+      },
+      {
+        "plant_part": "root",
+        "plant_part_id": "PH-AC-RO",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus",
+        "plant_name": "Phyllanthus acidus"
+      },
+      {
+        "plant_part": "seed",
+        "plant_part_id": "PH-AC-SE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Phyllanthus%20acidus",
+        "plant_name": "Phyllanthus acidus"
+      }
+    ],
+    "phytochemicals": [
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "beta-Amyrin",
+        "imppat_id": "IMPHY012223",
+        "smiles": "O[C@H]1CC[C@]2([C@H](C1(C)C)CC[C@@]1([C@@H]2CC=C2[C@@]1(C)CC[C@@]1([C@H]2CC(C)(C)CC1)C)C)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "JFSHUTJDVKUMTJ-QHPUVITPSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL455098",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012223"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Phyllanthol",
+        "imppat_id": "IMPHY002413",
+        "smiles": "C[C@@H]1CC[C@]2([C@@H]([C@H]1C)[C@@]13CC[C@H]4[C@@]([C@]3(C1)CC2)(C)CC[C@@H]1[C@]4(C)CC[C@@H](C1(C)C)O)C",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "ULWYRERWMYGJNF-ULPBYVOSSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY002413"
+      },
+      {
+        "classyfire_subclass": "Triterpenoids",
+        "phytochemical_name": "Triterpenoids",
+        "imppat_id": "IMPHY013522",
+        "smiles": "O[C@H]1C[C@@]2(C)C(=CC[C@@]3([C@@H]2CC=C2[C@@]3(C)CC[C@@]3([C@H]2CC(C)(C)CC3)C(=O)O)C)[C@]([C@H]1O)(C)O",
+        "classyfire_class": "Prenol lipids",
+        "inchi_key": "WYJAKKNMIDWZKG-VJZIOILKSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "NA",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY013522"
+      },
+      {
+        "classyfire_subclass": "Benzoic acids and derivatives",
+        "phytochemical_name": "Gallic acid",
+        "imppat_id": "IMPHY012021",
+        "smiles": "OC(=O)c1cc(O)c(c(c1)O)O",
+        "classyfire_class": "Benzene and substituted derivatives",
+        "inchi_key": "LNTHITQWFMADLM-UHFFFAOYSA-N",
+        "classyfire_superclass": "Benzenoids",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL288114",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012021"
+      },
+      {
+        "classyfire_subclass": "Hydrolyzable tannins",
+        "phytochemical_name": "Tannic acid",
+        "imppat_id": "IMPHY011741",
+        "smiles": "O=C(c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O)O[C@@H]1[C@@H](COC(=O)c2cc(O)c(c(c2)OC(=O)c2cc(O)c(c(c2)O)O)O)O[C@H]([C@@H]([C@H]1OC(=O)c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O)OC(=O)c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O)OC(=O)c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O",
+        "classyfire_class": "Tannins",
+        "inchi_key": "LRBQNJMCXXYXIU-PPKXGCFTSA-N",
+        "classyfire_superclass": "Phenylpropanoids and polyketides",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL506247",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011741"
+      }
+    ],
+    "therapeutic_uses": [
+      {
+        "therapeutic_use": "Abdominal pain",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D015746",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D015746"
+      },
+      {
+        "therapeutic_use": "Eczema",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D004485",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004485"
+      },
+      {
+        "therapeutic_use": "Headache",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D006261",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006261"
+      },
+      {
+        "therapeutic_use": "Astringents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D001252",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001252"
+      },
+      {
+        "therapeutic_use": "Bronchitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D001991",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001991"
+      },
+      {
+        "therapeutic_use": "Snake bites",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "chemically induced disorders",
+        "mesh_id": "D012909",
+        "mesh_category": "C25",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D012909"
+      },
+      {
+        "therapeutic_use": "Vomiting",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D014839",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014839"
+      },
+      {
+        "therapeutic_use": "Eye diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D005128",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005128"
+      },
+      {
+        "therapeutic_use": "Diarrhea",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D003967",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003967"
+      },
+      {
+        "therapeutic_use": "Asthma",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D001249",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001249"
+      },
+      {
+        "therapeutic_use": "Constipation",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D003248",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003248"
+      },
+      {
+        "therapeutic_use": "Flatulence",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D005414",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005414"
+      },
+      {
+        "therapeutic_use": "Epistaxis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D004844",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004844"
+      },
+      {
+        "therapeutic_use": "Cathartics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D002400",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D002400"
+      }
+    ],
+    "bioactivities": [
+      {
+        "normalized_value_nm": 354.8,
+        "standard_units": "nM",
+        "standard_type": "Potency",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_016",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL288114",
+        "standard_value": 354.8
+      },
+      {
+        "normalized_value_nm": 0.8,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_227",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL40746",
+        "standard_value": 0.8
+      },
+      {
+        "normalized_value_nm": 16.5,
+        "standard_units": "nM",
+        "standard_type": "Kd",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_048",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL63354",
+        "standard_value": 16.5
+      },
+      {
+        "normalized_value_nm": 2310.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_058",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247",
+        "standard_value": 2310.0
+      },
+      {
+        "normalized_value_nm": 4703.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_066",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247",
+        "standard_value": 4703.0
+      },
+      {
+        "normalized_value_nm": 22.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_071",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247",
+        "standard_value": 22.0
+      },
+      {
+        "normalized_value_nm": 3.0,
+        "standard_units": "nM",
+        "standard_type": "Ki",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "HIGH",
+        "bioactivity_id": "BA_215",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL1405",
+        "standard_value": 3.0
+      },
+      {
+        "normalized_value_nm": 2600.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_233",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247",
+        "standard_value": 2600.0
+      },
+      {
+        "normalized_value_nm": 7100.0,
+        "standard_units": "nM",
+        "standard_type": "IC50",
+        "standard_relation": "=",
+        "source": "ChEMBL",
+        "high_confidence_tier": "MEDIUM",
+        "bioactivity_id": "BA_338",
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/compound/CHEMBL506247",
+        "standard_value": 7100.0
+      }
+    ],
+    "protein_targets": [
+      {
+        "target_name": "Lysine-specific demethylase 4E",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1293226",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "B2RXH2",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1293226",
+        "uniprot_url": "www.uniprot.org/uniprotkb/B2RXH2"
+      },
+      {
+        "target_name": "72 kDa type IV collagenase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL333",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P08253",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL333",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P08253"
+      },
+      {
+        "target_name": "Vascular endothelial growth factor A, long form",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1783",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P15692",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1783",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P15692"
+      },
+      {
+        "target_name": "Transmembrane protease serine 2",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1795140",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "O15393",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1795140",
+        "uniprot_url": "www.uniprot.org/uniprotkb/O15393"
+      },
+      {
+        "target_name": "cGMP-specific 3',5'-cyclic phosphodiesterase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1827",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "O76074",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1827",
+        "uniprot_url": "www.uniprot.org/uniprotkb/O76074"
+      },
+      {
+        "target_name": "Tyrosine-protein kinase Fyn",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL1841",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P06241",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL1841",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P06241"
+      },
+      {
+        "target_name": "17-beta-hydroxysteroid dehydrogenase type 1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3181",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P14061",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3181",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P14061"
+      },
+      {
+        "target_name": "Cytochrome P450 1B1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL4878",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "Q16678",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL4878",
+        "uniprot_url": "www.uniprot.org/uniprotkb/Q16678"
+      },
+      {
+        "target_name": "DNA-3-methyladenine glycosylase",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL3396943",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P29372",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL3396943",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P29372"
+      },
+      {
+        "target_name": "Zinc finger protein GLI1",
+        "target_organism": "Homo sapiens",
+        "target_chembl_id": "CHEMBL5461",
+        "target_type": "SINGLE PROTEIN",
+        "source": "ChemBL, UNIPROT",
+        "uniprot_id": "P08151",
+        "chembl_url": "https://www.ebi.ac.uk/chembl/explore/target/CHEMBL5461",
+        "uniprot_url": "www.uniprot.org/uniprotkb/P08151"
+      }
+    ],
+    "documents": [
+      {
+        "document_year": "NA",
+        "document_journal": "NA",
+        "document_chembl_id": "CHEMBL1201862",
+        "source": "ChEMBL",
+        "source_id": 7,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1201862"
+      },
+      {
+        "document_year": "2000",
+        "document_journal": "Bioorg Med Chem Lett",
+        "document_chembl_id": "CHEMBL1133244",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1133244"
+      },
+      {
+        "document_year": "2013",
+        "document_journal": "J Nat Prod",
+        "document_chembl_id": "CHEMBL2331357",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL2331357"
+      },
+      {
+        "document_year": "2024",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL5500424",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL5500424"
+      },
+      {
+        "document_year": "NA",
+        "document_journal": "NA",
+        "document_chembl_id": "CHEMBL1909046",
+        "source": "ChEMBL",
+        "source_id": 15,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1909046"
+      },
+      {
+        "document_year": "2008",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL1154469",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1154469"
+      },
+      {
+        "document_year": "2017",
+        "document_journal": "Eur J Med Chem",
+        "document_chembl_id": "CHEMBL4033668",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4033668"
+      },
+      {
+        "document_year": "2020",
+        "document_journal": "Bioorg Med Chem",
+        "document_chembl_id": "CHEMBL4725228",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL4725228"
+      },
+      {
+        "document_year": "2009",
+        "document_journal": "J Med Chem",
+        "document_chembl_id": "CHEMBL1138588",
+        "source": "ChEMBL",
+        "source_id": 1,
+        "source_url": "https://www.ebi.ac.uk/chembl/explore/document/CHEMBL1138588"
+      }
+    ]
+  }
+]

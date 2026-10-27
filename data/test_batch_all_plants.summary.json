@@ -1,0 +1,13 @@
+{
+  "plants_loaded": 40,
+  "questions_loaded": 20,
+  "expected_total_combinations": 800,
+  "total_evaluated_in_run": 1,
+  "successful": 1,
+  "failed": 0,
+  "skipped_completed": 0,
+  "start_time": "2026-10-26T15:43:24.654615+00:00",
+  "end_time": "2026-10-26T15:44:06.237477+00:00",
+  "total_elapsed_seconds": 41.58,
+  "cases_remaining": 798
+}

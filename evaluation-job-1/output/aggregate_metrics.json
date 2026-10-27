@@ -1,0 +1,10 @@
+{
+  "timestamp": "2026-10-27T14:35:25.445360+00:00",
+  "total_cases_evaluated": 800,
+  "elapsed_seconds": 506.54,
+  "mean_groundedness_score": 0.8591,
+  "mean_hallucination_rate": 0.1409,
+  "mean_tool_call_accuracy": 0.9938,
+  "mean_graph_retrieval_time_ms": 218.52,
+  "bucket_source": "s3://impark-ground-truth"
+}
