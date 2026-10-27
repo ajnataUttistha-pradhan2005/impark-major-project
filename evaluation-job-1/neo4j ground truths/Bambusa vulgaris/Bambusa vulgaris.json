@@ -1,0 +1,265 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "147366",
+      "global_status": "Not Evaluated",
+      "biodiversity_url": "https://indiabiodiversity.org/species/show/228836",
+      "iucn_url": "NA",
+      "common_names": "Bamboo",
+      "iucn_year": "Not Evaluated",
+      "source": "IUCN, IISC",
+      "plant_name": "Bambusa vulgaris",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+      {
+        "plant_part": "bark",
+        "plant_part_id": "BA-VU-BA",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Bambusa%20vulgaris",
+        "plant_name": "Bambusa vulgaris"
+      },
+      {
+        "plant_part": "leaf",
+        "plant_part_id": "BA-VU-LE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Bambusa%20vulgaris",
+        "plant_name": "Bambusa vulgaris"
+      },
+      {
+        "plant_part": "root",
+        "plant_part_id": "BA-VU-RO",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Bambusa%20vulgaris",
+        "plant_name": "Bambusa vulgaris"
+      },
+      {
+        "plant_part": "shoot",
+        "plant_part_id": "BA-VU-SH",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Bambusa%20vulgaris",
+        "plant_name": "Bambusa vulgaris"
+      },
+      {
+        "plant_part": "whole plant",
+        "plant_part_id": "BA-VU-WH",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Bambusa%20vulgaris",
+        "plant_name": "Bambusa vulgaris"
+      }
+    ],
+    "phytochemicals": [
+      {
+        "classyfire_subclass": "Carbonyl compounds",
+        "phytochemical_name": "4-Hydroxybenzaldehyde",
+        "imppat_id": "IMPHY009356",
+        "smiles": "O=Cc1ccc(cc1)O",
+        "classyfire_class": "Organooxygen compounds",
+        "inchi_key": "RGHHSNMVTDWUBI-UHFFFAOYSA-N",
+        "classyfire_superclass": "Organic oxygen compounds",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL14193",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY009356"
+      },
+      {
+        "classyfire_subclass": "Carbohydrates and carbohydrate conjugates",
+        "phytochemical_name": "Taxiphyllin",
+        "imppat_id": "IMPHY003787",
+        "smiles": "OC[C@H]1O[C@@H](O[C@H](c2ccc(cc2)O)C#N)[C@@H]([C@H]([C@@H]1O)O)O",
+        "classyfire_class": "Organooxygen compounds",
+        "inchi_key": "NVLTYOJHPBMILU-GMDXDWKASA-N",
+        "classyfire_superclass": "Organic oxygen compounds",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL469825",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY003787"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "beta-Sitosterol",
+        "imppat_id": "IMPHY014836",
+        "smiles": "CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "KZJWDPNRJALLNS-VJSFXXLFSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL221542",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014836"
+      },
+      {
+        "classyfire_subclass": "Ergostane steroids",
+        "phytochemical_name": "Campesterol",
+        "imppat_id": "IMPHY012402",
+        "smiles": "O[C@H]1CC[C@]2(C(=CC[C@@H]3[C@@H]2CC[C@]2([C@H]3CC[C@@H]2[C@@H](CC[C@H](C(C)C)C)C)C)C1)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "SGNBVLSWZMBQTH-PODYLUTMSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL520535",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY012402"
+      },
+      {
+        "classyfire_subclass": "Stigmastanes and derivatives",
+        "phytochemical_name": "Stigmasterol",
+        "imppat_id": "IMPHY014842",
+        "smiles": "CC[C@@H](C(C)C)/C=C/[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C",
+        "classyfire_class": "Steroids and steroid derivatives",
+        "inchi_key": "HCXVJBMSMIARIN-PHZDYDNGSA-N",
+        "classyfire_superclass": "Lipids and lipid-like molecules",
+        "source": "IMPPAT",
+        "classyfire_kingdom": "Organic compounds",
+        "chembl_id": "CHEMBL400247",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014842"
+      }
+    ],
+    "therapeutic_uses": [
+      {
+        "therapeutic_use": "Astringents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D001252",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001252"
+      },
+      {
+        "therapeutic_use": "Diuretics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D004232",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004232"
+      },
+      {
+        "therapeutic_use": "Hemorrhage",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D006470",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006470"
+      },
+      {
+        "therapeutic_use": "Vomiting",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D014839",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014839"
+      },
+      {
+        "therapeutic_use": "Emollients",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D004643",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004643"
+      },
+      {
+        "therapeutic_use": "Menstruation disturbances",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D008599",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D008599"
+      },
+      {
+        "therapeutic_use": "Nausea",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D009325",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D009325"
+      },
+      {
+        "therapeutic_use": "Cough",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "respiratory tract diseases",
+        "mesh_id": "D003371",
+        "mesh_category": "C08",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003371"
+      },
+      {
+        "therapeutic_use": "Fever",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D005334",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005334"
+      },
+      {
+        "therapeutic_use": "Wound healing",
+        "mesh_category_name": "Phenomena and Processes",
+        "mesh_sub_category_name": "biological phenomena",
+        "mesh_id": "D014945",
+        "mesh_category": "G16",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014945"
+      },
+      {
+        "therapeutic_use": "Wounds and injuries",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "wounds and injuries",
+        "mesh_id": "D014947",
+        "mesh_category": "C26",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014947"
+      },
+      {
+        "therapeutic_use": "Anti-infective agents",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D000890",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000890"
+      },
+      {
+        "therapeutic_use": "Pharyngitis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D010612",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D010612"
+      },
+      {
+        "therapeutic_use": "Burns",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "eye diseases",
+        "mesh_id": "D002056",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D002056"
+      },
+      {
+        "therapeutic_use": "Contraceptive agents",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D003270",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003270"
+      }
+    ],
+    "bioactivities": [
+
+    ],
+    "protein_targets": [
+
+    ],
+    "documents": [
+
+    ]
+  }
+]

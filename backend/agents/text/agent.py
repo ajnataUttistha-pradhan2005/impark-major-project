@@ -1,5 +1,8 @@
 import re
+import time
+from typing import Any
 
+from backend.agents.common.callbacks import emit_agent_end, emit_agent_start
 from backend.agents.text.intent_model import IntentModel
 from backend.agents.text.interpretation import interpret, mentioned_parts, scoped_queries
 from backend.agents.text.providers import EntitySearchProvider
@@ -27,7 +30,12 @@ class TextAgent:
         self.provider = provider
         self.intent_model = intent_model
 
-    async def execute(self, request: TextAgentInput) -> Observation | Failure:
+    async def execute(
+        self, request: TextAgentInput, callbacks: Any = None
+    ) -> Observation | Failure:
+        t_start = time.perf_counter()
+        run_id = str(request.invocation.correlation.run_id)
+        emit_agent_start(callbacks, "text_entity", request.text, run_id=run_id)
         query = normalize(request.text)
         intents, part, safety = interpret(query)
         topic_followup = bool(
@@ -261,29 +269,43 @@ class TextAgent:
             clarification_question = (
                 "Please select a candidate or provide its scientific/common name."
             )
+        payload = TextResult(
+            candidates=candidates,
+            placeholder=self.provider is None,
+            intent="HEALTH_SAFETY"
+            if safety
+            else (intents[0].value if intents else "DISCOVER_PLANT"),
+            query_types=intents,
+            queries=queries,
+            entities=entities,
+            part=part,
+            stages=stages,
+            limitations=limitations,
+            needs_clarification=(
+                intent_uncertain
+                or not candidates
+                or max(c.confidence for c in candidates) < 0.95
+            ),
+            safety_abstention=safety,
+            intent_uncertain=intent_uncertain,
+            clarification_question=clarification_question,
+        )
+        elapsed_ms = (time.perf_counter() - t_start) * 1000
+        context_snippets = [
+            f"Candidate: {c.label} (confidence: {c.confidence:.2f})"
+            for c in candidates[:3]
+        ]
+        emit_agent_end(
+            callbacks,
+            "text_entity",
+            payload,
+            run_id=run_id,
+            latency_ms=elapsed_ms,
+            context_snippets=context_snippets,
+        )
         return Observation(
             invocation=request.invocation,
             component=Capability.TEXT,
-            payload=TextResult(
-                candidates=candidates,
-                placeholder=self.provider is None,
-                intent="HEALTH_SAFETY"
-                if safety
-                else (intents[0].value if intents else "DISCOVER_PLANT"),
-                query_types=intents,
-                queries=queries,
-                entities=entities,
-                part=part,
-                stages=stages,
-                limitations=limitations,
-                needs_clarification=(
-                    intent_uncertain
-                    or not candidates
-                    or max(c.confidence for c in candidates) < 0.95
-                ),
-                safety_abstention=safety,
-                intent_uncertain=intent_uncertain,
-                clarification_question=clarification_question,
-            ),
+            payload=payload,
             confidence=max((c.confidence for c in candidates), default=0),
         )

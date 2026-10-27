@@ -1,0 +1,73 @@
+PLANT GROUND-TRUTH CONTEXT: Ficus benjamina
+======================================================================
+
+SUMMARY OVERVIEW
+----------------------------------------------------------------------
+Plant Name: Ficus benjamina | Common Names: Weeping Fig, Golden Fig, Benjamins Fig | Taxonomy ID: 182105 | Global Status: Least Concern | Regional Status: Not Evaluated | IUCN Year: 2019 | IUCN URL: https://www.iucnredlist.org/species/145362709/145370980 | Biodiversity URL: https://indiabiodiversity.org/species/show/266605 | Source: IUCN, IISC
+Total Counts in JSON: plant_parts=8, phytochemicals=5, therapeutic_uses=17, bioactivities=0, protein_targets=0, documents=0
+Plant Parts List (8): aerial part, bark, fruit, leaf, plant exudate, root, seed, shoot
+Therapeutic Uses List (17): Diuretics, Bronchitis, Liver diseases, Wounds and injuries, Anti-infective agents, Contusions, Headache, Antifungal agents, Ulcer, Analgesics, Scabies, Corneal diseases, Skin diseases, Vitiligo, Hemagglutination, Cough, Dysentery
+Phytochemicals by classyfire_kingdom: Organic compounds (5)
+Phytochemicals by classyfire_superclass: Lipids and lipid-like molecules (3), Phenylpropanoids and polyketides (2)
+Phytochemicals by classyfire_class: Coumarins and derivatives (2), Prenol lipids (2), Steroids and steroid derivatives (1)
+Phytochemicals by classyfire_subclass: Furanocoumarins (2), Triterpenoids (2), Stigmastanes and derivatives (1)
+
+1. PLANT DETAILS (plant_details)
+----------------------------------------------------------------------
+taxonomy_id: 182105
+global_status: Least Concern
+biodiversity_url: https://indiabiodiversity.org/species/show/266605
+iucn_url: https://www.iucnredlist.org/species/145362709/145370980
+common_names: Weeping Fig, Golden Fig, Benjamins Fig
+iucn_year: 2019
+source: IUCN, IISC
+plant_name: Ficus benjamina
+regional_status: Not Evaluated
+
+2. PLANT PARTS (plant_parts: 8 items)
+----------------------------------------------------------------------
+1. plant_name: Ficus benjamina | plant_part: aerial part | plant_part_id: FI-BE-AE | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+2. plant_name: Ficus benjamina | plant_part: bark | plant_part_id: FI-BE-BA | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+3. plant_name: Ficus benjamina | plant_part: fruit | plant_part_id: FI-BE-FR | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+4. plant_name: Ficus benjamina | plant_part: leaf | plant_part_id: FI-BE-LE | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+5. plant_name: Ficus benjamina | plant_part: plant exudate | plant_part_id: FI-BE-PL | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+6. plant_name: Ficus benjamina | plant_part: root | plant_part_id: FI-BE-RO | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+7. plant_name: Ficus benjamina | plant_part: seed | plant_part_id: FI-BE-SE | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+8. plant_name: Ficus benjamina | plant_part: shoot | plant_part_id: FI-BE-SH | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20benjamina
+
+3. THERAPEUTIC USES (therapeutic_uses: 17 items)
+----------------------------------------------------------------------
+1. therapeutic_use: Diuretics | mesh_id: D004232 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004232
+2. therapeutic_use: Bronchitis | mesh_id: D001991 | mesh_category: C01 | mesh_category_name: Diseases | mesh_sub_category_name: bacterial infections and mycoses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D001991
+3. therapeutic_use: Liver diseases | mesh_id: D008107 | mesh_category: C06 | mesh_category_name: Diseases | mesh_sub_category_name: digestive system diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D008107
+4. therapeutic_use: Wounds and injuries | mesh_id: D014947 | mesh_category: C26 | mesh_category_name: Diseases | mesh_sub_category_name: wounds and injuries | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D014947
+5. therapeutic_use: Anti-infective agents | mesh_id: D000890 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D000890
+6. therapeutic_use: Contusions | mesh_id: D003288 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003288
+7. therapeutic_use: Headache | mesh_id: D006261 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D006261
+8. therapeutic_use: Antifungal agents | mesh_id: D000935 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D000935
+9. therapeutic_use: Ulcer | mesh_id: D014456 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D014456
+10. therapeutic_use: Analgesics | mesh_id: D000700 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: bacterial infections and mycoses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D000700
+11. therapeutic_use: Scabies | mesh_id: D012532 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: digestive system diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D012532
+12. therapeutic_use: Corneal diseases | mesh_id: D003316 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003316
+13. therapeutic_use: Skin diseases | mesh_id: D012871 | mesh_category: C17 | mesh_category_name: Diseases | mesh_sub_category_name: skin and connective tissue diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D012871
+14. therapeutic_use: Vitiligo | mesh_id: D014820 | mesh_category: C17 | mesh_category_name: Diseases | mesh_sub_category_name: skin and connective tissue diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D014820
+15. therapeutic_use: Hemagglutination | mesh_id: D006384 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D006384
+16. therapeutic_use: Cough | mesh_id: D003371 | mesh_category: C08 | mesh_category_name: Diseases | mesh_sub_category_name: respiratory tract diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003371
+17. therapeutic_use: Dysentery | mesh_id: D004403 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: eye diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004403
+
+4. BIOACTIVITIES (bioactivities: 0 items)
+----------------------------------------------------------------------
+
+5. PROTEIN TARGETS (protein_targets: 0 items)
+----------------------------------------------------------------------
+
+6. PHYTOCHEMICALS (phytochemicals: 5 items)
+----------------------------------------------------------------------
+1. phytochemical_name: Bergapten | imppat_id: IMPHY005428 | chembl_id: CHEMBL24171 | classyfire_kingdom: Organic compounds | classyfire_superclass: Phenylpropanoids and polyketides | classyfire_class: Coumarins and derivatives | classyfire_subclass: Furanocoumarins | inchi_key: BGEBZHIAGXMEMV-UHFFFAOYSA-N | smiles: COc1c2ccc(=O)oc2cc2c1cco2 | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY005428
+2. phytochemical_name: beta-Sitosterol | imppat_id: IMPHY014836 | chembl_id: CHEMBL221542 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Steroids and steroid derivatives | classyfire_subclass: Stigmastanes and derivatives | inchi_key: KZJWDPNRJALLNS-VJSFXXLFSA-N | smiles: CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY014836
+3. phytochemical_name: Friedelin | imppat_id: IMPHY011688 | chembl_id: CHEMBL485998 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Prenol lipids | classyfire_subclass: Triterpenoids | inchi_key: OFMXGFHWLZPCFL-SVRPQWSVSA-N | smiles: O=C1CC[C@@H]2[C@]([C@H]1C)(C)CC[C@H]1[C@@]2(C)CC[C@@]2([C@]1(C)CC[C@@]1([C@H]2CC(C)(C)CC1)C)C | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011688
+4. phytochemical_name: Imperatorin | imppat_id: IMPHY008913 | chembl_id: CHEMBL453805 | classyfire_kingdom: Organic compounds | classyfire_superclass: Phenylpropanoids and polyketides | classyfire_class: Coumarins and derivatives | classyfire_subclass: Furanocoumarins | inchi_key: OLOOJGVNMBJLLR-UHFFFAOYSA-N | smiles: CC(=CCOc1c2occc2cc2c1oc(=O)cc2)C | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY008913
+5. phytochemical_name: alpha-Amyrin | imppat_id: IMPHY011619 | chembl_id: CHEMBL455357 | classyfire_kingdom: Organic compounds | classyfire_superclass: Lipids and lipid-like molecules | classyfire_class: Prenol lipids | classyfire_subclass: Triterpenoids | inchi_key: FSLPMRQHCOLESF-SFMCKYFRSA-N | smiles: C[C@@H]1CC[C@]2([C@@H]([C@H]1C)C1=CC[C@H]3[C@@]([C@@]1(CC2)C)(C)CC[C@@H]1[C@]3(C)CC[C@@H](C1(C)C)O)C | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical-detailedpage/IMPHY011619
+
+7. DOCUMENTS (documents: 0 items)
+----------------------------------------------------------------------

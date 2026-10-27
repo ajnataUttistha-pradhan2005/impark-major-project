@@ -1,0 +1,33 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "NA",
+      "global_status": "Not Evaluated",
+      "biodiversity_url": "NA",
+      "iucn_url": "NA",
+      "common_names": "Dwarf Umbrella Tree",
+      "iucn_year": "Not Evaluated",
+      "source": "IUCN, IISC",
+      "plant_name": "Schefflera arboricola",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+
+    ],
+    "phytochemicals": [
+
+    ],
+    "therapeutic_uses": [
+
+    ],
+    "bioactivities": [
+
+    ],
+    "protein_targets": [
+
+    ],
+    "documents": [
+
+    ]
+  }
+]

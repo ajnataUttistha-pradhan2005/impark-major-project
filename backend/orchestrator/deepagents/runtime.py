@@ -4,6 +4,13 @@ import asyncio
 import json
 import logging
 import re
+import time
+from typing import Any
+
+try:
+    from evaluator.local_tracer import LocalRedisTracer
+except ImportError:
+    LocalRedisTracer = None  # type: ignore
 
 from deepagents import (
     CompiledSubAgent,
@@ -82,6 +89,7 @@ class DeepAgentRuntime:
         )
 
     async def run(self, state: ConversationState) -> ConversationState:
+        tracer = LocalRedisTracer() if LocalRedisTracer is not None else None
         state = state.model_copy(deep=True)
         state.termination.status = TaskStatus.RUNNING
         self.harness.emit(state, EventType.TURN_STARTED)
@@ -110,6 +118,21 @@ class DeepAgentRuntime:
             publish("response_delta", {"text": text})
             publish("response_completed", state.response.model_dump(mode="json"))
             self.harness.emit(state, EventType.RESPONSE_STREAM_COMPLETED)
+            if tracer is not None:
+                tracer.record_node("text_entity", 1.0)
+                tracer.publish_run(
+                    user_input=state.user_message,
+                    agent_output=text,
+                    expected_agent="text_entity",
+                    ground_truth=active.label,
+                    manual_context=f"Selected plant: {active.label} ({active.plant_id})",
+                    extra_metadata={
+                        "session_id": str(state.correlation.session_id),
+                        "run_id": str(state.correlation.run_id),
+                        "plant_label": active.label,
+                        "mode": "DISCOVERY_LOCK",
+                    },
+                )
             return state
         candidates: dict[str, CandidatePlant] = {}
         scope_rejected = False
@@ -125,6 +148,7 @@ class DeepAgentRuntime:
         async def resolve_plant_names(text: str) -> str:
             """Resolve a plant name, alias, description or typo using the existing catalog."""
             nonlocal active, scope_rejected
+            t_start = time.perf_counter()
             provider = getattr(self.harness.execution.text, "provider", None)
             if not isinstance(provider, HybridNameSearch):
                 return json.dumps({"error": "Plant search unavailable"})
@@ -161,6 +185,10 @@ class DeepAgentRuntime:
                     "stages": stages,
                 }
             )
+            if tracer is not None:
+                elapsed_ms = (time.perf_counter() - t_start) * 1000
+                tracer.record_node("text_entity", elapsed_ms)
+                tracer.add_context(response)
             return response
 
         @tool
@@ -169,11 +197,13 @@ class DeepAgentRuntime:
             nonlocal active
             if state.image is None:
                 return json.dumps({"error": "No image uploaded in this turn"})
+            t_start = time.perf_counter()
             result = await self.harness.execution.image.execute(
                 ImageAgentInput(
                     invocation=self._invocation(state, ActionName.ANALYZE_IMAGE, Capability.IMAGE),
                     image=state.image,
-                )
+                ),
+                callbacks=[tracer] if tracer else None,
             )
             state.execution.observations.append(result)
             payload = result.payload
@@ -184,7 +214,12 @@ class DeepAgentRuntime:
                 if active is None and not payload.needs_clarification and payload.candidates:
                     active = payload.candidates[0]
                 self.harness.emit(state, EventType.OBSERVATION_CREATED)
-                return json.dumps(payload.model_dump(mode="json"))
+                response = json.dumps(payload.model_dump(mode="json"))
+                if tracer is not None:
+                    elapsed_ms = (time.perf_counter() - t_start) * 1000
+                    tracer.record_node("image_understanding", elapsed_ms)
+                    tracer.add_context(response)
+                return response
             return json.dumps({"error": "Image understanding unavailable"})
 
         @tool
@@ -250,12 +285,18 @@ class DeepAgentRuntime:
             except ValueError:
                 return json.dumps({"error": "Invalid typed graph query or missing filter"})
             retrieved_types.append(kind)
-            result = await self.harness.execution.graph.execute(
-                GraphAgentInput(
-                    invocation=self._invocation(state, ActionName.RETRIEVE_GRAPH, Capability.GRAPH),
-                    query=query,
-                )
+            t_graph_start = time.perf_counter()
+            graph_input = GraphAgentInput(
+                invocation=self._invocation(state, ActionName.RETRIEVE_GRAPH, Capability.GRAPH),
+                query=query,
             )
+            try:
+                result = await self.harness.execution.graph.execute(
+                    graph_input,
+                    callbacks=[tracer] if tracer else None,
+                )
+            except TypeError:
+                result = await self.harness.execution.graph.execute(graph_input)
             state.execution.observations.append(result)
             if isinstance(result, Failure):
                 return json.dumps({"error": result.reason})
@@ -269,6 +310,12 @@ class DeepAgentRuntime:
             for evidence in payload.evidence:
                 citation_map[str(evidence.evidence_id)] = evidence
             self.harness.emit(state, EventType.OBSERVATION_CREATED)
+            if tracer is not None:
+                elapsed_ms = (time.perf_counter() - t_graph_start) * 1000
+                tracer.record_node("knowledge_graph", elapsed_ms)
+                tracer.node_latencies_ms[tracer.retrieval_node_name] = round(elapsed_ms, 2)
+                for evidence in payload.evidence:
+                    tracer.add_context(evidence.claim)
             response = json.dumps(
                 {
                     "plant": active.label,
@@ -573,4 +620,24 @@ class DeepAgentRuntime:
             publish("response_delta", {"text": answer[index : index + 128]})
         publish("response_completed", state.response.model_dump(mode="json"))
         self.harness.emit(state, EventType.RESPONSE_STREAM_COMPLETED)
+
+        # Single end-of-turn evaluation publish: Streamed to Redis for LLM-as-a-Judge pipeline
+        # Emitted when an action/tool was performed or a final answer was generated
+        if tracer is not None and (tracer.actions_performed > 0 or bool(answer)):
+            evidence_claims = [e.claim for e in state.evidence.graph]
+            manual_ctx = "\n".join(evidence_claims) if evidence_claims else None
+            tracer.publish_run(
+                user_input=state.user_message,
+                agent_output=answer,
+                expected_agent="knowledge_graph" if state.evidence.graph else None,
+                ground_truth=None,
+                manual_context=manual_ctx,
+                extra_metadata={
+                    "session_id": str(state.correlation.session_id),
+                    "run_id": str(state.correlation.run_id),
+                    "plant_label": active.label if active else None,
+                    "fallback_used": fallback_used,
+                },
+            )
+
         return state

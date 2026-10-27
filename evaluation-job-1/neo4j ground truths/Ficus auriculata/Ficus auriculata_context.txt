@@ -1,0 +1,55 @@
+PLANT GROUND-TRUTH CONTEXT: Ficus auriculata
+======================================================================
+
+SUMMARY OVERVIEW
+----------------------------------------------------------------------
+Plant Name: Ficus auriculata | Common Names: Roxburgh Fig, Elephant Ear Fig | Taxonomy ID: 100541 | Global Status: Least Concern | Regional Status: Not Evaluated | IUCN Year: 2019 | IUCN URL: https://www.iucnredlist.org/species/147637124/147637126 | Biodiversity URL: https://indiabiodiversity.org/species/show/266603 | Source: IUCN, IISC
+Total Counts in JSON: plant_parts=4, phytochemicals=0, therapeutic_uses=12, bioactivities=0, protein_targets=0, documents=0
+Plant Parts List (4): bark, fruit, leaf, stem
+Therapeutic Uses List (12): Anthelmintics, Diarrhea, Urinary bladder diseases, Abdominal pain, Diabetes mellitus, Dyspepsia, Dysentery, Erectile dysfunction, Hypertension, Blister, Furunculosis, Vitiligo
+
+1. PLANT DETAILS (plant_details)
+----------------------------------------------------------------------
+taxonomy_id: 100541
+global_status: Least Concern
+biodiversity_url: https://indiabiodiversity.org/species/show/266603
+iucn_url: https://www.iucnredlist.org/species/147637124/147637126
+common_names: Roxburgh Fig, Elephant Ear Fig
+iucn_year: 2019
+source: IUCN, IISC
+plant_name: Ficus auriculata
+regional_status: Not Evaluated
+
+2. PLANT PARTS (plant_parts: 4 items)
+----------------------------------------------------------------------
+1. plant_name: Ficus auriculata | plant_part: bark | plant_part_id: FI-AU-BA | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata
+2. plant_name: Ficus auriculata | plant_part: fruit | plant_part_id: FI-AU-FR | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata
+3. plant_name: Ficus auriculata | plant_part: leaf | plant_part_id: FI-AU-LE | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata
+4. plant_name: Ficus auriculata | plant_part: stem | plant_part_id: FI-AU-ST | source: IMPPAT | source_url: https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata
+
+3. THERAPEUTIC USES (therapeutic_uses: 12 items)
+----------------------------------------------------------------------
+1. therapeutic_use: Anthelmintics | mesh_id: D000871 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D000871
+2. therapeutic_use: Diarrhea | mesh_id: D003967 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: nutritional and metabolic diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003967
+3. therapeutic_use: Urinary bladder diseases | mesh_id: D001745 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D001745
+4. therapeutic_use: Abdominal pain | mesh_id: D015746 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D015746
+5. therapeutic_use: Diabetes mellitus | mesh_id: D003920 | mesh_category: C18 | mesh_category_name: Diseases | mesh_sub_category_name: nutritional and metabolic diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D003920
+6. therapeutic_use: Dyspepsia | mesh_id: D004415 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: pathological conditions, signs and symptoms | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004415
+7. therapeutic_use: Dysentery | mesh_id: D004403 | mesh_category: C23 | mesh_category_name: Diseases | mesh_sub_category_name: eye diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D004403
+8. therapeutic_use: Erectile dysfunction | mesh_id: D007172 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D007172
+9. therapeutic_use: Hypertension | mesh_id: D006973 | mesh_category: D27 | mesh_category_name: Chemicals and Drugs | mesh_sub_category_name: chemical actions and uses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D006973
+10. therapeutic_use: Blister | mesh_id: D001768 | mesh_category: C17 | mesh_category_name: Diseases | mesh_sub_category_name: skin and connective tissue diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D001768
+11. therapeutic_use: Furunculosis | mesh_id: D005667 | mesh_category: C01 | mesh_category_name: Diseases | mesh_sub_category_name: bacterial infections and mycoses | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D005667
+12. therapeutic_use: Vitiligo | mesh_id: D014820 | mesh_category: C17 | mesh_category_name: Diseases | mesh_sub_category_name: skin and connective tissue diseases | source: IMPPAT, MESH | source_url: https://meshb.nlm.nih.gov/record/ui?ui=D014820
+
+4. BIOACTIVITIES (bioactivities: 0 items)
+----------------------------------------------------------------------
+
+5. PROTEIN TARGETS (protein_targets: 0 items)
+----------------------------------------------------------------------
+
+6. PHYTOCHEMICALS (phytochemicals: 0 items)
+----------------------------------------------------------------------
+
+7. DOCUMENTS (documents: 0 items)
+----------------------------------------------------------------------

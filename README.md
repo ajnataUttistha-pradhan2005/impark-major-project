@@ -22,6 +22,35 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo.ps1
 
 Configure the exact local/container/cloud connection URLs in `.env` **before** restoring or launching. The command above assumes the six handoff files are in `backups/team-handoff/` and the target volumes do not already exist. A fresh build **without** the handoff instead requires a populated Neo4j graph followed by explicit `search_admin migrate` and `sync`; do not rerun `sync` on an intact restored projection. The demo script checks configuration, starts/checks services, and warms the active main model. Open <http://127.0.0.1:3000/> for the UI or <http://127.0.0.1:8000/docs> for the live OpenAPI explorer. See [setup and operations](docs/setup-and-operations/README.md) for both paths, safe reset, and troubleshooting.
 
+## Observability & Evaluation
+
+IMPARK includes a self-hosted, decoupled multi-agent evaluation architecture powered by **Arize Phoenix**, **Redis Streams**, and a local **Gemma 4 (`gemma4:e4b`)** instance serving as an LLM judge:
+* **Trace Routing & Queue**: Non-blocking (< 1ms) OpenTelemetry span push to Redis Streams (`phoenix-agent-traces`).
+* **Sequential LLM Judge**: Evaluates `graph_retrieval_time`, `tool_selection_accuracy`, `groundedness`, and `hallucination_rate` with zero parallel thread VRAM collisions.
+* **Persistent Storage & UI**: Stores traces and evaluations permanently in PostgreSQL 16 (`phoenix` db), with real-time visualization in the Arize Phoenix UI (<http://localhost:6006>).
+
+To launch the evaluation pipeline locally or on AWS EC2, follow the [Evaluator Guide](evaluator/README.md):
+
+```powershell
+# 1. Start Evaluator Infrastructure (Redis, Postgres, Arize Phoenix)
+cd evaluator
+docker compose up -d
+
+# 2. Run the Arize Phoenix + Gemma 4 Evaluation Pipeline
+python phoenix_pipeline.py
+
+# 3. Or run the continuous idle-aware background worker daemon
+python phoenix_pipeline.py --worker
+
+# 4. Run automated test suite
+pytest test_phoenix_pipeline.py -v
+```
+
+For 1-command automated deployments:
+* **Windows**: `.\evaluator\deploy_windows.ps1`
+* **AWS EC2 (Linux)**: `./evaluator/deploy_ec2.sh`
+* **AWS EC2 (Linux)**: `./evaluator/deploy_ec2.sh`
+
 ## Validation
 
 ```powershell
