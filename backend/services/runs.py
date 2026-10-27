@@ -106,7 +106,7 @@ class RunManager:
         sid: UUID | None = None
         try:
             row = await self.store.operation(oid)
-            sid = row["session_id"]
+            sid = UUID(str(row["session_id"]))
             payload = decode(row["request"])
             request = ChatRequest.model_validate(payload["request"])
             clarification = (
@@ -452,9 +452,8 @@ class RunManager:
     async def _cancel_state(self, sid: UUID, oid: UUID, failed: bool = False) -> None:
         state = await self.service.load(sid)
         row = await self.store.operation(oid)
-        owned = state.correlation.correlation_id == oid or (
-            row.get("run_id") == state.correlation.run_id
-        )
+        row_run = UUID(str(row["run_id"])) if row.get("run_id") else None
+        owned = state.correlation.correlation_id == oid or (row_run == state.correlation.run_id)
         if state.termination.status != TaskStatus.RUNNING or not owned:
             return
         # Clarification shares the original correlation lineage; preserve its identity and budget.

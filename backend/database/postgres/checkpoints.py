@@ -25,6 +25,9 @@ def checkpoint_serializer() -> JsonPlusSerializer:
         and issubclass(value, (BaseModel, Enum))
         and value.__module__ == module.__name__
     ]
+    # Trusted legacy checkpoints may contain asyncpg driver UUIDs. Allow explicitly
+    # without relaxing msgpack restrictions or enabling pickle fallback.
+    allowed.append(("asyncpg.pgproto.pgproto", "UUID"))
     return JsonPlusSerializer(allowed_msgpack_modules=allowed, pickle_fallback=False)
 
 

@@ -1,10 +1,10 @@
 """Shared primitives. No infrastructure or agent implementation dependencies."""
 
 from datetime import UTC, datetime
-from typing import Annotated
+from typing import Annotated, Any
 from uuid import UUID, uuid4
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Confidence = Annotated[float, Field(ge=0, le=1)]
 EntityId = Annotated[str, Field(min_length=1, max_length=128, pattern=r"^[\w:.-]+$")]
@@ -29,3 +29,19 @@ class CorrelationMetadata(Contract):
     correlation_id: UUID = Field(default_factory=uuid4)
     trace_id: str | None = None
     span_id: str | None = None
+
+    @field_validator(
+        "session_id",
+        "turn_id",
+        "run_id",
+        "decision_id",
+        "action_id",
+        "agent_invocation_id",
+        "correlation_id",
+        mode="before",
+    )
+    @classmethod
+    def _normalize_uuid(cls, value: Any) -> Any:
+        if isinstance(value, UUID) and type(value) is not UUID:
+            return UUID(str(value))
+        return value

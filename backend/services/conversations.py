@@ -155,10 +155,10 @@ class ConversationService:
                 if clarification is not None:
                     raise ServiceError("CONFLICT", "No clarification is pending", 409)
                 state.correlation = CorrelationMetadata(
-                    session_id=session_id,
+                    session_id=UUID(str(session_id)),
                     turn_id=uuid4(),
                     run_id=uuid4(),
-                    correlation_id=correlation_id,
+                    correlation_id=UUID(str(correlation_id)),
                 )
                 state.user_message = request.text or ""
                 if request.selected_plant_id:

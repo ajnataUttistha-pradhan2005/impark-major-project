@@ -4,6 +4,7 @@ import asyncio
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from typing import Any
+from uuid import UUID
 
 import asyncpg  # type: ignore[import-untyped]
 
@@ -21,6 +22,16 @@ class PostgresClient:
         self.config = config
         self.pool: Any = None
 
+    @staticmethod
+    async def _init_connection(connection: Any) -> None:
+        await connection.set_type_codec(
+            "uuid",
+            schema="pg_catalog",
+            encoder=str,
+            decoder=UUID,
+            format="text",
+        )
+
     async def open(self) -> None:
         if self.pool is not None:
             return
@@ -33,6 +44,7 @@ class PostgresClient:
                 max_size=self.config.postgres_pool_size,
                 timeout=self.config.store_timeout_seconds,
                 command_timeout=self.config.store_timeout_seconds,
+                init=self._init_connection,
             )
         except (asyncpg.PostgresError, OSError, TimeoutError, ValueError):
             raise StoreError("CONNECTIVITY") from None

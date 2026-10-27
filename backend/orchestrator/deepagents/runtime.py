@@ -86,7 +86,7 @@ class DeepAgentRuntime:
         state.termination.status = TaskStatus.RUNNING
         self.harness.emit(state, EventType.TURN_STARTED)
         if state.context.active_plant is None and state.belief.hypotheses:
-            selected = max(state.belief.hypotheses, key=lambda item: item.confidence).candidate
+            selected = max(state.belief.hypotheses, key=lambda item: item.candidate.confidence).candidate
             if selected.confidence >= self.settings.entity_auto_resolve_threshold:
                 state.context.active_plant = selected
         active = state.context.active_plant
