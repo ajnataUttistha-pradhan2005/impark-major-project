@@ -1,0 +1,167 @@
+[
+  {
+    "plant_details": {
+      "taxonomy_id": "100541",
+      "global_status": "Least Concern",
+      "biodiversity_url": "https://indiabiodiversity.org/species/show/266603",
+      "iucn_url": "https://www.iucnredlist.org/species/147637124/147637126",
+      "common_names": "Roxburgh Fig, Elephant Ear Fig",
+      "iucn_year": "2019",
+      "source": "IUCN, IISC",
+      "plant_name": "Ficus auriculata",
+      "regional_status": "Not Evaluated"
+    },
+    "plant_parts": [
+      {
+        "plant_part": "bark",
+        "plant_part_id": "FI-AU-BA",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata",
+        "plant_name": "Ficus auriculata"
+      },
+      {
+        "plant_part": "fruit",
+        "plant_part_id": "FI-AU-FR",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata",
+        "plant_name": "Ficus auriculata"
+      },
+      {
+        "plant_part": "leaf",
+        "plant_part_id": "FI-AU-LE",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata",
+        "plant_name": "Ficus auriculata"
+      },
+      {
+        "plant_part": "stem",
+        "plant_part_id": "FI-AU-ST",
+        "source": "IMPPAT",
+        "source_url": "https://cb.imsc.res.in/imppat/phytochemical/Ficus%20auriculata",
+        "plant_name": "Ficus auriculata"
+      }
+    ],
+    "phytochemicals": [
+
+    ],
+    "therapeutic_uses": [
+      {
+        "therapeutic_use": "Anthelmintics",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D000871",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D000871"
+      },
+      {
+        "therapeutic_use": "Diarrhea",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D003967",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003967"
+      },
+      {
+        "therapeutic_use": "Urinary bladder diseases",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D001745",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001745"
+      },
+      {
+        "therapeutic_use": "Abdominal pain",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D015746",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D015746"
+      },
+      {
+        "therapeutic_use": "Diabetes mellitus",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "nutritional and metabolic diseases",
+        "mesh_id": "D003920",
+        "mesh_category": "C18",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D003920"
+      },
+      {
+        "therapeutic_use": "Dyspepsia",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "pathological conditions, signs and symptoms",
+        "mesh_id": "D004415",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004415"
+      },
+      {
+        "therapeutic_use": "Dysentery",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "eye diseases",
+        "mesh_id": "D004403",
+        "mesh_category": "C23",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D004403"
+      },
+      {
+        "therapeutic_use": "Erectile dysfunction",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D007172",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D007172"
+      },
+      {
+        "therapeutic_use": "Hypertension",
+        "mesh_category_name": "Chemicals and Drugs",
+        "mesh_sub_category_name": "chemical actions and uses",
+        "mesh_id": "D006973",
+        "mesh_category": "D27",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D006973"
+      },
+      {
+        "therapeutic_use": "Blister",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D001768",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D001768"
+      },
+      {
+        "therapeutic_use": "Furunculosis",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "bacterial infections and mycoses",
+        "mesh_id": "D005667",
+        "mesh_category": "C01",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D005667"
+      },
+      {
+        "therapeutic_use": "Vitiligo",
+        "mesh_category_name": "Diseases",
+        "mesh_sub_category_name": "skin and connective tissue diseases",
+        "mesh_id": "D014820",
+        "mesh_category": "C17",
+        "source": "IMPPAT, MESH",
+        "source_url": "https://meshb.nlm.nih.gov/record/ui?ui=D014820"
+      }
+    ],
+    "bioactivities": [
+
+    ],
+    "protein_targets": [
+
+    ],
+    "documents": [
+
+    ]
+  }
+]

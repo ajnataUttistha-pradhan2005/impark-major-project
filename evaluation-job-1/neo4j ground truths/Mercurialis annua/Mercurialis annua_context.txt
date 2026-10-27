@@ -1,0 +1,37 @@
+PLANT GROUND-TRUTH CONTEXT: Mercurialis annua
+======================================================================
+
+SUMMARY OVERVIEW
+----------------------------------------------------------------------
+Plant Name: Mercurialis annua | Common Names: Annual mercury | Taxonomy ID: 3986 | Global Status: Not Evaluated | Regional Status: Not Evaluated | IUCN Year: Not Evaluated | IUCN URL: NA | Biodiversity URL: NA | Source: IUCN, IISC
+Total Counts in JSON: plant_parts=0, phytochemicals=0, therapeutic_uses=0, bioactivities=0, protein_targets=0, documents=0
+
+1. PLANT DETAILS (plant_details)
+----------------------------------------------------------------------
+taxonomy_id: 3986
+global_status: Not Evaluated
+biodiversity_url: NA
+iucn_url: NA
+common_names: Annual mercury
+iucn_year: Not Evaluated
+source: IUCN, IISC
+plant_name: Mercurialis annua
+regional_status: Not Evaluated
+
+2. PLANT PARTS (plant_parts: 0 items)
+----------------------------------------------------------------------
+
+3. THERAPEUTIC USES (therapeutic_uses: 0 items)
+----------------------------------------------------------------------
+
+4. BIOACTIVITIES (bioactivities: 0 items)
+----------------------------------------------------------------------
+
+5. PROTEIN TARGETS (protein_targets: 0 items)
+----------------------------------------------------------------------
+
+6. PHYTOCHEMICALS (phytochemicals: 0 items)
+----------------------------------------------------------------------
+
+7. DOCUMENTS (documents: 0 items)
+----------------------------------------------------------------------

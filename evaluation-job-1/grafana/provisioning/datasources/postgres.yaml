@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+  - name: PostgreSQL-Evaluation
+    type: postgres
+    access: proxy
+    url: postgres:5432
+    user: eval_admin
+    isDefault: true
+    jsonData:
+      database: impark_evaluation
+      sslmode: disable
+      postgresVersion: 1600
+    secureJsonData:
+      password: eval_secret_pass
