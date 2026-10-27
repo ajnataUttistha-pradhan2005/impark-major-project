@@ -1,0 +1,6 @@
+# IMPARK Evaluation Worker Dependencies
+# Includes pre-compiled libpq binary for PostgreSQL and semantic embedding models
+
+psycopg[binary]>=3.2.0,<4.0.0
+sentence-transformers>=2.2.0
+torch>=2.2.0

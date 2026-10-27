@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "timestamp": "2026-10-27T07:21:54.023630+00:00",
-=======
-  "timestamp": "2026-10-27T10:03:09.456120+00:00",
->>>>>>> Stashed changes
+  "timestamp": "2026-10-27T15:25:40.008356+00:00",
   "total_evaluated_cases": 800,
   "total_claims_evaluated": 4913,
   "graph_precision": {
