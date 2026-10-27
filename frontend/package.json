@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start --hostname 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "test": "node --test api/client.test.mjs src/sessionPages.test.mjs"
+    "test": "node --test api/client.test.mjs src/sessionPages.test.mjs src/routingTrace.test.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

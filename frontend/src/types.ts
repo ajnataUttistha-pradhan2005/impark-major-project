@@ -55,6 +55,40 @@ export type Message = {
   created_at: string;
 };
 
+export type RoutingType =
+  | 'graph_node_transition'
+  | 'subagent_delegation'
+  | 'tool_selection'
+  | 'subagent_handoff'
+  | 'graph_conditional_edge'
+  | string;
+
+export type RoutingStep = {
+  step?: number;
+  routing_type?: RoutingType;
+  from_node?: string | null;
+  to_node?: string | null;
+  from_agent?: string | null;
+  to_subagent?: string | null;
+  from_subagent?: string | null;
+  to_agent?: string | null;
+  to_tool?: string | null;
+  tool_invoked?: string | null;
+  decision?: string | null;
+  condition?: string | null;
+  timestamp?: string | null;
+  details?: Record<string, unknown> | null;
+  [key: string]: unknown;
+};
+
+export type ExecutionTraces = {
+  routing?: RoutingStep[];
+  tool_calling?: unknown[];
+  reasoning?: unknown[];
+  timeline?: unknown[];
+  [key: string]: unknown;
+};
+
 export type Run = {
   operation_id: string;
   session_id: string;
