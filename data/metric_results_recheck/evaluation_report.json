@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-10-27T07:21:54.023630+00:00",
+  "elapsed_seconds": 0.45,
+  "ground_truth_cases_total": 800,
+  "evaluation_records_total": 800,
+  "matched_cases_total": 800,
+  "unmatched_evaluation_records": 0,
+  "unmatched_ground_truth_cases": 0,
+  "aggregate_summary": {
+    "graph_precision_micro": 0.7771,
+    "graph_precision_macro": 0.8088,
+    "groundedness_micro": 0.8172,
+    "groundedness_macro": 0.753,
+    "traceability_micro": 0.4954,
+    "traceability_macro": 0.4878,
+    "trace_completeness_mean": 0.9975
+  },
+  "notes": "Evaluation performed strictly on existing execution runs without regenerating answers. Graph Precision evaluates actual retrieved graph facts in traces against verified Neo4j ground truth. Groundedness evaluates response claims against execution-retrieved evidence. Traceability verifies both concrete citation pointers and that the cited record supports the claim. Where denominator was 0, N/A was reported."
+}

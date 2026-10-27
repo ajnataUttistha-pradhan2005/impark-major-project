@@ -1,0 +1,151 @@
+{
+  "timestamp": "2026-10-27T06:56:45.456347+00:00",
+  "labels": {
+    "Bioactivity": {
+      "node_count": 369,
+      "properties": [
+        "bioactivity_id",
+        "high_confidence_tier",
+        "normalized_value_nm",
+        "source",
+        "source_url",
+        "standard_relation",
+        "standard_type",
+        "standard_units",
+        "standard_value"
+      ]
+    },
+    "Document": {
+      "node_count": 251,
+      "properties": [
+        "document_chembl_id",
+        "document_journal",
+        "document_year",
+        "source",
+        "source_id",
+        "source_url"
+      ]
+    },
+    "Phytochemicals": {
+      "node_count": 1772,
+      "properties": [
+        "chembl_id",
+        "classyfire_class",
+        "classyfire_kingdom",
+        "classyfire_subclass",
+        "classyfire_superclass",
+        "imppat_id",
+        "inchi_key",
+        "phytochemical_name",
+        "smiles",
+        "source",
+        "source_url"
+      ]
+    },
+    "PlantAlias": {
+      "node_count": 481,
+      "properties": [
+        "alias",
+        "alias_type",
+        "language",
+        "normalized_alias",
+        "plant_name"
+      ]
+    },
+    "PlantDetails": {
+      "node_count": 40,
+      "properties": [
+        "biodiversity_url",
+        "common_names",
+        "global_status",
+        "iucn_url",
+        "iucn_year",
+        "plant_name",
+        "regional_status",
+        "source",
+        "taxonomy_id"
+      ]
+    },
+    "PlantPart": {
+      "node_count": 283,
+      "properties": [
+        "plant_name",
+        "plant_part",
+        "plant_part_id",
+        "source",
+        "source_url"
+      ]
+    },
+    "Protein_Target": {
+      "node_count": 433,
+      "properties": [
+        "chembl_url",
+        "source",
+        "target_chembl_id",
+        "target_name",
+        "target_organism",
+        "target_type",
+        "uniprot_id",
+        "uniprot_url"
+      ]
+    },
+    "TherapeuticUse": {
+      "node_count": 446,
+      "properties": [
+        "mesh_category",
+        "mesh_category_name",
+        "mesh_id",
+        "mesh_sub_category_name",
+        "source",
+        "source_url",
+        "therapeutic_use"
+      ]
+    }
+  },
+  "relationships": [
+    {
+      "source": "Bioactivity",
+      "type": "MEASURED_ON",
+      "target": "Protein_Target",
+      "count": 433
+    },
+    {
+      "source": "Bioactivity",
+      "type": "REPORTED_IN",
+      "target": "Document",
+      "count": 413
+    },
+    {
+      "source": "Phytochemicals",
+      "type": "HAS_BIOACTIVITY",
+      "target": "Bioactivity",
+      "count": 433
+    },
+    {
+      "source": "PlantDetails",
+      "type": "HAS_ALIAS",
+      "target": "PlantAlias",
+      "count": 481
+    },
+    {
+      "source": "PlantDetails",
+      "type": "HAS_PART",
+      "target": "PlantPart",
+      "count": 283
+    },
+    {
+      "source": "PlantPart",
+      "type": "CONTAINS",
+      "target": "Phytochemicals",
+      "count": 5896
+    },
+    {
+      "source": "PlantPart",
+      "type": "USED_FOR",
+      "target": "TherapeuticUse",
+      "count": 3758
+    }
+  ],
+  "constraints": [],
+  "indexes": []
+}
