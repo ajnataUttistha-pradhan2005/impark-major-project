@@ -701,7 +701,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT id AS \"ID\", test_case_id AS \"Case\", plant_name AS \"Plant\", question AS \"Question\", identifiers AS \"Identifiers\", round(groundedness_score::numeric * 100, 1) AS \"Groundedness %\", round(hallucination_rate::numeric * 100, 1) AS \"Hallucination %\", round(tool_call_accuracy::numeric * 100, 1) AS \"Tool Accuracy %\", round(graph_retrieval_time_ms::numeric, 1) AS \"Graph Latency (ms)\", total_claims AS \"Total Claims\", grounded_claims AS \"Grounded Claims\", hallucinated_claims AS \"Hallucinated Claims\" FROM case_evaluation_metrics ORDER BY id;",
+          "rawSql": "SELECT id AS \"ID\", test_case_id AS \"Case\", plant_name AS \"Plant\", question AS \"Question\", identifiers AS \"Identifiers\", round(groundedness_score::numeric * 100, 1) AS \"Groundedness %\", round(hallucination_rate::numeric * 100, 1) AS \"Hallucination %\", round(tool_call_accuracy::numeric * 100, 1) AS \"Tool Accuracy %\", round(graph_retrieval_time_ms::numeric, 1) AS \"Graph Latency (ms)\", total_claims AS \"Total Generated Claims\", grounded_claims AS \"Grounded Claims\", hallucinated_claims AS \"Hallucinated Claims\" FROM case_evaluation_metrics ORDER BY id;",
           "refId": "A"
         }
       ],

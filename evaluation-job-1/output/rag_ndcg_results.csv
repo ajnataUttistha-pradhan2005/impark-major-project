@@ -1,0 +1,897 @@
+id,test_case_id,plant_name,question,identifiers,tool_call_accuracy,graph_retrieval_time_ms,groundedness_score,hallucination_rate,total_claims,grounded_claims,hallucinated_claims,total_tool_calls,successful_tool_calls,response_text,evaluated_at,relevance
+9,TC_009_Alpinia_galanga,Alpinia galanga,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,574.04,0.7894736842105263,0.21052631578947367,19,15,4,3,3,"Bioactivity measurements reported for compounds are available in the provided records, including values for Potency, Kd, IC50, and Ki.
+
+Here are some of the reported measurements:
+
+*   **Potency:** One measurement is reported as 3981.1 nM [1].
+*   **Kd:** Reported values include 20.0 nM [2], 670.0 nM [3], 2.17 nM [4], 1000.0 nM [5], and 960.0 nM [6].
+*   **IC50:** Reported values are 0.57 nM [7], 3100.0 nM [8], 960.0 nM [9], 2480.0 nM [10], and 2.9 nM [11].
+*   **Ki:** One measurement is reported as 600.0 nM [12].
+
+More records are available.",2026-10-28 05:48:33.933444+00,0.8421052631578947
+10,TC_010_Alpinia_galanga,Alpinia galanga,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,328.38,0.5454545454545454,0.4545454545454546,11,6,5,3,3,"These compounds are recorded for Alpinia galanga:
+
+- A laboratory assay of beta-Caryophyllene against Alpha-galactosidase A reports Potency = 3981.1 nM. [1]
+- A laboratory assay of beta-Caryophyllene against Huntingtin reports Potency = 3981.1 nM. [2]
+- A laboratory assay of beta-Caryophyllene against Breast cancer type 1 susceptibility protein reports Potency = 3981.1 nM. [3]
+- A laboratory assay of beta-Patchoulene against WD repeat-containing protein 5 reports Kd = 2.17 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:48:34.024961+00,1.8181818181818183
+27,TC_027_Amaranthus_viridis,Amaranthus viridis,"What therapeutic uses are listed, and how are they grouped into categories and subcategories?","[""therapeutic_use"", ""mesh_category"", ""mesh_category_name"", ""mesh_sub_category_name""]",1,66.82,0.3333333333333333,0.6666666666666667,3,1,2,2,2,"The therapeutic uses listed for *Amaranthus viridis* are:
+
+*   **Nutritional and metabolic diseases** (Category C23):
+    *   Diarrhea [1]
+    *   Emollients [2]
+*   **Pathological conditions, signs and symptoms** (Category C23):
+    *   Inflammation [3]
+*   **Digestive system diseases** (Category C23):
+    *   Laxatives [4]
+
+More records are available.",2026-10-28 05:48:35.965743+00,2.666666666666667
+35,TC_035_Amaranthus_viridis,Amaranthus viridis,What are the UniProt accession and ChEMBL target ID for this protein target?,"[""target_name"", ""uniprot_id"", ""target_chembl_id""]",1,57.62,0.0,1.0,0,0,0,2,2,"The provided records do not contain the UniProt accession and ChEMBL target ID specifically for a protein target associated with *Amaranthus viridis*. The retrieved facts list targets from *Homo sapiens* [ffcb1d46-56d0-526c-8969-5bbbc9ad268d, 845019fb-df90-579f-9dc7-07eda1ad9aa0, 704d1c37-e34d-547a-8576-87ba74557859, 5fb51e79-d221-534c-8ff1-d4f334412f25]. More records may be available.",2026-10-28 05:48:36.346504+00,4.0
+46,TC_046_Artocarpus_heterophyllus,Artocarpus heterophyllus,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,145.12,0.0,1.0,0,0,0,2,2,Identified plant: Artocarpus heterophyllus. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:48:39.755912+00,4.0
+49,TC_049_Artocarpus_heterophyllus,Artocarpus heterophyllus,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,343.07,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as 3-(Methylthio)-1-hexanol [1], Methyl isovalerate [2], Phenethyl isovalerate [3], D-Glucose [4], Phenylacetaldehyde [5], Isobutyl isovalerate [6], beta-Carotene [7], Propyl isovalerate [8], Propionic acid [9], Hexanoic acid [10], 1-Butanol [11], and Propanol [12]. However, none of the retrieved records contain information regarding specific bioactivity measurements reported for compounds from *Artocarpus heterophyllus*. More records may be available.",2026-10-28 05:48:40.028409+00,4.0
+50,TC_050_Artocarpus_heterophyllus,Artocarpus heterophyllus,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,218.39,0.6666666666666666,0.33333333333333337,15,10,5,3,3,"These compounds are recorded for Artocarpus heterophyllus:
+
+- A laboratory assay of Betulinic acid against DNA dC->dU-editing enzyme APOBEC-3F reports Potency 6309.6 nM. [1]
+- A laboratory assay of Betulinic acid against Bile acid receptor reports EC50 = 0.0 nM. [2]
+- A laboratory assay of Betulinic acid against Transcription intermediary factor 1-alpha reports IC50 = 162.0 nM. [3]
+- A laboratory assay of Tannic acid against Vascular endothelial growth factor A, long form reports Kd = 16.5 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:48:40.250717+00,1.3333333333333335
+53,TC_053_Artocarpus_heterophyllus,Artocarpus heterophyllus,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,175.07,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as 3-(Methylthio)-1-hexanol [1], Methyl isovalerate [2], Phenethyl isovalerate [3], D-Glucose [4], Phenylacetaldehyde [5], Isobutyl isovalerate [6], beta-Carotene [7], Propyl isovalerate [8], Propionic acid [9], Hexanoic acid [10], 1-Butanol [11], and Propanol [12]. However, none of the available records specify which protein targets are associated with the compounds found in *Artocarpus heterophyllus*. More records may be available.",2026-10-28 05:48:40.27908+00,4.0
+61,TC_061_Atriplex_hortensis,Atriplex hortensis,Which chemical compounds or phytochemicals have been recorded for this plant?,"[""phytochemical_name""]",1,44.74,0.0,1.0,0,0,0,2,2,The chemical compound recorded for *Atriplex hortensis* is Betanine [1].,2026-10-28 05:48:42.50321+00,4.0
+65,TC_065_Atriplex_hortensis,Atriplex hortensis,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,68.39,0.0,1.0,0,0,0,2,2,"The retrieved records associate certain therapeutic uses with chemical actions and diseases, but they do not specifically mention any therapeutic or medicinal uses for *Atriplex hortensis*. The available records list general therapeutic uses such as ""Emollients [1]"" for ""nutritional and metabolic diseases"" [ca5ede43-8662-5879-bf5a-3ada045cbaf8, 281b6403-f850-5676-aa6e-4e63c199959e], ""Diuretics [2]"" [3], and ""Lung diseases [4]"" [5]. More records are available for further information.",2026-10-28 05:48:42.602873+00,4.0
+66,TC_066_Atriplex_hortensis,Atriplex hortensis,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,71.85,0.0,1.0,0,0,0,2,2,Identified plant: Atriplex hortensis. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:48:42.603003+00,4.0
+68,TC_068_Atriplex_hortensis,Atriplex hortensis,"For each therapeutic use, which plant part is recorded as relevant?","[""therapeutic_use"", ""plant_part""]",1,91.59,0.6666666666666666,0.33333333333333337,9,6,3,4,4,"Here is what the available records say about Atriplex hortensis:
+
+- Emollients is listed among uses associated with leaf. [1]
+- Diuretics is listed among uses associated with leaf. [2]
+- Lung diseases is listed among uses associated with leaf. [3]
+- Emollients is listed among uses associated with seed. [4]
+- Diuretics is listed among uses associated with seed. [5]
+- Lung diseases is listed among uses associated with seed. [6]
+- Vitamin A deficiency is listed among uses associated with seed. [7]
+- The catalog records leaf as a plant part. [8]
+
+More related information is recorded than shown here. Ask about a particular part for more detail.",2026-10-28 05:48:42.706722+00,1.3333333333333335
+69,TC_069_Atriplex_hortensis,Atriplex hortensis,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,207.43,0.0,1.0,0,0,0,3,3,"The provided records only contain information about the phytochemical ""Betanine"" from the source IMPPAT [1], but they do not report any specific bioactivity measurements for compounds from *Atriplex hortensis*.",2026-10-28 05:48:42.70686+00,4.0
+70,TC_070_Atriplex_hortensis,Atriplex hortensis,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,87.78,0.0,1.0,1,0,1,3,3,"These compounds are recorded for Atriplex hortensis:
+
+- Betanine is listed as a phytochemical in seed. It is classified as Organooxygen compounds. [1]
+
+A phytochemical is a chemical found in plants. These entries show where compounds are recorded, but not how much is present.",2026-10-28 05:48:42.707008+00,4.0
+73,TC_073_Atriplex_hortensis,Atriplex hortensis,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,90.02,0.0,1.0,0,0,0,3,3,"The provided records only contain information about the phytochemical ""Betanine"" from *Atriplex hortensis* [1], but they do not list any associated protein targets. More records are available.",2026-10-28 05:48:42.707145+00,4.0
+80,TC_080_Atriplex_hortensis,Atriplex hortensis,"What compounds are recorded for this plant, which protein targets are associated with them, and what bioactivity measurements are available?","[""phytochemical_name"", ""target_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,2464.78,0.0,1.0,1,0,1,4,4,"The recorded compound for *Atriplex hortensis* is **Betanine** [1].
+
+Regarding the other aspects of your question:
+*   No protein targets have been recorded as being associated with this plant.
+*   No bioactivity measurements are currently available for *Atriplex hortensis*.
+
+Betanine is a type of betaine alkaloid, which are naturally occurring compounds found in various plants. These compounds are often involved in osmotic regulation, helping plants cope with environmental stresses like drought or high salinity.",2026-10-28 05:48:42.849279+00,4.0
+86,TC_086_Azadirachta_indica,Azadirachta indica,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,105.78,0.0,1.0,0,0,0,2,2,Identified plant: Azadirachta indica. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:48:48.645325+00,4.0
+87,TC_087_Azadirachta_indica,Azadirachta indica,"What therapeutic uses are listed, and how are they grouped into categories and subcategories?","[""therapeutic_use"", ""mesh_category"", ""mesh_category_name"", ""mesh_sub_category_name""]",1,110.33,0.75,0.25,8,6,2,2,2,"The therapeutic uses listed for *Azadirachta indica* are grouped into categories and subcategories as follows:
+
+**Anatomy - musculoskeletal system**
+*   **Pectoralis muscles** [1]: This refers to the chest muscles. Scientifically, this indicates a recorded association with this specific muscle group. [citation_id: 65888f89-382e-5bc3-bd42-c26937126022]
+
+**Diseases - bacterial infections and mycoses**
+This is the largest category, listing several conditions:
+*   **Bronchitis** [2]: This is inflammation of the bronchial tubes. The record associates *Azadirachta indica* with this condition. [citation_id: 51ec3228-f5f6-5a1f-a617-2a37db5d24fb]
+*   **Common cold** [3]: This is a general viral infection of the upper respiratory tract. The record associates *Azadirachta indica* with this condition. [citation_id: 19fd46ee-b426-55d6-b30b-3dc5b04ce4a9]
+*   **Filariasis** [4]: This is a parasitic disease caused by parasitic worms. The record associates *Azadirachta indica* with this condition. [citation_id: 01ddacaa-d331-5238-a047-2b755d1d59a8]
+*   **Furunculosis** [5]: This is a skin infection characterized by boils or abscesses. The record associates *Azadirachta indica* with this condition. [citation_id: 9c27859c-1ad6-5e2a-adf9-0728360aead7]
+*   **Gingivitis** [6]: This is inflammation of the gums. The record associates *Azadirachta indica* with this condition. [citation_id: 3f0c67ef-f767-5eb0-bf24-c4c993215820]
+*   **Intestinal diseases, parasitic** [7]: This refers to various ailments of the digestive tract caused by parasites. The record associates *Azadirachta indica* with this condition. [citation_id: 8cbe1be1-5e4a-5b2d-b9fa-220e369e36b8]
+*   **Leprosy** [8]: This is a chronic infectious disease primarily affecting the skin, peripheral nerves, and mucous membranes. The record associates *Azadirachta indica* with this condition. [citation_id: 02826b91-a53f-5bc2-8953-b5bd0ff3888d]",2026-10-28 05:48:48.987725+00,1.0
+89,TC_089_Azadirachta_indica,Azadirachta indica,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,325.03,0.0,1.0,0,0,0,3,3,"The provided records list several phytochemicals, such as Kulinone [1], Kulactone [2], Gedunin [3], Deacetylgedunin [4], Methyl kulonate [5], (4bS,8aR)-2,4b,8,8-tetramethyl-7,10-dioxo-5,6,8a,9-tetrahydrophenanthrene-3-carboxylic Acid [6], (4aS,10aR)-7-hydroxy-1,1,4a,6-tetramethyl-3,4,10,10a-tetrahydrophenanthrene-2,9-dione [7], (4aS,10aR)-6-hydroxy-1,1,4a,7-tetramethyl-3,4,10,10a-tetrahydrophenanthrene-2,9-dione [8], Nimbionol [9], Nimbionone [10], Nimbosone [11], and (4aS,10aR)-6,7-dimethoxy-1,1,4a-trimethyl-3,4,10,10a-tet",2026-10-28 05:48:49.241331+00,4.0
+90,TC_090_Azadirachta_indica,Azadirachta indica,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,264.66999999999996,0.6428571428571429,0.3571428571428571,14,9,5,3,3,"These compounds are recorded for Azadirachta indica:
+
+- A laboratory assay of Cholesterol against Free fatty acid receptor 1 reports EC50 = 540.0 nM. [1]
+- A laboratory assay of Cholesterol against Nicotinate phosphoribosyltransferase reports Ki = 0.16 nM. [2]
+- A laboratory assay of Cholesterol against Free fatty acid receptor 4 reports EC50 = 316.23 nM. [3]
+- A laboratory assay of Benzyl acetate against Carbonic anhydrase 13 reports Ki = 4240.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:48:49.539362+00,1.4285714285714284
+93,TC_093_Azadirachta_indica,Azadirachta indica,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,281.11,0.0,1.0,0,0,0,3,3,"The provided records list several phytochemicals found in relation to the plant, which are all classified as Prenol lipids or Diterpenoids [bc086c83-fab9-5bf3-847f-3835d9c8f5fa, 7eaed80e-f22b-5ae8-b8fa-92e2032f7bce, d6062dad-adcd-5653-9b10-78bbed70802b, 9846a416-39f0-5752-b32d-700cada07837, b5ca8ac9-f08d-5c79-94ee-2cc76c020013, eb8c507c-080c-59a1-9bca-203b77a7c9f3, 40ff0ea8",2026-10-28 05:48:49.582413+00,4.0
+106,TC_106_Bambusa_vulgaris,Bambusa vulgaris,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,86.26,0.0,1.0,0,0,0,2,2,Identified plant: Bambusa vulgaris. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:48:53.382114+00,4.0
+110,TC_110_Bambusa_vulgaris,Bambusa vulgaris,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,129.21,0.0,1.0,1,0,1,3,3,"These compounds are recorded for Bambusa vulgaris:
+
+- **Shoot:** 4-Hydroxybenzaldehyde [1], beta-Sitosterol [2], Stigmasterol [3], Taxiphyllin [4], Campesterol [5]
+
+A phytochemical is a chemical found in plants. These entries show where compounds are recorded, but not how much is present.",2026-10-28 05:48:53.516775+00,4.0
+127,TC_127_Basella_alba,Basella alba,"What therapeutic uses are listed, and how are they grouped into categories and subcategories?","[""therapeutic_use"", ""mesh_category"", ""mesh_category_name"", ""mesh_sub_category_name""]",1,92.31,0.7142857142857143,0.2857142857142857,14,10,4,2,2,"The therapeutic uses listed for *Basella alba* are grouped into several categories based on the condition they are associated with.
+
+Here is a breakdown of the listed uses and their groupings:
+
+*   **Antihypertensive agents [1]:** This use is categorized under **Chemicals and Drugs [D27]** [citation_id: 58bc61d1-0eb2-5b81-9e36-4f88d160b930]. This suggests that the plant or its compounds are associated with managing high blood pressure.
+*   **Malaria [2]:** This is listed under **Diseases [C01] - bacterial infections and mycoses** [citation_id: 445acc3a-bbac-52da-aa25-e01ef3071408]. Malaria is a disease caused by parasites, so this grouping relates to its use against infectious diseases.
+*   **Anorexia [3]:** This use falls under **Diseases [C23] - pathological conditions, signs and symptoms** [citation_id: 425f4720-6646-5669-8c4d-bc97a18f0522]. Anorexia is a condition characterized by a reduced appetite.
+*   **Dysentery [4]:** This is categorized under **Diseases [C23] - eye diseases [5]** [citation_id: 30c306b5-769e-5700-afc3-6aa702d205d7]. Dysentery is an intestinal infection, so the categorization here appears to be an error in the indexed data, as it is listed under ""eye diseases.""
+*   **Hemoptysis [6]:** This use is also categorized under **Diseases [C23] - eye diseases** [citation_id: 2ce6b1df-ba25-569b-82d1-afac854e56d3]. Hemoptysis is coughing up blood, which is a respiratory symptom, and its placement under ""eye diseases"" suggests a potential data inconsistency in the records.
+*   **Leukemia [7]:** This is listed under **Diseases [C23] - eye diseases** [citation_id: 404c86ec-580b-5d57-901b-fee3f1c7a910]. Leukemia is a type of cancer of the blood-forming tissues, and its placement under ""eye diseases"" is likely an indexing error.
+*   **Melanoma [8]:** This use is categorized under **Diseases [C23] - nutritional and metabolic diseases** [citation_id: 516bdad4-0459-541f-90fa-2f99408354b7]. Melanoma is a type of skin cancer, and its grouping under ""nutritional and metabolic diseases"" may be a broad or imprecise classification.
+*   **Menstruation disturbances [9]:** This is categorized under **Diseases [C23] - nutritional and metabolic diseases** [citation_id: c619abe3-c7b5-5780-b1ff-9599902b007f]. This refers to issues with the menstrual cycle, which falls under reproductive health.
+
+In summary, the uses span from managing blood pressure and infections (Malaria) to addressing specific conditions like anorexia and various diseases, though several entries show unusual categorization under ""eye diseases.""",2026-10-28 05:48:55.212836+00,1.1428571428571428
+130,TC_130_Basella_alba,Basella alba,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,151.76,0.6428571428571429,0.3571428571428571,14,9,5,3,3,"These compounds are recorded for Basella alba:
+
+- A laboratory assay of Vanillic acid against DNA polymerase kappa reports Potency 125.9 nM. [1]
+- A laboratory assay of Caffeic acid against Carbonic anhydrase 12 reports Ki = 4.9 nM. [2]
+- A laboratory assay of Caffeic acid against Carbonic anhydrase 4 reports Ki = 72.8 nM. [3]
+- A laboratory assay of Rutin against Neuromedin-U receptor 2 reports EC50 = 1200.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:48:55.680699+00,1.4285714285714284
+133,TC_133_Basella_alba,Basella alba,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,218.64999999999998,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as 3-(2-Hydroxyphenyl)propanoic acid [1], Salicylic acid [2], Quercetin [3], Coumarin [4], 4-Hydroxycinnamic acid [5] [6], Scopoletin [7], Betacyanin [8] [9], Isogomphrenin II [10], Isogomphrenin I [11], beta-Carotene [12], and Lutein [13]. However, none of the available records specify which protein targets are associated with the compounds found in",2026-10-28 05:48:55.767587+00,4.0
+145,TC_145_Brassica_juncea,Brassica juncea,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,75.71,0.75,0.25,4,3,1,2,2,"The provided records associate certain therapeutic uses with general categories, but they do not specifically list therapeutic or medicinal uses for *Brassica juncea*. The retrieved facts mention uses such as:
+
+*   Cough [1] for respiratory tract diseases [2]
+*   Dysentery for eye diseases [3]
+*   Hemorrhoids for eye diseases [4]
+*   Anthelmintics as a chemical action and use [5]
+
+More records are available for further information.",2026-10-28 05:48:58.20042+00,1.0
+146,TC_146_Brassica_juncea,Brassica juncea,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,102.21,0.0,1.0,0,0,0,2,2,Identified plant: Brassica juncea. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:48:58.200613+00,4.0
+149,TC_149_Brassica_juncea,Brassica juncea,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,247.69,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as Benzenepropanenitrile [1], Butyl isothiocyanate [2], 2-Hexenal [3], Allyl isothiocyanate [4], Cyclobrassinin [5], Phenylacetonitrile [6], 3-Butenyl isothiocyanate [7], Sinapine [8], Dimethyl trisulfide [9], 4-Decanol [10], Brassilexin [11], and Cyclobrassinin sulfoxide [12]. However, none of the available records specify any reported bioactivity measurements for compounds from *Brassica juncea*. More records may be available.",2026-10-28 05:48:58.397582+00,4.0
+150,TC_150_Brassica_juncea,Brassica juncea,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,147.7,0.5454545454545454,0.4545454545454546,11,6,5,3,3,"These compounds are recorded for Brassica juncea:
+
+- A laboratory assay of Phenethyl isothiocyanate against Glucagon-like peptide 1 receptor reports Potency 501.2 nM. [1]
+- A laboratory assay of Phenethyl isothiocyanate against Ribosomal protein S6 kinase alpha-3 reports IC50 = 1710.0 nM. [2]
+- A laboratory assay of Benzenepropanenitrile against Glucocorticoid receptor reports Potency 0.7 nM. [3]
+- A laboratory assay of Benzenepropanenitrile against Peroxisome proliferator-activated receptor gamma reports Potency 0.7 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:48:58.4601+00,1.8181818181818183
+163,TC_163_Carissa_carandas,Carissa carandas,Can you show the SMILES representation and InChIKey for a compound associated with this plant?,"[""phytochemical_name"", ""smiles"", ""inchi_key""]",1,109.95,0.0,1.0,3,0,3,2,2,"A compound associated with *Carissa carandas* is alpha1-Sitosterol, which has the following SMILES representation and InChIKey:
+
+*   **SMILES:** C/C=C(C(C)C)/CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1C2=CC[C@@H]2[C@]1(C)CC[C@@H]
+*   **InChIKey:** LPZCCMIISIBREI-JXMPMKKESA-N [1]
+
+More records are available.",2026-10-28 05:49:02.682506+00,4.0
+164,TC_164_Carissa_carandas,Carissa carandas,Does this plant’s recorded phytochemical have a ChEMBL ID or an IMPPAT ID?,"[""phytochemical_name"", ""chembl_id"", ""imppat_id""]",1,111.41,0.0,1.0,0,0,0,2,2,"The phytochemicals recorded for *Carissa carandas* do have associated identifiers. Several compounds, including alpha1-Sitosterol [1], Lauric acid [2], 9-Hydroxyoctadecanoic acid [3], Myristic acid [4], Benzyl acetate [5], Geranyl acetate [6], Triacontane [7], and Limonene [8], have both a ChEMBL ID and an IMPPAT ID listed in the records.",2026-10-28 05:49:02.682879+00,4.0
+166,TC_166_Carissa_carandas,Carissa carandas,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,116.45,0.0,1.0,0,0,0,2,2,Identified plant: Carissa carandas. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:02.767842+00,4.0
+170,TC_170_Carissa_carandas,Carissa carandas,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,220.01,0.5833333333333334,0.41666666666666663,12,7,5,3,3,"These compounds are recorded for Carissa carandas:
+
+- A laboratory assay of Lauric acid against Receptor-type tyrosine-protein kinase FLT3 reports Ki = 32.0 nM. [1]
+- A laboratory assay of Myristic acid against DNA polymerase beta reports Potency = 158.5 nM. [2]
+- A laboratory assay of Myristic acid against Neuropeptide S receptor reports Potency = 158.5 nM. [3]
+- A laboratory assay of Myristic acid against Carbonic anhydrase 4 reports Ki = 72.8 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:03.915097+00,1.6666666666666665
+172,TC_172_Carissa_carandas,Carissa carandas,Which bioactivity records are assigned a high-confidence tier?,"[""high_confidence_tier"", ""bioactivity_id""]",1,148.99,0.0,1.0,1,0,1,2,2,"The bioactivity records for *Carissa carandas* assigned a high-confidence tier are detailed below. These records quantify how strongly a substance interacts with a biological target, which is a key aspect of understanding a plant's potential biological effects.
+
+Here is an explanation of the types of measurements found:
+
+*   **Ki (Inhibition Constant):** This value, reported in nanomolar (nM), represents the concentration of a substance required to inhibit a biological process by half. A lower Ki value generally indicates a stronger binding or inhibitory effect on the target.
+    *   Records found with this type include values of 32.0  nM [1] and 32.0  nM [2], and 72.8  nM [3].
+
+*   **Potency:** This is a general term used here to describe the strength of the substance's effect, measured in nanomolar (nM). It indicates the concentration needed to achieve a specific biological outcome.
+    *   Records found with this type include values of 158.5  nM [4] and 158.5  nM [5].
+
+*   **IC50 (Half Maximal Inhibitory Concentration 50):** This value, reported in nanomolar (nM), is the concentration of a substance required to inhibit a specific biological or biochemical function by 50%. It is another measure of potency.
+    *   A record found with this type is < 100.0  nM [6].
+
+In summary, the high-confidence records provide specific quantitative data on how potent certain compounds or extracts from *Carissa carandas* are against specific biological targets, using metrics like Ki and IC50.",2026-10-28 05:49:03.940405+00,4.0
+183,TC_183_Citrus_limon,Citrus limon,Can you show the SMILES representation and InChIKey for a compound associated with this plant?,"[""phytochemical_name"", ""smiles"", ""inchi_key""]",1,164.42,0.75,0.25,8,6,2,2,2,"The compounds associated with *Citrus limon* that have their SMILES representation and InChIKey available are: trans-Verbenol, Citral, Levomenol, Geranyl acetate, Citronellyl acetate, Phytol, (E)-beta-ocimene, and Decanal.
+
+Here is the requested chemical information for each:
+
+*   **trans-Verbenol** [1]:
+    *   **SMILES**: `CC1=C[C@H](O)[C@@H]2C[C@H]1C2(C)C`
+    *   **InChIKey**: `WONIGEXYPVIKFS-VGMNWLOBSA-N`
+    *   This is a terpene alcohol. Terpenes are a large class of organic compounds derived from isoprene units, and alcohols are compounds containing a hydroxyl (-OH) group. This structure suggests it is a cyclic terpene alcohol.
+
+*   **Citral** [2]:
+    *   **SMILES**: `O=C/C=C(/CCC=C(C)C)C`
+    *   **InChIKey**: `WTEVQBCEXWBHNA-JXMROGBWSA-N`
+    *   Citral is an aldehyde, meaning it contains a carbonyl group (C=O) bonded to at least one hydrogen atom. Aldehydes are common in essential oils and are known for their characteristic scents.
+
+*   **Levomenol** [3]:
+    *   **SMILES**: `CC(=CCC[C@@]([C@H]1CCC(=CC1)C)(O)C)C`
+    *   **InChIKey**: `RGZSQWQPBWRIAQ-CABCVRRESA-N`
+    *   Levomenol is a monoterpene alcohol. Like other terpenes, its structure is built from isoprene units. The presence of the alcohol group (-OH) classifies it as an alcohol.
+
+*   **Geranyl acetate** [4]:
+    *   **SMILES**: `C/C(=CCOC(=O)C)/CCC=C(C)C`
+    *   **InChIKey**: `HIGQPQRQIQDZMP-DHZHZOJOSA-N`
+    *   This compound is an acetate ester of a geranyl derivative. Esters are formed from an alcohol and a carboxylic acid. Acetates are often used as fragrance compounds.
+
+*   **Citronellyl acetate** [5]:
+    *   **SMILES**: `CC(CCC=C(C)C)CCOC(=O)C`
+    *   **InChIKey**: `JOZKFWLRHCDGJA-UHFFFAOYSA-N`
+    *   This is also an acetate ester. It is derived from citronellol, which is a monoterpene alcohol. Esters like this are frequently found in essential oils and are responsible for many pleasant aromas.
+
+*   **Phytol** [6]:
+    *   **SMILES**: `OC/C=C(/CCC[C@@H](CCC[C@@H](CCCC(C)C)C)C)C`
+    *   **InChIKey**: `BOTWFXYSPFMFNR-PYDDKJGSSA-N`
+    *   Phytol is a sesquiterpene alcohol. Sesquiterpenes are larger terpenes built from three isoprene units. As an alcohol, it contains the hydroxyl group (-OH).
+
+*   **(E)-beta-ocimene** [7]:
+    *   **SMILES**: `C=C/C(=C/CC=C(C)C)/C`
+    *   **InChIKey**: `IHPKGUQCSIINRJ-CSKARUKUSA-N`
+    *   This is a monoterpene hydrocarbon. Hydrocarbons are organic compounds composed entirely of hydrogen and carbon atoms. The double bonds (C=C) indicate it is an unsaturated hydrocarbon, which often contributes to volatility and scent.
+
+*   **Decanal** [8]:
+    *   **SMILES**: `CCCCCCCCCC=O`
+    *   **InChIKey**: `KSMVZQYAVGTKIV-UHFFFAOYSA-N`
+    *   Decanal is a straight-chain aldehyde. It is a simple aliphatic aldehyde, meaning its carbon chain is unbranched.
+
+In summary, the compounds listed are primarily terpenes (like trans-Verbenol, Citral, Levomenol, Phytol, and (E)-beta-ocimene) or their derivatives (like the acetates), which are common constituents of citrus essential oils.",2026-10-28 05:49:10.371099+00,1.0
+190,TC_190_Citrus_limon,Citrus limon,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,218.84,0.5454545454545454,0.4545454545454546,11,6,5,3,3,"These compounds are recorded for Citrus limon:
+
+- A laboratory assay of Levomenol against Neuronal acetylcholine receptor subunit alpha-7 reports IC50 = 3100.0 nM. [1]
+- A laboratory assay of beta-Caryophyllene against Alpha-galactosidase A reports Potency = 3981.1 nM. [2]
+- A laboratory assay of beta-Caryophyllene against Huntingtin reports Potency = 3981.1 nM. [3]
+- A laboratory assay of beta-Caryophyllene against Breast cancer type 1 susceptibility protein reports Potency = 3981.1 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:13.049508+00,1.8181818181818183
+192,TC_192_Citrus_limon,Citrus limon,Which bioactivity records are assigned a high-confidence tier?,"[""high_confidence_tier"", ""bioactivity_id""]",1,265.58,0.0,1.0,0,0,0,2,2,"None of the retrieved bioactivity records for *Citrus limon* are assigned a high-confidence tier; all listed records have a ""MEDIUM"" high-confidence tier [5df403f0-f35e-5ba5-98b1-6b6a6b26cd6d, c5cbdd32-07bb-599c-99dd-7e7c723e15b2, 7303ebd1-8670-5205-b5d9-9ea43760022e, 346ac25a-15c6-5e64-a217-f07ce0357704].",2026-10-28 05:49:13.063797+00,4.0
+206,TC_206_Ficus_auriculata,Ficus auriculata,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,95.82,0.0,1.0,0,0,0,2,2,Identified plant: Ficus auriculata. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:16.882515+00,4.0
+223,TC_223_Ficus_benjamina,Ficus benjamina,Can you show the SMILES representation and InChIKey for a compound associated with this plant?,"[""phytochemical_name"", ""smiles"", ""inchi_key""]",1,56.75,0.4,0.6,5,2,3,2,2,"The compounds associated with *Ficus benjamina* that have SMILES and InChIKey representations are Bergapten, beta-Sitosterol, Friedelin, Imperatorin, and alpha-Amyrin.
+
+Here is the requested information for each:
+
+*   **Bergapten** [1]:
+    *   **SMILES**: `COc1c2ccc(=O)oc2cc2c1cco2`
+    *   **InChIKey**: `BGEBZHIAGXMEMV-UHFFFAOYSA-N`
+*   **beta-Sitosterol** [2]:
+    *   **SMILES**: `CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C`
+    *   **InChIKey**: `KZJWDPNRJALLNS-VJSFXXLFSA-N`
+*   **Friedelin** [3]:
+    *   **SMILES**: `O=C1CC[C@@H]2[C@]([C@H]1C)(C)CC[C@H]1[C@@]2(C)CC[C@@]2([C@]1(C)CC[C@@]1([C@H]2CC(C)(C)CC1)C)C`
+    *   **InChIKey**: `OFMXGFHWLZPCFL-SVRPQWSVSA-N`
+*   **Imperatorin** [4]:
+    *   **SMILES**: `CC(=CCOc1c2occc2cc2c1oc(=O)cc2)C`
+    *   **InChIKey**: `OLOOJGVNMBJLLR-UHFFFAOYSA-N`
+*   **alpha-Amyrin** [5]:
+    *   **SMILES**: `C[C@@H]1CC[C@]2([C@@H]([C@H]1C)C1=CC[C@H]3[C@@]([C@@]1(CC2)C)(C)CC[C@@H]1[C@]3(C)CC[C@@H](C1(C)C)O)C`
+    *   **InChIKey**: `FSLPMRQHCOLESF-SFMCKYFRSA-N`
+
+These chemical identifiers (SMILES and InChIKey) are standardized ways to represent the molecular structure of a compound. The SMILES string is a linear notation that describes how atoms are connected, while the InChIKey is a compact, unique identifier for that structure, which is useful for database searching.",2026-10-28 05:49:17.313775+00,2.4
+225,TC_225_Ficus_benjamina,Ficus benjamina,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,51.09,0.0,1.0,0,0,0,2,2,"The provided records do not contain specific therapeutic or medicinal uses associated with *Ficus benjamina*. The retrieved facts list general therapeutic uses for different categories, such as diuretics [1], treatments for bronchitis [2], liver diseases [3], and anti-infective agents [4]. More records may be available.",2026-10-28 05:49:17.373411+00,4.0
+226,TC_226_Ficus_benjamina,Ficus benjamina,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,78.5,0.0,1.0,0,0,0,2,2,Identified plant: Ficus benjamina. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:17.373552+00,4.0
+227,TC_227_Ficus_benjamina,Ficus benjamina,"What therapeutic uses are listed, and how are they grouped into categories and subcategories?","[""therapeutic_use"", ""mesh_category"", ""mesh_category_name"", ""mesh_sub_category_name""]",1,54.75,0.75,0.25,16,12,4,2,2,"The therapeutic uses listed for *Ficus benjamina* are grouped into several categories, which relate to the type of condition or substance the plant is associated with.
+
+Here is a breakdown of the listed uses:
+
+*   **Diuretics:** This refers to substances that increase the production of urine. Scientifically, diuretics help the body eliminate excess water and salt, which is important for managing fluid balance and blood pressure. This use is categorized under **Chemicals and Drugs [D27]** [1].
+*   **Bronchitis:** This is an inflammation of the bronchial tubes. This use is categorized under **Diseases [C01] - bacterial infections and mycoses** [2].
+*   **Liver diseases:** This refers to any condition affecting the liver. This use is categorized under **Diseases [C06] - digestive system diseases** [3].
+*   **Anti-infective agents:** These are substances that fight against infectious agents like bacteria or viruses. This use is categorized under **Diseases [C23] - pathological conditions, signs and symptoms** [4].
+*   **Wounds and injuries [5]:** This refers to damage to the skin or body tissues. This use is categorized under **Diseases [C26] - wounds and injuries** [6].
+*   **Contusions [7]:** This refers to a bruise or a blow to the body. This use is categorized under **Chemicals and Drugs [D27]** [8].
+*   **Headache:** This is a common symptom involving pain in the head. This use is categorized under **Chemicals and Drugs [D27]** [9].
+*   **Analgesics:** These are substances used to relieve pain. This use is categorized under **Diseases [C23] - bacterial infections and mycoses** [10].
+
+In summary, the uses are grouped broadly into **Diseases** (covering conditions like bronchitis, liver diseases, wounds, and headaches) and **Chemicals and Drugs** (covering actions like diuretic, analgesic, and for contusions).",2026-10-28 05:49:17.473383+00,1.0
+230,TC_230_Ficus_benjamina,Ficus benjamina,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,95.17,0.0,1.0,3,0,3,3,3,"These compounds are recorded for Ficus benjamina:
+
+- **Fruit:** Bergapten [1]
+- **Leaf:** beta-Sitosterol [2], Friedelin [3]
+- **Plant exudate:** Bergapten [4], Imperatorin [5], alpha-Amyrin [6]
+
+A phytochemical is a chemical found in plants. These entries show where compounds are recorded, but not how much is present.",2026-10-28 05:49:17.550231+00,4.0
+243,TC_243_Ficus_religiosa,Ficus religiosa,Can you show the SMILES representation and InChIKey for a compound associated with this plant?,"[""phytochemical_name"", ""smiles"", ""inchi_key""]",1,64.08,0.0,1.0,3,0,3,2,2,"A compound associated with *Ficus religiosa* is Caffeic acid, which has the following SMILES representation and InChIKey:
+
+*   **SMILES:** OC(=O)/C=C/c1ccc(c(c1)O)O [1]
+*   **InChIKey:** QAIPRVGONGVQAS-DUXPYHPUSA-N [1]
+
+Other compounds found in the records include 1-Octacosanol [2], beta-Sitosterol [3], and Lanosterol [4], but Caffeic acid is the one provided with the requested chemical identifiers. More records may be available.",2026-10-28 05:49:18.140555+00,4.0
+251,TC_251_Ficus_religiosa,Ficus religiosa,"What bioactivity value was measured, and what relation sign and units accompany the result?","[""standard_value"", ""standard_relation"", ""standard_units""]",1,78.23,0.0,1.0,4,0,4,2,2,"The bioactivity measurements reported for *Ficus religiosa* include several values, each accompanied by a relation sign and units.
+
+Specifically, the recorded measurements are:
+*   A value of 4.9, associated with the relation sign ""="", and measured in nM [citation_id: 8c119839-9549-5ee2-b582-66d4c1ec8dfd].
+*   A value of 72.8, associated with the relation sign ""="", and measured in nM [citation_id: 65fa3940-f78c-57a2-96fc-a5d783cd8921].
+*   A value of 24.9, associated with the relation sign ""="", and measured in nM [citation_id: 6b4c830a-68a1-5fe4-b722-bb03c2252025].
+*   A value of 208.0, associated with the relation sign ""="", and measured in nM [citation_id: 636a3935-cd31-5a72-94de-455e55f56a48].
+
+In all these instances, the relation sign used is ""="", and the units are nanomolar (nM).",2026-10-28 05:49:19.012967+00,4.0
+264,TC_264_Hibiscus_rosa-sinensis,Hibiscus rosa-sinensis,Does this plant’s recorded phytochemical have a ChEMBL ID or an IMPPAT ID?,"[""phytochemical_name"", ""chembl_id"", ""imppat_id""]",1,101.91,0.0,1.0,0,0,0,2,2,"The phytochemicals recorded for *Hibiscus rosa-sinensis* do have associated identifiers. Several compounds, including 8-Nonynoic acid [1], 9-Decynoic acid [2], Octacosane [3], Triacontane [4], Riboflavin [5], Thiamine [6], Ascorbic acid [7], and Dotetracontane [8], have been found with both ChEMBL IDs and IMPPAT IDs [c2375898-1d02-59ce-9c8a-b9f450777ef3, b1887085-e61f-5e2b-89c9-3658d71a05ff, 610a1298-492e-580c-be8a-0387db1c002e, 7218db09-46da-575e-915f-3714e033ac82, ec9eb727-9c3e-5eee-8a2b-689a4a59a0c0, ab6218e8-85f7-5c71-955b-19a5fcf1ffaa, 2b700ed4-2843-500a-8849-e94367f4f456, f09aa746-d5f3-525e-b7b8-7538ebaf2146].
+
+To explain these further, I can detail any specific compound or the general meaning of these IDs.",2026-10-28 05:49:20.680274+00,4.0
+265,TC_265_Hibiscus_rosa-sinensis,Hibiscus rosa-sinensis,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,122.17,0.0,1.0,0,0,0,2,2,"The provided records do not contain specific therapeutic or medicinal uses associated with *Hibiscus rosa-sinensis*. The retrieved facts list general therapeutic uses for various conditions, such as Central nervous system depressants [1], Hypotension [2], Parasympatholytics [3], and Abortifacient agents [4], but these are not linked to *Hibiscus rosa-sinensis*. More records may be available.",2026-10-28 05:49:20.680475+00,4.0
+266,TC_266_Hibiscus_rosa-sinensis,Hibiscus rosa-sinensis,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,80.88,0.0,1.0,0,0,0,2,2,Identified plant: Hibiscus rosa-sinensis. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:20.680722+00,4.0
+270,TC_270_Hibiscus_rosa-sinensis,Hibiscus rosa-sinensis,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,182.95999999999998,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Hibiscus rosa-sinensis:
+
+- A laboratory assay of Riboflavin against Aldo-keto reductase family 1 member C2 reports IC50 = 9280.0 nM. [1]
+- A laboratory assay of Ascorbic acid against Thyroid hormone receptor beta reports Potency = 0.6 nM. [2]
+- A laboratory assay of Sterculic acid against Protein disulfide-isomerase reports Ki = 5900.0 nM. [3]
+- A laboratory assay of Quercetin against NADPH oxidase 4 reports IC50 = 680.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:21.586341+00,1.5384615384615383
+285,TC_285_Jasminum_officinale,Jasminum officinale,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,153.79,0.0,1.0,0,0,0,2,2,"The provided records do not contain specific therapeutic or medicinal uses associated with *Jasminum officinale*. The retrieved facts mention therapeutic uses for general categories such as hypotension [1], antineoplastic agents [2] [3], liver diseases [4], and hair loss [5]. More records may be available.",2026-10-28 05:49:24.032765+00,4.0
+286,TC_286_Jasminum_officinale,Jasminum officinale,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,113.55,0.0,1.0,0,0,0,2,2,Identified plant: Jasminum officinale. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:24.032933+00,4.0
+290,TC_290_Jasminum_officinale,Jasminum officinale,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,156.82,0.47058823529411764,0.5294117647058824,17,8,9,3,3,"Here is a little more about Benzyl acetate in Jasminum officinale:
+
+- A laboratory assay of Benzyl acetate against Carbonic anhydrase 13 reports Ki = 4240.0 nM. [1]
+- A laboratory assay of Vanillin against D(2) dopamine receptor reports Ki = 184.0 nM. [2]
+- A laboratory assay of Vanillin against Retinol-binding protein 4 reports Ki = 8.3 nM. [3]
+- A laboratory assay of Methyl 2-(methylamino)benzoate against ATPase family AAA domain-containing protein 5 reports Potency 92.0 nM. [4]
+- Benzyl acetate is listed as a phytochemical in flower. It is classified as Benzene and substituted derivatives. [5]
+- Benzyl benzoate is listed as a phytochemical in flower. It is classified as Benzene and substituted derivatives. [6]
+- Vanillin is listed as a phytochemical in flower. It is classified as Phenols. [7]
+- Methyl 2-(methylamino)benzoate is listed as a phytochemical in flower. It is classified as Benzene and substituted derivatives. [8]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:24.555017+00,2.1176470588235294
+306,TC_306_Mangifera_indica,Mangifera indica,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,108.91,0.0,1.0,0,0,0,2,2,Identified plant: Mangifera indica. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:31.687522+00,4.0
+309,TC_309_Mangifera_indica,Mangifera indica,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,326.03,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as Homomangiferin [1], Mangiferin [2], and Cianidanol [3], which are associated with the plant *Mangifera indica*. However, these records only provide chemical structure and classification information and do not report any specific bioactivity measurements for compounds from this plant.
+
+More records may be available.",2026-10-28 05:49:32.210134+00,4.0
+310,TC_310_Mangifera_indica,Mangifera indica,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,336.96000000000004,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Mangifera indica:
+
+- A laboratory assay of Citric acid against Perilipin-1 reports IC50 3708.0 nM. [1]
+- A laboratory assay of Heneicosane against Tyrosine-protein kinase Lck reports IC50 = 79.0 nM. [2]
+- A laboratory assay of Octyl gallate against Mitogen-activated protein kinase 3 reports IC50 = 4052.0 nM. [3]
+- A laboratory assay of Octyl gallate against Apoptosis regulator Bcl-2 reports Ki = 234.42 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:32.551848+00,1.5384615384615383
+312,TC_312_Mangifera_indica,Mangifera indica,Which bioactivity records are assigned a high-confidence tier?,"[""high_confidence_tier"", ""bioactivity_id""]",1,141.78,0.0,1.0,5,0,5,2,2,"The bioactivity records for *Mangifera indica* that are assigned a high-confidence tier are:
+
+*   **[1]**: This record reports an IC50 of 79.0 nM. An IC50 (half maximal inhibitory concentration) is a measure of the concentration of a substance required to inhibit a specific biological or biochemical function by 50%. In this context, it indicates the potency of a compound from *Mangifera indica* against a particular target.
+*   **[2]**: This record reports a Ki of 234.42 nM. A Ki (inhibition constant) is another measure of the affinity of a compound for a specific biological target, indicating how strongly it binds to that target.
+*   **[3]**: This record reports an IC50 of 31.0 nM. Similar to the first record, this IC50 value quantifies the concentration needed to inhibit a biological process by half.
+*   **[4]**: This record reports a potency of 354.8 nM. This is a general measure of how effective a substance is at producing a specific effect.
+*   **[5]**: This record reports a Ki of 0.8 nM. This very low Ki value suggests a high affinity, meaning the compound binds very strongly to its biological target.
+
+These measurements (IC50 and Ki) are used in scientific research to quantify the biological activity of compounds found in plants like *Mangifera indica* against specific molecular targets.",2026-10-28 05:49:32.579384+00,4.0
+314,TC_314_Mangifera_indica,Mangifera indica,"For a listed protein target, which organism does it come from and what type of target is it?","[""target_name"", ""target_organism"", ""target_type""]",1,140.95,0.0,1.0,0,0,0,2,2,"The provided records list several protein targets associated with compounds, but they do not specify which of these targets are associated with *Mangifera indica*. The targets listed are:
+
+*   Perilipin-1, which comes from *Homo sapiens* and is a SINGLE PROTEIN target [1].
+*   Tyrosine-protein kinase Lck, which comes from *Homo sapiens* and is a SINGLE PROTEIN target [2].
+*   Mitogen-activated protein kinase 3 [3], which comes from *Homo sapiens* and is a SINGLE PROTEIN target [4].
+*   Apoptosis regulator Bcl-2 [5], which comes from *Homo sapiens* and is a SINGLE PROTEIN target [6].
+
+More records are available for a complete answer regarding *Mangifera indica*.",2026-10-28 05:49:33.722297+00,4.0
+315,TC_315_Mangifera_indica,Mangifera indica,What are the UniProt accession and ChEMBL target ID for this protein target?,"[""target_name"", ""uniprot_id"", ""target_chembl_id""]",1,224.19,0.0,1.0,0,0,0,2,2,"The provided records do not contain the UniProt accession and ChEMBL target ID for a protein target associated with *Mangifera indica*. The retrieved facts list targets from *Homo sapiens* [14082349-9dd5-5734-a9b8-b5b612a530ac, 2948bec4-6b6e-5642-81b3-fdf913e3f18a, f740fb8d-b1f9-5080-a546-9eb398b7052a, b3e38b04-018d-5117-8315-3843d8c7eefc]. More records may be available.",2026-10-28 05:49:33.722518+00,4.0
+329,TC_329_Manilkara_zapota,Manilkara zapota,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,196.97,0.7692307692307693,0.23076923076923073,13,10,3,3,3,"These compounds are recorded for Manilkara zapota:
+
+- A laboratory assay of Tannic acid against Vascular endothelial growth factor A, long form reports Kd = 16.5 nM. [1]
+- A laboratory assay of Tannic acid against Transmembrane protease serine 2 reports IC50 = 2310.0 nM. [2]
+- A laboratory assay of Tannic acid against cGMP-specific 3',5'-cyclic phosphodiesterase reports IC50 = 4703.0 nM. [3]
+- A laboratory assay of Tannic acid against Tyrosine-protein kinase Fyn reports IC50 = 22.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:38.389033+00,0.9230769230769229
+330,TC_330_Manilkara_zapota,Manilkara zapota,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,131.5,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Manilkara zapota:
+
+- A laboratory assay of Tannic acid against Vascular endothelial growth factor A, long form reports Kd = 16.5 nM. [1]
+- A laboratory assay of Tannic acid against Transmembrane protease serine 2 reports IC50 = 2310.0 nM. [2]
+- A laboratory assay of Tannic acid against cGMP-specific 3',5'-cyclic phosphodiesterase reports IC50 = 4703.0 nM. [3]
+- A laboratory assay of Tannic acid against Tyrosine-protein kinase Fyn reports IC50 = 22.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:38.539734+00,1.5384615384615383
+332,TC_332_Manilkara_zapota,Manilkara zapota,Which bioactivity records are assigned a high-confidence tier?,"[""high_confidence_tier"", ""bioactivity_id""]",1,67.53,0.6666666666666666,0.33333333333333337,3,2,1,2,2,"The bioactivity records for *Manilkara zapota* that are assigned a high-confidence tier are:
+
+*   **Bioactivity ID BA\_048** [1]: This record indicates a specific interaction with a biological target, measured by the dissociation constant (K_d), which is 16.5  nM. The K_d is a measure of the affinity of a compound for its target; a lower value generally suggests a stronger binding interaction.
+*   **Bioactivity ID BA\_071** [2]: This record shows an inhibitory concentration (IC_{50}) of 22.0  nM. The IC_{50} is the concentration of a substance required to inhibit a specific biological or biochemical function by 50%.
+*   **Bioactivity ID BA\_215** [3] and **Bioactivity ID BA\_215** [4]: Both records for this ID show a binding affinity (K_i) of 3.0  nM. The K_i is another measure of affinity, representing the inhibition constant, and it indicates how tightly a compound binds to its target.
+
+These measurements (K_d, IC_{50}, K_i) are quantitative ways to describe how strongly a substance interacts with a biological molecule, which is a key aspect of understanding its potential biological activity.",2026-10-28 05:49:38.57148+00,1.3333333333333335
+333,TC_333_Manilkara_zapota,Manilkara zapota,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,142.65,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals found in plants, such as Cianidanol [1], Ursolic acid [2], D-Galactose [3], D-Fructose [4], beta-Lactose [5], D-Glucose [6], L-(+)-Arabinose [7], beta-D-Xylopyranose [8], Oleanolic acid [9], Quercitol [10], Protobassic acid [11], and Bayogenin [12]. However, none of the available records contain information regarding the specific protein targets associated with the compounds found in *Manilkara zapota*.",2026-10-28 05:49:38.571652+00,4.0
+345,TC_345_Mentha_spicata,Mentha spicata,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,65.92,0.75,0.25,4,3,1,2,2,"Associated therapeutic uses for *Mentha spicata* include:
+
+*   Cough for respiratory tract diseases [1]
+*   Analgesics for bacterial infections and mycoses [2]
+*   Anorexia for pathological conditions, signs and symptoms [3]
+*   Cholera for pathological conditions, signs and symptoms [4]
+
+More records are available.",2026-10-28 05:49:42.712048+00,1.0
+346,TC_346_Mentha_spicata,Mentha spicata,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,100.97,0.0,1.0,0,0,0,2,2,Identified plant: Mentha spicata. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:42.712274+00,4.0
+350,TC_350_Mentha_spicata,Mentha spicata,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,194.26,0.5454545454545454,0.4545454545454546,11,6,5,3,3,"These compounds are recorded for Mentha spicata:
+
+- A laboratory assay of Menthol against Transient receptor potential cation channel subfamily M member 8 reports EC50 = 3000.0 nM. [1]
+- A laboratory assay of Menthol against Tyrosine-protein kinase SYK reports EC50 = 3000.0 nM. [2]
+- A laboratory assay of beta-Caryophyllene against Alpha-galactosidase A reports Potency = 3981.1 nM. [3]
+- A laboratory assay of beta-Caryophyllene against Huntingtin reports Potency = 3981.1 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:43.523147+00,1.8181818181818183
+352,TC_352_Mentha_spicata,Mentha spicata,Which bioactivity records are assigned a high-confidence tier?,"[""high_confidence_tier"", ""bioactivity_id""]",1,79.91,0.0,1.0,0,0,0,2,2,"None of the retrieved bioactivity records for *Mentha spicata* are assigned a high-confidence tier; all listed records have a ""MEDIUM"" confidence tier [f43caf8c-490e-5a97-8e7a-993ffa8de567, 5b5095fe-d49f-50b1-b493-ee7c1de5171b, 12ceb611-3623-57d3-997e-caccdeb8c08d, 85d9ab93-e88a-5288-a083-5b2bb36dea52].",2026-10-28 05:49:43.53555+00,4.0
+354,TC_354_Mentha_spicata,Mentha spicata,"For a listed protein target, which organism does it come from and what type of target is it?","[""target_name"", ""target_organism"", ""target_type""]",1,94.57,0.0,1.0,0,0,0,3,3,"The provided records list several protein targets associated with compounds, but they do not specify which of these targets are associated with *Mentha spicata*. The targets listed come from the organism *Homo sapiens* and are of the type ""SINGLE PROTEIN"" [3c36985e-bf3d-55b2-aaa5-c26fb6ac67d9, 3b66684b-966c-5f4b-baac-879546c7a6b4, f5b0676d-c2cf-52aa-b8e7-e022b14380d5, 9bf688a3-8f6a-5c19-a219-318c906495a2, d8612bf5-4421-5f15-ba28-7ee0ec551bf7, fe37f803-9a32-5ffd-975d-1600e4eb69a2, ccc86936-f24f-5fe0-b5b8-958b95e1ce39, 51282ed3-791c-58a0-914e-36a43515a82b, 5f9ef5ff-e66d-543a-ad8f-552b6db9858a, 9bdf2196-e9e4-58e4-b516-6949df71707b, 175fc870-52c6-5882-afde-7ea0c22fcb3e]. More records are available.",2026-10-28 05:49:43.96055+00,4.0
+386,TC_386_Moringa_oleifera,Moringa oleifera,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,55.14,0.0,1.0,0,0,0,2,2,Identified plant: Moringa oleifera. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:49:48.239285+00,4.0
+390,TC_390_Moringa_oleifera,Moringa oleifera,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,291.33,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Moringa oleifera:
+
+- A laboratory assay of Kaempferol against Glucagon-like peptide 1 receptor reports Potency 501.2 nM. [1]
+- A laboratory assay of Kaempferol against CDGSH iron-sulfur domain-containing protein 1 reports Ki = 132.0 nM. [2]
+- A laboratory assay of Kaempferol against Ribosomal protein S6 kinase alpha-3 reports IC50 = 1710.0 nM. [3]
+- A laboratory assay of Kaempferol against Cannabinoid receptor 2 reports Ki = 150.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:49.937127+00,1.5384615384615383
+392,TC_392_Moringa_oleifera,Moringa oleifera,Which bioactivity records are assigned a high-confidence tier?,"[""high_confidence_tier"", ""bioactivity_id""]",1,141.3,0.0,1.0,7,0,7,2,2,"The bioactivity records for *Moringa oleifera* assigned a high-confidence tier are as follows:
+
+*   **[1]**: This record reports a potency of 501.2 nM. Potency measurements indicate how effective a substance is at interacting with a biological target.
+*   **[2]**: This record shows a Ki of 132.0 nM. A Ki (inhibition constant) measures the affinity of a compound for its target; a lower value generally indicates a stronger binding interaction.
+*   **[3]**: This record reports a Ki of 150.0 nM. Similar to the above, this measures how tightly a compound binds to its biological target.
+*   **[4]**: This record indicates an IC50 of 23.44 nM. An IC50 (half maximal inhibitory concentration) is the concentration of a substance required to inhibit a specific biological or biochemical function by 50%.
+*   **[5]**: This record shows an IC50 of 28.0 nM. This measurement tells us the concentration needed to achieve 50% inhibition of a biological process.
+*   **[6]**: This record reports a Ki of 0.8 nM. This is a very low Ki value, suggesting a high affinity or strong binding to the target molecule.
+*   **[7]**: This record indicates a potency of 316.2 nM. This measurement quantifies the strength of the substance's effect on a biological system.",2026-10-28 05:49:49.969069+00,4.0
+404,TC_404_Muntingia_calabura,Muntingia calabura,Does this plant’s recorded phytochemical have a ChEMBL ID or an IMPPAT ID?,"[""phytochemical_name"", ""chembl_id"", ""imppat_id""]",1,61.32,0.0,1.0,0,0,0,2,2,"The recorded phytochemicals for *Muntingia calabura* do have associated identifiers. Specifically, Caffeic acid [1], Kaempferol [2], Quercetin [3], Ellagic acid [4], kaempferol 3-O-beta-D-galactoside(1-) [5], beta-Bisabolene [6], Methyl salicylate [7], and Levomenol [8] all have either a ChEMBL ID or an IMPPAT ID listed in their records.",2026-10-28 05:49:54.61188+00,4.0
+410,TC_410_Muntingia_calabura,Muntingia calabura,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,232.81,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Muntingia calabura:
+
+- A laboratory assay of Caffeic acid against Carbonic anhydrase 12 reports Ki = 4.9 nM. [1]
+- A laboratory assay of Caffeic acid against Carbonic anhydrase 4 reports Ki = 72.8 nM. [2]
+- A laboratory assay of Kaempferol against Glucagon-like peptide 1 receptor reports Potency 501.2 nM. [3]
+- A laboratory assay of Kaempferol against CDGSH iron-sulfur domain-containing protein 1 reports Ki = 132.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:49:55.368541+00,1.5384615384615383
+418,TC_418_Muntingia_calabura,Muntingia calabura,"Which parts of this plant are documented, such as its leaves, roots, flowers, seeds, or bark?","[""plant_part""]",1,27.98,0.6666666666666666,0.33333333333333337,6,4,2,2,2,"The documented parts of *Muntingia calabura* include the flower [1], fruit [2], leaf [3], and root [4].
+
+Here is a brief explanation of what these parts are and why they are scientifically relevant:
+
+*   **Flower:** This is the reproductive structure of the plant. Scientifically, flowers are where pollination occurs, leading to the production of seeds and fruit.
+*   **Fruit:** The fruit develops from the flower after pollination. It often contains the seeds and serves to aid in the dispersal of the next generation of the plant.
+*   **Leaf:** Leaves are the primary sites of photosynthesis, the process where plants convert light energy into chemical energy (sugars) to fuel their growth.
+*   **Root:** The root system anchors the plant in the ground and is primarily responsible for absorbing water and essential nutrients from the soil.",2026-10-28 05:49:56.500977+00,1.3333333333333335
+437,TC_437_Murraya_koenigii,Murraya koenigii,Are the plant’s alternate names recorded with their alias type and language?,"[""alias"", ""alias_type"", ""language""]",0,0.0,0.0,1.0,0,0,0,0,0,Identified plant: Murraya koenigii. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:50:04.661648+00,4.0
+444,TC_444_Nerium_oleander,Nerium oleander,Does this plant’s recorded phytochemical have a ChEMBL ID or an IMPPAT ID?,"[""phytochemical_name"", ""chembl_id"", ""imppat_id""]",1,37.77,0.0,1.0,1,0,1,2,2,"The recorded phytochemicals for *Nerium oleander* include several compounds, and yes, they have associated identifiers. Specifically, the data shows that compounds such as Barban [1], Scopolin [2], Pregnenolone [3], Oleandrin [4], beta-D-Glucose [5], Oleanolic acid [6], Ursolic acid [7], and beta-Sitosterol [8] all have both a ChEMBL ID and an IMPPAT ID listed [27e69b36-9d54-523c-bd2f-09bb09c39430, 2deb77fa-c262-5764-bdf9-796fcef8dd0d, 2da2ec03-2d61-5d59-9965-402779c43840, 73ecc478-9f9d-5ecc-8684-adf93fabb59b, 8c1b2f7f-159e-56cf-9348-b7cd055566f9, 3f3a88ae-349f-5b02-b90b-27c715551257, b316f9ad-6d7b-5785-be06-4b97b2c915cd, 480353f9-0bce-5c54-b25f-0d32b9aacafa].
+
+**Explanation of Terms:**
+
+*   **Phytochemical:** These are chemical compounds naturally produced by plants. They are the substances that give plants their color, flavor, and many of their biological properties.
+*   **ChEMBL ID:** This is a unique identifier assigned by the ChEMBL database, which is a large, publicly available database of bioactive molecules. It helps scientists track and reference specific chemical structures in research.
+*   **IMPPAT ID:** This is another unique identifier used in chemical databases, serving a similar purpose to the ChEMBL ID—it allows researchers to precisely locate and discuss a specific chemical entity across different studies.
+
+In short, these IDs are standardized labels that allow scientists worldwide to talk about the exact same chemical compound, whether it was found in *Nerium oleander* or another source.",2026-10-28 05:50:09.628285+00,4.0
+445,TC_445_Nerium_oleander,Nerium oleander,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,30.46,0.0,1.0,0,0,0,2,2,"The therapeutic or medicinal uses associated with *Nerium oleander* include traditional associations with conditions such as leprosy [1], earache [2], heart diseases [3], skin diseases [4], and liver diseases [5] [ffdcca2c-53e4-5cd6-850a-e28b5dc00ae5, 655a3104-01f0-5eee-8ea8-19da5a43d79f, 1111c3c4-d5f7-5f27-af46-eaef18f7cb4b, b42c3726-f3c2-5a2d-8bf3-f0e0cd78b457, 2c61c4ac-24f5-5c7d-8667-c653977d8498]. It is also associated with uses as a cardiotonic agent and a diuretic [37d3b48e-e77f-5f86-b0d7-c66371851f7e, 85e72143-ed72-5d39-bc66-e3fd34903298].
+
+It is important to note that these are reported or traditional uses, which are associations and do not constitute proof of treatment, efficacy, or safety.",2026-10-28 05:50:09.628525+00,4.0
+449,TC_449_Nerium_oleander,Nerium oleander,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,64.28,0.6363636363636364,0.36363636363636365,11,7,4,3,3,"These compounds are recorded for Nerium oleander:
+
+- A laboratory assay of Oleanolic acid against Glucocorticoid receptor reports Potency 0.7 nM. [1]
+- A laboratory assay of Oleanolic acid against Peroxisome proliferator-activated receptor gamma reports Potency 0.7 nM. [2]
+- A laboratory assay of Oleanolic acid against Peroxisome proliferator-activated receptor delta reports Potency 0.7 nM. [3]
+- A laboratory assay of Oleanolic acid against Type-1 angiotensin II receptor reports Ki = 0.49 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:10.756691+00,1.4545454545454546
+450,TC_450_Nerium_oleander,Nerium oleander,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,69.24000000000001,0.5454545454545454,0.4545454545454546,11,6,5,3,3,"These compounds are recorded for Nerium oleander:
+
+- A laboratory assay of Oleanolic acid against Glucocorticoid receptor reports Potency 0.7 nM. [1]
+- A laboratory assay of Oleanolic acid against Peroxisome proliferator-activated receptor gamma reports Potency 0.7 nM. [2]
+- A laboratory assay of Oleanolic acid against Peroxisome proliferator-activated receptor delta reports Potency 0.7 nM. [3]
+- A laboratory assay of Oleanolic acid against Type-1 angiotensin II receptor reports Ki = 0.49 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:10.949961+00,1.8181818181818183
+454,TC_454_Nerium_oleander,Nerium oleander,"For a listed protein target, which organism does it come from and what type of target is it?","[""target_name"", ""target_organism"", ""target_type""]",1,67.78999999999999,0.0,1.0,0,0,0,3,3,"The provided records list several protein targets associated with compounds, but they do not specify which of these targets are associated with *Nerium oleander*. All the listed targets come from the organism *Homo sapiens* and are of the type ""SINGLE PROTEIN"" [f08c5133-e439-5123-8a30-7db1aea7cbb7, 62a78fe7-8f2f-53ca-b53b-cf82902ee7b9, 2ad07704-d1c9-5bf4-b2a2-7f3f50a31a3a, 6b427c47-ed63-561d-b338-20f61bcf81e6, 5dbb7528-1574-56d2-919f-a5828f254f5c, ad09c423-8c30-5233-afef-60610d812a06, 5655fd24-4daa-5d7e-ba62-07e90bf01717, f5cfeac6-9e5d-5222-a4d7-79f4c775d3f0, eaa532c8-71dc-5e47-866e-f5d26e26026e, 8ee47fab-4768-5e13-b9fa-a5eacb71f778, 0b71fb9a-5af3-557f-aa41-abdcf8b8036e, 060eb273-6799-51ec-ac07-5b1e511ac6e1]. More records may be available.",2026-10-28 05:50:11.767384+00,4.0
+466,TC_466_Nyctanthes_arbor-tristis,Nyctanthes arbor-tristis,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,33.77,0.0,1.0,1,0,1,2,2,"The available records for *Nyctanthes arbor-tristis* list several health uses for the plant generally, including applications for malaria [1], bronchitis [2], liver diseases [3], intestinal diseases [4], skin diseases [5], and as an anti-inflammatory agent [26dd8251-7a38-52c5-a9fb-3c597d225499, 5e951185-eedf-564d-bce3-50da3464f364, 6dcc30fe-28b1-52aa-ae2c-844a1ea74ad5, 8e961ffe-5c47-500a-a862-94e6c2c3ee6d, afee3358-5567-5cb9-9e76-1d2db4d6a59d, c9136fd9-db54-5184-a0e4-af4b8e3542c7].
+
+While the records confirm these uses for the plant, the specific data retrieved did not isolate the uses exclusively for the **leaves**.
+
+In general, plant extracts are studied for various properties like anti-inflammatory, antimicrobial, or antioxidant effects. These properties are often attributed to chemical compounds within the plant. The specific application of a plant part (like the leaves) is determined by the concentration and type of bioactive compounds present in that part.",2026-10-28 05:50:17.23465+00,4.0
+469,TC_469_Nyctanthes_arbor-tristis,Nyctanthes arbor-tristis,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,60.120000000000005,0.75,0.25,12,9,3,3,3,"These compounds are recorded for Nyctanthes arbor-tristis:
+
+- A laboratory assay of 2,6,10-Trimethylpentadecane against Sodium channel protein type 4 subunit alpha reports EC50 = 1000.0 nM. [1]
+- A laboratory assay of 4-Methoxybenzaldehyde against Parathyroid hormone/parathyroid hormone-related peptide receptor reports Potency 1122.0 nM. [2]
+- A laboratory assay of 4-Methoxybenzaldehyde against Bifunctional 3'-5' exonuclease/ATP-dependent helicase WRN reports Potency 1122.0 nM. [3]
+- A laboratory assay of Ascorbic acid against Thyroid hormone receptor beta reports Potency = 0.6 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:18.140244+00,1.0
+470,TC_470_Nyctanthes_arbor-tristis,Nyctanthes arbor-tristis,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,145.62,0.5833333333333334,0.41666666666666663,12,7,5,3,3,"These compounds are recorded for Nyctanthes arbor-tristis:
+
+- A laboratory assay of 2,6,10-Trimethylpentadecane against Sodium channel protein type 4 subunit alpha reports EC50 = 1000.0 nM. [1]
+- A laboratory assay of 4-Methoxybenzaldehyde against Parathyroid hormone/parathyroid hormone-related peptide receptor reports Potency 1122.0 nM. [2]
+- A laboratory assay of 4-Methoxybenzaldehyde against Bifunctional 3'-5' exonuclease/ATP-dependent helicase WRN reports Potency 1122.0 nM. [3]
+- A laboratory assay of Ascorbic acid against Thyroid hormone receptor beta reports Potency = 0.6 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:18.31495+00,1.6666666666666665
+473,TC_473_Nyctanthes_arbor-tristis,Nyctanthes arbor-tristis,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,76.02000000000001,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as Crocetin gentiobiosylglucosyl ester [1], Astragalin [2], Hentriacontane [3], Lupeol [4], Methyl palmitate [5], 2-Methyldocosane [6], alpha-Pinene [7], p-Cymene [8], Crocin [9], beta-D-gentiobiosyl crocetin [10], beta-Amyrin [11], and 6-Methyl-5-hepten-2-one [12]. However, none of the available records specify which protein targets are associated with the compounds found in *Nyctanthes arbor-tristis*. More records may be available.",2026-10-28 05:50:18.349147+00,4.0
+476,TC_476_Nyctanthes_arbor-tristis,Nyctanthes arbor-tristis,What other names or alternate names is this plant known by?,"[""alias"", ""normalized_alias""]",1,69.27,0.6666666666666666,0.33333333333333337,6,4,2,2,2,"The plant *Nyctanthes arbor-tristis [1]* is known by several other names depending on the region or language. These include:
+
+*   **Gangaseoli [2]** (a regional name used in Odia) [3]
+*   **Harsingar** (a regional name used in Hindi) [4]
+*   **Paarijatham** (a regional name used in Malayalam) [5]
+*   **Parijat [6]a** (a regional name used in Kannada) [7]
+*   **Parijatah** (a vernacular name from Sanskrit) [8]
+*   **Parijatam** (a regional name used in Telugu) [9]
+
+It is also listed with the scientific synonym **Parilium arbor-tristis (L.) Gaertn.** [10].",2026-10-28 05:50:18.821364+00,1.3333333333333335
+489,TC_489_Ocimum_tenuiflorum,Ocimum tenuiflorum,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,90.66,0.6666666666666666,0.33333333333333337,12,8,4,3,3,"These compounds are recorded for Ocimum tenuiflorum:
+
+- A laboratory assay of Levomenol against Neuronal acetylcholine receptor subunit alpha-7 reports IC50 = 3100.0 nM. [1]
+- A laboratory assay of 3-(1,5-Dimethyl-4-hexenyl)-6-methylene-1-cyclohexene against High mobility group protein B1 reports Kd = 1000.0 nM. [2]
+- A laboratory assay of Menthol against Transient receptor potential cation channel subfamily M member 8 reports EC50 = 3000.0 nM. [3]
+- A laboratory assay of Menthol against Tyrosine-protein kinase SYK reports EC50 = 3000.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:26.660099+00,1.3333333333333335
+490,TC_490_Ocimum_tenuiflorum,Ocimum tenuiflorum,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,91.35,0.5833333333333334,0.41666666666666663,12,7,5,3,3,"These compounds are recorded for Ocimum tenuiflorum:
+
+- A laboratory assay of Levomenol against Neuronal acetylcholine receptor subunit alpha-7 reports IC50 = 3100.0 nM. [1]
+- A laboratory assay of 3-(1,5-Dimethyl-4-hexenyl)-6-methylene-1-cyclohexene against High mobility group protein B1 reports Kd = 1000.0 nM. [2]
+- A laboratory assay of Menthol against Transient receptor potential cation channel subfamily M member 8 reports EC50 = 3000.0 nM. [3]
+- A laboratory assay of Menthol against Tyrosine-protein kinase SYK reports EC50 = 3000.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:26.946136+00,1.6666666666666665
+496,TC_496_Ocimum_tenuiflorum,Ocimum tenuiflorum,What other names or alternate names is this plant known by?,"[""alias"", ""normalized_alias""]",1,30.84,0.6666666666666666,0.33333333333333337,6,4,2,2,2,"The plant *Ocimum tenuiflorum [1]* is known by several other names, including:
+
+*   **Geniosporum tenuiflorum (L.) Merr.** [2] and **Lumnitzera tenuiflora (L.) Spreng.** [3] and **Moschosma tenuiflorum (L.) Heynh.** [4] (These are scientific synonyms, meaning they are older or alternative scientific names for the same plant.) [9323086f-62a8-542c-a963-0ae925a889f0, 5d84e85c-c298-5f92-8064-76f021997de1, 851f33ee-32f5-5ea3-a492-8f81e6023d8c]
+*   **Ocimum sanctum L.** (This is another scientific synonym.) [5]
+*   **Kalatulsi [6] [7]** (A regional name used in Hindi.) [8]
+*   **Kali tulsi** (A regional name used in Marathi.) [9]
+*   **Manchi tulasi [10]** (A regional name used in Telugu.) [11]
+*   **Nallathulasi [12]** (A regional name used in Tamil.) [13]
+
+These names help botanists and local communities identify the plant across different languages and historical classifications.",2026-10-28 05:50:28.710894+00,1.3333333333333335
+497,TC_497_Ocimum_tenuiflorum,Ocimum tenuiflorum,Are the plant’s alternate names recorded with their alias type and language?,"[""alias"", ""alias_type"", ""language""]",1,25.17,0.75,0.25,8,6,2,2,2,"The alternate names recorded for *Ocimum tenuiflorum [1]* include scientific synonyms, regional names, and other classifications, each with an associated alias type and language.
+
+Here is a breakdown of the recorded aliases:
+
+*   **Geniosporum tenuiflorum (L.) Merr.** [2] is listed as a **scientific synonym** in the **scientific** language [citation\_id: 9323086f-62a8-542c-a963-0ae925a889f0]. A scientific synonym is a name that was once used for the plant but has since been replaced by the current accepted scientific name.
+*   **Kalatulsi [3] [4]** [5] is recorded as a **regional name** in **Hindi** [citation\_id: 5d833be6-9b68-5b0e-a677-55b8faa8158a]. Regional names are common names used in specific local languages.
+*   **Kali tulsi** [6] is listed as a **regional name** in **Marathi** [citation\_id: 55a8c55c-31d2-5b5a-afec-ac6f8a472284].
+*   **Lumnitzera tenuiflora (L.) Spreng.** [7] is a **scientific synonym** in the **scientific** language [citation\_id: 5d84e85c-c298-5f92-8064-76f021997de1].
+*   **Manchi tulasi [8]** [9] is recorded as a **regional name** in **Telugu** [citation\_id: de1f9739-5873-5841-85e0-10bd7b5b7ae8].
+*   **Moschosma tenuiflorum (L.) Heynh.** [10] is a **scientific synonym** in the **scientific** language [citation\_id: 851f33ee-32f5-5ea3-a492-8f81e6023d8c].
+*   **Nallathulasi [11]** [12] is listed as a **regional name** in **Tamil** [citation\_id: 80cdd46c-ead0-5513-9218-a43858bed7a7].
+*   **Ocimum sanctum L.** [13] is a **scientific synonym** in the **scientific** language [citation\_id: 0be05826-ec83-5922-a959-9d5c259b0030].
+
+In summary, the records show a mix of formal scientific names that have been superseded (synonyms) and common names used by local communities (regional names).",2026-10-28 05:50:28.73729+00,1.0
+505,TC_505_Persea_americana,Persea americana,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,19.56,0.0,1.0,0,0,0,2,2,"The provided records do not list any specific therapeutic or medicinal uses associated with *Persea americana*. The retrieved facts mention general therapeutic uses like ""Hypercholesterolemia"" [1] and ""Anti-infective agents, local"" [2], but these are not linked to *Persea americana*. More records are available for a complete answer.",2026-10-28 05:50:34.374632+00,4.0
+510,TC_510_Persea_americana,Persea americana,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,66.67999999999999,0.5833333333333334,0.41666666666666663,12,7,5,3,3,"These compounds are recorded for Persea americana:
+
+- A laboratory assay of Levomenol against Neuronal acetylcholine receptor subunit alpha-7 reports IC50 = 3100.0 nM. [1]
+- A laboratory assay of Myristic acid against DNA polymerase beta reports Potency = 158.5 nM. [2]
+- A laboratory assay of Myristic acid against Neuropeptide S receptor reports Potency = 158.5 nM. [3]
+- A laboratory assay of Myristic acid against Carbonic anhydrase 4 reports Ki = 72.8 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:35.246672+00,1.6666666666666665
+513,TC_513_Persea_americana,Persea americana,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,59.98,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as (E,Z)-2,4-Decadienal [1], 1-Octene [2], Isobutyraldehyde [3], Methyl acetate [4], 1-Hexanol [5], Ethyl acetate [6], Acetone [7], (-)-alpha-Cadinol [8], 2-Methylfuran [9], 1-Pentanol [10], Butyraldehyde [11], and Riboflavin [12]. However, none of the available records specify which protein targets are associated with the compounds found in *Persea americana*. More records may be available.",2026-10-28 05:50:35.273175+00,4.0
+514,TC_514_Persea_americana,Persea americana,"For a listed protein target, which organism does it come from and what type of target is it?","[""target_name"", ""target_organism"", ""target_type""]",1,32.12,0.0,1.0,0,0,0,3,3,"The provided records list several protein targets associated with compounds, but they do not specify which of these targets are associated with *Persea americana*. The targets listed come from the organism *Homo sapiens* and are all of the type ""SINGLE PROTEIN"" [61f31d4b-6fdb-5173-b2af-5c1eec6936ed, 450b65f4-156e-53d7-aaaa-6c020fcc0aad, 631de399-1362-5e03-b9d4-674704150d03, cb73f09f-3312-51a0-bc71-c54eb684e386, d67370e9-8656-5e52-ba86-63ee6672701d, bf8a37b0-7fa4-56cb-bdd0-4dbc34275661, 3a05ca0a-b924-5b05-82b7-bd1ed967048b, ae32e416-6c8c-5d4a-a69c-767b13930efe, 20026aa9-349c-53b4-bd99-601dde3bd5eb, 94174686-93f3-5337-9c19-b791e2587ccb, e5786568-e4e0-5ff2-96b3-2d3410e4e61e, 78eb5a55-f7c9-5085-af35-0dacdf21e734]. More records may be available.",2026-10-28 05:50:35.273339+00,4.0
+525,TC_525_Phyllanthus_acidus,Phyllanthus acidus,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,27.25,0.0,1.0,0,0,0,2,2,"The therapeutic or medicinal uses associated with *Phyllanthus acidus* include traditional applications for conditions such as eczema [1], abdominal pain [2], headache [3], bronchitis [4], constipation [5], diarrhea [6], vomiting [7], and snake bites [8] [citation_id: 5e3481cc-27d8-59e9-ab1e-8039bf4ea5fc, 001daa20-c3fb-59af-91b5-39f1b28d94d7, a103be06-aa03-51e4-96d9-2a1a86d1b610, 48df42c6-f53a-53a4-a8c7-2194236658cb, 967c78e7-f698-59aa-8209-63ad0daa2d81, 133155d5-a567-5a3c-9739-d38d5b5e016f, c24b66ee-09d7-5d8f-9174-b8072ef2c101, c383a91c-e7d6-5ba5-9017-8c4655494120].
+
+These associations represent traditional uses and are not proof of clinical efficacy or safety.",2026-10-28 05:50:37.191502+00,4.0
+526,TC_526_Phyllanthus_acidus,Phyllanthus acidus,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,33.5,0.7,0.30000000000000004,10,7,3,3,3,"The provided records do not contain specific health uses associated with the leaves of *Phyllanthus acidus*. The available records list various therapeutic uses for different substances or conditions, such as:
+
+*   Vomiting [1]
+*   Snake bites [2] [c383a91c-e7d6-5ba5-9017-8c4655494120, 11650907-e0bc-5edd-994b-53649af7e971, 7a095054-0716-5908-b3b2-307d29b1d9be]
+*   Asthma [3]
+*   Astringents [4]
+*   Eye diseases [5]
+*   Flatulence [6]
+*   Epistaxis [7]
+*   Abdominal pain [8]
+*   Cathartics [9] [5ad60037-d070-5836-8900-4ed227da433d, 761db508-556a-5d69-af47-1e7d4e8c893f]
+
+More records may be available.",2026-10-28 05:50:37.307288+00,1.2000000000000002
+537,TC_537_Phyllanthus_acidus,Phyllanthus acidus,Are the plant’s alternate names recorded with their alias type and language?,"[""alias"", ""alias_type"", ""language""]",0,0.0,0.0,1.0,0,0,0,0,0,Identified plant: Phyllanthus acidus. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:50:37.834352+00,4.0
+546,TC_546_Piper_betle,Piper betle,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,644.99,0.0,1.0,1,0,1,3,3,"The knowledge graph did not return specific facts detailing the health uses associated with the leaves of *Piper betle*.
+
+Generally, in traditional medicine, different parts of a plant are associated with different uses. To find out which specific uses are linked to the leaves, more targeted information would be needed.",2026-10-28 05:50:40.455463+00,4.0
+550,TC_550_Piper_betle,Piper betle,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,54.28,0.5,0.5,10,5,5,3,3,"These compounds are recorded for Piper betle:
+
+- A laboratory assay of Acetyleugenol against Acetylcholinesterase reports IC50 = 0.57 nM. [1]
+- A laboratory assay of beta-Carotene against Glucocorticoid receptor reports Potency 0.7 nM. [2]
+- A laboratory assay of beta-Carotene against Peroxisome proliferator-activated receptor gamma reports Potency 0.7 nM. [3]
+- A laboratory assay of beta-Carotene against Peroxisome proliferator-activated receptor delta reports Potency 0.7 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:41.150351+00,2.0
+559,TC_559_Piper_betle,Piper betle,Which plant part is associated with a particular compound and therapeutic use?,"[""plant_part"", ""phytochemical_name"", ""therapeutic_use""]",1,71.87,0.0,1.0,0,0,0,4,4,The available data does not directly link a specific plant part to a specific compound and therapeutic use for *Piper betle*.,2026-10-28 05:50:42.217314+00,4.0
+564,TC_564_Plectranthus_amboinicus,Plectranthus amboinicus,Does this plant’s recorded phytochemical have a ChEMBL ID or an IMPPAT ID?,"[""phytochemical_name"", ""chembl_id"", ""imppat_id""]",1,29.34,0.75,0.25,4,3,1,2,2,"Yes, the recorded phytochemicals for *Plectranthus amboinicus* have both a ChEMBL ID and an IMPPAT ID.
+
+The knowledge graph returned a list of several compounds found in this plant, and each one listed has been associated with both a ChEMBL ID and an IMPPAT ID.
+
+For example, **d-Borneol** is one such compound, and it is associated with ChEMBL ID: CHEMBL1245683 and IMPPAT ID: IMPHY011590 [1].
+
+These IDs are unique identifiers used in chemical databases:
+*   **ChEMBL ID:** This is a unique identifier used in the ChEMBL database, which is a large repository of bioactive molecules. It helps scientists track and reference specific chemical structures in studies.
+*   **IMPPAT ID:** This is a unique identifier used in the IMPPAT database, which is another resource for chemical information. It serves the same purpose—to provide a stable, searchable reference for a specific chemical entity.
+
+Since you asked about the phytochemicals, I have provided examples of the compounds and their corresponding IDs. If you would like to know more about any specific compound, please let me know.",2026-10-28 05:50:44.736464+00,1.0
+566,TC_566_Plectranthus_amboinicus,Plectranthus amboinicus,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,21.38,0.0,1.0,0,0,0,2,2,Identified plant: Plectranthus amboinicus. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:50:44.813523+00,4.0
+570,TC_570_Plectranthus_amboinicus,Plectranthus amboinicus,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,60.769999999999996,0.5833333333333334,0.41666666666666663,12,7,5,3,3,"These compounds are recorded for Plectranthus amboinicus:
+
+- A laboratory assay of beta-Caryophyllene against Alpha-galactosidase A reports Potency = 3981.1 nM. [1]
+- A laboratory assay of beta-Caryophyllene against Huntingtin reports Potency = 3981.1 nM. [2]
+- A laboratory assay of beta-Caryophyllene against Breast cancer type 1 susceptibility protein reports Potency = 3981.1 nM. [3]
+- A laboratory assay of Caryophyllene oxide against Interleukin-2 reports Kd = 20.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:45.662318+00,1.6666666666666665
+573,TC_573_Plectranthus_amboinicus,Plectranthus amboinicus,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,70.14,0.0,1.0,0,0,0,3,3,"The provided records list several phytochemicals, such as Thymol [1] methyl ether [2], Humulene [3], Linalool [4], and Carvacrol [5], which are classified as Prenol lipids, Monoterpenoids, or Sesquiterpenoids. However, none of the available records specify which protein targets are associated with the compounds found in *Plectranthus amboinicus*.",2026-10-28 05:50:45.687092+00,4.0
+576,TC_576_Plectranthus_amboinicus,Plectranthus amboinicus,What other names or alternate names is this plant known by?,"[""alias"", ""normalized_alias""]",1,22.15,0.6363636363636364,0.36363636363636365,11,7,4,3,3,"*Plectranthus amboinicus [1]* is known by several other names, including:
+
+**Common Names:**
+*   Cuban oregano [2]
+*   Indian borage [3]
+*   Indian mint [4]
+*   Mexican mint [5]
+
+**Regional Names:**
+*   Doddapatre (Kannada) [6]
+*   Karpooravalli (Tamil) [7]
+*   Panikoorka (Malayalam) [8]
+*   Patharchur (Hindi) [9]
+
+**Scientific Names/Synonyms:**
+*   Coleus amboinicus Lour. (accepted name) [10]
+*   Majana amboinica (Lour.) Kuntze [11]
+*   Plectranthus amboinicus (Lour.) Spreng. [12]
+
+More records may be available.",2026-10-28 05:50:46.40075+00,1.4545454545454546
+577,TC_577_Plectranthus_amboinicus,Plectranthus amboinicus,Are the plant’s alternate names recorded with their alias type and language?,"[""alias"", ""alias_type"", ""language""]",0,0.0,0.0,1.0,0,0,0,0,0,Identified plant: Plectranthus amboinicus. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:50:46.400851+00,4.0
+586,TC_586_Pongamia_pinnata,Pongamia pinnata,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,26.59,0.0,1.0,0,0,0,2,2,Identified plant: Pongamia pinnata. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:50:49.369352+00,4.0
+590,TC_590_Pongamia_pinnata,Pongamia pinnata,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,61.550000000000004,0.6428571428571429,0.3571428571428571,14,9,5,3,3,"These compounds are recorded for Pongamia pinnata:
+
+- A laboratory assay of Karanjin against Rap guanine nucleotide exchange factor 4 reports Potency 7943.3 nM. [1]
+- A laboratory assay of 2-Phenylfuro[2,3-h]chromen-4-one against 5-hydroxytryptamine receptor 2A reports Ki = 0.63 nM. [2]
+- A laboratory assay of Betulinic acid against DNA dC->dU-editing enzyme APOBEC-3F reports Potency 6309.6 nM. [3]
+- A laboratory assay of Betulinic acid against Bile acid receptor reports EC50 = 0.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:50:50.340182+00,1.4285714285714284
+591,TC_591_Pongamia_pinnata,Pongamia pinnata,"What bioactivity value was measured, and what relation sign and units accompany the result?","[""standard_value"", ""standard_relation"", ""standard_units""]",1,33.54,0.0,1.0,0,0,0,2,2,"The provided records contain bioactivity data for various compounds, but none of the records specifically mention *Pongamia pinnata*. Therefore, I cannot state what bioactivity value was measured for *Pongamia pinnata*, nor what relation sign and units accompany the result based on the available information.",2026-10-28 05:50:50.340416+00,4.0
+609,TC_609_Psidium_guajava,Psidium guajava,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,77.91,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as Psidinin B [1], Psidinin C [2], Psiguavin [3], Guaijaverin [4], Quercetin [5], and Gallic acid [6], which are associated with the plant *Psidium guajava*. However, these records only provide chemical information (like chemical names, classes, and SMILES strings) and do not report any specific bioactivity measurements for compounds from this plant.
+
+More records may be available.",2026-10-28 05:51:01.418973+00,4.0
+610,TC_610_Psidium_guajava,Psidium guajava,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,82.97,0.5454545454545454,0.4545454545454546,11,6,5,3,3,"These compounds are recorded for Psidium guajava:
+
+- A laboratory assay of Ellagic acid against Pyruvate kinase PKLR reports IC50 = 32.0 nM. [1]
+- A laboratory assay of Ellagic acid against Tissue-type plasminogen activator reports IC50 = 32.0 nM. [2]
+- A laboratory assay of Ellagic acid against Ubiquitin carboxyl-terminal hydrolase 2 reports Potency = 1122.0 nM. [3]
+- A laboratory assay of Ellagic acid against RecQ-like DNA helicase BLM reports Potency = 2.8 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:01.717503+00,1.8181818181818183
+615,TC_615_Psidium_guajava,Psidium guajava,What are the UniProt accession and ChEMBL target ID for this protein target?,"[""target_name"", ""uniprot_id"", ""target_chembl_id""]",1,45.79,0.0,1.0,0,0,0,2,2,"The provided records do not contain the UniProt accession and ChEMBL target ID specifically for a protein target associated with *Psidium guajava*. The retrieved facts list targets from *Homo sapiens* [ea606afe-df41-5788-bfb3-1fb1ba619bd5, 63ac615a-64d5-5054-a46b-09977dc5fd2c, e8a358ce-ed1e-5b47-93b3-538f42561ee5, fdf7cd03-0178-5d2d-8a4f-239e0e06fb27]. More records may be available.",2026-10-28 05:51:04.021269+00,4.0
+630,TC_630_Punica_granatum,Punica granatum,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,56.0,0.6428571428571429,0.3571428571428571,14,9,5,3,3,"These compounds are recorded for Punica granatum:
+
+- A laboratory assay of Betulinic acid against DNA dC->dU-editing enzyme APOBEC-3F reports Potency 6309.6 nM. [1]
+- A laboratory assay of Betulinic acid against Bile acid receptor reports EC50 = 0.0 nM. [2]
+- A laboratory assay of Betulinic acid against Transcription intermediary factor 1-alpha reports IC50 = 162.0 nM. [3]
+- A laboratory assay of Ursolic acid against Nuclear receptor ROR-gamma reports IC50 = 0.75 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:11.855922+00,1.4285714285714284
+643,TC_643_Santalum_album,Santalum album,Can you show the SMILES representation and InChIKey for a compound associated with this plant?,"[""phytochemical_name"", ""smiles"", ""inchi_key""]",1,31.35,0.5,0.5,6,3,3,2,2,"A compound associated with *Santalum album* is beta-Sitosterol [1], which has the following SMILES representation and InChIKey:
+
+*   **SMILES:** CC[C@@H](C(C)C)CC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](
+*   **InChIKey:** KZJWDPNRJALLNS-VJSFXXLFSA-N [2]
+
+Other compounds found in the records include 1-Triacontanol [3] (SMILES: CCCCCCCCCCCCCCCCCCCCCCCCCO, InChIKey: REZQBEBOWJAQKS-UHFFFAOYSA-N) [4], D-Glucose [5] (SMILES: OC[C@H]1OC(O)[C@@H]([C@H]([C@@H]1O)O)O, InChIKey: WQZGKKKJIJFFOK-GASJEMHNSA-N) [6], and cis-4-Hydroxy-L-proline (SMILES: O[C@@H]1CN[C@@H](C1)C(=O)O, InChIKey: PMMYEEVYMWASQN-IMJSIDKUSA-N) [7]. More records may be available.",2026-10-28 05:51:16.948289+00,2.0
+649,TC_649_Santalum_album,Santalum album,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,55.24,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Santalum album:
+
+- A laboratory assay of Linoleic acid against Receptor-type tyrosine-protein phosphatase S reports IC50 = 4300.0 nM. [1]
+- A laboratory assay of Linoleic acid against Cytochrome P450 1A2 reports IC50 = 40.0 nM. [2]
+- A laboratory assay of Linoleic acid against Histamine H4 receptor reports Ki = 1000.0 nM. [3]
+- A laboratory assay of Linoleic acid against Dual specificity tyrosine-phosphorylation-regulated kinase 2 reports IC50 = 2004.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:18.594561+00,1.5384615384615383
+650,TC_650_Santalum_album,Santalum album,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,60.75,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Santalum album:
+
+- A laboratory assay of Linoleic acid against Receptor-type tyrosine-protein phosphatase S reports IC50 = 4300.0 nM. [1]
+- A laboratory assay of Linoleic acid against Cytochrome P450 1A2 reports IC50 = 40.0 nM. [2]
+- A laboratory assay of Linoleic acid against Histamine H4 receptor reports Ki = 1000.0 nM. [3]
+- A laboratory assay of Linoleic acid against Dual specificity tyrosine-phosphorylation-regulated kinase 2 reports IC50 = 2004.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:18.700492+00,1.5384615384615383
+653,TC_653_Santalum_album,Santalum album,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,66.64,0.0,1.0,0,0,0,3,3,"The provided records list various phytochemicals, such as Linoleic acid [1] [2], Betulinic acid [3], and Palmitic acid [4], which are classified as lipids or organic compounds. However, none of the available records specify which protein targets are associated with the compounds found in *Santalum album*. More records may be available.",2026-10-28 05:51:18.735667+00,4.0
+655,TC_655_Santalum_album,Santalum album,What are the UniProt accession and ChEMBL target ID for this protein target?,"[""target_name"", ""uniprot_id"", ""target_chembl_id""]",1,36.22,0.0,1.0,0,0,0,2,2,"The provided records do not contain the UniProt accession and ChEMBL target ID specifically for a protein target associated with *Santalum album*. The retrieved facts list targets from *Homo sapiens* [10101690-fc98-55ba-b4bb-edd2088282b2, 9ba402d1-a396-507e-a7ce-767a1849d1e0, 104b864a-cb67-5143-bf21-a56fd2d00442, 6a010b63-768b-51bd-ae88-6e547a65ff93]. More records may be available.",2026-10-28 05:51:18.838285+00,4.0
+664,TC_664_Saraca_asoca,Saraca asoca,Does this plant’s recorded phytochemical have a ChEMBL ID or an IMPPAT ID?,"[""phytochemical_name"", ""chembl_id"", ""imppat_id""]",1,26.52,0.0,1.0,0,0,0,2,2,"The recorded phytochemicals for *Saraca asoca* include Ergometrine [1], Leucocianidol [2], Leucopelargonidin [3], 1-Octacosanol [4], beta-Sitosterol [5], Catechol [6], Cianidanol [7], and Stigmast-5-en-3-ol [8]. Each of these compounds has both a ChEMBL ID and an IMPPAT ID associated with it.",2026-10-28 05:51:21.280653+00,4.0
+666,TC_666_Saraca_asoca,Saraca asoca,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,25.65,0.0,1.0,1,0,1,2,2,"The leaves of *Saraca asoca* are associated with several reported health uses. These include traditional associations with conditions such as neoplasms [1], uterine diseases [2], hematologic diseases [3], acne vulgaris [4], amenorrhea [5], colic [6], dysentery [7], and dyspepsia [8] [2bc8f74b-9d6c-55d2-8ad2-d364d677e3ad, e9296b5e-b928-549f-b3e2-0043416884ce, 5a463a22-9c13-557e-b0ef-28d7c52fc62e, afa0b790-af89-566c-b2b0-bae5d3932cb7, 5af355fa-e52e-5b54-8f1a-94455eb8c812, b0a5c94f-4f71-5ef7-8b84-de994d25b873, c8a52501-0938-5695-a56d-e5e70c534670, 35f7dd65-ddc0-59df-a14c-77f25303c8a8].
+
+These associations represent traditional or reported uses and do not constitute scientific proof of efficacy or safety.
+
+Here is a brief explanation of the types of conditions mentioned:
+
+*   **Neoplasms:** This refers to abnormal growths of tissue, commonly known as tumors. Scientifically, this area of study focuses on understanding the causes and development of these growths.
+*   **Uterine diseases:** This is a broad term covering various conditions affecting the uterus, such as fibroids or endometriosis. Scientifically, research in this area aims to understand reproductive health and tissue function.
+*   **Hematologic diseases:** These are disorders related to the blood, such as anemia or leukemia. Scientifically, this field studies the components of blood and the processes of blood formation and function.
+*   **Acne vulgaris:** This is a common skin condition characterized by pimples and inflammation. Scientifically, it involves studying the interplay between hormones, oil production, and bacteria on the skin.
+*   **Amenorrhea:** This is the absence of menstruation. Scientifically, it relates to the complex hormonal regulation of the menstrual cycle.
+*   **Colic:** This refers to severe, spasmodic pain [9], often in the abdomen. Scientifically, it involves studying the muscular contractions of organs like the intestines.
+*   **Dysentery:** This is an intestinal infection [10] that causes severe diarrhea, often with blood. Scientifically, it is studied in the context of infectious disease and gut health.
+*   **Dyspepsia:** This is a general term for indigestion or discomfort in the upper digestive tract. Scientifically, it relates to the normal function and potential irritations of the stomach and upper intestines.",2026-10-28 05:51:21.438037+00,4.0
+669,TC_669_Saraca_asoca,Saraca asoca,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,60.239999999999995,0.5833333333333334,0.41666666666666663,12,7,5,3,3,"These compounds are recorded for Saraca asoca:
+
+- A laboratory assay of Ergometrine against 5-hydroxytryptamine receptor 2B reports Ki = 2.634 nM. [1]
+- A laboratory assay of Ergometrine against Alpha-2A adrenergic receptor reports Ki = 630.0 nM. [2]
+- A laboratory assay of Ergometrine against Insulin-like growth factor 1 receptor reports IC50 = 250.0 nM. [3]
+- A laboratory assay of Ergometrine against Macrophage migration inhibitory factor reports IC50 = 250.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:21.830033+00,1.6666666666666665
+670,TC_670_Saraca_asoca,Saraca asoca,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,59.38,0.5833333333333334,0.41666666666666663,12,7,5,3,3,"These compounds are recorded for Saraca asoca:
+
+- A laboratory assay of Ergometrine against 5-hydroxytryptamine receptor 2B reports Ki = 2.634 nM. [1]
+- A laboratory assay of Ergometrine against Alpha-2A adrenergic receptor reports Ki = 630.0 nM. [2]
+- A laboratory assay of Ergometrine against Insulin-like growth factor 1 receptor reports IC50 = 250.0 nM. [3]
+- A laboratory assay of Ergometrine against Macrophage migration inhibitory factor reports IC50 = 250.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:22.051315+00,1.6666666666666665
+675,TC_675_Saraca_asoca,Saraca asoca,What are the UniProt accession and ChEMBL target ID for this protein target?,"[""target_name"", ""uniprot_id"", ""target_chembl_id""]",1,32.0,0.0,1.0,0,0,0,3,3,"The provided records do not contain the UniProt accession or ChEMBL target ID for a protein target associated with *Saraca asoca*. The available records list targets from *Homo sapiens* [b364afba-7a55-5f40-bea7-74e77a589889, 3ae24578-5949-5187-ab8d-3f0724feccd6, 99bf6203-7e21-5010-8ae8-8102ce626620, 366caf4a-be58-585e-9394-2a0e15060b9c, dd78bf8c-d627-5664-b3fc-bc550888772f, 8ccbd522-00f3-5e8a-8e13-640d76bb39bb, 6852d00e-eb72-59cd-8ebe-364944684ffd, 92ee3737-42cf-5b4b-9de2-200213f17916, e304baf0-84fc-5c3b-ac22-23f256ec01f1, 09b9484e-6bc0-5a7c-bbe4-7c95df0d3aa9, d076864b-d1fd-5dd0-8ed7-24b74dc6dd8b, 5d191f34-51a7-520b-b0dd-26b444bb4a13]. More records may be available.",2026-10-28 05:51:22.533473+00,4.0
+697,TC_697_Schefflera_arboricola,Schefflera arboricola,Are the plant’s alternate names recorded with their alias type and language?,"[""alias"", ""alias_type"", ""language""]",0,0.0,0.0,1.0,0,0,0,0,0,Identified plant: Schefflera arboricola. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:51:23.148778+00,4.0
+706,TC_706_Spinacia_oleracea,Spinacia oleracea,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,23.67,0.0,1.0,1,0,1,3,3,"The provided records do not contain specific health uses associated with the leaves of *Spinacia oleracea*. However, some general therapeutic uses are listed in the records:
+
+*   **Diet, food, and nutrition:** Associated with a chemical/drug record [1].
+*   **Anti-bacterial agents:** Associated with a chemical/drug record [2].
+*   **Fever:** Associated with a pathological condition record [3].
+*   **Inflammation:** Associated with a pathological condition record [4].
+*   **Liver diseases:** Associated with a disease record [5].
+*   **Laxatives:** Associated with a digestive system disease record [6].
+*   **Jaundice:** Associated with a chemical/drug record [7].
+*   **Urinary calculi:** Associated with a bacterial infection and mycosis record [8].
+
+More records may be available.",2026-10-28 05:51:24.98836+00,4.0
+707,TC_707_Spinacia_oleracea,Spinacia oleracea,"What therapeutic uses are listed, and how are they grouped into categories and subcategories?","[""therapeutic_use"", ""mesh_category"", ""mesh_category_name"", ""mesh_sub_category_name""]",1,23.29,0.5,0.5,8,4,4,2,2,"The therapeutic uses listed for *Spinacia oleracea* are grouped into several categories: Diseases (C23), Chemicals and Drugs (D27), Diseases (C06), Diseases (C23), and Chemicals and Drugs (D06).
+
+Here is an explanation of each listed use:
+
+**Under Diseases (C23):**
+*   **Fever** [1]: This refers to the use associated with managing elevated body temperature. Scientifically, fever is a symptom, and traditional uses suggest the plant may be associated with helping to manage this condition.
+*   **Inflammation** [2]: This relates to the plant's association with conditions involving swelling, redness, or heat in the body. Scientifically, this suggests potential anti-inflammatory properties, though the catalog entry only lists the association.
+*   **Laxatives** [3]: This indicates a traditional use for promoting bowel movements. Scientifically, this suggests the plant may contain compounds that affect gut motility.
+
+**Under Chemicals and Drugs (D27):**
+*   **Diet, food, and nutrition** [4]: This is a broad classification indicating the plant is used as a food source. Scientifically, this means it provides nutrients to the diet.
+*   **Anti-bacterial agents** [5]: This suggests the plant is associated with having properties that can inhibit the growth of bacteria. Scientifically, this points toward potential antimicrobial activity.
+*   **Pregnancy** [6]: This indicates a traditional use related to pregnancy. Scientifically, this association is broad and does not specify whether the use is for support, management, or otherwise.
+
+**Under Diseases (C06):**
+*   **Liver diseases** [7]: This refers to the plant's association with conditions affecting the liver. Scientifically, this suggests potential hepatoprotective or supportive uses, but the evidence only records the association.
+
+**Under Chemicals and Drugs (D06):**
+*   **Apnea** [8]: This refers to the plant's association with conditions involving temporary cessation of breathing. Scientifically, this suggests a traditional use related to respiratory or sleep-related issues.",2026-10-28 05:51:25.068079+00,2.0
+710,TC_710_Spinacia_oleracea,Spinacia oleracea,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,42.03,0.5,0.5,18,9,9,3,3,"Here is a little more about Caffeic acid in Spinacia oleracea:
+
+- A laboratory assay of Caffeic acid against Carbonic anhydrase 12 reports Ki = 4.9 nM. [1]
+- A laboratory assay of Caffeic acid against Carbonic anhydrase 4 reports Ki = 72.8 nM. [2]
+- A laboratory assay of Rutin against Neuromedin-U receptor 2 reports EC50 = 1200.0 nM. [3]
+- A laboratory assay of Rutin against Alpha-2C adrenergic receptor reports Ki = 9637.0 nM. [4]
+- Caffeic acid is listed as a phytochemical in aerial part. It is classified as Cinnamic acids and derivatives. [5]
+- Rutin is listed as a phytochemical in aerial part. It is classified as Flavonoids. [6]
+- Astragalin is listed as a phytochemical in aerial part. It is classified as Flavonoids. [7]
+- Neochlorogenic acid is listed as a phytochemical in aerial part. It is classified as Organooxygen compounds. [8]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:25.394335+00,2.0
+725,TC_725_Syzygium_cumini,Syzygium cumini,What therapeutic or medicinal uses are associated with this plant?,"[""therapeutic_use""]",1,27.77,0.0,1.0,0,0,0,2,2,"The therapeutic or medicinal uses associated with *Syzygium cumini* include treatments for urination disorders [1], flatulence [2], skin diseases [3], diabetes mellitus [4], diarrhea [5], dysentery [6], fever [7], and leukorrhea [8] [116a6a61-6ce4-558a-9032-5441cb73acc7, 55cba39f-45c6-5498-986b-e28cc6d786ae, c06fdd68-8097-56b0-8cfd-c48d8aab9651, 441b589b-86d1-5b01-8838-7d6123b2ef7d, e7754db4-3924-5035-a69c-2a3a1ff3e1d1, efd5d12b-9c94-5efe-bebe-c46aa712ef51, 4162ca10-95b3-56d6-b07d-8f4631770569, aedb61fa-7abc-5c72-bdcb-f7972fdaafd6].
+
+Since you asked about the uses, I have established *Syzygium cumini* as the plant of interest. If you would like to know more about its profile, such as its parts, compounds, or general characteristics, please let me know.",2026-10-28 05:51:29.389854+00,4.0
+726,TC_726_Syzygium_cumini,Syzygium cumini,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,21.63,0.0,1.0,0,0,0,2,2,Identified plant: Syzygium cumini. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:51:29.390005+00,4.0
+729,TC_729_Syzygium_cumini,Syzygium cumini,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,63.4,0.7692307692307693,0.23076923076923073,13,10,3,3,3,"These compounds are recorded for Syzygium cumini:
+
+- A laboratory assay of 1-(2-Hydroxy-4,6-dimethoxy-3-methylphenyl)ethan-1-one against Alpha-2B adrenergic receptor reports EC50 = 0.5 nM. [1]
+- A laboratory assay of 1-(2-Hydroxy-4,6-dimethoxy-3-methylphenyl)ethan-1-one against Estrogen receptor beta reports EC50 = 0.5 nM. [2]
+- A laboratory assay of Kaempferol against Glucagon-like peptide 1 receptor reports Potency 501.2 nM. [3]
+- A laboratory assay of Kaempferol against CDGSH iron-sulfur domain-containing protein 1 reports Ki = 132.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:30.186366+00,0.9230769230769229
+730,TC_730_Syzygium_cumini,Syzygium cumini,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,64.61,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Syzygium cumini:
+
+- A laboratory assay of 1-(2-Hydroxy-4,6-dimethoxy-3-methylphenyl)ethan-1-one against Alpha-2B adrenergic receptor reports EC50 = 0.5 nM. [1]
+- A laboratory assay of 1-(2-Hydroxy-4,6-dimethoxy-3-methylphenyl)ethan-1-one against Estrogen receptor beta reports EC50 = 0.5 nM. [2]
+- A laboratory assay of Kaempferol against Glucagon-like peptide 1 receptor reports Potency 501.2 nM. [3]
+- A laboratory assay of Kaempferol against CDGSH iron-sulfur domain-containing protein 1 reports Ki = 132.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:30.518596+00,1.5384615384615383
+735,TC_735_Syzygium_cumini,Syzygium cumini,What are the UniProt accession and ChEMBL target ID for this protein target?,"[""target_name"", ""uniprot_id"", ""target_chembl_id""]",1,37.15,0.0,1.0,0,0,0,2,2,"The provided records contain information about protein targets from *Homo sapiens* (human), but they do not contain specific UniProt accession or ChEMBL target IDs for a protein target associated with *Syzygium cumini*.",2026-10-28 05:51:31.562998+00,4.0
+743,TC_743_Syzygium_jambos,Syzygium jambos,Can you show the SMILES representation and InChIKey for a compound associated with this plant?,"[""phytochemical_name"", ""smiles"", ""inchi_key""]",1,25.22,0.0,1.0,3,0,3,2,2,"A compound associated with *Syzygium jambos* is Tannic acid [1], which has the following SMILES representation and InChIKey:
+
+*   **SMILES:** O=C(c1cc(O)c(c(c1)OC(=O)c1cc(O)c(c(c1)O)O)O)O[C@@H]1[C@@H](COC(=O)c2cc(O)c(c(c2)OC(=O)c2cc(O)c(c(c2)O)O)O)O[C@H]([C@@H
+*   **InChIKey:** LRBQNJMCXXYXIU-PPKXGCFTSA-N
+
+More records are available.",2026-10-28 05:51:33.305223+00,4.0
+750,TC_750_Syzygium_jambos,Syzygium jambos,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,44.39,0.5,0.5,16,8,8,3,3,"Here is a little more about Tannic acid in Syzygium jambos:
+
+- A laboratory assay of Tannic acid against Vascular endothelial growth factor A, long form reports Kd = 16.5 nM. [1]
+- A laboratory assay of Tannic acid against Transmembrane protease serine 2 reports IC50 = 2310.0 nM. [2]
+- A laboratory assay of Tannic acid against cGMP-specific 3',5'-cyclic phosphodiesterase reports IC50 = 4703.0 nM. [3]
+- A laboratory assay of Tannic acid against Tyrosine-protein kinase Fyn reports IC50 = 22.0 nM. [4]
+- Tannic acid is listed as a phytochemical in bark. It is classified as Tannins. [5]
+- Oleoresin tumeric is listed as a phytochemical in bark. It is classified as Diarylheptanoids. [6]
+- Thiamine is listed as a phytochemical in fruit. It is classified as Diazines. [7]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:33.83667+00,2.0
+766,TC_766_Tabernaemontana_divaricata,Tabernaemontana divaricata,What health uses are associated with the leaves of this plant?,"[""plant_part"", ""therapeutic_use""]",1,23.38,0.0,1.0,0,0,0,2,2,Identified plant: Tabernaemontana divaricata. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:51:37.196879+00,4.0
+770,TC_770_Tabernaemontana_divaricata,Tabernaemontana divaricata,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,60.21,0.6153846153846154,0.3846153846153846,13,8,5,3,3,"These compounds are recorded for Tabernaemontana divaricata:
+
+- A laboratory assay of Kaempferol against Glucagon-like peptide 1 receptor reports Potency 501.2 nM. [1]
+- A laboratory assay of Kaempferol against CDGSH iron-sulfur domain-containing protein 1 reports Ki = 132.0 nM. [2]
+- A laboratory assay of Kaempferol against Ribosomal protein S6 kinase alpha-3 reports IC50 = 1710.0 nM. [3]
+- A laboratory assay of Kaempferol against Cannabinoid receptor 2 reports Ki = 150.0 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:38.180103+00,1.5384615384615383
+771,TC_771_Tabernaemontana_divaricata,Tabernaemontana divaricata,"What bioactivity value was measured, and what relation sign and units accompany the result?","[""standard_value"", ""standard_relation"", ""standard_units""]",1,25.08,0.0,1.0,0,0,0,1,1,"The provided records contain bioactivity data for various compounds, but none of the records specifically mention *Tabernaemontana divaricata*. Therefore, I cannot state what bioactivity value was measured, or what relation sign and units accompany the result for *Tabernaemontana divaricata* based on the available information. More records may be available.",2026-10-28 05:51:38.180327+00,4.0
+774,TC_774_Tabernaemontana_divaricata,Tabernaemontana divaricata,"For a listed protein target, which organism does it come from and what type of target is it?","[""target_name"", ""target_organism"", ""target_type""]",1,24.880000000000003,0.0,1.0,0,0,0,3,3,"The provided records list several protein targets associated with compounds, but they do not specify which of these targets are associated with *Tabernaemontana divaricata*. All the listed targets come from the organism *Homo sapiens* and are of the ""SINGLE PROTEIN"" type [54990e24-ba61-5fa2-8642-df26cfdc0c82, a27a4f10-9bf7-587f-8ec0-0bc98fcc6ff7, 15da0646-c77f-5552-9cdd-4456caa7ae8c, 729ac6cb-b384-584f-9dc0-dc13e7970fcc, 25ffb95c-ef2c-51c2-87d7-6263afd9e4b1, eca409ac-6450-58d6-9736-012803323fe7, 1f6fb428-a133-5d2f-ad74-ad0c8c9bae4e, 4138c54a-92c4-566f-a1d6-e21c8a5a2df5, bf8c914f-164b-5dcf-af5c-b9b0be9593ea, 71f827af-d857-5e3b-af83-b9a84f17ea16, 3d395edc-4689-52a2-b6f3-8ad84af678b3, 7cc6c260-de9b-5fe8-a555-06e0ffc120ba]. More records may be available.",2026-10-28 05:51:38.794129+00,4.0
+783,TC_783_Trigonella_foenum-graecum,Trigonella foenum-graecum,Can you show the SMILES representation and InChIKey for a compound associated with this plant?,"[""phytochemical_name"", ""smiles"", ""inchi_key""]",1,26.37,0.6,0.4,5,3,2,2,2,"Several compounds are associated with *Trigonella foenum-graecum* in the available records. Here are the SMILES representations and InChIKeys for three of these compounds:
+
+1.  **Cholesterol** [1]:
+    *   SMILES: CC(CCC[C@H]([C@H]1CC[C@@H]2[C@]1(C)CC[C@H]1[C@H]2CC=C2[C@]1(C)CC[C@@H](C2)O)C)C
+    *   InChIKey: HVYWMOMLDIMFJA-DPAQBDIFSA-N
+    *   Citation: 0c332bb8-e138-5498-9306-c640055f36e3
+
+2.  **Trigofoenoside A** [2]:
+    *   SMILES: OC[C@H]",2026-10-28 05:51:43.886416+00,1.6
+789,TC_789_Trigonella_foenum-graecum,Trigonella foenum-graecum,What bioactivity measurements have been reported for compounds from this plant?,"[""phytochemical_name"", ""standard_type"", ""standard_value"", ""standard_relation"", ""standard_units"", ""normalized_value_nm""]",1,52.57,0.7857142857142857,0.2142857142857143,14,11,3,3,3,"These compounds are recorded for Trigonella foenum-graecum:
+
+- A laboratory assay of Levomenol against Neuronal acetylcholine receptor subunit alpha-7 reports IC50 = 3100.0 nM. [1]
+- A laboratory assay of Cholesterol against Free fatty acid receptor 1 reports EC50 = 540.0 nM. [2]
+- A laboratory assay of Cholesterol against Nicotinate phosphoribosyltransferase reports Ki = 0.16 nM. [3]
+- A laboratory assay of Cholesterol against Free fatty acid receptor 4 reports EC50 = 316.23 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:46.347785+00,0.8571428571428572
+790,TC_790_Trigonella_foenum-graecum,Trigonella foenum-graecum,"Which type of bioactivity measurement is reported for this compound, such as IC50 or Ki?","[""standard_type""]",1,64.55,0.6428571428571429,0.3571428571428571,14,9,5,3,3,"These compounds are recorded for Trigonella foenum-graecum:
+
+- A laboratory assay of Levomenol against Neuronal acetylcholine receptor subunit alpha-7 reports IC50 = 3100.0 nM. [1]
+- A laboratory assay of Cholesterol against Free fatty acid receptor 1 reports EC50 = 540.0 nM. [2]
+- A laboratory assay of Cholesterol against Nicotinate phosphoribosyltransferase reports Ki = 0.16 nM. [3]
+- A laboratory assay of Cholesterol against Free fatty acid receptor 4 reports EC50 = 316.23 nM. [4]
+
+Each protein name is a laboratory target, not a condition the plant treats. IC50 marks 50% inhibition in a particular test; Ki is a binding or inhibition measure; Potency is another assay response measure. The nM values are concentrations measured in different tests. They do not show whether the plant helps a person.
+
+More related information is recorded than shown here. Ask about a specific compound to narrow the answer.",2026-10-28 05:51:46.578917+00,1.4285714285714284
+793,TC_793_Trigonella_foenum-graecum,Trigonella foenum-graecum,Which protein targets are associated with the compounds found in this plant?,"[""phytochemical_name"", ""target_name""]",1,1081.04,0.0,1.0,0,0,0,9,9,"The provided records list various phytochemicals, such as Cholesterol [1], Trigofoenoside A [2], Trigonelloside C [3], Arachidic acid [4], Docosanoic acid [5], Pentadecanal [6], Fenugreekine [7], beta-Carotene [8], Isoliquiritigenin [9], (+)-cis-Sabinol [10], Pyridoxine [11], and Vicenin-2 [12]. However, none of the available records specify which protein targets are associated with the compounds found in *Trigonella foenum-graecum*. More records may be available.",2026-10-28 05:51:46.609055+00,4.0
+797,TC_797_Trigonella_foenum-graecum,Trigonella foenum-graecum,Are the plant’s alternate names recorded with their alias type and language?,"[""alias"", ""alias_type"", ""language""]",0,0.0,0.0,1.0,0,0,0,0,0,Identified plant: Trigonella foenum-graecum. This chat now focuses on this plant. What would you like to know about it?,2026-10-28 05:51:47.512803+00,4.0
+798,TC_798_Trigonella_foenum-graecum,Trigonella foenum-graecum,"Which parts of this plant are documented, such as its leaves, roots, flowers, seeds, or bark?","[""plant_part""]",1,20.39,0.6,0.4,5,3,2,2,2,"The documented parts of *Trigonella foenum-graecum* include the aerial part [1], leaf [2], plant exudate [3], seed [4], and stem [5].
+
+Here is a brief explanation of what these terms mean in a botanical context:
+
+*   **Aerial part:** This refers to all the parts of the plant that grow above the soil, such as stems, leaves, and flowers. Scientifically, this is where most photosynthesis and visible growth occurs.
+*   **Leaf:** The leaves are the primary organs of photosynthesis, meaning they capture sunlight and convert it into chemical energy (sugars) for the plant.
+*   **Plant exudate:** This is a general term for substances that are secreted or oozed out by the plant. These can be resins, gums, or other chemical compounds that might be involved in defense or signaling.
+*   **Seed:** Seeds are the reproductive structures of the plant. They contain the embryo of a new plant and are designed to allow the species to propagate and survive.
+*   **Stem:** The stem is the main axis of the plant, providing structural support and acting as a transport system to move water and nutrients between the roots and the leaves.",2026-10-28 05:51:47.551029+00,1.6
