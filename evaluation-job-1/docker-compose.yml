@@ -57,7 +57,7 @@ services:
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/dashboards:/etc/grafana/dashboards
       - grafana_data:/var/lib/grafana
     depends_on:
       postgres:

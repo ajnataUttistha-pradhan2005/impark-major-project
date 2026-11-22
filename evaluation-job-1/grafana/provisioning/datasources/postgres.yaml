@@ -3,6 +3,7 @@ apiVersion: 1
 datasources:
   - name: PostgreSQL-Evaluation
     type: postgres
+    uid: PostgreSQL-Evaluation
     access: proxy
     url: postgres:5432
     user: eval_admin
