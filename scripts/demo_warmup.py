@@ -1,6 +1,12 @@
 """Read-only checks and bounded local model warmup for the demo launcher."""
 
 import sys
+from pathlib import Path
+
+# Ensure project root is in sys.path when script is executed directly
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
 
 import httpx
 
